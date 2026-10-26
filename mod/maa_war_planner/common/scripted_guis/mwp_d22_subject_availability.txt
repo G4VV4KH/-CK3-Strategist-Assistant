@@ -1,0 +1,124 @@
+﻿mwp_d22_subject_type_unavailable = {
+ scope = character
+ saved_scopes = { type_id provider }
+ is_valid = {
+  is_ai = no
+  government_allows = subject_men_at_arms
+  mwp_auto_fresh_trigger = yes
+  NOT = { mwp_analysis_current_work_trigger = yes }
+  NOT = { exists = scope:provider }
+  OR = {
+AND = { scope:type_id >= 1 scope:type_id <= 1 NOT = { has_access_to_maa = huscarl } NOT = { has_variable = mwp_rank_1 } }
+AND = { scope:type_id >= 2 scope:type_id <= 2 NOT = { has_access_to_maa = landsknecht } NOT = { has_variable = mwp_rank_2 } }
+AND = { scope:type_id >= 3 scope:type_id <= 3 NOT = { has_access_to_maa = longbowmen } NOT = { has_variable = mwp_rank_3 } }
+AND = { scope:type_id >= 4 scope:type_id <= 4 NOT = { has_access_to_maa = goedendag } NOT = { has_variable = mwp_rank_4 } }
+AND = { scope:type_id >= 5 scope:type_id <= 5 NOT = { has_access_to_maa = gendarme } NOT = { has_variable = mwp_rank_5 } }
+AND = { scope:type_id >= 6 scope:type_id <= 6 NOT = { has_access_to_maa = chasseur } NOT = { has_variable = mwp_rank_6 } }
+AND = { scope:type_id >= 7 scope:type_id <= 7 NOT = { has_access_to_maa = picchieri } NOT = { has_variable = mwp_rank_7 } }
+AND = { scope:type_id >= 8 scope:type_id <= 8 NOT = { has_access_to_maa = praetorian } NOT = { has_variable = mwp_rank_8 } }
+AND = { scope:type_id >= 9 scope:type_id <= 9 NOT = { has_access_to_maa = caballero } NOT = { has_variable = mwp_rank_9 } }
+AND = { scope:type_id >= 10 scope:type_id <= 10 NOT = { has_access_to_maa = monaspa } NOT = { has_variable = mwp_rank_10 } }
+AND = { scope:type_id >= 11 scope:type_id <= 11 NOT = { has_access_to_maa = cataphract } NOT = { has_variable = mwp_rank_11 } }
+AND = { scope:type_id >= 12 scope:type_id <= 12 NOT = { has_access_to_maa = hobelar } NOT = { has_variable = mwp_rank_12 } }
+AND = { scope:type_id >= 13 scope:type_id <= 13 NOT = { has_access_to_maa = schiltron } NOT = { has_variable = mwp_rank_13 } }
+AND = { scope:type_id >= 14 scope:type_id <= 14 NOT = { has_access_to_maa = metsanvartija } NOT = { has_variable = mwp_rank_14 } }
+AND = { scope:type_id >= 15 scope:type_id <= 15 NOT = { has_access_to_maa = horse_archers } NOT = { has_variable = mwp_rank_15 } }
+AND = { scope:type_id >= 16 scope:type_id <= 16 NOT = { has_access_to_maa = ayyar } NOT = { has_variable = mwp_rank_16 } }
+AND = { scope:type_id >= 17 scope:type_id <= 17 NOT = { has_access_to_maa = mubarizun } NOT = { has_variable = mwp_rank_17 } }
+AND = { scope:type_id >= 18 scope:type_id <= 18 NOT = { has_access_to_maa = mulaththamun } NOT = { has_variable = mwp_rank_18 } }
+AND = { scope:type_id >= 19 scope:type_id <= 19 NOT = { has_access_to_maa = archers_of_the_nile } NOT = { has_variable = mwp_rank_19 } }
+AND = { scope:type_id >= 20 scope:type_id <= 20 NOT = { has_access_to_maa = paiks } NOT = { has_variable = mwp_rank_20 } }
+AND = { scope:type_id >= 21 scope:type_id <= 21 NOT = { has_access_to_maa = druzhina } NOT = { has_variable = mwp_rank_21 } }
+AND = { scope:type_id >= 22 scope:type_id <= 22 NOT = { has_access_to_maa = hussar } NOT = { has_variable = mwp_rank_22 } }
+AND = { scope:type_id >= 23 scope:type_id <= 23 NOT = { has_access_to_maa = horn_warrior } NOT = { has_variable = mwp_rank_23 } }
+AND = { scope:type_id >= 24 scope:type_id <= 24 NOT = { has_access_to_maa = bush_hunter } NOT = { has_variable = mwp_rank_24 } }
+AND = { scope:type_id >= 25 scope:type_id <= 25 NOT = { has_access_to_maa = shomer } NOT = { has_variable = mwp_rank_25 } }
+AND = { scope:type_id >= 26 scope:type_id <= 26 NOT = { has_access_to_maa = garudas } NOT = { has_variable = mwp_rank_26 } }
+AND = { scope:type_id >= 27 scope:type_id <= 27 NOT = { has_access_to_maa = khandayat } NOT = { has_variable = mwp_rank_27 } }
+AND = { scope:type_id >= 28 scope:type_id <= 28 NOT = { has_access_to_maa = mountaineer } NOT = { has_variable = mwp_rank_28 } }
+AND = { scope:type_id >= 29 scope:type_id <= 29 NOT = { has_access_to_maa = sahel_horsemen } NOT = { has_variable = mwp_rank_29 } }
+AND = { scope:type_id >= 30 scope:type_id <= 30 NOT = { has_access_to_maa = guinea_warrior } NOT = { has_variable = mwp_rank_30 } }
+AND = { scope:type_id >= 31 scope:type_id <= 31 NOT = { has_access_to_maa = sarawit } NOT = { has_variable = mwp_rank_31 } }
+AND = { scope:type_id >= 32 scope:type_id <= 32 NOT = { has_access_to_maa = abudrar } NOT = { has_variable = mwp_rank_32 } }
+AND = { scope:type_id >= 33 scope:type_id <= 33 NOT = { has_access_to_maa = zbrojnosh } NOT = { has_variable = mwp_rank_33 } }
+AND = { scope:type_id >= 34 scope:type_id <= 34 NOT = { has_access_to_maa = palace_guards } NOT = { has_variable = mwp_rank_34 } }
+AND = { scope:type_id >= 35 scope:type_id <= 35 NOT = { has_access_to_maa = shenbigong } NOT = { has_variable = mwp_rank_35 } }
+AND = { scope:type_id >= 36 scope:type_id <= 36 NOT = { has_access_to_maa = guanch_vaulter } NOT = { has_variable = mwp_rank_36 } }
+AND = { scope:type_id >= 37 scope:type_id <= 37 NOT = { has_access_to_maa = teulu } NOT = { has_variable = mwp_rank_37 } }
+AND = { scope:type_id >= 38 scope:type_id <= 38 NOT = { has_access_to_maa = asawira } NOT = { has_variable = mwp_rank_38 } }
+AND = { scope:type_id >= 39 scope:type_id <= 39 NOT = { has_access_to_maa = tarkhan } NOT = { has_variable = mwp_rank_39 } }
+AND = { scope:type_id >= 40 scope:type_id <= 40 NOT = { has_access_to_maa = zupin_warrior } NOT = { has_variable = mwp_rank_40 } }
+AND = { scope:type_id >= 41 scope:type_id <= 41 NOT = { has_access_to_maa = tawashi } NOT = { has_variable = mwp_rank_41 } }
+AND = { scope:type_id >= 42 scope:type_id <= 42 NOT = { has_access_to_maa = order_serjeants } NOT = { has_variable = mwp_rank_42 } }
+AND = { scope:type_id >= 43 scope:type_id <= 43 NOT = { has_access_to_maa = order_knights } NOT = { has_variable = mwp_rank_43 } }
+AND = { scope:type_id >= 44 scope:type_id <= 44 NOT = { has_access_to_maa = light_footmen } NOT = { has_variable = mwp_rank_44 } }
+AND = { scope:type_id >= 45 scope:type_id <= 45 NOT = { has_access_to_maa = bowmen } NOT = { has_variable = mwp_rank_45 } }
+AND = { scope:type_id >= 46 scope:type_id <= 46 NOT = { has_access_to_maa = light_horsemen } NOT = { has_variable = mwp_rank_46 } }
+AND = { scope:type_id >= 47 scope:type_id <= 47 NOT = { has_access_to_maa = pikemen_unit } NOT = { has_variable = mwp_rank_47 } }
+AND = { scope:type_id >= 48 scope:type_id <= 48 NOT = { has_access_to_maa = armored_footmen } NOT = { has_variable = mwp_rank_48 } }
+AND = { scope:type_id >= 49 scope:type_id <= 49 NOT = { has_access_to_maa = onager } NOT = { has_variable = mwp_rank_49 } }
+AND = { scope:type_id >= 50 scope:type_id <= 50 NOT = { has_access_to_maa = armored_horsemen } NOT = { has_variable = mwp_rank_50 } }
+AND = { scope:type_id >= 51 scope:type_id <= 51 NOT = { has_access_to_maa = mangonel } NOT = { has_variable = mwp_rank_51 } }
+AND = { scope:type_id >= 52 scope:type_id <= 52 NOT = { has_access_to_maa = crossbowmen } NOT = { has_variable = mwp_rank_52 } }
+AND = { scope:type_id >= 53 scope:type_id <= 53 NOT = { has_access_to_maa = trebuchet } NOT = { has_variable = mwp_rank_53 } }
+AND = { scope:type_id >= 54 scope:type_id <= 54 NOT = { has_access_to_maa = bombard } NOT = { has_variable = mwp_rank_54 } }
+AND = { scope:type_id >= 55 scope:type_id <= 55 NOT = { has_access_to_maa = handgunners } NOT = { has_variable = mwp_rank_55 } }
+AND = { scope:type_id >= 56 scope:type_id <= 56 NOT = { has_access_to_maa = house_guard } NOT = { has_variable = mwp_rank_56 } }
+AND = { scope:type_id >= 57 scope:type_id <= 57 NOT = { has_access_to_maa = pikemen_militia } NOT = { has_variable = mwp_rank_57 } }
+AND = { scope:type_id >= 58 scope:type_id <= 58 NOT = { has_access_to_maa = camel_rider } NOT = { has_variable = mwp_rank_58 } }
+AND = { scope:type_id >= 59 scope:type_id <= 59 NOT = { has_access_to_maa = war_elephant } NOT = { has_variable = mwp_rank_59 } }
+AND = { scope:type_id >= 60 scope:type_id <= 60 NOT = { has_access_to_maa = accolade_maa_archers } NOT = { has_variable = mwp_rank_60 } }
+AND = { scope:type_id >= 61 scope:type_id <= 61 NOT = { has_access_to_maa = accolade_maa_skirmishers } NOT = { has_variable = mwp_rank_61 } }
+AND = { scope:type_id >= 62 scope:type_id <= 62 NOT = { has_access_to_maa = accolade_maa_pikes } NOT = { has_variable = mwp_rank_62 } }
+AND = { scope:type_id >= 63 scope:type_id <= 63 NOT = { has_access_to_maa = accolade_maa_outriders } NOT = { has_variable = mwp_rank_63 } }
+AND = { scope:type_id >= 64 scope:type_id <= 64 NOT = { has_access_to_maa = accolade_maa_vanguards } NOT = { has_variable = mwp_rank_64 } }
+AND = { scope:type_id >= 65 scope:type_id <= 65 NOT = { has_access_to_maa = accolade_maa_lancers } NOT = { has_variable = mwp_rank_65 } }
+AND = { scope:type_id >= 66 scope:type_id <= 66 NOT = { has_access_to_maa = accolade_maa_crossbowers } NOT = { has_variable = mwp_rank_66 } }
+AND = { scope:type_id >= 67 scope:type_id <= 67 NOT = { has_access_to_maa = accolade_maa_cameliers } NOT = { has_variable = mwp_rank_67 } }
+AND = { scope:type_id >= 68 scope:type_id <= 68 NOT = { has_access_to_maa = accolade_maa_elephantiers } NOT = { has_variable = mwp_rank_68 } }
+AND = { scope:type_id >= 69 scope:type_id <= 69 NOT = { has_access_to_maa = accolade_maa_horse_archers } NOT = { has_variable = mwp_rank_69 } }
+AND = { scope:type_id >= 70 scope:type_id <= 70 NOT = { has_access_to_maa = accolade_maa_handgunners } NOT = { has_variable = mwp_rank_70 } }
+AND = { scope:type_id >= 71 scope:type_id <= 71 NOT = { has_access_to_maa = vigmen } NOT = { has_variable = mwp_rank_71 } }
+AND = { scope:type_id >= 72 scope:type_id <= 72 NOT = { has_access_to_maa = bondi } NOT = { has_variable = mwp_rank_72 } }
+AND = { scope:type_id >= 73 scope:type_id <= 73 NOT = { has_access_to_maa = varangian_veterans } NOT = { has_variable = mwp_rank_73 } }
+AND = { scope:type_id >= 74 scope:type_id <= 74 NOT = { has_access_to_maa = jomsviking_pirates } NOT = { has_variable = mwp_rank_74 } }
+AND = { scope:type_id >= 75 scope:type_id <= 75 NOT = { has_access_to_maa = ayrudzi } NOT = { has_variable = mwp_rank_75 } }
+AND = { scope:type_id >= 76 scope:type_id <= 76 NOT = { has_access_to_maa = conrois } NOT = { has_variable = mwp_rank_76 } }
+AND = { scope:type_id >= 77 scope:type_id <= 77 NOT = { has_access_to_maa = akritai } NOT = { has_variable = mwp_rank_77 } }
+AND = { scope:type_id >= 78 scope:type_id <= 78 NOT = { has_access_to_maa = ballistrai } NOT = { has_variable = mwp_rank_78 } }
+AND = { scope:type_id >= 79 scope:type_id <= 79 NOT = { has_access_to_maa = skoutatoi } NOT = { has_variable = mwp_rank_79 } }
+AND = { scope:type_id >= 80 scope:type_id <= 80 NOT = { has_access_to_maa = varangian_guards } NOT = { has_variable = mwp_rank_80 } }
+AND = { scope:type_id >= 81 scope:type_id <= 81 NOT = { has_access_to_maa = handpicked_faithful } NOT = { has_variable = mwp_rank_81 } }
+AND = { scope:type_id >= 82 scope:type_id <= 82 NOT = { has_access_to_maa = maa_bandits } NOT = { has_variable = mwp_rank_82 } }
+AND = { scope:type_id >= 83 scope:type_id <= 83 NOT = { has_access_to_maa = maa_poachers } NOT = { has_variable = mwp_rank_83 } }
+AND = { scope:type_id >= 84 scope:type_id <= 84 NOT = { has_access_to_maa = maa_marauders } NOT = { has_variable = mwp_rank_84 } }
+AND = { scope:type_id >= 85 scope:type_id <= 85 NOT = { has_access_to_maa = maa_thieves } NOT = { has_variable = mwp_rank_85 } }
+AND = { scope:type_id >= 86 scope:type_id <= 86 NOT = { has_access_to_maa = nomadic_riders } NOT = { has_variable = mwp_rank_86 } }
+AND = { scope:type_id >= 87 scope:type_id <= 87 NOT = { has_access_to_maa = torch_bearers } NOT = { has_variable = mwp_rank_87 } }
+AND = { scope:type_id >= 88 scope:type_id <= 88 NOT = { has_access_to_maa = kheshig } NOT = { has_variable = mwp_rank_88 } }
+AND = { scope:type_id >= 89 scope:type_id <= 89 NOT = { has_access_to_maa = steppe_raiders } NOT = { has_variable = mwp_rank_89 } }
+AND = { scope:type_id >= 90 scope:type_id <= 90 NOT = { has_access_to_maa = heavy_horse_archers } NOT = { has_variable = mwp_rank_90 } }
+AND = { scope:type_id >= 91 scope:type_id <= 91 NOT = { has_access_to_maa = nomad_lancers } NOT = { has_variable = mwp_rank_91 } }
+AND = { scope:type_id >= 92 scope:type_id <= 92 NOT = { has_access_to_maa = mangudai } NOT = { has_variable = mwp_rank_92 } }
+AND = { scope:type_id >= 93 scope:type_id <= 93 NOT = { has_access_to_maa = cataphract_archers } NOT = { has_variable = mwp_rank_93 } }
+AND = { scope:type_id >= 94 scope:type_id <= 94 NOT = { has_access_to_maa = maturkan_warriors } NOT = { has_variable = mwp_rank_94 } }
+AND = { scope:type_id >= 95 scope:type_id <= 95 NOT = { has_access_to_maa = emishi_horse_archers } NOT = { has_variable = mwp_rank_95 } }
+AND = { scope:type_id >= 96 scope:type_id <= 96 NOT = { has_access_to_maa = japanese_horse_archers } NOT = { has_variable = mwp_rank_96 } }
+AND = { scope:type_id >= 97 scope:type_id <= 97 NOT = { has_access_to_maa = warrior_monks } NOT = { has_variable = mwp_rank_97 } }
+AND = { scope:type_id >= 98 scope:type_id <= 98 NOT = { has_access_to_maa = fire_lancers } NOT = { has_variable = mwp_rank_98 } }
+AND = { scope:type_id >= 99 scope:type_id <= 99 NOT = { has_access_to_maa = gakgung_archers } NOT = { has_variable = mwp_rank_99 } }
+AND = { scope:type_id >= 100 scope:type_id <= 100 NOT = { has_access_to_maa = ballista_elephant } NOT = { has_variable = mwp_rank_100 } }
+AND = { scope:type_id >= 101 scope:type_id <= 101 NOT = { has_access_to_maa = pesilat_warriors } NOT = { has_variable = mwp_rank_101 } }
+AND = { scope:type_id >= 102 scope:type_id <= 102 NOT = { has_access_to_maa = samurai } NOT = { has_variable = mwp_rank_102 } }
+AND = { scope:type_id >= 103 scope:type_id <= 103 NOT = { has_access_to_maa = zhanmadao_infantry } NOT = { has_variable = mwp_rank_103 } }
+AND = { scope:type_id >= 104 scope:type_id <= 104 NOT = { has_access_to_maa = black_armor_cavalry } NOT = { has_variable = mwp_rank_104 } }
+AND = { scope:type_id >= 105 scope:type_id <= 105 NOT = { has_access_to_maa = tiefutu } NOT = { has_variable = mwp_rank_105 } }
+AND = { scope:type_id >= 106 scope:type_id <= 106 NOT = { has_access_to_maa = burenjia } NOT = { has_variable = mwp_rank_106 } }
+AND = { scope:type_id >= 107 scope:type_id <= 107 NOT = { has_access_to_maa = rocket_carts } NOT = { has_variable = mwp_rank_107 } }
+AND = { scope:type_id >= 108 scope:type_id <= 108 NOT = { has_access_to_maa = ballista } NOT = { has_variable = mwp_rank_108 } }
+AND = { scope:type_id >= 109 scope:type_id <= 109 NOT = { has_access_to_maa = cloud_ladder } NOT = { has_variable = mwp_rank_109 } }
+AND = { scope:type_id >= 110 scope:type_id <= 110 NOT = { has_access_to_maa = siege_tower } NOT = { has_variable = mwp_rank_110 } }
+AND = { scope:type_id >= 111 scope:type_id <= 111 NOT = { has_access_to_maa = cannon } NOT = { has_variable = mwp_rank_111 } }
+  }
+ }
+}

@@ -1,0 +1,113 @@
+﻿# Player-local lifecycle. A request invalidates every previously displayed score
+# and every outstanding transaction before any fresh native observations arrive.
+mwp_initialize_effect = {
+	if = {
+		limit = { NOT = { has_variable = mwp_schema } }
+		set_variable = { name = mwp_schema value = 1 }
+		set_variable = { name = mwp_generation value = 0 }
+		set_variable = { name = mwp_income_guard_enabled value = yes }
+		set_variable = { name = mwp_cycle_token value = 0 }
+	}
+}
+
+# A new session or controlled character starts a new chain. Old delayed events
+# retain their old saved token and cannot reschedule or publish fresh scores.
+mwp_schedule_cycle_effect = {
+	save_scope_value_as = { name = mwp_scheduled_token value = var:mwp_cycle_token }
+	trigger_event = { id = mwp_cycle.1 days = 30 }
+}
+
+mwp_bootstrap_effect = {
+	if = {
+		limit = { is_ai = no is_alive = yes }
+		mwp_initialize_effect = yes
+		if = {
+			limit = { NOT = { has_variable = mwp_cycle_token } }
+			set_variable = { name = mwp_cycle_token value = 0 }
+		}
+		change_variable = { name = mwp_cycle_token add = 1 }
+		mwp_auto_session_reset_effect = yes
+		mwp_request_analysis_effect = yes
+		mwp_schedule_cycle_effect = yes
+	}
+}
+
+mwp_invalidate_pending_effect = {
+    mwp_native_cost_invalidate_effect = yes
+	mwp_auto_cancel_effect = yes
+	remove_variable = mwp_pending_generation
+	remove_variable = mwp_pending_catalog_id
+	remove_variable = mwp_pending_action
+	remove_variable = mwp_pending_regiment
+}
+
+# Every recommendation revision invalidates paid authorization. Enemy snapshot
+# identity is independent and is never a substitute for a fresh native quote.
+mwp_queue_analysis_effect = {
+	mwp_initialize_effect = yes
+	change_variable = { name = mwp_generation add = 1 }
+	remove_variable = mwp_scores_generation
+	remove_variable = mwp_scores_owner
+	mwp_invalidate_pending_effect = yes
+	set_variable = { name = mwp_analysis_requested value = yes }
+}
+
+# Force, session/player changes and world refreshes always rebuild the cache.
+# Its monotonic epoch is advanced only by the completed cache builder.
+mwp_request_analysis_effect = {
+	remove_variable = mwp_enemy_cache_ready
+	mwp_queue_analysis_effect = yes
+}
+
+# Own-army changes can reuse a complete player-local world snapshot for less
+# than 30 game days. The native begin guard rechecks this before using it.
+mwp_request_own_analysis_effect = {
+	if = {
+		limit = { mwp_enemy_cache_current_trigger = yes }
+		mwp_queue_analysis_effect = yes
+	}
+	else = { mwp_request_analysis_effect = yes }
+}
+
+# Periodic work coalesces with a current request/collector. In large campaigns
+# the live scan can outlast 30 game days; restarting it each month starves
+# publication. The next ordinary cycle checks again after this one completes.
+mwp_periodic_analysis_effect = {
+	if = {
+		limit = { NOT = { mwp_analysis_current_work_trigger = yes } }
+		mwp_request_analysis_effect = yes
+	}
+}
+
+# Enabling automation is a preference change, not an army/world change. Reuse
+# a current publication or in-flight scan; each paid action still requires its
+# own fresh native budget and unchanged-state commit checks.
+mwp_ensure_analysis_effect = {
+	if = {
+		limit = {
+			NOT = { mwp_analysis_current_work_trigger = yes }
+			NOT = { mwp_auto_fresh_trigger = yes }
+		}
+		mwp_request_analysis_effect = yes
+	}
+}
+
+mwp_enable_auto_effect = {
+	mwp_initialize_effect = yes
+	if = {
+		limit = { is_ai = no is_alive = yes }
+		set_variable = { name = mwp_auto_recruit_enabled value = yes }
+		set_variable = { name = mwp_auto_status value = 1 }
+		# A new explicit On is a new purchase opportunity even when current
+		# scores can be reused. The ordinary poll clears unaffordable choices
+		# and advances its token without restarting an unchanged army scan.
+		remove_variable = mwp_auto_observed_generation
+		mwp_ensure_analysis_effect = yes
+	}
+}
+
+mwp_disable_auto_effect = {
+	remove_variable = mwp_auto_recruit_enabled
+	mwp_invalidate_pending_effect = yes
+	set_variable = { name = mwp_auto_status value = 0 }
+}

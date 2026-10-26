@@ -1,0 +1,48 @@
+﻿mwp_d20_claimants_refresh = { scope = character
+ is_shown = { is_ai = no } is_valid = { is_ai = no is_alive = yes }
+ effect = { if = { limit = { is_ai = no is_alive = yes } mwp_d20_claimants_refresh_effect = yes } }
+}
+mwp_d20_claimant_current = { scope = character saved_scopes = { mwp_d20_claim_candidate }
+ is_shown = { is_ai = no }
+ is_valid = {
+  is_ai = no is_alive = yes mwp_d20_claim_row_bound_trigger = yes
+  save_temporary_scope_as = mwp_d20_claim_player
+  scope:mwp_d20_claim_candidate = {
+   var:mwp_d20_claim_best_title = { save_temporary_scope_as = mwp_d20_claim_title }
+   var:mwp_d20_claim_defender = { save_temporary_scope_as = mwp_d20_claim_defender }
+  }
+  mwp_d20_claim_invite_trigger = yes mwp_d20_claim_cb_trigger = yes mwp_d20_claim_new_title_trigger = yes
+ }
+}
+mwp_d20_claimants_sort_1 = { scope = character
+ is_shown = { is_ai = no } is_valid = { is_ai = no is_alive = yes has_variable = mwp_d20_claim_count }
+ effect = { if = { limit = { is_ai = no is_alive = yes has_variable = mwp_d20_claim_count }
+  set_variable = { name = mwp_d20_claim_sort value = 1 } mwp_d20_claimants_sort_effect = yes
+ } }
+}
+mwp_d20_claimants_sort_2 = { scope = character
+ is_shown = { is_ai = no } is_valid = { is_ai = no is_alive = yes has_variable = mwp_d20_claim_count }
+ effect = { if = { limit = { is_ai = no is_alive = yes has_variable = mwp_d20_claim_count }
+  set_variable = { name = mwp_d20_claim_sort value = 2 } mwp_d20_claimants_sort_effect = yes
+ } }
+}
+mwp_d20_claimants_sort_3 = { scope = character
+ is_shown = { is_ai = no } is_valid = { is_ai = no is_alive = yes has_variable = mwp_d20_claim_count }
+ effect = { if = { limit = { is_ai = no is_alive = yes has_variable = mwp_d20_claim_count }
+  set_variable = { name = mwp_d20_claim_sort value = 3 } mwp_d20_claimants_sort_effect = yes
+ } }
+}
+mwp_d20_claimants_page_prev = { scope = character
+ is_shown = { is_ai = no }
+ is_valid = { is_ai = no is_alive = yes has_variable = mwp_d20_claim_count var:mwp_d20_claim_page_start > 0 }
+ effect = { if = { limit = { is_ai = no is_alive = yes has_variable = mwp_d20_claim_count var:mwp_d20_claim_page_start > 0 }
+  change_variable = { name = mwp_d20_claim_page_start subtract = 20 } mwp_d20_claimants_page_effect = yes
+ } }
+}
+mwp_d20_claimants_page_next = { scope = character
+ is_shown = { is_ai = no }
+ is_valid = { is_ai = no is_alive = yes has_variable = mwp_d20_claim_count var:mwp_d20_claim_page_end < var:mwp_d20_claim_count }
+ effect = { if = { limit = { is_ai = no is_alive = yes has_variable = mwp_d20_claim_count var:mwp_d20_claim_page_end < var:mwp_d20_claim_count }
+  change_variable = { name = mwp_d20_claim_page_start add = 20 } mwp_d20_claimants_page_effect = yes
+ } }
+}

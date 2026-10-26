@@ -1,0 +1,1850 @@
+﻿mwp_d21_capture_subject_access_effect = {
+    # The GUI SG already repeats owner/generation/liveness checks. Keep this
+    # effect safe when invoked directly and prevent duplicate ACK overwrites.
+    if = { limit = {
+        is_ai = no is_alive = yes
+        exists = scope:mwp_candidate_owner scope:mwp_candidate_owner = this
+        exists = scope:mwp_candidate_generation
+        scope:mwp_candidate_generation = var:mwp_generation
+        has_variable = mwp_scoring_active var:mwp_scoring_active = yes
+        var:mwp_scoring_owner = this var:mwp_scoring_generation = var:mwp_generation
+    }
+    set_variable = { name = mwp_d21_access_owner value = this }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 1 scope:mwp_candidate_catalog_id <= 1
+        NOT = { has_variable = mwp_seen_1 }
+    }
+        remove_variable = mwp_d21_subject_provider_1
+        remove_variable = mwp_d21_access_generation_1
+        remove_variable = mwp_d21_access_day_1
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_1 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_1 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_1 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 2 scope:mwp_candidate_catalog_id <= 2
+        NOT = { has_variable = mwp_seen_2 }
+    }
+        remove_variable = mwp_d21_subject_provider_2
+        remove_variable = mwp_d21_access_generation_2
+        remove_variable = mwp_d21_access_day_2
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_2 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_2 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_2 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 3 scope:mwp_candidate_catalog_id <= 3
+        NOT = { has_variable = mwp_seen_3 }
+    }
+        remove_variable = mwp_d21_subject_provider_3
+        remove_variable = mwp_d21_access_generation_3
+        remove_variable = mwp_d21_access_day_3
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_3 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_3 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_3 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 4 scope:mwp_candidate_catalog_id <= 4
+        NOT = { has_variable = mwp_seen_4 }
+    }
+        remove_variable = mwp_d21_subject_provider_4
+        remove_variable = mwp_d21_access_generation_4
+        remove_variable = mwp_d21_access_day_4
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_4 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_4 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_4 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 5 scope:mwp_candidate_catalog_id <= 5
+        NOT = { has_variable = mwp_seen_5 }
+    }
+        remove_variable = mwp_d21_subject_provider_5
+        remove_variable = mwp_d21_access_generation_5
+        remove_variable = mwp_d21_access_day_5
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_5 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_5 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_5 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 6 scope:mwp_candidate_catalog_id <= 6
+        NOT = { has_variable = mwp_seen_6 }
+    }
+        remove_variable = mwp_d21_subject_provider_6
+        remove_variable = mwp_d21_access_generation_6
+        remove_variable = mwp_d21_access_day_6
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_6 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_6 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_6 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 7 scope:mwp_candidate_catalog_id <= 7
+        NOT = { has_variable = mwp_seen_7 }
+    }
+        remove_variable = mwp_d21_subject_provider_7
+        remove_variable = mwp_d21_access_generation_7
+        remove_variable = mwp_d21_access_day_7
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_7 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_7 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_7 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 8 scope:mwp_candidate_catalog_id <= 8
+        NOT = { has_variable = mwp_seen_8 }
+    }
+        remove_variable = mwp_d21_subject_provider_8
+        remove_variable = mwp_d21_access_generation_8
+        remove_variable = mwp_d21_access_day_8
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_8 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_8 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_8 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 9 scope:mwp_candidate_catalog_id <= 9
+        NOT = { has_variable = mwp_seen_9 }
+    }
+        remove_variable = mwp_d21_subject_provider_9
+        remove_variable = mwp_d21_access_generation_9
+        remove_variable = mwp_d21_access_day_9
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_9 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_9 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_9 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 10 scope:mwp_candidate_catalog_id <= 10
+        NOT = { has_variable = mwp_seen_10 }
+    }
+        remove_variable = mwp_d21_subject_provider_10
+        remove_variable = mwp_d21_access_generation_10
+        remove_variable = mwp_d21_access_day_10
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_10 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_10 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_10 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 11 scope:mwp_candidate_catalog_id <= 11
+        NOT = { has_variable = mwp_seen_11 }
+    }
+        remove_variable = mwp_d21_subject_provider_11
+        remove_variable = mwp_d21_access_generation_11
+        remove_variable = mwp_d21_access_day_11
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_11 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_11 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_11 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 12 scope:mwp_candidate_catalog_id <= 12
+        NOT = { has_variable = mwp_seen_12 }
+    }
+        remove_variable = mwp_d21_subject_provider_12
+        remove_variable = mwp_d21_access_generation_12
+        remove_variable = mwp_d21_access_day_12
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_12 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_12 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_12 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 13 scope:mwp_candidate_catalog_id <= 13
+        NOT = { has_variable = mwp_seen_13 }
+    }
+        remove_variable = mwp_d21_subject_provider_13
+        remove_variable = mwp_d21_access_generation_13
+        remove_variable = mwp_d21_access_day_13
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_13 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_13 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_13 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 14 scope:mwp_candidate_catalog_id <= 14
+        NOT = { has_variable = mwp_seen_14 }
+    }
+        remove_variable = mwp_d21_subject_provider_14
+        remove_variable = mwp_d21_access_generation_14
+        remove_variable = mwp_d21_access_day_14
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_14 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_14 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_14 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 15 scope:mwp_candidate_catalog_id <= 15
+        NOT = { has_variable = mwp_seen_15 }
+    }
+        remove_variable = mwp_d21_subject_provider_15
+        remove_variable = mwp_d21_access_generation_15
+        remove_variable = mwp_d21_access_day_15
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_15 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_15 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_15 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 16 scope:mwp_candidate_catalog_id <= 16
+        NOT = { has_variable = mwp_seen_16 }
+    }
+        remove_variable = mwp_d21_subject_provider_16
+        remove_variable = mwp_d21_access_generation_16
+        remove_variable = mwp_d21_access_day_16
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_16 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_16 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_16 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 17 scope:mwp_candidate_catalog_id <= 17
+        NOT = { has_variable = mwp_seen_17 }
+    }
+        remove_variable = mwp_d21_subject_provider_17
+        remove_variable = mwp_d21_access_generation_17
+        remove_variable = mwp_d21_access_day_17
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_17 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_17 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_17 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 18 scope:mwp_candidate_catalog_id <= 18
+        NOT = { has_variable = mwp_seen_18 }
+    }
+        remove_variable = mwp_d21_subject_provider_18
+        remove_variable = mwp_d21_access_generation_18
+        remove_variable = mwp_d21_access_day_18
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_18 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_18 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_18 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 19 scope:mwp_candidate_catalog_id <= 19
+        NOT = { has_variable = mwp_seen_19 }
+    }
+        remove_variable = mwp_d21_subject_provider_19
+        remove_variable = mwp_d21_access_generation_19
+        remove_variable = mwp_d21_access_day_19
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_19 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_19 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_19 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 20 scope:mwp_candidate_catalog_id <= 20
+        NOT = { has_variable = mwp_seen_20 }
+    }
+        remove_variable = mwp_d21_subject_provider_20
+        remove_variable = mwp_d21_access_generation_20
+        remove_variable = mwp_d21_access_day_20
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_20 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_20 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_20 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 21 scope:mwp_candidate_catalog_id <= 21
+        NOT = { has_variable = mwp_seen_21 }
+    }
+        remove_variable = mwp_d21_subject_provider_21
+        remove_variable = mwp_d21_access_generation_21
+        remove_variable = mwp_d21_access_day_21
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_21 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_21 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_21 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 22 scope:mwp_candidate_catalog_id <= 22
+        NOT = { has_variable = mwp_seen_22 }
+    }
+        remove_variable = mwp_d21_subject_provider_22
+        remove_variable = mwp_d21_access_generation_22
+        remove_variable = mwp_d21_access_day_22
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_22 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_22 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_22 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 23 scope:mwp_candidate_catalog_id <= 23
+        NOT = { has_variable = mwp_seen_23 }
+    }
+        remove_variable = mwp_d21_subject_provider_23
+        remove_variable = mwp_d21_access_generation_23
+        remove_variable = mwp_d21_access_day_23
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_23 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_23 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_23 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 24 scope:mwp_candidate_catalog_id <= 24
+        NOT = { has_variable = mwp_seen_24 }
+    }
+        remove_variable = mwp_d21_subject_provider_24
+        remove_variable = mwp_d21_access_generation_24
+        remove_variable = mwp_d21_access_day_24
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_24 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_24 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_24 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 25 scope:mwp_candidate_catalog_id <= 25
+        NOT = { has_variable = mwp_seen_25 }
+    }
+        remove_variable = mwp_d21_subject_provider_25
+        remove_variable = mwp_d21_access_generation_25
+        remove_variable = mwp_d21_access_day_25
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_25 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_25 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_25 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 26 scope:mwp_candidate_catalog_id <= 26
+        NOT = { has_variable = mwp_seen_26 }
+    }
+        remove_variable = mwp_d21_subject_provider_26
+        remove_variable = mwp_d21_access_generation_26
+        remove_variable = mwp_d21_access_day_26
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_26 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_26 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_26 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 27 scope:mwp_candidate_catalog_id <= 27
+        NOT = { has_variable = mwp_seen_27 }
+    }
+        remove_variable = mwp_d21_subject_provider_27
+        remove_variable = mwp_d21_access_generation_27
+        remove_variable = mwp_d21_access_day_27
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_27 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_27 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_27 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 28 scope:mwp_candidate_catalog_id <= 28
+        NOT = { has_variable = mwp_seen_28 }
+    }
+        remove_variable = mwp_d21_subject_provider_28
+        remove_variable = mwp_d21_access_generation_28
+        remove_variable = mwp_d21_access_day_28
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_28 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_28 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_28 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 29 scope:mwp_candidate_catalog_id <= 29
+        NOT = { has_variable = mwp_seen_29 }
+    }
+        remove_variable = mwp_d21_subject_provider_29
+        remove_variable = mwp_d21_access_generation_29
+        remove_variable = mwp_d21_access_day_29
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_29 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_29 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_29 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 30 scope:mwp_candidate_catalog_id <= 30
+        NOT = { has_variable = mwp_seen_30 }
+    }
+        remove_variable = mwp_d21_subject_provider_30
+        remove_variable = mwp_d21_access_generation_30
+        remove_variable = mwp_d21_access_day_30
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_30 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_30 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_30 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 31 scope:mwp_candidate_catalog_id <= 31
+        NOT = { has_variable = mwp_seen_31 }
+    }
+        remove_variable = mwp_d21_subject_provider_31
+        remove_variable = mwp_d21_access_generation_31
+        remove_variable = mwp_d21_access_day_31
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_31 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_31 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_31 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 32 scope:mwp_candidate_catalog_id <= 32
+        NOT = { has_variable = mwp_seen_32 }
+    }
+        remove_variable = mwp_d21_subject_provider_32
+        remove_variable = mwp_d21_access_generation_32
+        remove_variable = mwp_d21_access_day_32
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_32 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_32 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_32 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 33 scope:mwp_candidate_catalog_id <= 33
+        NOT = { has_variable = mwp_seen_33 }
+    }
+        remove_variable = mwp_d21_subject_provider_33
+        remove_variable = mwp_d21_access_generation_33
+        remove_variable = mwp_d21_access_day_33
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_33 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_33 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_33 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 34 scope:mwp_candidate_catalog_id <= 34
+        NOT = { has_variable = mwp_seen_34 }
+    }
+        remove_variable = mwp_d21_subject_provider_34
+        remove_variable = mwp_d21_access_generation_34
+        remove_variable = mwp_d21_access_day_34
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_34 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_34 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_34 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 35 scope:mwp_candidate_catalog_id <= 35
+        NOT = { has_variable = mwp_seen_35 }
+    }
+        remove_variable = mwp_d21_subject_provider_35
+        remove_variable = mwp_d21_access_generation_35
+        remove_variable = mwp_d21_access_day_35
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_35 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_35 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_35 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 36 scope:mwp_candidate_catalog_id <= 36
+        NOT = { has_variable = mwp_seen_36 }
+    }
+        remove_variable = mwp_d21_subject_provider_36
+        remove_variable = mwp_d21_access_generation_36
+        remove_variable = mwp_d21_access_day_36
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_36 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_36 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_36 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 37 scope:mwp_candidate_catalog_id <= 37
+        NOT = { has_variable = mwp_seen_37 }
+    }
+        remove_variable = mwp_d21_subject_provider_37
+        remove_variable = mwp_d21_access_generation_37
+        remove_variable = mwp_d21_access_day_37
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_37 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_37 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_37 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 38 scope:mwp_candidate_catalog_id <= 38
+        NOT = { has_variable = mwp_seen_38 }
+    }
+        remove_variable = mwp_d21_subject_provider_38
+        remove_variable = mwp_d21_access_generation_38
+        remove_variable = mwp_d21_access_day_38
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_38 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_38 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_38 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 39 scope:mwp_candidate_catalog_id <= 39
+        NOT = { has_variable = mwp_seen_39 }
+    }
+        remove_variable = mwp_d21_subject_provider_39
+        remove_variable = mwp_d21_access_generation_39
+        remove_variable = mwp_d21_access_day_39
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_39 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_39 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_39 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 40 scope:mwp_candidate_catalog_id <= 40
+        NOT = { has_variable = mwp_seen_40 }
+    }
+        remove_variable = mwp_d21_subject_provider_40
+        remove_variable = mwp_d21_access_generation_40
+        remove_variable = mwp_d21_access_day_40
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_40 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_40 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_40 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 41 scope:mwp_candidate_catalog_id <= 41
+        NOT = { has_variable = mwp_seen_41 }
+    }
+        remove_variable = mwp_d21_subject_provider_41
+        remove_variable = mwp_d21_access_generation_41
+        remove_variable = mwp_d21_access_day_41
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_41 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_41 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_41 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 44 scope:mwp_candidate_catalog_id <= 44
+        NOT = { has_variable = mwp_seen_44 }
+    }
+        remove_variable = mwp_d21_subject_provider_44
+        remove_variable = mwp_d21_access_generation_44
+        remove_variable = mwp_d21_access_day_44
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_44 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_44 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_44 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 45 scope:mwp_candidate_catalog_id <= 45
+        NOT = { has_variable = mwp_seen_45 }
+    }
+        remove_variable = mwp_d21_subject_provider_45
+        remove_variable = mwp_d21_access_generation_45
+        remove_variable = mwp_d21_access_day_45
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_45 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_45 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_45 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 46 scope:mwp_candidate_catalog_id <= 46
+        NOT = { has_variable = mwp_seen_46 }
+    }
+        remove_variable = mwp_d21_subject_provider_46
+        remove_variable = mwp_d21_access_generation_46
+        remove_variable = mwp_d21_access_day_46
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_46 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_46 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_46 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 47 scope:mwp_candidate_catalog_id <= 47
+        NOT = { has_variable = mwp_seen_47 }
+    }
+        remove_variable = mwp_d21_subject_provider_47
+        remove_variable = mwp_d21_access_generation_47
+        remove_variable = mwp_d21_access_day_47
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_47 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_47 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_47 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 48 scope:mwp_candidate_catalog_id <= 48
+        NOT = { has_variable = mwp_seen_48 }
+    }
+        remove_variable = mwp_d21_subject_provider_48
+        remove_variable = mwp_d21_access_generation_48
+        remove_variable = mwp_d21_access_day_48
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_48 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_48 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_48 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 49 scope:mwp_candidate_catalog_id <= 49
+        NOT = { has_variable = mwp_seen_49 }
+    }
+        remove_variable = mwp_d21_subject_provider_49
+        remove_variable = mwp_d21_access_generation_49
+        remove_variable = mwp_d21_access_day_49
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_49 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_49 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_49 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 50 scope:mwp_candidate_catalog_id <= 50
+        NOT = { has_variable = mwp_seen_50 }
+    }
+        remove_variable = mwp_d21_subject_provider_50
+        remove_variable = mwp_d21_access_generation_50
+        remove_variable = mwp_d21_access_day_50
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_50 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_50 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_50 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 51 scope:mwp_candidate_catalog_id <= 51
+        NOT = { has_variable = mwp_seen_51 }
+    }
+        remove_variable = mwp_d21_subject_provider_51
+        remove_variable = mwp_d21_access_generation_51
+        remove_variable = mwp_d21_access_day_51
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_51 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_51 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_51 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 52 scope:mwp_candidate_catalog_id <= 52
+        NOT = { has_variable = mwp_seen_52 }
+    }
+        remove_variable = mwp_d21_subject_provider_52
+        remove_variable = mwp_d21_access_generation_52
+        remove_variable = mwp_d21_access_day_52
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_52 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_52 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_52 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 53 scope:mwp_candidate_catalog_id <= 53
+        NOT = { has_variable = mwp_seen_53 }
+    }
+        remove_variable = mwp_d21_subject_provider_53
+        remove_variable = mwp_d21_access_generation_53
+        remove_variable = mwp_d21_access_day_53
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_53 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_53 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_53 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 54 scope:mwp_candidate_catalog_id <= 54
+        NOT = { has_variable = mwp_seen_54 }
+    }
+        remove_variable = mwp_d21_subject_provider_54
+        remove_variable = mwp_d21_access_generation_54
+        remove_variable = mwp_d21_access_day_54
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_54 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_54 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_54 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 55 scope:mwp_candidate_catalog_id <= 55
+        NOT = { has_variable = mwp_seen_55 }
+    }
+        remove_variable = mwp_d21_subject_provider_55
+        remove_variable = mwp_d21_access_generation_55
+        remove_variable = mwp_d21_access_day_55
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_55 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_55 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_55 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 56 scope:mwp_candidate_catalog_id <= 56
+        NOT = { has_variable = mwp_seen_56 }
+    }
+        remove_variable = mwp_d21_subject_provider_56
+        remove_variable = mwp_d21_access_generation_56
+        remove_variable = mwp_d21_access_day_56
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_56 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_56 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_56 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 58 scope:mwp_candidate_catalog_id <= 58
+        NOT = { has_variable = mwp_seen_58 }
+    }
+        remove_variable = mwp_d21_subject_provider_58
+        remove_variable = mwp_d21_access_generation_58
+        remove_variable = mwp_d21_access_day_58
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_58 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_58 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_58 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 59 scope:mwp_candidate_catalog_id <= 59
+        NOT = { has_variable = mwp_seen_59 }
+    }
+        remove_variable = mwp_d21_subject_provider_59
+        remove_variable = mwp_d21_access_generation_59
+        remove_variable = mwp_d21_access_day_59
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_59 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_59 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_59 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 60 scope:mwp_candidate_catalog_id <= 60
+        NOT = { has_variable = mwp_seen_60 }
+    }
+        remove_variable = mwp_d21_subject_provider_60
+        remove_variable = mwp_d21_access_generation_60
+        remove_variable = mwp_d21_access_day_60
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_60 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_60 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_60 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 61 scope:mwp_candidate_catalog_id <= 61
+        NOT = { has_variable = mwp_seen_61 }
+    }
+        remove_variable = mwp_d21_subject_provider_61
+        remove_variable = mwp_d21_access_generation_61
+        remove_variable = mwp_d21_access_day_61
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_61 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_61 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_61 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 62 scope:mwp_candidate_catalog_id <= 62
+        NOT = { has_variable = mwp_seen_62 }
+    }
+        remove_variable = mwp_d21_subject_provider_62
+        remove_variable = mwp_d21_access_generation_62
+        remove_variable = mwp_d21_access_day_62
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_62 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_62 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_62 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 63 scope:mwp_candidate_catalog_id <= 63
+        NOT = { has_variable = mwp_seen_63 }
+    }
+        remove_variable = mwp_d21_subject_provider_63
+        remove_variable = mwp_d21_access_generation_63
+        remove_variable = mwp_d21_access_day_63
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_63 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_63 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_63 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 64 scope:mwp_candidate_catalog_id <= 64
+        NOT = { has_variable = mwp_seen_64 }
+    }
+        remove_variable = mwp_d21_subject_provider_64
+        remove_variable = mwp_d21_access_generation_64
+        remove_variable = mwp_d21_access_day_64
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_64 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_64 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_64 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 65 scope:mwp_candidate_catalog_id <= 65
+        NOT = { has_variable = mwp_seen_65 }
+    }
+        remove_variable = mwp_d21_subject_provider_65
+        remove_variable = mwp_d21_access_generation_65
+        remove_variable = mwp_d21_access_day_65
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_65 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_65 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_65 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 66 scope:mwp_candidate_catalog_id <= 66
+        NOT = { has_variable = mwp_seen_66 }
+    }
+        remove_variable = mwp_d21_subject_provider_66
+        remove_variable = mwp_d21_access_generation_66
+        remove_variable = mwp_d21_access_day_66
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_66 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_66 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_66 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 67 scope:mwp_candidate_catalog_id <= 67
+        NOT = { has_variable = mwp_seen_67 }
+    }
+        remove_variable = mwp_d21_subject_provider_67
+        remove_variable = mwp_d21_access_generation_67
+        remove_variable = mwp_d21_access_day_67
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_67 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_67 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_67 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 68 scope:mwp_candidate_catalog_id <= 68
+        NOT = { has_variable = mwp_seen_68 }
+    }
+        remove_variable = mwp_d21_subject_provider_68
+        remove_variable = mwp_d21_access_generation_68
+        remove_variable = mwp_d21_access_day_68
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_68 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_68 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_68 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 69 scope:mwp_candidate_catalog_id <= 69
+        NOT = { has_variable = mwp_seen_69 }
+    }
+        remove_variable = mwp_d21_subject_provider_69
+        remove_variable = mwp_d21_access_generation_69
+        remove_variable = mwp_d21_access_day_69
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_69 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_69 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_69 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 70 scope:mwp_candidate_catalog_id <= 70
+        NOT = { has_variable = mwp_seen_70 }
+    }
+        remove_variable = mwp_d21_subject_provider_70
+        remove_variable = mwp_d21_access_generation_70
+        remove_variable = mwp_d21_access_day_70
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_70 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_70 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_70 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 71 scope:mwp_candidate_catalog_id <= 71
+        NOT = { has_variable = mwp_seen_71 }
+    }
+        remove_variable = mwp_d21_subject_provider_71
+        remove_variable = mwp_d21_access_generation_71
+        remove_variable = mwp_d21_access_day_71
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_71 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_71 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_71 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 72 scope:mwp_candidate_catalog_id <= 72
+        NOT = { has_variable = mwp_seen_72 }
+    }
+        remove_variable = mwp_d21_subject_provider_72
+        remove_variable = mwp_d21_access_generation_72
+        remove_variable = mwp_d21_access_day_72
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_72 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_72 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_72 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 73 scope:mwp_candidate_catalog_id <= 73
+        NOT = { has_variable = mwp_seen_73 }
+    }
+        remove_variable = mwp_d21_subject_provider_73
+        remove_variable = mwp_d21_access_generation_73
+        remove_variable = mwp_d21_access_day_73
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_73 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_73 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_73 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 75 scope:mwp_candidate_catalog_id <= 75
+        NOT = { has_variable = mwp_seen_75 }
+    }
+        remove_variable = mwp_d21_subject_provider_75
+        remove_variable = mwp_d21_access_generation_75
+        remove_variable = mwp_d21_access_day_75
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_75 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_75 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_75 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 76 scope:mwp_candidate_catalog_id <= 76
+        NOT = { has_variable = mwp_seen_76 }
+    }
+        remove_variable = mwp_d21_subject_provider_76
+        remove_variable = mwp_d21_access_generation_76
+        remove_variable = mwp_d21_access_day_76
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_76 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_76 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_76 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 77 scope:mwp_candidate_catalog_id <= 77
+        NOT = { has_variable = mwp_seen_77 }
+    }
+        remove_variable = mwp_d21_subject_provider_77
+        remove_variable = mwp_d21_access_generation_77
+        remove_variable = mwp_d21_access_day_77
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_77 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_77 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_77 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 78 scope:mwp_candidate_catalog_id <= 78
+        NOT = { has_variable = mwp_seen_78 }
+    }
+        remove_variable = mwp_d21_subject_provider_78
+        remove_variable = mwp_d21_access_generation_78
+        remove_variable = mwp_d21_access_day_78
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_78 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_78 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_78 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 79 scope:mwp_candidate_catalog_id <= 79
+        NOT = { has_variable = mwp_seen_79 }
+    }
+        remove_variable = mwp_d21_subject_provider_79
+        remove_variable = mwp_d21_access_generation_79
+        remove_variable = mwp_d21_access_day_79
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_79 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_79 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_79 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 80 scope:mwp_candidate_catalog_id <= 80
+        NOT = { has_variable = mwp_seen_80 }
+    }
+        remove_variable = mwp_d21_subject_provider_80
+        remove_variable = mwp_d21_access_generation_80
+        remove_variable = mwp_d21_access_day_80
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_80 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_80 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_80 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 81 scope:mwp_candidate_catalog_id <= 81
+        NOT = { has_variable = mwp_seen_81 }
+    }
+        remove_variable = mwp_d21_subject_provider_81
+        remove_variable = mwp_d21_access_generation_81
+        remove_variable = mwp_d21_access_day_81
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_81 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_81 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_81 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 87 scope:mwp_candidate_catalog_id <= 87
+        NOT = { has_variable = mwp_seen_87 }
+    }
+        remove_variable = mwp_d21_subject_provider_87
+        remove_variable = mwp_d21_access_generation_87
+        remove_variable = mwp_d21_access_day_87
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_87 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_87 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_87 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 88 scope:mwp_candidate_catalog_id <= 88
+        NOT = { has_variable = mwp_seen_88 }
+    }
+        remove_variable = mwp_d21_subject_provider_88
+        remove_variable = mwp_d21_access_generation_88
+        remove_variable = mwp_d21_access_day_88
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_88 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_88 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_88 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 89 scope:mwp_candidate_catalog_id <= 89
+        NOT = { has_variable = mwp_seen_89 }
+    }
+        remove_variable = mwp_d21_subject_provider_89
+        remove_variable = mwp_d21_access_generation_89
+        remove_variable = mwp_d21_access_day_89
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_89 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_89 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_89 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 90 scope:mwp_candidate_catalog_id <= 90
+        NOT = { has_variable = mwp_seen_90 }
+    }
+        remove_variable = mwp_d21_subject_provider_90
+        remove_variable = mwp_d21_access_generation_90
+        remove_variable = mwp_d21_access_day_90
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_90 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_90 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_90 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 91 scope:mwp_candidate_catalog_id <= 91
+        NOT = { has_variable = mwp_seen_91 }
+    }
+        remove_variable = mwp_d21_subject_provider_91
+        remove_variable = mwp_d21_access_generation_91
+        remove_variable = mwp_d21_access_day_91
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_91 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_91 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_91 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 92 scope:mwp_candidate_catalog_id <= 92
+        NOT = { has_variable = mwp_seen_92 }
+    }
+        remove_variable = mwp_d21_subject_provider_92
+        remove_variable = mwp_d21_access_generation_92
+        remove_variable = mwp_d21_access_day_92
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_92 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_92 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_92 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 93 scope:mwp_candidate_catalog_id <= 93
+        NOT = { has_variable = mwp_seen_93 }
+    }
+        remove_variable = mwp_d21_subject_provider_93
+        remove_variable = mwp_d21_access_generation_93
+        remove_variable = mwp_d21_access_day_93
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_93 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_93 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_93 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 94 scope:mwp_candidate_catalog_id <= 94
+        NOT = { has_variable = mwp_seen_94 }
+    }
+        remove_variable = mwp_d21_subject_provider_94
+        remove_variable = mwp_d21_access_generation_94
+        remove_variable = mwp_d21_access_day_94
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_94 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_94 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_94 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 95 scope:mwp_candidate_catalog_id <= 95
+        NOT = { has_variable = mwp_seen_95 }
+    }
+        remove_variable = mwp_d21_subject_provider_95
+        remove_variable = mwp_d21_access_generation_95
+        remove_variable = mwp_d21_access_day_95
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_95 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_95 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_95 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 96 scope:mwp_candidate_catalog_id <= 96
+        NOT = { has_variable = mwp_seen_96 }
+    }
+        remove_variable = mwp_d21_subject_provider_96
+        remove_variable = mwp_d21_access_generation_96
+        remove_variable = mwp_d21_access_day_96
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_96 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_96 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_96 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 97 scope:mwp_candidate_catalog_id <= 97
+        NOT = { has_variable = mwp_seen_97 }
+    }
+        remove_variable = mwp_d21_subject_provider_97
+        remove_variable = mwp_d21_access_generation_97
+        remove_variable = mwp_d21_access_day_97
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_97 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_97 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_97 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 98 scope:mwp_candidate_catalog_id <= 98
+        NOT = { has_variable = mwp_seen_98 }
+    }
+        remove_variable = mwp_d21_subject_provider_98
+        remove_variable = mwp_d21_access_generation_98
+        remove_variable = mwp_d21_access_day_98
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_98 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_98 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_98 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 99 scope:mwp_candidate_catalog_id <= 99
+        NOT = { has_variable = mwp_seen_99 }
+    }
+        remove_variable = mwp_d21_subject_provider_99
+        remove_variable = mwp_d21_access_generation_99
+        remove_variable = mwp_d21_access_day_99
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_99 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_99 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_99 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 100 scope:mwp_candidate_catalog_id <= 100
+        NOT = { has_variable = mwp_seen_100 }
+    }
+        remove_variable = mwp_d21_subject_provider_100
+        remove_variable = mwp_d21_access_generation_100
+        remove_variable = mwp_d21_access_day_100
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_100 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_100 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_100 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 101 scope:mwp_candidate_catalog_id <= 101
+        NOT = { has_variable = mwp_seen_101 }
+    }
+        remove_variable = mwp_d21_subject_provider_101
+        remove_variable = mwp_d21_access_generation_101
+        remove_variable = mwp_d21_access_day_101
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_101 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_101 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_101 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 102 scope:mwp_candidate_catalog_id <= 102
+        NOT = { has_variable = mwp_seen_102 }
+    }
+        remove_variable = mwp_d21_subject_provider_102
+        remove_variable = mwp_d21_access_generation_102
+        remove_variable = mwp_d21_access_day_102
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_102 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_102 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_102 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 103 scope:mwp_candidate_catalog_id <= 103
+        NOT = { has_variable = mwp_seen_103 }
+    }
+        remove_variable = mwp_d21_subject_provider_103
+        remove_variable = mwp_d21_access_generation_103
+        remove_variable = mwp_d21_access_day_103
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_103 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_103 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_103 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 104 scope:mwp_candidate_catalog_id <= 104
+        NOT = { has_variable = mwp_seen_104 }
+    }
+        remove_variable = mwp_d21_subject_provider_104
+        remove_variable = mwp_d21_access_generation_104
+        remove_variable = mwp_d21_access_day_104
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_104 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_104 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_104 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 105 scope:mwp_candidate_catalog_id <= 105
+        NOT = { has_variable = mwp_seen_105 }
+    }
+        remove_variable = mwp_d21_subject_provider_105
+        remove_variable = mwp_d21_access_generation_105
+        remove_variable = mwp_d21_access_day_105
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_105 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_105 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_105 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 106 scope:mwp_candidate_catalog_id <= 106
+        NOT = { has_variable = mwp_seen_106 }
+    }
+        remove_variable = mwp_d21_subject_provider_106
+        remove_variable = mwp_d21_access_generation_106
+        remove_variable = mwp_d21_access_day_106
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_106 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_106 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_106 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 107 scope:mwp_candidate_catalog_id <= 107
+        NOT = { has_variable = mwp_seen_107 }
+    }
+        remove_variable = mwp_d21_subject_provider_107
+        remove_variable = mwp_d21_access_generation_107
+        remove_variable = mwp_d21_access_day_107
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_107 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_107 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_107 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 108 scope:mwp_candidate_catalog_id <= 108
+        NOT = { has_variable = mwp_seen_108 }
+    }
+        remove_variable = mwp_d21_subject_provider_108
+        remove_variable = mwp_d21_access_generation_108
+        remove_variable = mwp_d21_access_day_108
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_108 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_108 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_108 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 109 scope:mwp_candidate_catalog_id <= 109
+        NOT = { has_variable = mwp_seen_109 }
+    }
+        remove_variable = mwp_d21_subject_provider_109
+        remove_variable = mwp_d21_access_generation_109
+        remove_variable = mwp_d21_access_day_109
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_109 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_109 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_109 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 110 scope:mwp_candidate_catalog_id <= 110
+        NOT = { has_variable = mwp_seen_110 }
+    }
+        remove_variable = mwp_d21_subject_provider_110
+        remove_variable = mwp_d21_access_generation_110
+        remove_variable = mwp_d21_access_day_110
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_110 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_110 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_110 value = days_since_birth }
+        }
+    }
+    if = { limit = {
+        scope:mwp_candidate_catalog_id >= 111 scope:mwp_candidate_catalog_id <= 111
+        NOT = { has_variable = mwp_seen_111 }
+    }
+        remove_variable = mwp_d21_subject_provider_111
+        remove_variable = mwp_d21_access_generation_111
+        remove_variable = mwp_d21_access_day_111
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_111 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_111 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_111 value = days_since_birth }
+        }
+    }
+    }
+}

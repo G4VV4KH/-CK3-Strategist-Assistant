@@ -1,0 +1,85 @@
+﻿mwp_d21_pending_receive = {
+ scope = character
+ saved_scopes = { mwp_d21p_input_owner mwp_d21p_input_sequence mwp_d21p_input_clock mwp_d21p_input_epoch mwp_d21p_input_counter mwp_d21p_input_prestige mwp_d21p_input_piety mwp_d21p_input_barter }
+ is_valid = { has_variable = mwp_d21p_pending var:mwp_d21p_pending = yes
+has_variable = mwp_d21p_owner var:mwp_d21p_owner = this
+has_variable = mwp_d19_tx_active has_variable = mwp_d19_tx_paid
+has_variable = mwp_d21p_sequence has_variable = mwp_d21r_clock has_variable = mwp_d21r_epoch
+exists = scope:mwp_d21p_input_owner
+exists = scope:mwp_d21p_input_sequence
+exists = scope:mwp_d21p_input_clock
+exists = scope:mwp_d21p_input_epoch
+exists = scope:mwp_d21p_input_counter
+exists = scope:mwp_d21p_input_prestige
+exists = scope:mwp_d21p_input_piety
+exists = scope:mwp_d21p_input_barter
+
+scope:mwp_d21p_input_owner = this
+scope:mwp_d21p_input_sequence = var:mwp_d21p_sequence
+scope:mwp_d21p_input_clock = var:mwp_d21r_clock
+scope:mwp_d21p_input_epoch = var:mwp_d21r_epoch
+scope:mwp_d21p_input_counter = mwp_native_cost_purchase_count_value
+ }
+ effect = { if = { limit = { has_variable = mwp_d21p_pending var:mwp_d21p_pending = yes
+has_variable = mwp_d21p_owner var:mwp_d21p_owner = this
+has_variable = mwp_d19_tx_active has_variable = mwp_d19_tx_paid
+has_variable = mwp_d21p_sequence has_variable = mwp_d21r_clock has_variable = mwp_d21r_epoch
+exists = scope:mwp_d21p_input_owner
+exists = scope:mwp_d21p_input_sequence
+exists = scope:mwp_d21p_input_clock
+exists = scope:mwp_d21p_input_epoch
+exists = scope:mwp_d21p_input_counter
+exists = scope:mwp_d21p_input_prestige
+exists = scope:mwp_d21p_input_piety
+exists = scope:mwp_d21p_input_barter
+
+scope:mwp_d21p_input_owner = this
+scope:mwp_d21p_input_sequence = var:mwp_d21p_sequence
+scope:mwp_d21p_input_clock = var:mwp_d21r_clock
+scope:mwp_d21p_input_epoch = var:mwp_d21r_epoch
+scope:mwp_d21p_input_counter = mwp_native_cost_purchase_count_value
+ } mwp_d21_pending_restore_selection_effect = yes
+set_variable = { name = mwp_d21p_native_balance value = -999999 }
+if = { limit = { var:mwp_d21p_upkeep_currency = 2 } set_variable = { name = mwp_d21p_native_balance value = scope:mwp_d21p_input_prestige } }
+else_if = { limit = { var:mwp_d21p_upkeep_currency = 3 } set_variable = { name = mwp_d21p_native_balance value = scope:mwp_d21p_input_piety } }
+else_if = { limit = { var:mwp_d21p_upkeep_currency = 5 } set_variable = { name = mwp_d21p_native_balance value = scope:mwp_d21p_input_barter } }
+if = { limit = { mwp_d21_pending_recovery_matches_trigger = yes }
+ if = { limit = { OR = {
+  var:mwp_d21p_native_balance < 0.01
+  NOT = { mwp_d21_pending_commit_matches_trigger = yes }
+ } }
+  mwp_d21_pending_rollback_effect = yes
+  if = { limit = { NOT = { has_variable = mwp_d19_tx_active } } mwp_request_own_analysis_effect = yes }
+ }
+ else_if = { limit = {
+  has_variable = mwp_d21p_sample has_variable = mwp_d21p_sample_clock has_variable = mwp_d21p_sample_balance
+  var:mwp_d21p_epoch = var:mwp_d21r_epoch
+  var:mwp_d21r_clock > var:mwp_d21p_sample_clock
+  var:mwp_d21r_clock >= { value = var:mwp_d21p_start add = 2 }
+  var:mwp_d21p_sample_balance = var:mwp_d21p_native_balance
+  var:mwp_d21p_native_balance >= 0.01
+ }
+  set_variable = { name = mwp_auto_last_paid_verified value = yes }
+  mwp_d21_budget_accept_purchase_effect = yes
+  mwp_reorganization_record_purchase_effect = yes
+  set_variable = { name = mwp_d19_transaction_status value = 1 }
+  mwp_native_cost_invalidate_effect = yes
+  mwp_d19_transaction_clear_effect = yes
+  mwp_request_own_analysis_effect = yes
+ }
+ else = {
+  if = { limit = { NOT = { var:mwp_d21p_epoch = var:mwp_d21r_epoch } }
+   set_variable = { name = mwp_d21p_epoch value = var:mwp_d21r_epoch }
+   set_variable = { name = mwp_d21p_start value = var:mwp_d21r_clock }
+  }
+  set_variable = { name = mwp_d21p_sample value = yes }
+  set_variable = { name = mwp_d21p_sample_clock value = var:mwp_d21r_clock }
+  set_variable = { name = mwp_d21p_sample_balance value = var:mwp_d21p_native_balance }
+ }
+}
+else = {
+ set_variable = { name = mwp_d21p_conflict value = yes }
+ mwp_d19_transaction_failure_effect = yes
+}
+ } }
+}

@@ -1,0 +1,67 @@
+﻿mwp_toggle_reorganization = {
+    scope = character
+    saved_scopes = {
+        mwp_script_input_owner
+        mwp_script_input_generation
+        mwp_script_input_singleplayer
+        mwp_input_current_balance
+        mwp_input_native_cost_sequence
+        mwp_input_fallback_cost_sequence
+        mwp_input_cost_max_maa
+        mwp_input_cost_panel_open
+    }
+    is_shown = {
+        is_ai = no
+    }
+    is_valid = {
+        trigger_if = {
+            limit = {
+                has_variable = mwp_generation
+            }
+            is_ai = no
+            is_alive = yes
+            exists = scope:mwp_script_input_owner
+            scope:mwp_script_input_owner = this
+            exists = scope:mwp_script_input_generation
+            scope:mwp_script_input_generation = var:mwp_generation
+            exists = scope:mwp_script_input_singleplayer
+            scope:mwp_script_input_singleplayer = yes
+        }
+        trigger_else = {
+            always = no
+        }
+    }
+    effect = {
+        if = {
+            limit = {
+                has_variable = mwp_generation
+            }
+            if = {
+                limit = {
+                    is_ai = no
+                    is_alive = yes
+                    exists = scope:mwp_script_input_owner
+                    scope:mwp_script_input_owner = this
+                    exists = scope:mwp_script_input_generation
+                    scope:mwp_script_input_generation = var:mwp_generation
+                    exists = scope:mwp_script_input_singleplayer
+                    scope:mwp_script_input_singleplayer = yes
+                }
+                if = {
+                    limit = {
+                        has_variable = mwp_reorganization_enabled
+                        var:mwp_reorganization_enabled = yes
+                    }
+                    remove_variable = mwp_reorganization_enabled
+                }
+                else = {
+                    set_variable = {
+                        name = mwp_reorganization_enabled
+                        value = yes
+                    }
+                }
+                mwp_priority_refresh_next_effect = yes
+            }
+        }
+    }
+}

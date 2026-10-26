@@ -1,0 +1,789 @@
+﻿# DEV11 bounded field and siege service values.
+mwp_scoring_own_levy_value = {
+    value = scope:mwp_scoring_strength
+    subtract = var:mwp_own_maa
+    min = 0
+}
+mwp_scoring_enemy_levy_value = {
+    value = scope:mwp_scoring_strength
+    subtract = var:mwp_enemy_maa
+    min = 0
+}
+mwp_scoring_before_ratio_value = {
+    value = 0
+    if = {
+        limit = {
+            var:mwp_own_effective_damage > 0
+            var:mwp_own_toughness > 0
+        }
+        value = var:mwp_own_effective_damage
+        multiply = var:mwp_own_toughness
+        pow = 0.5
+        divide = {
+            value = var:mwp_enemy_effective_damage
+            multiply = var:mwp_enemy_toughness
+            min = 0.001
+            pow = 0.5
+            min = 0.001
+        }
+    }
+}
+mwp_scoring_after_ratio_value = {
+    value = 0
+    if = {
+        limit = {
+            var:mwp_scoring_after_own_damage > 0
+            var:mwp_scoring_after_own_toughness > 0
+        }
+        value = var:mwp_scoring_after_own_damage
+        multiply = var:mwp_scoring_after_own_toughness
+        pow = 0.5
+        divide = {
+            value = var:mwp_scoring_after_enemy_damage
+            multiply = var:mwp_enemy_toughness
+            min = 0.001
+            pow = 0.5
+            min = 0.001
+        }
+    }
+}
+mwp_scoring_utility_value = {
+    value = var:mwp_scoring_ratio
+    divide = {
+        value = var:mwp_scoring_ratio
+        add = 1
+    }
+}
+mwp_scoring_siege_before_work_value = {
+    value = 0
+    add = {
+        value = var:mwp_war_fort_band0_weight
+        multiply = 250
+        divide = {
+            value = {
+                value = 0.7
+                pow = 0
+            }
+            add = {
+                value = var:mwp_own_siege_tier0
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier1
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier2
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier3
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier4
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier5
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            min = 0.001
+        }
+    }
+    add = {
+        value = var:mwp_war_fort_band1_weight
+        multiply = 400
+        divide = {
+            value = {
+                value = 0.7
+                pow = 1
+            }
+            add = {
+                value = var:mwp_own_siege_tier0
+                multiply = {
+                    value = 0.7
+                    pow = 1
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier1
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier2
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier3
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier4
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier5
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            min = 0.001
+        }
+    }
+    add = {
+        value = var:mwp_war_fort_band2_weight
+        multiply = 550
+        divide = {
+            value = {
+                value = 0.7
+                pow = 2
+            }
+            add = {
+                value = var:mwp_own_siege_tier0
+                multiply = {
+                    value = 0.7
+                    pow = 2
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier1
+                multiply = {
+                    value = 0.7
+                    pow = 1
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier2
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier3
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier4
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier5
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            min = 0.001
+        }
+    }
+    add = {
+        value = var:mwp_war_fort_band3_weight
+        multiply = 925
+        divide = {
+            value = {
+                value = 0.7
+                pow = 3
+            }
+            add = {
+                value = var:mwp_own_siege_tier0
+                multiply = {
+                    value = 0.7
+                    pow = 3
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier1
+                multiply = {
+                    value = 0.7
+                    pow = 2
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier2
+                multiply = {
+                    value = 0.7
+                    pow = 1
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier3
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier4
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier5
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            min = 0.001
+        }
+    }
+    add = {
+        value = var:mwp_war_fort_band4_weight
+        multiply = 1300
+        divide = {
+            value = {
+                value = 0.7
+                pow = 4
+            }
+            add = {
+                value = var:mwp_own_siege_tier0
+                multiply = {
+                    value = 0.7
+                    pow = 4
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier1
+                multiply = {
+                    value = 0.7
+                    pow = 3
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier2
+                multiply = {
+                    value = 0.7
+                    pow = 2
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier3
+                multiply = {
+                    value = 0.7
+                    pow = 1
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier4
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier5
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            min = 0.001
+        }
+    }
+    add = {
+        value = var:mwp_war_fort_band5_weight
+        multiply = 2425
+        divide = {
+            value = {
+                value = 0.7
+                pow = 5
+            }
+            add = {
+                value = var:mwp_own_siege_tier0
+                multiply = {
+                    value = 0.7
+                    pow = 5
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier1
+                multiply = {
+                    value = 0.7
+                    pow = 4
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier2
+                multiply = {
+                    value = 0.7
+                    pow = 3
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier3
+                multiply = {
+                    value = 0.7
+                    pow = 2
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier4
+                multiply = {
+                    value = 0.7
+                    pow = 1
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier5
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            min = 0.001
+        }
+    }
+}
+mwp_scoring_siege_after_work_value = {
+    value = 0
+    add = {
+        value = var:mwp_war_fort_band0_weight
+        multiply = 250
+        divide = {
+            value = {
+                value = 0.7
+                pow = 0
+            }
+            add = {
+                value = var:mwp_own_siege_tier0
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier1
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier2
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier3
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier4
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier5
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_scoring_after_siege
+                multiply = {
+                    value = 0.7
+                    pow = {
+                        value = 0
+                        subtract = var:mwp_scoring_after_tier
+                        min = 0
+                    }
+                }
+            }
+            min = 0.001
+        }
+    }
+    add = {
+        value = var:mwp_war_fort_band1_weight
+        multiply = 400
+        divide = {
+            value = {
+                value = 0.7
+                pow = 1
+            }
+            add = {
+                value = var:mwp_own_siege_tier0
+                multiply = {
+                    value = 0.7
+                    pow = 1
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier1
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier2
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier3
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier4
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier5
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_scoring_after_siege
+                multiply = {
+                    value = 0.7
+                    pow = {
+                        value = 1
+                        subtract = var:mwp_scoring_after_tier
+                        min = 0
+                    }
+                }
+            }
+            min = 0.001
+        }
+    }
+    add = {
+        value = var:mwp_war_fort_band2_weight
+        multiply = 550
+        divide = {
+            value = {
+                value = 0.7
+                pow = 2
+            }
+            add = {
+                value = var:mwp_own_siege_tier0
+                multiply = {
+                    value = 0.7
+                    pow = 2
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier1
+                multiply = {
+                    value = 0.7
+                    pow = 1
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier2
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier3
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier4
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier5
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_scoring_after_siege
+                multiply = {
+                    value = 0.7
+                    pow = {
+                        value = 2
+                        subtract = var:mwp_scoring_after_tier
+                        min = 0
+                    }
+                }
+            }
+            min = 0.001
+        }
+    }
+    add = {
+        value = var:mwp_war_fort_band3_weight
+        multiply = 925
+        divide = {
+            value = {
+                value = 0.7
+                pow = 3
+            }
+            add = {
+                value = var:mwp_own_siege_tier0
+                multiply = {
+                    value = 0.7
+                    pow = 3
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier1
+                multiply = {
+                    value = 0.7
+                    pow = 2
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier2
+                multiply = {
+                    value = 0.7
+                    pow = 1
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier3
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier4
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier5
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_scoring_after_siege
+                multiply = {
+                    value = 0.7
+                    pow = {
+                        value = 3
+                        subtract = var:mwp_scoring_after_tier
+                        min = 0
+                    }
+                }
+            }
+            min = 0.001
+        }
+    }
+    add = {
+        value = var:mwp_war_fort_band4_weight
+        multiply = 1300
+        divide = {
+            value = {
+                value = 0.7
+                pow = 4
+            }
+            add = {
+                value = var:mwp_own_siege_tier0
+                multiply = {
+                    value = 0.7
+                    pow = 4
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier1
+                multiply = {
+                    value = 0.7
+                    pow = 3
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier2
+                multiply = {
+                    value = 0.7
+                    pow = 2
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier3
+                multiply = {
+                    value = 0.7
+                    pow = 1
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier4
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier5
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_scoring_after_siege
+                multiply = {
+                    value = 0.7
+                    pow = {
+                        value = 4
+                        subtract = var:mwp_scoring_after_tier
+                        min = 0
+                    }
+                }
+            }
+            min = 0.001
+        }
+    }
+    add = {
+        value = var:mwp_war_fort_band5_weight
+        multiply = 2425
+        divide = {
+            value = {
+                value = 0.7
+                pow = 5
+            }
+            add = {
+                value = var:mwp_own_siege_tier0
+                multiply = {
+                    value = 0.7
+                    pow = 5
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier1
+                multiply = {
+                    value = 0.7
+                    pow = 4
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier2
+                multiply = {
+                    value = 0.7
+                    pow = 3
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier3
+                multiply = {
+                    value = 0.7
+                    pow = 2
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier4
+                multiply = {
+                    value = 0.7
+                    pow = 1
+                }
+            }
+            add = {
+                value = var:mwp_own_siege_tier5
+                multiply = {
+                    value = 0.7
+                    pow = 0
+                }
+            }
+            add = {
+                value = var:mwp_scoring_after_siege
+                multiply = {
+                    value = 0.7
+                    pow = {
+                        value = 5
+                        subtract = var:mwp_scoring_after_tier
+                        min = 0
+                    }
+                }
+            }
+            min = 0.001
+        }
+    }
+}
+mwp_scoring_siege_gain_value = {
+    value = 180
+    divide = {
+        value = mwp_scoring_siege_after_work_value
+        divide = {
+            value = var:mwp_war_fort_weight_sum
+            min = 1
+        }
+        add = 180
+    }
+    subtract = {
+        value = 180
+        divide = {
+            value = mwp_scoring_siege_before_work_value
+            divide = {
+                value = var:mwp_war_fort_weight_sum
+                min = 1
+            }
+            add = 180
+        }
+    }
+    min = 0
+    max = 1
+    multiply = 1000
+}

@@ -1,0 +1,8 @@
+﻿on_game_start_after_lobby = { on_actions = { mwp_session_start } }
+mwp_session_start = {
+	effect = { every_player = { mwp_bootstrap_effect = yes } }
+}
+on_player_character_change = { on_actions = { mwp_player_changed } }
+mwp_player_changed = {
+	effect = { mwp_bootstrap_effect = yes }
+}

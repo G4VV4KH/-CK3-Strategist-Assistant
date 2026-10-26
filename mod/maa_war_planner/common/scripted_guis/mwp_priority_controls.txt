@@ -1,0 +1,149 @@
+﻿mwp_priority_refresh = {
+    scope = character
+    saved_scopes = {
+        mwp_script_input_owner
+        mwp_script_input_generation
+        mwp_script_input_singleplayer
+        mwp_input_current_balance
+        mwp_input_native_cost_sequence
+        mwp_input_fallback_cost_sequence
+        mwp_input_cost_max_maa
+        mwp_input_cost_panel_open
+    }
+    is_valid = {
+        trigger_if = {
+            limit = {
+                has_variable = mwp_generation
+            }
+            is_ai = no
+            is_alive = yes
+            exists = scope:mwp_script_input_owner
+            scope:mwp_script_input_owner = this
+            exists = scope:mwp_script_input_generation
+            scope:mwp_script_input_generation = var:mwp_generation
+            exists = scope:mwp_script_input_singleplayer
+            scope:mwp_script_input_singleplayer = yes
+            exists = scope:mwp_input_current_balance
+            mwp_auto_fresh_trigger = yes
+            OR = {
+                NOT = {
+                    has_variable = mwp_preview_generation
+                }
+                NOT = {
+                    var:mwp_preview_generation = var:mwp_generation
+                }
+                NOT = {
+                    gold = var:mwp_preview_gold
+                }
+                NOT = {
+                    has_variable = mwp_preview_native_balance
+                }
+                NOT = {
+                    scope:mwp_input_current_balance = var:mwp_preview_native_balance
+                }
+                NOT = {
+                    monthly_character_expenses = var:mwp_preview_expenses
+                }
+                NOT = {
+                    mwp_auto_budget_mode_value = var:mwp_preview_budget_mode
+                }
+                NOT = {
+                    days_since_birth = var:mwp_preview_day
+                }
+                NOT = {
+                    has_variable = mwp_preview_cost_sequence
+                }
+                NOT = {
+                    scope:mwp_input_native_cost_sequence = var:mwp_preview_cost_sequence
+                }
+                NOT = {
+                    has_variable = mwp_preview_fallback_sequence
+                }
+                NOT = {
+                    scope:mwp_input_fallback_cost_sequence = var:mwp_preview_fallback_sequence
+                }
+                AND = {
+                    NOT = {
+                        has_variable = mwp_script_budget_ready
+                    }
+                    OR = {
+                        mwp_native_cost_current_trigger = yes
+                        mwp_fallback_cost_current_trigger = yes
+                    }
+                }
+            }
+        }
+        trigger_else = {
+            always = no
+        }
+    }
+    effect = {
+        if = {
+            limit = {
+                has_variable = mwp_generation
+            }
+            if = {
+                limit = {
+                    is_ai = no
+                    is_alive = yes
+                    exists = scope:mwp_script_input_owner
+                    scope:mwp_script_input_owner = this
+                    exists = scope:mwp_script_input_generation
+                    scope:mwp_script_input_generation = var:mwp_generation
+                    exists = scope:mwp_script_input_singleplayer
+                    scope:mwp_script_input_singleplayer = yes
+                    exists = scope:mwp_input_current_balance
+                    mwp_auto_fresh_trigger = yes
+                    OR = {
+                        NOT = {
+                            has_variable = mwp_preview_generation
+                        }
+                        NOT = {
+                            var:mwp_preview_generation = var:mwp_generation
+                        }
+                        NOT = {
+                            gold = var:mwp_preview_gold
+                        }
+                        NOT = {
+                            has_variable = mwp_preview_native_balance
+                        }
+                        NOT = {
+                            scope:mwp_input_current_balance = var:mwp_preview_native_balance
+                        }
+                        NOT = {
+                            monthly_character_expenses = var:mwp_preview_expenses
+                        }
+                        NOT = {
+                            mwp_auto_budget_mode_value = var:mwp_preview_budget_mode
+                        }
+                        NOT = {
+                            days_since_birth = var:mwp_preview_day
+                        }
+                        NOT = {
+                            has_variable = mwp_preview_cost_sequence
+                        }
+                        NOT = {
+                            scope:mwp_input_native_cost_sequence = var:mwp_preview_cost_sequence
+                        }
+                        NOT = {
+                            has_variable = mwp_preview_fallback_sequence
+                        }
+                        NOT = {
+                            scope:mwp_input_fallback_cost_sequence = var:mwp_preview_fallback_sequence
+                        }
+                        AND = {
+                            NOT = {
+                                has_variable = mwp_script_budget_ready
+                            }
+                            OR = {
+                                mwp_native_cost_current_trigger = yes
+                                mwp_fallback_cost_current_trigger = yes
+                            }
+                        }
+                    }
+                }
+                mwp_priority_refresh_next_effect = yes
+            }
+        }
+    }
+}

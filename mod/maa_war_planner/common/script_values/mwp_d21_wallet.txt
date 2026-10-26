@@ -1,0 +1,32 @@
+﻿# Currency IDs: gold1, prestige2, piety3, treasury4, barter goods5.
+# Transaction-local currency takes precedence until the transaction resolves.
+mwp_d21_selected_currency_value = {
+ value = 1
+ if = { limit = { has_variable = mwp_script_selected_currency }
+  value = var:mwp_script_selected_currency
+ }
+ if = { limit = { has_variable = mwp_d19_tx_active has_variable = mwp_d21_tx_currency }
+  value = var:mwp_d21_tx_currency
+ }
+}
+mwp_d21_selected_wallet_value = {
+ value = gold
+ if = { limit = { mwp_d21_selected_currency_value = 2 } value = prestige }
+ if = { limit = { mwp_d21_selected_currency_value = 3 } value = piety }
+ if = { limit = { mwp_d21_selected_currency_value = 4 } value = treasury }
+ if = { limit = { mwp_d21_selected_currency_value = 5 } value = barter_goods }
+}
+mwp_d21_transaction_expected_wallet_value = {
+ value = var:mwp_d19_tx_gold
+ subtract = var:mwp_d19_tx_price
+}
+mwp_d21_primitive_expected_wallet_value = {
+ value = var:mwp_auto_last_gold_before
+ subtract = var:mwp_script_selected_price
+}
+mwp_d21_refund_target_value = {
+ value = var:mwp_d19_tx_gold
+ if = { limit = { has_variable = mwp_d21p_pending has_variable = mwp_d21p_refund_target }
+  value = var:mwp_d21p_refund_target
+ }
+}

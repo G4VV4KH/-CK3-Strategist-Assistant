@@ -1,0 +1,32 @@
+﻿# GENERATED MWP INFO; source: tests/maa_war_planner/build_info_panel.py
+mwp_info_open = { scope = character
+ is_shown = { is_ai = no }
+ is_valid = { is_ai = no is_alive = yes }
+ effect = { if = { limit = { is_ai = no is_alive = yes } mwp_info_open_effect = yes } }
+}
+mwp_info_close = { scope = character
+ is_shown = { is_ai = no }
+ is_valid = { is_ai = no is_alive = yes }
+ effect = { if = { limit = { is_ai = no is_alive = yes } remove_variable = mwp_info_open } }
+}
+mwp_info_refresh = { scope = character
+ is_shown = { is_ai = no }
+ is_valid = { is_ai = no is_alive = yes }
+ effect = { if = { limit = { is_ai = no is_alive = yes } mwp_info_snapshot_effect = yes } }
+}
+mwp_info_offensive_available = { scope = character
+saved_scopes = { mwp_info_rival }
+is_shown = { is_ai = no }
+is_valid = { is_ai = no is_alive = yes exists = scope:mwp_info_rival
+ scope:mwp_info_rival = { is_alive = yes }
+ root = { is_character_interaction_valid = { recipient = scope:mwp_info_rival interaction = declare_war_interaction } }
+}
+}
+mwp_info_defensive_available = { scope = character
+saved_scopes = { mwp_info_rival }
+is_shown = { is_ai = no }
+is_valid = { is_ai = no is_alive = yes exists = scope:mwp_info_rival
+ scope:mwp_info_rival = { is_alive = yes }
+ scope:mwp_info_rival = { is_character_interaction_valid = { recipient = root interaction = declare_war_interaction } }
+}
+}

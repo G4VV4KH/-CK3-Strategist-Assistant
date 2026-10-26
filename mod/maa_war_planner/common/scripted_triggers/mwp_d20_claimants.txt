@@ -1,0 +1,209 @@
+﻿# DEV20 claimant scanner. All scopes are explicit and owner-bound.
+mwp_d20_claim_invite_trigger = {
+ scope:mwp_d20_claim_candidate = {
+  is_alive = yes is_ai = yes is_ruler = no is_claimant = yes
+  is_imprisoned = no is_incapable = no is_hostage = no
+  NOT = { is_courtier_of = scope:mwp_d20_claim_player }
+  NOT = { host = scope:mwp_d20_claim_player }
+  in_diplomatic_range = scope:mwp_d20_claim_player
+ }
+ scope:mwp_d20_claim_player = {
+  is_character_interaction_valid = { recipient = scope:mwp_d20_claim_candidate interaction = invite_to_court_interaction }
+  is_character_interaction_potentially_accepted = {
+   recipient = scope:mwp_d20_claim_candidate interaction = invite_to_court_interaction
+   required_response = yes ai_accept = 1
+  }
+ }
+}
+mwp_d20_claim_cb_trigger = {
+ scope:mwp_d20_claim_player = { save_temporary_scope_as = attacker }
+ scope:mwp_d20_claim_candidate = { save_temporary_scope_as = claimant }
+ scope:mwp_d20_claim_defender = {
+  save_temporary_scope_as = defender save_temporary_scope_as = recipient
+ }
+ scope:mwp_d20_claim_title = { save_temporary_scope_as = target }
+ scope:mwp_d20_claim_candidate = { has_claim_on = scope:mwp_d20_claim_title }
+ scope:mwp_d20_claim_player = {
+  is_alive = yes is_landed = yes is_imprisoned = no
+  in_diplomatic_range = scope:mwp_d20_claim_defender
+  can_attack_in_hierarchy = scope:mwp_d20_claim_defender
+  allows_declaring_war_against_target_trigger = { TARGET = scope:mwp_d20_claim_defender }
+  mwp_d20_claim_installed_attacker_trigger = yes
+  NOT = { is_at_war_with = scope:mwp_d20_claim_defender }
+  NOT = { is_allied_to = scope:mwp_d20_claim_defender }
+  NOT = { has_truce = scope:mwp_d20_claim_defender }
+  NOT = { liege ?= { is_at_war_with = scope:mwp_d20_claim_defender } }
+  prestige >= mwp_d20_claim_prestige_value
+  piety >= mwp_d20_claim_piety_value
+ }
+ scope:mwp_d20_claim_defender = { is_alive = yes is_landed = yes }
+ scope:mwp_d20_claim_title = {
+  mwp_d20_claim_installed_title_trigger = yes
+  OR = { holder = scope:mwp_d20_claim_defender holder = { target_is_liege_or_above = scope:mwp_d20_claim_defender } }
+ }
+}
+mwp_d20_claim_new_title_trigger = {
+ # A different claimant for an already pressable title adds no new target.
+ NOT = {
+  scope:mwp_d20_claim_title = {
+   any_claimant = {
+    explicit = yes
+    OR = {
+     this = scope:mwp_d20_claim_player
+     is_courtier_of = scope:mwp_d20_claim_player
+     target_is_liege_or_above = scope:mwp_d20_claim_player
+    }
+    save_temporary_scope_as = mwp_d20_existing_claimant
+    scope:mwp_d20_claim_player = {
+     can_declare_war = {
+      defender = scope:mwp_d20_claim_defender casus_belli = claim_cb
+      target_titles = { scope:mwp_d20_claim_title } claimant = scope:mwp_d20_existing_claimant
+     }
+    }
+   }
+  }
+ }
+}
+mwp_d20_claim_row_bound_trigger = {
+ exists = scope:mwp_d20_claim_candidate
+ scope:mwp_d20_claim_candidate = {
+  has_variable = mwp_d20_claim_owner var:mwp_d20_claim_owner = root
+  has_variable = mwp_d20_claim_sequence
+  var:mwp_d20_claim_sequence = root.var:mwp_d20_claim_sequence
+  exists = var:mwp_d20_claim_best_title exists = var:mwp_d20_claim_defender
+ }
+ is_target_in_variable_list = { name = mwp_d20_claimants target = scope:mwp_d20_claim_candidate }
+}
+mwp_d20_claim_installed_title_trigger = {
+
+		# So Claim CB can only be used on titles that have de jure vassals, otherwise this CB will show up but you are unable to click the button to start the actual war because -- the title doesn't have de jure vassals
+		is_titular = no
+		trigger_if = {
+			limit = {
+				scope:attacker = {
+					is_ai = yes
+					has_variable = conqueror
+				}
+			}
+			tier >= tier_duchy
+		}
+		custom_description = {
+			text = "claimant_titles_held_by_you_or_vassal"
+			NOR = {
+				holder = scope:attacker
+				holder = {
+					target_is_liege_or_above = scope:attacker
+				}
+			}
+		}
+		scope:claimant = {
+			is_incapable = no
+			is_hostage = no
+			custom_description = {
+				text = is_not_a_minister_desc
+				tgp_is_any_minister = no
+			}
+			trigger_if = {
+				limit = { scope:claimant != scope:attacker } # You can always press your own claims
+				is_imprisoned = no
+			}
+			#religion = scope:attacker.religion
+			# claimant must not be at war against defender for this claim already
+			custom_description = {
+				text = "claimant_already_pressing_their_claim"
+				object = scope:mwp_d20_claim_title
+				NAND = {
+					always = yes # After the accepted invitation this is the actor's courtier.
+					any_character_war = {
+						casus_belli = {
+							any_target_title = {
+								this = scope:mwp_d20_claim_title
+							}
+						}
+					}
+				}
+			}
+		}
+		scope:attacker = {
+			#Cannot press claims against your own vassals, as these must be revoked.
+			custom_description = {
+				text = "claimant_titles_held_by_attacker_vassals"
+				NOT = {
+					scope:mwp_d20_claim_title.holder = {
+						target_is_liege_or_above = scope:attacker
+					}
+				}
+			}
+		}
+
+ NAND = {
+  is_weak_claimant_due_to_gender_trigger = { RITE = scope:attacker.rite CHARACTER = scope:claimant }
+  scope:claimant = { is_adult = no }
+ }
+ trigger_if = {
+  limit = {
+   OR = {
+    is_weak_claimant_due_to_gender_trigger = { RITE = scope:attacker.rite CHARACTER = scope:claimant }
+    scope:claimant = { is_adult = no }
+   }
+  }
+  holder = {
+   OR = {
+    has_trait = incapable is_adult = no
+    is_weak_claimant_due_to_gender_trigger = { RITE = scope:attacker.rite CHARACTER = scope:mwp_d20_claim_title.holder }
+   }
+  }
+ }
+		#Under Byzantine law, a ruler must be unblemished
+		trigger_if = {
+			limit = {
+				scope:defender.culture = { has_cultural_parameter = physical_disfigurement_blocks_inheritance }
+			}
+			scope:claimant = {
+				custom_description = {
+					text = "byzantine_claimant_is_disfigured"
+					object = scope:claimant
+					valid_for_byz_succession_trigger = yes
+				}
+			}
+		}
+		#Under Byzantine law, a ruler must be able to produce children.
+		trigger_if = {
+			limit = {
+				scope:defender.culture = { has_cultural_parameter = physical_disfigurement_blocks_inheritance }
+			}
+			scope:claimant = {
+				custom_description = {
+					text = "byzantine_claimant_is_celibate"
+					object = scope:defender
+					is_eunuch_trigger = no
+					NOT = {
+						has_trait = celibate
+					}
+				}
+			}
+		}
+	
+}
+mwp_d20_claim_installed_attacker_trigger = {
+		#If you're landless, you need the Legitimist camp purpose
+		trigger_if = {
+			limit = {
+				scope:attacker = {
+					government_has_flag = government_is_landless_adventurer
+				}
+			}
+			scope:attacker = {
+				has_realm_law = camp_purpose_legitimists
+			}
+		}
+		tgp_japan_offensive_wars_ban_trigger = yes
+	}
+mwp_d20_claim_struggle_target_trigger = {
+ has_struggle_phase_parameter = $PARAMETER$
+ save_temporary_scope_as = mwp_d20_claim_struggle
+ scope:mwp_d20_claim_title = {
+  tier = tier_county
+  any_county_struggle = { this = scope:mwp_d20_claim_struggle }
+ }
+}

@@ -1,0 +1,82 @@
+﻿mwp_toggle_auto = {
+    scope = character
+    saved_scopes = { mwp_script_input_owner mwp_script_input_generation mwp_script_input_singleplayer mwp_input_current_balance mwp_input_native_cost_sequence mwp_input_fallback_cost_sequence mwp_input_cost_max_maa mwp_input_cost_panel_open }
+    is_shown = { is_ai = no }
+    is_valid = {
+    is_ai = no
+    is_alive = yes
+    exists = scope:mwp_script_input_owner
+    scope:mwp_script_input_owner = this
+    exists = scope:mwp_script_input_singleplayer
+    scope:mwp_script_input_singleplayer = yes
+    OR = {
+        AND = { has_variable = mwp_auto_recruit_enabled var:mwp_auto_recruit_enabled = yes }
+        exists = scope:mwp_input_current_balance
+    }
+}
+
+    effect = {
+    if = {
+    limit = {
+    is_ai = no
+    is_alive = yes
+    exists = scope:mwp_script_input_owner
+    scope:mwp_script_input_owner = this
+    exists = scope:mwp_script_input_singleplayer
+    scope:mwp_script_input_singleplayer = yes
+    OR = {
+        AND = { has_variable = mwp_auto_recruit_enabled var:mwp_auto_recruit_enabled = yes }
+        exists = scope:mwp_input_current_balance
+    }
+}
+
+    if = {
+    limit = {
+    has_variable = mwp_auto_recruit_enabled
+    var:mwp_auto_recruit_enabled = yes
+}
+
+    mwp_disable_auto_effect = yes
+}
+
+    else = {
+    mwp_enable_auto_effect = yes
+    mwp_script_run_batch_effect = yes
+}
+
+}
+
+}
+
+}
+
+mwp_request_analysis = {
+	scope = character
+	is_shown = { is_ai = no }
+	is_valid = { is_alive = yes }
+	effect = {
+		if = {
+			limit = { is_ai = no is_alive = yes }
+			mwp_request_analysis_effect = yes
+		}
+	}
+}
+mwp_request_own_analysis = {
+	scope = character
+	is_shown = { is_ai = no }
+	is_valid = { is_ai = no is_alive = yes }
+	effect = {
+		if = {
+			limit = { is_ai = no is_alive = yes }
+			mwp_request_own_analysis_effect = yes
+		}
+	}
+}
+
+mwp_bootstrap = {
+	scope = character
+	is_shown = { is_ai = no is_alive = yes }
+	is_valid = { is_ai = no is_alive = yes }
+	effect = { mwp_bootstrap_effect = yes }
+}
+

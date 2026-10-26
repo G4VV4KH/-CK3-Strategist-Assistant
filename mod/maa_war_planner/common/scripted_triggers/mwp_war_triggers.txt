@@ -1,0 +1,73 @@
+﻿# MWP war pool prototype, CK3 1.20.1.1.
+# API evidence: generated triggers.log:3416,5190,9382; installed
+# common/character_interactions/00_war.txt:26 and casus_belli_types/_casus_belli.info:142.
+# These are potential opponents, not an enumeration of all CB/title/claimant tuples.
+# A truce/alliance is not excluded here: penalties are distinct from hard illegality.
+# Caller: candidate character; required saved scopes: mwp_player, mwp_war_rival.
+mwp_war_offensive_candidate_trigger = {
+    scope:mwp_player = {
+        in_diplomatic_range = scope:mwp_war_rival
+        OR = {
+            can_attack_in_hierarchy = scope:mwp_war_rival
+            # Vanilla allows this CB to bypass the ordinary hierarchy rule.
+            has_cb_on = { target = scope:mwp_war_rival casus_belli = pam_humiliation_cb }
+        }
+        has_any_cb_on = scope:mwp_war_rival
+    }
+}
+mwp_war_defensive_candidate_trigger = {
+    in_diplomatic_range = scope:mwp_player
+    OR = {
+        can_attack_in_hierarchy = scope:mwp_player
+        has_cb_on = { target = scope:mwp_player casus_belli = pam_humiliation_cb }
+    }
+    has_any_cb_on = scope:mwp_player
+}
+# Native interaction availability is kept separate from candidate existence.
+# It is NOT labelled final CanSend/affordability for a selected CB/title tuple.
+# Scoring uses this native shown+usable subset plus active enemies. Hook send
+# options can affect availability; no claim of exhaustive selected-title wars.
+mwp_war_offensive_interaction_valid_trigger = {
+    scope:mwp_player = {
+        is_character_interaction_valid = {
+            recipient = scope:mwp_war_rival
+            interaction = declare_war_interaction
+        }
+    }
+}
+mwp_war_defensive_interaction_valid_trigger = {
+    is_character_interaction_valid = {
+        recipient = scope:mwp_player
+        interaction = declare_war_interaction
+    }
+}
+# Caller: neighboring province. Use the player's own subrealm, not top_liege.
+mwp_war_province_in_player_subrealm_trigger = {
+    # Neighbor iterators include sea/impassable provinces with no county.
+    trigger_if = {
+        limit = { exists = county }
+        county = {
+            exists = holder
+            holder ?= {
+                OR = {
+                    this = scope:mwp_player
+                    is_vassal_or_below_of = scope:mwp_player
+                }
+            }
+        }
+    }
+    trigger_else = { always = no }
+}
+# Caller: player. Aggregate values use the native-valid/active scoring subset.
+mwp_war_has_pool_trigger = {
+    has_variable = mwp_war_pool_schema
+    var:mwp_war_pool_schema = 2
+    has_variable = mwp_war_scoring_rival_count
+    var:mwp_war_scoring_rival_count > 0
+}
+
+
+mwp_d20_war_schema_current_trigger = {
+ has_variable = mwp_war_likelihood_schema var:mwp_war_likelihood_schema = 2
+ has_variable = mwp_war_likelihood_ready var:mwp_war_likelihood_ready = yes
+}

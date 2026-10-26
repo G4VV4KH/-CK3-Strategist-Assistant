@@ -1,0 +1,49 @@
+﻿# GENERATED MWP INFO; source: tests/maa_war_planner/build_info_panel.py
+mwp_info_open_effect = {
+ set_variable = { name = mwp_info_owner value = this }
+ set_variable = { name = mwp_info_open value = yes }
+ remove_variable = mwp_info_generation
+ mwp_info_snapshot_effect = yes
+}
+mwp_info_snapshot_effect = {
+    save_scope_as = mwp_info_player
+    clear_variable_list = mwp_info_active_wars
+    every_character_war = {
+        save_scope_as = mwp_info_war
+        scope:mwp_info_player = {
+            add_to_variable_list = {
+                name = mwp_info_active_wars
+                target = scope:mwp_info_war
+            }
+        }
+    }
+    if = {
+        limit = {
+            has_variable = mwp_war_analysis_ready
+            mwp_d20_war_schema_current_trigger = yes
+        }
+        if = {
+            limit = {
+                has_variable = mwp_generation
+            }
+            set_variable = {
+                name = mwp_info_generation
+                value = var:mwp_generation
+            }
+        }
+        if = {
+            limit = {
+                has_variable = mwp_enemy_cache_epoch
+            }
+            set_variable = {
+                name = mwp_info_likelihood_epoch
+                value = var:mwp_enemy_cache_epoch
+            }
+        }
+        mwp_d20_page_build_effect = yes
+    }
+    else = {
+        remove_variable = mwp_info_generation
+        clear_variable_list = mwp_d20_page
+    }
+}

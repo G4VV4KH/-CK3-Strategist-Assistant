@@ -1,0 +1,72 @@
+﻿# GENERATED DEV20 current-war row. Scope.War is supplied by the caller.
+types MwpDev20WarActions {
+ type mwp_dev20_active_wars = vbox {
+  name = "mwp_dev20_active_wars" size = { 590 0 } layoutpolicy_vertical = expanding
+  widget = { name = "mwp20_active_wars_refresh" size = { 1 1 } alwaystransparent = yes
+   state = { name = mwp20_active_refresh_poll trigger_on_create = yes alpha = 1 duration = 0.05 next = mwp20_active_refresh_dispatch }
+   state = { name = mwp20_active_refresh_dispatch alpha = 1 duration = 0
+    on_finish = "[PdxGuiWidget.TriggerAnimation(Select_CString(And(IsGameViewOpen('military'),And(GetVariableSystem.HasValue('mwp_dev10_tab','wars'),GetVariableSystem.HasValue('mwp_dev10_direction','active'))),'mwp20_active_refresh_commit','mwp20_active_refresh_idle'))]"
+   }
+   state = { name = mwp20_active_refresh_commit alpha = 1 duration = 0
+    on_finish = "[GetScriptedGui('mwp20_active_wars_refresh').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+    next = mwp20_active_refresh_idle
+   }
+   state = { name = mwp20_active_refresh_idle alpha = 1 duration = 1 next = mwp20_active_refresh_poll }
+  }
+  text_multi = { text = "mwp_info_active_empty" max_width = 568 autoresize = yes
+   visible = "[Not(DataModelHasItems(GetPlayer.MakeScope.GetList('mwp_info_active_wars')))]"
+  }
+  scrollbox = { size = { 590 0 } layoutpolicy_vertical = expanding
+   blockoverride "scrollbox_content" {
+    fixedgridbox = { size = { 568 -1 } addcolumn = 568 addrow = 118
+     datamodel = "[GetPlayer.MakeScope.GetList('mwp_info_active_wars')]" datamodel_reuse_widgets = yes
+     item = { mwp_dev20_active_war_row = {} }
+    }
+   }
+  }
+ }
+ type mwp_dev20_active_war_row = widget {
+  name = "mwp_dev20_active_war_row" size = { 568 112 }
+  datacontext = "[Scope.War]"
+  visible = "[War.IsValid]"
+  background = { using = Background_Area }
+  portrait_head_small = {
+   name = "mwp_dev20_war_enemy_portrait" position = { 8 10 }
+   datacontext = "[War.GetPrimaryPlayerEnemy]"
+   blockoverride "opinion_box" {}
+   blockoverride "show_portrait_status_icons" { visible = no }
+  }
+  button_standard = {
+   name = "mwp_dev20_war_open" position = { 104 7 } size = { 452 26 }
+   text = "[War.GetName]" fontsize = 16 tooltip = "mwp20_war_open_tooltip"
+   enabled = "[GetScriptedGui('mwp20_war_can_view').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('mwp20_war',War.MakeScope).End)]"
+   onclick = "[GetScriptedGui('mwp20_war_request_view').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('mwp20_war',War.MakeScope).End)]"
+   onclick = "[GetVariableSystem.Clear('mwp20_war_open_latch')]"
+  }
+  text_single = { name = "mwp20_war_enemy_name" position = { 104 37 }
+   text = "[War.GetPrimaryPlayerEnemy.GetName]" fontsize = 15 max_width = 452 elide = right
+  }
+  text_single = { name = "mwp20_war_cb" position = { 104 59 }
+   text = "mwp_info_active_cb" fontsize = 14 max_width = 350 elide = right
+  }
+  text_single = { name = "mwp20_war_score" position = { 104 83 }
+   text = "mwp20_war_score" fontsize = 15 max_width = 350 tooltip = "[War.GetWarScoreTooltip]"
+  }
+  button_standard = {
+   name = "mwp20_white_peace" position = { 470 66 } size = { 40 38 }
+   enabled = "[GetScriptedGui('mwp20_war_can_white').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('mwp20_war',War.MakeScope).End)]"
+   tooltip = "mwp20_white_peace_tooltip"
+   onclick = "[GetScriptedGui('mwp20_war_request_white').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('mwp20_war',War.MakeScope).End)]"
+   onclick = "[GetVariableSystem.Clear('mwp20_war_open_latch')]"
+   war_peace = { size = { 28 28 } parentanchor = center alwaystransparent = yes }
+  }
+  button_standard = {
+   name = "mwp20_enforce_demands" position = { 516 66 } size = { 40 38 }
+   enabled = "[GetScriptedGui('mwp20_war_can_victory').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('mwp20_war',War.MakeScope).End)]"
+   tooltip = "mwp20_enforce_tooltip"
+   onclick = "[GetScriptedGui('mwp20_war_request_victory').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('mwp20_war',War.MakeScope).End)]"
+   onclick = "[GetVariableSystem.Clear('mwp20_war_open_latch')]"
+   war_victory = { size = { 28 28 } parentanchor = center alwaystransparent = yes }
+  }
+ }
+}

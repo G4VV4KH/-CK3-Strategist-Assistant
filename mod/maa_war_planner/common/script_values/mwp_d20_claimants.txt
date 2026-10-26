@@ -1,0 +1,589 @@
+﻿mwp_d20_claim_sort_value = {
+ value = 0
+ if = { limit = { var:mwp_d20_claim_owner = { var:mwp_d20_claim_sort = 2 } }
+  add = { value = var:mwp_d20_claim_opinion add = 100 multiply = 100000 }
+  add = { value = var:mwp_d20_claim_tier multiply = 1000 }
+  subtract = age
+ }
+ else_if = { limit = { var:mwp_d20_claim_owner = { var:mwp_d20_claim_sort = 3 } }
+  subtract = { value = age multiply = 100000 }
+  add = { value = var:mwp_d20_claim_tier multiply = 1000 }
+  add = var:mwp_d20_claim_opinion
+ }
+ else = {
+  add = { value = var:mwp_d20_claim_tier multiply = 100000 }
+  add = { value = var:mwp_d20_claim_opinion add = 100 multiply = 100 }
+  subtract = age
+ }
+}
+mwp_d20_common_cb_cost_multiplier_core = {
+	value = 1
+	
+	# Bellum Justum Perk
+	if = {
+		limit = {
+			scope:attacker = {
+				has_perk = bellum_justum_perk
+			}
+		}
+		multiply = {
+			add = bellum_justum_discount_percentage
+			divide = 100
+			desc = CB_ATTACKER_BELLUM_JUSTUM
+		}
+	}
+	# Dynasty Warfare Perk
+	if = {
+		limit = {
+			scope:attacker = {
+				has_dynasty = yes
+				dynasty = {
+					has_dynasty_perk = warfare_legacy_2
+				}
+			}
+		}
+		multiply = {
+			value = warfare_legacy_2_discount
+			desc = CB_ATTACKER_DYNASTY_WARFARE
+		}
+	}
+	#Confederation vassals against fellow vassals
+	if = {
+		limit = {
+			scope:attacker = {
+				OR = {
+					government_has_flag = government_is_tribal
+					government_has_flag = government_is_nomadic
+					government_has_flag = government_is_herder
+				}
+			}
+			scope:attacker.top_liege = {
+				is_confederation_member = yes
+			}
+			scope:defender.top_liege = {
+				this = scope:attacker.top_liege
+			}
+		}
+		multiply = {
+			add = confederation_cb_cost_value
+			desc = CB_CONFEDERATION_VASSALS
+		}
+	}
+	# Culture
+	if = {
+		limit = {
+			scope:attacker = {
+				culture = {
+					has_cultural_parameter = cheaper_cbs
+				}
+			}
+		}
+		multiply = {
+			value = 0.8
+			desc = "CB_ATTACKER_CULTURE"
+		}
+	}
+
+	if = {
+		limit = {
+			scope:attacker = { government_has_flag = government_is_tribal }
+		}
+		multiply = {
+			value = 0.5
+			desc = CB_TRIBAL_COST
+		}
+	}
+	
+	# Clan Unity modifiers
+	if = {
+		limit = {
+			scope:attacker = {
+				government_has_flag = government_is_clan
+				exists = scope:attacker.house
+			}
+		}
+		if = {
+			limit = {
+				scope:attacker.house = {
+					has_house_unity_parameter = unity_antagonistic_cb_cost
+				}
+			}
+			multiply = {
+				value = unity_antagonistic_cb_cost_value
+				desc = CB_UNITY_COST
+			}
+		}
+		if = {
+			limit = {
+				scope:attacker.house = {
+					has_house_unity_parameter = unity_competitive_cb_cost
+				}
+			}
+			multiply = {
+				value = unity_competitive_cb_cost_value
+				desc = CB_UNITY_COST
+			}
+		}
+		if = {
+			limit = {
+				scope:attacker.house = {
+					has_house_unity_parameter = unity_friendly_cb_cost
+				}
+			}
+			multiply = {
+				value = unity_friendly_cb_cost_value
+				desc = CB_UNITY_COST
+			}
+		}
+		if = {
+			limit = {
+				scope:attacker.house = {
+					has_house_unity_parameter = unity_harmonious_cb_cost
+				}
+			}
+			multiply = {
+				value = unity_harmonious_cb_cost_value
+				desc = CB_UNITY_COST
+			}
+		}
+	}
+
+	# Special increase for Persia if Concession is reached
+	if = {
+		limit = {
+			exists = global_var:fp3_struggle_ending
+			global_var:fp3_struggle_ending = flag:fp3_struggle_concession_ending
+			OR = {
+				scope:attacker = {
+					capital_province ?= {
+						geographical_region = world_persian_empire
+					}
+				}
+				scope:defender = {
+					capital_province ?= {
+						geographical_region = world_persian_empire
+					}
+				}
+			}
+		}
+		multiply = {
+			value = 1
+			add = {
+				if = {
+					limit = {
+						scope:attacker = {
+							house ?= {
+								OR = {
+								 	has_house_modifier = fp3_house_modifier_frontier_ambitions
+									has_house_modifier = fp3_house_modifier_rebuilding_efforts
+								}
+							}
+						}
+					}
+					add = 0.5
+				}
+				if = {
+					limit = {
+						scope:defender = {
+							house ?= {
+								OR = {
+								 	has_house_modifier = fp3_house_modifier_frontier_ambitions
+									has_house_modifier = fp3_house_modifier_rebuilding_efforts
+								}
+							}
+						}
+					}
+					add = 0.5
+				}
+			}
+			desc = CB_STRUGGLE_CONCESSION_ENDING
+		}
+	}
+
+	if = {
+		limit = {
+			scope:attacker = {
+				house ?= { has_house_modifier = fp3_house_modifier_frontier_ambitions }
+			}
+			NOT = {
+				scope:defender = {
+					capital_province ?= {
+						geographical_region = world_persian_empire
+					}
+				}
+			}
+		}
+		multiply = 0.5
+	}
+
+	if = {
+		limit = {
+			OR = {
+				has_game_rule = hard_difficulty
+				has_game_rule = very_hard_difficulty
+			}
+			scope:attacker = {
+				is_ai = yes
+				prestige > 0
+				prestige_level > 0
+			}
+			scope:defender = {
+				is_ai = no
+			}
+		}
+		multiply = {
+			value = 0
+			desc = hard_difficulty
+		}
+	}
+	else_if = {
+		limit = {
+			OR = {
+				has_game_rule = hard_difficulty
+				has_game_rule = very_hard_difficulty
+			}
+			scope:attacker = {
+				is_ai = yes
+				prestige > 0
+				prestige_level > 0
+			}
+		}
+		multiply = {
+			value = 0.5
+			desc = hard_difficulty
+		}
+	}
+
+	if = {
+		limit = {
+			has_game_rule = no_cost_casus_belli_costs
+		}
+		multiply = {
+			value = 0
+			desc = CB_GAME_RULE_NO_COST
+		}
+	}
+
+	if = {
+		limit = {
+			scope:attacker = {
+				ai_should_get_conqueror_bonuses = yes
+			}
+		}
+		multiply = {
+			value = 0
+			desc = ai_conqueror_modifier
+		}
+	}
+	#Pissed off by a severed head
+	if = {
+		limit = {
+			scope:defender = {
+				save_temporary_scope_as = head_giver
+			}
+			scope:attacker = {
+				has_variable = severed_head_cb_revenge
+				var:severed_head_cb_revenge = {
+					this = scope:head_giver
+				}
+			}
+		}
+		multiply = {
+			value = 0.25
+			desc = severed_head_revenge_modifier
+		}
+	}
+	# Imperial Policy Japan
+	if = {
+		limit = {
+			scope:attacker.top_liege = {
+				has_realm_law_flag = vassal_internal_wars_cost_doubled
+				this = scope:defender.top_liege
+			}
+		}
+		multiply = {
+			value = 1
+			add = tgp_disarmament_law_increased_cb_cost_value
+			desc = disarmament_law_increased_cb_cost_desc
+		}
+	}
+}
+mwp_d20_common_cb_cost_multiplier = {
+	value = mwp_d20_common_cb_cost_multiplier_core
+	# Struggle Multipliers
+	if = {
+		limit = {
+			scope:attacker = {
+				OR = {
+					any_character_struggle = {
+						involvement = involved
+						mwp_d20_claim_struggle_target_trigger = { PARAMETER = involved_or_interloper_wars_in_struggle_region_cheaper_costs }
+					}
+					any_character_struggle = {
+						involvement = interloper
+						mwp_d20_claim_struggle_target_trigger = { PARAMETER = involved_or_interloper_wars_in_struggle_region_cheaper_costs }
+					}
+				}
+			}
+		}
+		multiply = {
+			value = 0.5
+			desc = CB_STRUGGLE_PHASE_DISCOUNT
+		}
+	}
+	if = {
+		limit = {
+			scope:attacker.confederation ?= { has_cohesion_level_parameter = any_member_casus_belli_cost_reduction }
+		}
+		multiply = {
+			value = 0.85
+			desc = CB_COHESION_PARAMETER_DISCOUNT
+		}
+	}
+}
+mwp_d20_common_cb_prestige_cost_multiplier_core = {
+	value = 1
+	# Innovation Prestige Discounts
+	multiply = {
+		value = {
+			value = 1
+			if = {
+				limit = {
+					scope:attacker = {
+						culture = {
+							has_innovation = innovation_chronicle_writing
+						}
+					}
+				}
+				add = -0.1
+			}
+			if = {
+				limit = {
+					scope:attacker = {
+						culture = {
+							has_innovation = innovation_land_grants
+						}
+					}
+				}
+				add = -0.1
+			}
+			if = {
+				limit = {
+					scope:attacker = {
+						culture = {
+							has_innovation = innovation_rightful_ownership
+						}
+					}
+				}
+				add = -0.1
+			}
+		}
+		desc = CB_ATTACKER_INNOVATIONS
+	}
+
+	# Vassal contract in-realm cost reduction
+	if = {
+		limit = {
+			scope:attacker = {
+				top_liege != this
+				vassal_contract_has_flag = vassal_contract_war_override
+				liege = scope:defender.liege
+			}
+		}
+		multiply = {
+			value = war_declaration_rights_allowed_cost_reduction
+			desc = "CB_ATTACKER_VASSAL_CONTRACT"
+		}
+	}
+
+	# Ghazi extra cost
+	if = {
+		limit = {
+			scope:attacker = {
+				top_liege != this
+				vassal_contract_has_flag = vassal_contract_increase_prestige_cb_cost
+			}
+		}
+		multiply = {
+			value = 1
+			add = ghazi_prestige_cost_increments
+			desc = "CB_ATTACKER_VASSAL_CONTRACT"
+		}
+	}
+	#You and your blood brother swore to destroy your target
+	if = {
+		limit = {
+			scope:attacker = {
+				has_variable = blood_brother_foe
+				var:blood_brother_foe = {
+					this = scope:defender
+				}
+			}
+		}
+		multiply = {
+			value = 0.25
+			desc = "CB_BLOOD_BROTHER_FOE"
+		}
+	}
+
+	# Japan is more expensive to fight in
+	if = {
+		limit = {
+			scope:attacker = { government_is_japanese_trigger = yes }
+		}
+		multiply = {
+			value = 2
+			desc = "CB_JAPANESE_GOVERNMENT"
+		}
+	}
+}
+mwp_d20_common_cb_prestige_cost_multiplier = {
+	value = mwp_d20_common_cb_prestige_cost_multiplier_core
+	# Struggle Multipliers
+	## Discounts
+	if = {
+		limit = {
+			# Pre-filter struggle CB types, as we don't want to double-modify their costs. Makes for weird balancing.
+			# And then the main event.
+			scope:attacker = {
+				OR = {
+					any_character_struggle = {
+						involvement = involved
+						mwp_d20_claim_struggle_target_trigger = { PARAMETER = involved_or_interloper_wars_in_struggle_region_cheaper_prestige_costs }
+					}
+					any_character_struggle = {
+						involvement = interloper
+						mwp_d20_claim_struggle_target_trigger = { PARAMETER = involved_or_interloper_wars_in_struggle_region_cheaper_prestige_costs }
+					}
+				}
+			}
+		}
+		multiply = {
+			value = 0.5
+			desc = CB_STRUGGLE_PHASE_DISCOUNT
+		}
+	}
+	if = {
+		limit = {
+			scope:attacker.house ?= {
+				NOT = { scope:defender.house ?= this }
+				any_house_relation = {
+					has_house_relation_parameter = reduced_casus_belli_prestige_cost
+					any_relation_house = { scope:defender.house ?= this }
+				}
+			}
+		}
+		multiply = {
+			value = house_relation_casus_belli_discount_value
+			desc = CB_HOUSE_RELATION_DISCOUNT
+		}
+	}
+	## Surcharges
+	if = {
+		limit = {
+			# Pre-filter struggle CB types, as we don't want to double-modify their costs. Makes for weird balancing.
+			# And then the main event.
+			scope:attacker = {
+				OR = {
+					any_character_struggle = {
+						involvement = involved
+						mwp_d20_claim_struggle_target_trigger = { PARAMETER = involved_or_interloper_diff_faith_wars_in_struggle_region_more_expensive_prestige_costs }
+					}
+					any_character_struggle = {
+						involvement = interloper
+						mwp_d20_claim_struggle_target_trigger = { PARAMETER = involved_or_interloper_diff_faith_wars_in_struggle_region_more_expensive_prestige_costs }
+					}
+				}
+			}
+		}
+		multiply = {
+			value = 1.5
+			desc = CB_STRUGGLE_PHASE_SURCHARGE
+		}
+	}
+
+	# Common modifier
+	multiply = mwp_d20_common_cb_cost_multiplier
+}
+mwp_d20_claim_base_prestige_value = {
+ value = 0
+ if = { limit = { scope:mwp_d20_claim_title = { tier = tier_county } } add = 250 }
+ if = { limit = { scope:mwp_d20_claim_title = { tier = tier_duchy } } add = 500 }
+ if = { limit = { scope:mwp_d20_claim_title = { tier = tier_kingdom } } add = 1000 }
+ if = { limit = { scope:mwp_d20_claim_title = { tier = tier_empire } } add = 3000 }
+ if = { limit = { scope:mwp_d20_claim_title = { tier = tier_hegemony } } add = 5000 }
+
+ if = { limit = { scope:attacker.faith.religion != scope:claimant.faith.religion } multiply = 2 }
+ if = { limit = { scope:attacker.dynasty != scope:claimant.dynasty } multiply = 1.5 }
+ else_if = { limit = { scope:attacker.house != scope:claimant.house } multiply = 1.25 }
+}
+
+mwp_d20_claim_prestige_value = {
+			value = 0
+			add = mwp_d20_claim_base_prestige_value
+			multiply = mwp_d20_common_cb_prestige_cost_multiplier
+
+			if = {
+				limit = {
+					scope:attacker = {
+						has_character_flag = temp_no_claim_war_cost
+					}
+				}
+				multiply = {
+					value = 0
+					desc = "free_cost" # Says 'free'
+				}
+			}
+
+			# LEGITIMACY AFFECTS COST
+			multiply = {
+				value = {
+					value = 0
+					scope:attacker = {
+						if = {
+							limit = { has_legitimacy_flag = reduced_claim_cb_cost }
+							add = 0.5
+						}
+						else_if = {
+							limit = { has_legitimacy_flag = very_reduced_claim_cb_cost }
+							add = 0.25
+						}
+						else_if = {
+							limit = { has_legitimacy_flag = extra_reduced_claim_cb_cost }
+							add = 0.15
+						}
+						else = {
+							add = 1
+						}
+					}
+				}
+				desc = legitimacy_high_modifier_tt
+			}
+			multiply = {
+				value = {
+					value = 0
+					scope:attacker = {
+						if = {
+							limit = { has_legitimacy_flag = massively_increased_claim_cb_cost }
+							add = 2.5
+						}
+						else_if = {
+							limit = { has_legitimacy_flag = very_increased_claim_cb_cost }
+							add = 2
+						}
+						else_if = {
+							limit = { has_legitimacy_flag = increased_claim_cb_cost }
+							add = 1.5
+						}
+						else = {
+							add = 1
+						}
+					}
+				}
+				desc = legitimacy_low_modifier_tt
+			}
+		}
+mwp_d20_claim_piety_value = {
+			value = 0
+			add = common_cb_impious_piety_cost
+		}

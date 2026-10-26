@@ -1,0 +1,742 @@
+﻿mwp_d21_selected_route_valid_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  exists = var:mwp_script_selected_title
+  var:mwp_script_selected_title = { holder = root }
+  trigger_if = { limit = { has_variable = mwp_d19_tx_active }
+   exists = var:mwp_d21_tx_title var:mwp_d21_tx_title = var:mwp_script_selected_title
+   var:mwp_d21_tx_title = { holder = root }
+  }
+ }
+ trigger_else = { mwp_d21_active_route_value = 1 }
+}
+mwp_d21_title_has_capacity_trigger = {
+ exists = holder mwp_d21_title_count_value < mwp_d21_title_max_count_value
+}
+mwp_d21_selected_title_capacity_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 var:mwp_script_selected_action = 1 }
+  exists = var:mwp_script_selected_title
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes }
+ }
+}
+mwp_d21_selected_regiment_route_trigger = {
+ trigger_if = { limit = { root = { mwp_d21_active_route_value = 2 } }
+  is_title_maa_regiment = yes exists = regiment_owning_title
+  regiment_owning_title = root.var:mwp_script_selected_title
+  regiment_owning_title = { holder = root }
+ }
+ trigger_else = { is_personal_maa_regiment = yes is_title_maa_regiment = no }
+}
+mwp_d21_can_create_1_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = huscarl }
+ }
+ trigger_else = { can_create_maa = huscarl maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_2_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = landsknecht }
+ }
+ trigger_else = { can_create_maa = landsknecht maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_3_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = longbowmen }
+ }
+ trigger_else = { can_create_maa = longbowmen maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_4_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = goedendag }
+ }
+ trigger_else = { can_create_maa = goedendag maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_5_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = gendarme }
+ }
+ trigger_else = { can_create_maa = gendarme maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_6_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = chasseur }
+ }
+ trigger_else = { can_create_maa = chasseur maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_7_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = picchieri }
+ }
+ trigger_else = { can_create_maa = picchieri maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_8_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = praetorian }
+ }
+ trigger_else = { can_create_maa = praetorian maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_9_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = caballero }
+ }
+ trigger_else = { can_create_maa = caballero maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_10_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = monaspa }
+ }
+ trigger_else = { can_create_maa = monaspa maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_11_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = cataphract }
+ }
+ trigger_else = { can_create_maa = cataphract maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_12_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = hobelar }
+ }
+ trigger_else = { can_create_maa = hobelar maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_13_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = schiltron }
+ }
+ trigger_else = { can_create_maa = schiltron maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_14_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = metsanvartija }
+ }
+ trigger_else = { can_create_maa = metsanvartija maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_15_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = horse_archers }
+ }
+ trigger_else = { can_create_maa = horse_archers maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_16_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = ayyar }
+ }
+ trigger_else = { can_create_maa = ayyar maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_17_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = mubarizun }
+ }
+ trigger_else = { can_create_maa = mubarizun maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_18_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = mulaththamun }
+ }
+ trigger_else = { can_create_maa = mulaththamun maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_19_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = archers_of_the_nile }
+ }
+ trigger_else = { can_create_maa = archers_of_the_nile maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_20_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = paiks }
+ }
+ trigger_else = { can_create_maa = paiks maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_21_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = druzhina }
+ }
+ trigger_else = { can_create_maa = druzhina maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_22_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = hussar }
+ }
+ trigger_else = { can_create_maa = hussar maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_23_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = horn_warrior }
+ }
+ trigger_else = { can_create_maa = horn_warrior maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_24_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = bush_hunter }
+ }
+ trigger_else = { can_create_maa = bush_hunter maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_25_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = shomer }
+ }
+ trigger_else = { can_create_maa = shomer maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_26_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = garudas }
+ }
+ trigger_else = { can_create_maa = garudas maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_27_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = khandayat }
+ }
+ trigger_else = { can_create_maa = khandayat maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_28_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = mountaineer }
+ }
+ trigger_else = { can_create_maa = mountaineer maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_29_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = sahel_horsemen }
+ }
+ trigger_else = { can_create_maa = sahel_horsemen maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_30_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = guinea_warrior }
+ }
+ trigger_else = { can_create_maa = guinea_warrior maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_31_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = sarawit }
+ }
+ trigger_else = { can_create_maa = sarawit maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_32_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = abudrar }
+ }
+ trigger_else = { can_create_maa = abudrar maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_33_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = zbrojnosh }
+ }
+ trigger_else = { can_create_maa = zbrojnosh maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_34_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = palace_guards }
+ }
+ trigger_else = { can_create_maa = palace_guards maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_35_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = shenbigong }
+ }
+ trigger_else = { can_create_maa = shenbigong maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_36_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = guanch_vaulter }
+ }
+ trigger_else = { can_create_maa = guanch_vaulter maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_37_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = teulu }
+ }
+ trigger_else = { can_create_maa = teulu maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_38_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = asawira }
+ }
+ trigger_else = { can_create_maa = asawira maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_39_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = tarkhan }
+ }
+ trigger_else = { can_create_maa = tarkhan maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_40_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = zupin_warrior }
+ }
+ trigger_else = { can_create_maa = zupin_warrior maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_41_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = tawashi }
+ }
+ trigger_else = { can_create_maa = tawashi maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_44_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = light_footmen }
+ }
+ trigger_else = { can_create_maa = light_footmen maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_88_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = kheshig }
+ }
+ trigger_else = { can_create_maa = kheshig maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_89_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = steppe_raiders }
+ }
+ trigger_else = { can_create_maa = steppe_raiders maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_90_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = heavy_horse_archers }
+ }
+ trigger_else = { can_create_maa = heavy_horse_archers maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_91_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = nomad_lancers }
+ }
+ trigger_else = { can_create_maa = nomad_lancers maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_92_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = mangudai }
+ }
+ trigger_else = { can_create_maa = mangudai maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_93_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = cataphract_archers }
+ }
+ trigger_else = { can_create_maa = cataphract_archers maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_94_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = maturkan_warriors }
+ }
+ trigger_else = { can_create_maa = maturkan_warriors maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_97_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = warrior_monks }
+ }
+ trigger_else = { can_create_maa = warrior_monks maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_45_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = bowmen }
+ }
+ trigger_else = { can_create_maa = bowmen maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_46_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = light_horsemen }
+ }
+ trigger_else = { can_create_maa = light_horsemen maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_47_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = pikemen_unit }
+ }
+ trigger_else = { can_create_maa = pikemen_unit maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_48_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = armored_footmen }
+ }
+ trigger_else = { can_create_maa = armored_footmen maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_49_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = onager }
+ }
+ trigger_else = { can_create_maa = onager maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_50_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = armored_horsemen }
+ }
+ trigger_else = { can_create_maa = armored_horsemen maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_51_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = mangonel }
+ }
+ trigger_else = { can_create_maa = mangonel maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_52_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = crossbowmen }
+ }
+ trigger_else = { can_create_maa = crossbowmen maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_53_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = trebuchet }
+ }
+ trigger_else = { can_create_maa = trebuchet maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_54_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = bombard }
+ }
+ trigger_else = { can_create_maa = bombard maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_55_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = handgunners }
+ }
+ trigger_else = { can_create_maa = handgunners maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_56_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = house_guard }
+ }
+ trigger_else = { can_create_maa = house_guard maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_58_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = camel_rider }
+ }
+ trigger_else = { can_create_maa = camel_rider maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_59_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = war_elephant }
+ }
+ trigger_else = { can_create_maa = war_elephant maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_60_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = accolade_maa_archers }
+ }
+ trigger_else = { can_create_maa = accolade_maa_archers maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_61_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = accolade_maa_skirmishers }
+ }
+ trigger_else = { can_create_maa = accolade_maa_skirmishers maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_62_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = accolade_maa_pikes }
+ }
+ trigger_else = { can_create_maa = accolade_maa_pikes maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_63_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = accolade_maa_outriders }
+ }
+ trigger_else = { can_create_maa = accolade_maa_outriders maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_64_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = accolade_maa_vanguards }
+ }
+ trigger_else = { can_create_maa = accolade_maa_vanguards maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_65_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = accolade_maa_lancers }
+ }
+ trigger_else = { can_create_maa = accolade_maa_lancers maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_66_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = accolade_maa_crossbowers }
+ }
+ trigger_else = { can_create_maa = accolade_maa_crossbowers maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_67_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = accolade_maa_cameliers }
+ }
+ trigger_else = { can_create_maa = accolade_maa_cameliers maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_68_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = accolade_maa_elephantiers }
+ }
+ trigger_else = { can_create_maa = accolade_maa_elephantiers maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_69_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = accolade_maa_horse_archers }
+ }
+ trigger_else = { can_create_maa = accolade_maa_horse_archers maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_70_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = accolade_maa_handgunners }
+ }
+ trigger_else = { can_create_maa = accolade_maa_handgunners maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_71_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = vigmen }
+ }
+ trigger_else = { can_create_maa = vigmen maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_72_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = bondi }
+ }
+ trigger_else = { can_create_maa = bondi maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_73_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = varangian_veterans }
+ }
+ trigger_else = { can_create_maa = varangian_veterans maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_75_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = ayrudzi }
+ }
+ trigger_else = { can_create_maa = ayrudzi maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_76_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = conrois }
+ }
+ trigger_else = { can_create_maa = conrois maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_77_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = akritai }
+ }
+ trigger_else = { can_create_maa = akritai maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_78_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = ballistrai }
+ }
+ trigger_else = { can_create_maa = ballistrai maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_79_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = skoutatoi }
+ }
+ trigger_else = { can_create_maa = skoutatoi maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_80_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = varangian_guards }
+ }
+ trigger_else = { can_create_maa = varangian_guards maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_81_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = handpicked_faithful }
+ }
+ trigger_else = { can_create_maa = handpicked_faithful maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_87_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = torch_bearers }
+ }
+ trigger_else = { can_create_maa = torch_bearers maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_95_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = emishi_horse_archers }
+ }
+ trigger_else = { can_create_maa = emishi_horse_archers maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_96_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = japanese_horse_archers }
+ }
+ trigger_else = { can_create_maa = japanese_horse_archers maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_98_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = fire_lancers }
+ }
+ trigger_else = { can_create_maa = fire_lancers maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_99_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = gakgung_archers }
+ }
+ trigger_else = { can_create_maa = gakgung_archers maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_100_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = ballista_elephant }
+ }
+ trigger_else = { can_create_maa = ballista_elephant maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_101_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = pesilat_warriors }
+ }
+ trigger_else = { can_create_maa = pesilat_warriors maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_102_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = samurai }
+ }
+ trigger_else = { can_create_maa = samurai maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_103_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = zhanmadao_infantry }
+ }
+ trigger_else = { can_create_maa = zhanmadao_infantry maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_104_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = black_armor_cavalry }
+ }
+ trigger_else = { can_create_maa = black_armor_cavalry maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_105_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = tiefutu }
+ }
+ trigger_else = { can_create_maa = tiefutu maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_106_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = burenjia }
+ }
+ trigger_else = { can_create_maa = burenjia maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_107_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = rocket_carts }
+ }
+ trigger_else = { can_create_maa = rocket_carts maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_108_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = ballista }
+ }
+ trigger_else = { can_create_maa = ballista maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_109_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = cloud_ladder }
+ }
+ trigger_else = { can_create_maa = cloud_ladder maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_110_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = siege_tower }
+ }
+ trigger_else = { can_create_maa = siege_tower maa_regiments_count < maa_regiments_max_count }
+}
+mwp_d21_can_create_111_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = cannon }
+ }
+ trigger_else = { can_create_maa = cannon maa_regiments_count < maa_regiments_max_count }
+}

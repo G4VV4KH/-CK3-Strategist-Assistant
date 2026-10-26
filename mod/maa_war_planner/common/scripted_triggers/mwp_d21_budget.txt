@@ -1,0 +1,183 @@
+﻿mwp_d21_upkeep_free_trigger = {
+ government_disallows = use_maa_maintenance
+}
+mwp_d21_resource_current_trigger = {
+is_ai = no is_alive = yes has_variable = mwp_d21r_owner var:mwp_d21r_owner = this has_variable = mwp_d21r_clock has_variable = mwp_d21r_epoch
+ has_variable = mwp_generation has_variable = mwp_d21r_ready
+ var:mwp_d21r_ready = yes
+ has_variable = mwp_d21r_generation var:mwp_d21r_generation = var:mwp_generation
+ has_variable = mwp_d21r_day var:mwp_d21r_day = days_since_birth
+ has_variable = mwp_d21r_purchases var:mwp_d21r_purchases = mwp_native_cost_purchase_count_value
+ has_variable = mwp_d21r_receipt_epoch var:mwp_d21r_receipt_epoch = var:mwp_d21r_epoch
+ has_variable = mwp_d21r_stamp
+ var:mwp_d21r_clock >= var:mwp_d21r_stamp
+ var:mwp_d21r_clock <= { value = var:mwp_d21r_stamp add = 3 }
+
+}
+mwp_d21_legacy_gold_budget_trigger = {
+ OR = { has_government = feudal_government has_government = clan_government }
+}
+mwp_d21_budget_ledger_identity_trigger = {
+ trigger_if = { limit = {
+  has_variable = mwp_d21b_ready has_variable = mwp_d21b_owner
+  has_variable = mwp_d21b_generation has_variable = mwp_generation
+  has_variable = mwp_d21b_day has_variable = mwp_d21b_mode
+  has_variable = mwp_d21b_epoch has_variable = mwp_d21r_epoch
+  has_variable = mwp_d21b_stamp has_variable = mwp_d21r_clock
+  has_variable = mwp_d21b_counter
+ }
+  var:mwp_d21b_ready = yes var:mwp_d21b_owner = this
+  var:mwp_d21b_generation = var:mwp_generation
+  var:mwp_d21b_day = days_since_birth var:mwp_d21b_mode = mwp_auto_budget_mode_value
+  var:mwp_d21b_epoch = var:mwp_d21r_epoch
+  var:mwp_d21r_clock >= var:mwp_d21b_stamp
+  var:mwp_d21r_clock <= { value = var:mwp_d21b_stamp add = 3 }
+ }
+ trigger_else = { always = no }
+}
+mwp_d21_budget_ledger_current_trigger = {
+ mwp_d21_budget_ledger_identity_trigger = yes
+ var:mwp_d21b_counter = mwp_native_cost_purchase_count_value
+}
+mwp_d21_whole_army_other_wallets_trigger = {
+trigger_if = { limit = { OR = { var:mwp_d21b_full_maa_1 > 0 var:mwp_d21b_levies_1 > 0 } }
+ var:mwp_d21b_headroom_1 >= 0
+}
+trigger_if = { limit = { OR = { var:mwp_d21b_full_maa_2 > 0 var:mwp_d21b_levies_2 > 0 } }
+ var:mwp_d21b_headroom_2 >= 0
+}
+trigger_if = { limit = { OR = { var:mwp_d21b_full_maa_3 > 0 var:mwp_d21b_levies_3 > 0 } }
+ var:mwp_d21b_headroom_3 >= 0
+}
+trigger_if = { limit = { OR = { var:mwp_d21b_full_maa_4 > 0 var:mwp_d21b_levies_4 > 0 } }
+ var:mwp_d21b_headroom_4 >= 0
+}
+trigger_if = { limit = { OR = { var:mwp_d21b_full_maa_5 > 0 var:mwp_d21b_levies_5 > 0 } }
+ var:mwp_d21b_headroom_5 >= 0
+}
+
+}
+mwp_d21_budget_post_purchase_trigger = {
+trigger_if = { limit = { OR = { mwp_auto_budget_mode_value = 3 mwp_d21_upkeep_free_trigger = yes } } always = yes }
+ trigger_else = {
+  mwp_d21_budget_ledger_identity_trigger = yes
+  mwp_native_cost_purchase_count_value = mwp_d21_budget_expected_counter_value
+  has_variable = mwp_script_selected_upkeep_currency has_variable = mwp_script_selected_upkeep
+  OR = {
+AND = {
+var:mwp_script_selected_upkeep_currency = 1
+ var:mwp_d21b_headroom_1 >= var:mwp_script_selected_upkeep
+ var:mwp_d21b_balance_1 >= { value = var:mwp_d21b_reserved_1 add = var:mwp_script_selected_upkeep add = 0.01 }
+monthly_character_expenses <= { value = var:mwp_d21b_income_1 subtract = 0.01 }
+
+}
+AND = {
+var:mwp_script_selected_upkeep_currency = 2
+ var:mwp_d21b_headroom_2 >= var:mwp_script_selected_upkeep
+ var:mwp_d21b_balance_2 >= { value = var:mwp_d21b_reserved_2 add = var:mwp_script_selected_upkeep add = 0.01 }
+monthly_character_men_at_arms_expense_prestige <= { value = var:mwp_d21b_initial_prestige_maa add = var:mwp_d21b_reserved_2 add = var:mwp_script_selected_upkeep }
+
+}
+AND = {
+var:mwp_script_selected_upkeep_currency = 3
+ var:mwp_d21b_headroom_3 >= var:mwp_script_selected_upkeep
+ var:mwp_d21b_balance_3 >= { value = var:mwp_d21b_reserved_3 add = var:mwp_script_selected_upkeep add = 0.01 }
+
+}
+AND = {
+var:mwp_script_selected_upkeep_currency = 4
+ var:mwp_d21b_headroom_4 >= var:mwp_script_selected_upkeep
+ var:mwp_d21b_balance_4 >= { value = var:mwp_d21b_reserved_4 add = var:mwp_script_selected_upkeep add = 0.01 }
+monthly_character_treasury_balance >= 0.01
+
+}
+AND = {
+var:mwp_script_selected_upkeep_currency = 5
+ var:mwp_d21b_headroom_5 >= var:mwp_script_selected_upkeep
+ var:mwp_d21b_balance_5 >= { value = var:mwp_d21b_reserved_5 add = var:mwp_script_selected_upkeep add = 0.01 }
+
+}
+}
+}
+
+}
+mwp_d21_candidate_budget_trigger = {
+trigger_if = { limit = { mwp_d21_upkeep_free_trigger = yes } always = yes }
+ trigger_else_if = { limit = { mwp_auto_budget_mode_value = 3 } always = yes }
+ trigger_else = {
+ trigger_if = { limit = { has_variable = mwp_script_candidate_upkeep_currency has_variable = mwp_script_candidate_upkeep }
+  var:mwp_script_candidate_upkeep >= 0
+  trigger_if = { limit = { var:mwp_script_candidate_upkeep_currency = 1 mwp_d21_legacy_gold_budget_trigger = yes }
+   var:mwp_auto_B >= var:mwp_script_candidate_upkeep
+  }
+  trigger_else = {
+   mwp_d21_budget_ledger_current_trigger = yes
+   trigger_if = { limit = { mwp_auto_budget_mode_value = 1 } mwp_d21_whole_army_other_wallets_trigger = yes }
+   OR = {
+    AND = { var:mwp_script_candidate_upkeep_currency = 1
+     has_variable = mwp_d21b_headroom_1
+     var:mwp_d21b_headroom_1 >= var:mwp_script_candidate_upkeep
+    }
+    AND = { var:mwp_script_candidate_upkeep_currency = 2
+     has_variable = mwp_d21b_headroom_2
+     var:mwp_d21b_headroom_2 >= var:mwp_script_candidate_upkeep
+    }
+    AND = { var:mwp_script_candidate_upkeep_currency = 3
+     has_variable = mwp_d21b_headroom_3
+     var:mwp_d21b_headroom_3 >= var:mwp_script_candidate_upkeep
+    }
+    AND = { var:mwp_script_candidate_upkeep_currency = 4
+     has_variable = mwp_d21b_headroom_4
+     var:mwp_d21b_headroom_4 >= var:mwp_script_candidate_upkeep
+    }
+    AND = { var:mwp_script_candidate_upkeep_currency = 5
+     has_variable = mwp_d21b_headroom_5
+     var:mwp_d21b_headroom_5 >= var:mwp_script_candidate_upkeep
+    }
+   }
+  }
+ }
+ trigger_else = { always = no }
+ }
+
+}
+mwp_d21_selected_budget_trigger = {
+trigger_if = { limit = { mwp_d21_upkeep_free_trigger = yes } always = yes }
+ trigger_else_if = { limit = { mwp_auto_budget_mode_value = 3 } always = yes }
+ trigger_else = {
+ trigger_if = { limit = { has_variable = mwp_script_selected_upkeep_currency has_variable = mwp_script_selected_upkeep }
+  var:mwp_script_selected_upkeep >= 0
+  trigger_if = { limit = { var:mwp_script_selected_upkeep_currency = 1 mwp_d21_legacy_gold_budget_trigger = yes }
+   var:mwp_auto_B >= var:mwp_script_selected_upkeep
+  }
+  trigger_else = {
+   mwp_d21_budget_ledger_current_trigger = yes
+   trigger_if = { limit = { mwp_auto_budget_mode_value = 1 } mwp_d21_whole_army_other_wallets_trigger = yes }
+   OR = {
+    AND = { var:mwp_script_selected_upkeep_currency = 1
+     has_variable = mwp_d21b_headroom_1
+     var:mwp_d21b_headroom_1 >= var:mwp_script_selected_upkeep
+    }
+    AND = { var:mwp_script_selected_upkeep_currency = 2
+     has_variable = mwp_d21b_headroom_2
+     var:mwp_d21b_headroom_2 >= var:mwp_script_selected_upkeep
+    }
+    AND = { var:mwp_script_selected_upkeep_currency = 3
+     has_variable = mwp_d21b_headroom_3
+     var:mwp_d21b_headroom_3 >= var:mwp_script_selected_upkeep
+    }
+    AND = { var:mwp_script_selected_upkeep_currency = 4
+     has_variable = mwp_d21b_headroom_4
+     var:mwp_d21b_headroom_4 >= var:mwp_script_selected_upkeep
+    }
+    AND = { var:mwp_script_selected_upkeep_currency = 5
+     has_variable = mwp_d21b_headroom_5
+     var:mwp_d21b_headroom_5 >= var:mwp_script_selected_upkeep
+    }
+   }
+  }
+ }
+ trigger_else = { always = no }
+ }
+
+}

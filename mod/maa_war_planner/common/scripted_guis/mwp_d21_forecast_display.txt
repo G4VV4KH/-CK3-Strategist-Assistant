@@ -1,0 +1,1 @@
+﻿mwp_d21_gold_forecast_supported = { scope = character is_valid = { mwp_d21_legacy_gold_budget_trigger = yes } }

@@ -1,0 +1,194 @@
+﻿mwp_auto_status_text = {
+    type = character
+    text = {
+        trigger = {
+            has_variable = mwp_script_purchase_error
+        }
+        localization_key = mwp_auto_status_error
+    }
+    text = {
+        trigger = {
+            NOT = {
+                has_variable = mwp_auto_recruit_enabled
+            }
+        }
+        localization_key = mwp_auto_status_off
+    }
+    text = {
+        trigger = {
+            NOT = {
+                mwp_auto_supported_trigger = yes
+            }
+        }
+        localization_key = mwp_auto_status_unsupported
+    }
+    text = {
+        trigger = {
+            NOT = {
+                mwp_auto_fresh_trigger = yes
+            }
+            NOT = {
+                mwp_analysis_current_work_trigger = yes
+            }
+            has_variable = mwp_enemy_cache_coverage
+            var:mwp_enemy_cache_coverage = no
+        }
+        localization_key = mwp_d16_analysis_incomplete
+    }
+    text = {
+        trigger = {
+            NOT = {
+                mwp_auto_fresh_trigger = yes
+            }
+            NOT = {
+                mwp_analysis_current_work_trigger = yes
+            }
+            has_variable = mwp_scoring_coverage_complete
+            var:mwp_scoring_coverage_complete = no
+        }
+        localization_key = mwp_d18_own_analysis_incomplete
+    }
+    text = {
+        trigger = {
+            NOT = {
+                mwp_auto_fresh_trigger = yes
+            }
+            NOT = {
+                mwp_analysis_current_work_trigger = yes
+            }
+            has_variable = mwp_d18_expiry_rebuild_generation
+            has_variable = mwp_generation
+            var:mwp_d18_expiry_rebuild_generation = var:mwp_generation
+            has_variable = mwp_enemy_cache_day
+            days_since_birth >= mwp_enemy_cache_expiry_day_value
+        }
+        localization_key = mwp_d18_analysis_expired
+    }
+    text = {
+        trigger = {
+            NOT = {
+                mwp_auto_fresh_trigger = yes
+            }
+        }
+        localization_key = mwp_auto_status_analysis
+    }
+    text = {
+        trigger = {
+            has_variable = mwp_auto_status
+            var:mwp_auto_status = 7
+        }
+        localization_key = mwp_auto_status_working
+    }
+    text = {
+        trigger = {
+            has_variable = mwp_auto_status
+            var:mwp_auto_status = 5
+        }
+        localization_key = mwp_auto_status_budget
+    }
+    text = {
+        trigger = {
+            has_variable = mwp_auto_status
+            var:mwp_auto_status = 6
+        }
+        localization_key = mwp_auto_status_gold
+    }
+    text = {
+        trigger = {
+            has_variable = mwp_auto_status
+            var:mwp_auto_status = 8
+        }
+        localization_key = mwp_auto_status_complete
+    }
+    text = {
+        trigger = {
+            has_variable = mwp_auto_status
+            var:mwp_auto_status = 12
+        }
+        localization_key = mwp_auto_status_no_candidate
+    }
+    text = {
+        trigger = {
+            has_variable = mwp_auto_status
+            var:mwp_auto_status = 13
+            NOT = { mwp_d21_legacy_gold_budget_trigger = yes }
+            NOT = { mwp_d21_resource_current_trigger = yes }
+        }
+        localization_key = mwp_d24_status_budget_refresh
+    }
+    text = {
+        trigger = {
+            has_variable = mwp_auto_status
+            var:mwp_auto_status = 13
+        }
+        localization_key = mwp_auto_status_budget_unavailable
+    }
+    text = {
+        trigger = {
+            has_variable = mwp_auto_status
+            var:mwp_auto_status = 14
+            NOT = { mwp_d21_house_prices_current_trigger = yes }
+        }
+        localization_key = mwp_d24_status_price_refresh
+    }
+    text = {
+        trigger = {
+            has_variable = mwp_auto_status
+            var:mwp_auto_status = 14
+        }
+        localization_key = mwp_auto_status_price_unavailable
+    }
+    text = {
+        trigger = {
+            has_variable = mwp_auto_status
+            var:mwp_auto_status = 15
+        }
+        localization_key = mwp_auto_status_error
+    }
+    text = {
+        trigger = {
+            has_variable = mwp_auto_status
+            var:mwp_auto_status = 16
+        }
+        localization_key = mwp_auto_status_reorganization_wait
+    }
+    text = {
+        trigger = {
+            has_variable = mwp_auto_status
+            var:mwp_auto_status = 17
+        }
+        localization_key = mwp_auto_status_reorganization_dismissed
+    }
+    text = {
+        fallback = yes
+        localization_key = mwp_auto_status_ready
+    }
+}
+
+mwp_d16_analysis_note = {
+    type = character
+    text = {
+    trigger = {
+    NOT = { mwp_auto_fresh_trigger = yes }
+NOT = { mwp_analysis_current_work_trigger = yes }
+has_variable = mwp_enemy_cache_coverage
+var:mwp_enemy_cache_coverage = no
+}
+
+    localization_key = mwp_d16_analysis_incomplete
+}
+
+    text = {
+    trigger = {
+    has_variable = mwp_enemy_cache_geometry_approximate
+    var:mwp_enemy_cache_geometry_approximate = yes
+}
+
+    localization_key = mwp_d16_geometry_note
+}
+
+    text = {
+    localization_key = mwp_d16_no_note
+}
+
+}

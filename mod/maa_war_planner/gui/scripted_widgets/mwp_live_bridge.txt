@@ -1,0 +1,2 @@
+﻿# GENERATED MWP LIVE BRIDGE; source: tests/maa_war_planner/build_live_bridge.py
+gui/mwp_live_bridge.gui = mwp_live_bridge

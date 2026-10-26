@@ -1,0 +1,4628 @@
+﻿mwp_d21_active_route_value = {
+ value = 1
+ if = { limit = { has_variable = mwp_script_selected_route } value = var:mwp_script_selected_route }
+ if = { limit = { has_variable = mwp_d19_tx_active has_variable = mwp_d21_tx_route } value = var:mwp_d21_tx_route }
+}
+mwp_d21_title_count_value = { value = 0 every_owned_title_maa_regiment = { add = 1 } }
+mwp_d21_primitive_created_count_value = { value = var:mwp_auto_last_count_before add = 1 }
+mwp_d21_transaction_created_count_value = { value = var:mwp_d19_tx_count add = 1 }
+mwp_d21_route_count_value = {
+ value = maa_regiments_count
+ if = { limit = { mwp_d21_active_route_value = 2 }
+  value = 0
+  if = { limit = { has_variable = mwp_d19_tx_active exists = var:mwp_d21_tx_title }
+   var:mwp_d21_tx_title = { add = mwp_d21_title_count_value }
+  }
+  else_if = { limit = { exists = var:mwp_script_selected_title }
+   var:mwp_script_selected_title = { add = mwp_d21_title_count_value }
+  }
+ }
+}
+mwp_d21_title_cap_modifier_bound = { value = 0
+ if = { limit = { has_realm_law = celestial_army_liege_law_1 } add = 1 }
+ if = { limit = { has_realm_law = celestial_army_liege_law_3 } add = 2 }
+ if = { limit = { has_realm_law = celestial_army_vassal_law_1 } add = 1 }
+ if = { limit = { has_realm_law = celestial_army_vassal_law_2 } add = 2 }
+ if = { limit = { has_realm_law = celestial_army_vassal_law_3 } add = 4 }
+ if = { limit = { has_character_modifier = tgp_e_minister_grand_marshal_modifier } add = 1 }
+ if = { limit = { exists = house house = { has_house_modifier = tgp_e_minister_grand_marshal_modifier } } add = 1 }
+ if = { limit = { vassal_contract_has_flag = admin_theme_civilian } add = -2 }
+ if = { limit = { vassal_contract_has_flag = admin_theme_military } add = 2 }
+ if = { limit = { vassal_contract_has_flag = celestial_province_protectorate } add = 1 }
+ if = { limit = { is_independent_ruler = no }
+  if = { limit = { vassal_contract_obligation_level:celestial_salary_rank >= 1 vassal_contract_obligation_level:celestial_salary_rank <= 2 } add = -1 }
+ }
+}
+mwp_d21_title_max_count_value = { value = 0
+ if = { limit = { tier = tier_barony } value = 1 }
+ if = { limit = { tier = tier_county } value = 2 }
+ if = { limit = { tier = tier_duchy } value = 3 }
+ if = { limit = { tier = tier_kingdom } value = 4 }
+ if = { limit = { tier = tier_empire } value = 5 }
+ if = { limit = { tier = tier_hegemony } value = 6 }
+ holder = { add = mwp_d21_title_cap_modifier_bound } min = 0 floor = yes
+}
+mwp_d21_title_price_1 = {
+    value = 115.2
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_infantry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_1 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_1 = { value = mwp_d21_upkeep_currency_1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_1 = {
+    value = mwp_script_price_1
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_1
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_1
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_1
+        }
+    }
+}
+mwp_d21_title_price_2 = {
+    value = 90
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_pikemen
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_2 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_2 = { value = mwp_d21_upkeep_currency_2 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_2 = {
+    value = mwp_script_price_2
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_2
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_2
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_2
+        }
+    }
+}
+mwp_d21_title_price_3 = {
+    value = 66
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_archers
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_3 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_3 = { value = mwp_d21_upkeep_currency_3 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_3 = {
+    value = mwp_script_price_3
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_3
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_3
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_3
+        }
+    }
+}
+mwp_d21_title_price_4 = {
+    value = 45
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_skirmishers
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_4 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_4 = { value = mwp_d21_upkeep_currency_4 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_4 = {
+    value = mwp_script_price_4
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_4
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_4
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_4
+        }
+    }
+}
+mwp_d21_title_price_5 = {
+    value = 240
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_5 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_5 = { value = mwp_d21_upkeep_currency_5 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_5 = {
+    value = mwp_script_price_5
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_5
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_5
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_5
+        }
+    }
+}
+mwp_d21_title_price_6 = {
+    value = 110.5
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_light_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_6 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_6 = { value = mwp_d21_upkeep_currency_6 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_6 = {
+    value = mwp_script_price_6
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_6
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_6
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_6
+        }
+    }
+}
+mwp_d21_title_price_7 = {
+    value = 97.5
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_pikemen
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_7 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_7 = { value = mwp_d21_upkeep_currency_7 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_7 = {
+    value = mwp_script_price_7
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_7
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_7
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_7
+        }
+    }
+}
+mwp_d21_title_price_8 = {
+    value = 180
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_infantry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_8 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_8 = { value = mwp_d21_upkeep_currency_8 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_8 = {
+    value = mwp_script_price_8
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_8
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_8
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_8
+        }
+    }
+}
+mwp_d21_title_price_9 = {
+    value = 85
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_light_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_9 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_9 = { value = mwp_d21_upkeep_currency_9 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_9 = {
+    value = mwp_script_price_9
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_9
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_9
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_9
+        }
+    }
+}
+mwp_d21_title_price_10 = {
+    value = 250
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_10 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_10 = { value = mwp_d21_upkeep_currency_10 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_10 = {
+    value = mwp_script_price_10
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_10
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_10
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_10
+        }
+    }
+}
+mwp_d21_title_price_11 = {
+    value = 260
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_11 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_11 = { value = mwp_d21_upkeep_currency_11 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_11 = {
+    value = mwp_script_price_11
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_11
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_11
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_11
+        }
+    }
+}
+mwp_d21_title_price_12 = {
+    value = 93.5
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_light_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_12 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_12 = { value = mwp_d21_upkeep_currency_12 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_12 = {
+    value = mwp_script_price_12
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_12
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_12
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_12
+        }
+    }
+}
+mwp_d21_title_price_13 = {
+    value = 112.5
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_pikemen
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_13 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_13 = { value = mwp_d21_upkeep_currency_13 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_13 = {
+    value = mwp_script_price_13
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_13
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_13
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_13
+        }
+    }
+}
+mwp_d21_title_price_14 = {
+    value = 60.5
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_archers
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_14 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_14 = { value = mwp_d21_upkeep_currency_14 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_14 = {
+    value = mwp_script_price_14
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_14
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_14
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_14
+        }
+    }
+}
+mwp_d21_title_price_15 = {
+    value = 135
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_archer_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_15 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_15 = { value = mwp_d21_upkeep_currency_15 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_15 = {
+    value = mwp_script_price_15
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_15
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_15
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_15
+        }
+    }
+}
+mwp_d21_title_price_16 = {
+    value = 75
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_infantry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_16 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_16 = { value = mwp_d21_upkeep_currency_16 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_16 = {
+    value = mwp_script_price_16
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_16
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_16
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_16
+        }
+    }
+}
+mwp_d21_title_price_17 = {
+    value = 108
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_infantry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_17 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_17 = { value = mwp_d21_upkeep_currency_17 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_17 = {
+    value = mwp_script_price_17
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_17
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_17
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_17
+        }
+    }
+}
+mwp_d21_title_price_18 = {
+    value = 85
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_light_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_18 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_18 = { value = mwp_d21_upkeep_currency_18 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_18 = {
+    value = mwp_script_price_18
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_18
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_18
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_18
+        }
+    }
+}
+mwp_d21_title_price_19 = {
+    value = 60.5
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_archers
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_19 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_19 = { value = mwp_d21_upkeep_currency_19 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_19 = {
+    value = mwp_script_price_19
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_19
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_19
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_19
+        }
+    }
+}
+mwp_d21_title_price_20 = {
+    value = 60.5
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_archers
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_20 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_20 = { value = mwp_d21_upkeep_currency_20 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_20 = {
+    value = mwp_script_price_20
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_20
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_20
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_20
+        }
+    }
+}
+mwp_d21_title_price_21 = {
+    value = 117
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_infantry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_21 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_21 = { value = mwp_d21_upkeep_currency_21 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_21 = {
+    value = mwp_script_price_21
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_21
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_21
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_21
+        }
+    }
+}
+mwp_d21_title_price_22 = {
+    value = 110.5
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_light_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_22 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_22 = { value = mwp_d21_upkeep_currency_22 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_22 = {
+    value = mwp_script_price_22
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_22
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_22
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_22
+        }
+    }
+}
+mwp_d21_title_price_23 = {
+    value = 45
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_skirmishers
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_23 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_23 = { value = mwp_d21_upkeep_currency_23 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_23 = {
+    value = mwp_script_price_23
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_23
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_23
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_23
+        }
+    }
+}
+mwp_d21_title_price_24 = {
+    value = 55
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_archers
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_24 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_24 = { value = mwp_d21_upkeep_currency_24 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_24 = {
+    value = mwp_script_price_24
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_24
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_24
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_24
+        }
+    }
+}
+mwp_d21_title_price_25 = {
+    value = 45
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_skirmishers
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_25 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_25 = { value = mwp_d21_upkeep_currency_25 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_25 = {
+    value = mwp_script_price_25
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_25
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_25
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_25
+        }
+    }
+}
+mwp_d21_title_price_26 = {
+    value = 115.2
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_infantry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_26 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_26 = { value = mwp_d21_upkeep_currency_26 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_26 = {
+    value = mwp_script_price_26
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_26
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_26
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_26
+        }
+    }
+}
+mwp_d21_title_price_27 = {
+    value = 108
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_infantry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_27 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_27 = { value = mwp_d21_upkeep_currency_27 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_27 = {
+    value = mwp_script_price_27
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_27
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_27
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_27
+        }
+    }
+}
+mwp_d21_title_price_28 = {
+    value = 108
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_infantry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_28 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_28 = { value = mwp_d21_upkeep_currency_28 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_28 = {
+    value = mwp_script_price_28
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_28
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_28
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_28
+        }
+    }
+}
+mwp_d21_title_price_29 = {
+    value = 90
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_light_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_29 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_29 = { value = mwp_d21_upkeep_currency_29 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_29 = {
+    value = mwp_script_price_29
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_29
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_29
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_29
+        }
+    }
+}
+mwp_d21_title_price_30 = {
+    value = 54
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_skirmishers
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_30 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_30 = { value = mwp_d21_upkeep_currency_30 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_30 = {
+    value = mwp_script_price_30
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_30
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_30
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_30
+        }
+    }
+}
+mwp_d21_title_price_31 = {
+    value = 108
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_infantry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_31 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_31 = { value = mwp_d21_upkeep_currency_31 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_31 = {
+    value = mwp_script_price_31
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_31
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_31
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_31
+        }
+    }
+}
+mwp_d21_title_price_32 = {
+    value = 81
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_skirmishers
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_32 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_32 = { value = mwp_d21_upkeep_currency_32 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_32 = {
+    value = mwp_script_price_32
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_32
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_32
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_32
+        }
+    }
+}
+mwp_d21_title_price_33 = {
+    value = 99
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_infantry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_33 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_33 = { value = mwp_d21_upkeep_currency_33 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_33 = {
+    value = mwp_script_price_33
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_33
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_33
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_33
+        }
+    }
+}
+mwp_d21_title_price_34 = {
+    value = 108
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_infantry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_34 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_34 = { value = mwp_d21_upkeep_currency_34 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_34 = {
+    value = mwp_script_price_34
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_34
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_34
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_34
+        }
+    }
+}
+mwp_d21_title_price_35 = {
+    value = 96.25
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_archers
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_35 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_35 = { value = mwp_d21_upkeep_currency_35 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_35 = {
+    value = mwp_script_price_35
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_35
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_35
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_35
+        }
+    }
+}
+mwp_d21_title_price_36 = {
+    value = 54
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_skirmishers
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_36 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_36 = { value = mwp_d21_upkeep_currency_36 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_36 = {
+    value = mwp_script_price_36
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_36
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_36
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_36
+        }
+    }
+}
+mwp_d21_title_price_37 = {
+    value = 102
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_light_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_37 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_37 = { value = mwp_d21_upkeep_currency_37 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_37 = {
+    value = mwp_script_price_37
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_37
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_37
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_37
+        }
+    }
+}
+mwp_d21_title_price_38 = {
+    value = 300
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_archer_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_38 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_38 = { value = mwp_d21_upkeep_currency_38 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_38 = {
+    value = mwp_script_price_38
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_38
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_38
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_38
+        }
+    }
+}
+mwp_d21_title_price_39 = {
+    value = 260
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_39 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_39 = { value = mwp_d21_upkeep_currency_39 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_39 = {
+    value = mwp_script_price_39
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_39
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_39
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_39
+        }
+    }
+}
+mwp_d21_title_price_40 = {
+    value = 50.25
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_pikemen
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_40 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_40 = { value = mwp_d21_upkeep_currency_40 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_40 = {
+    value = mwp_script_price_40
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_40
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_40
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_40
+        }
+    }
+}
+mwp_d21_title_price_41 = {
+    value = 93.5
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_light_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_41 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_41 = { value = mwp_d21_upkeep_currency_41 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_41 = {
+    value = mwp_script_price_41
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_41
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_41
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_41
+        }
+    }
+}
+mwp_d21_title_price_44 = {
+    value = 45
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_skirmishers
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_44 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_44 = { value = mwp_d21_upkeep_currency_44 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_44 = {
+    value = mwp_script_price_44
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_44
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_44
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_44
+        }
+    }
+}
+mwp_d21_title_price_88 = {
+    value = 225
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_archer_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_88 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_88 = { value = mwp_d21_upkeep_currency_88 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_88 = {
+    value = mwp_script_price_88
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_88
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_88
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_88
+        }
+    }
+}
+mwp_d21_title_price_89 = {
+    value = 76.5
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_light_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_89 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_89 = { value = mwp_d21_upkeep_currency_89 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_89 = {
+    value = mwp_script_price_89
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_89
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_89
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_89
+        }
+    }
+}
+mwp_d21_title_price_90 = {
+    value = 157.5
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_archer_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_90 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_90 = { value = mwp_d21_upkeep_currency_90 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_90 = {
+    value = mwp_script_price_90
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_90
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_90
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_90
+        }
+    }
+}
+mwp_d21_title_price_91 = {
+    value = 190
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_91 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_91 = { value = mwp_d21_upkeep_currency_91 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_91 = {
+    value = mwp_script_price_91
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_91
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_91
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_91
+        }
+    }
+}
+mwp_d21_title_price_92 = {
+    value = 99
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_archer_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_92 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_92 = { value = mwp_d21_upkeep_currency_92 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_92 = {
+    value = mwp_script_price_92
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_92
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_92
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_92
+        }
+    }
+}
+mwp_d21_title_price_93 = {
+    value = 260
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_93 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_93 = { value = mwp_d21_upkeep_currency_93 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_93 = {
+    value = mwp_script_price_93
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_93
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_93
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_93
+        }
+    }
+}
+mwp_d21_title_price_94 = {
+    value = 57.75
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_archers
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_94 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_94 = { value = mwp_d21_upkeep_currency_94 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_94 = {
+    value = mwp_script_price_94
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_94
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_94
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_94
+        }
+    }
+}
+mwp_d21_title_price_97 = {
+    value = 200
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_pikemen
+        min = 0.1
+    }
+}
+mwp_d21_title_currency_97 = { value = 3 }
+mwp_d21_title_upkeep_currency_97 = { value = mwp_d21_upkeep_currency_97 }
+mwp_d21_route_price_97 = {
+    value = mwp_script_price_97
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_97
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_97
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_97
+        }
+    }
+}
+mwp_d21_title_price_45 = {
+    value = 55
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_archers
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_45 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_45 = { value = mwp_d21_upkeep_currency_45 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_45 = {
+    value = mwp_script_price_45
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_45
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_45
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_45
+        }
+    }
+}
+mwp_d21_title_price_46 = {
+    value = 85
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_light_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_46 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_46 = { value = mwp_d21_upkeep_currency_46 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_46 = {
+    value = mwp_script_price_46
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_46
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_46
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_46
+        }
+    }
+}
+mwp_d21_title_price_47 = {
+    value = 75
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_pikemen
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_47 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_47 = { value = mwp_d21_upkeep_currency_47 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_47 = {
+    value = mwp_script_price_47
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_47
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_47
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_47
+        }
+    }
+}
+mwp_d21_title_price_48 = {
+    value = 90
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_infantry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_48 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_48 = { value = mwp_d21_upkeep_currency_48 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_48 = {
+    value = mwp_script_price_48
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_48
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_48
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_48
+        }
+    }
+}
+mwp_d21_title_price_49 = {
+    value = 60
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_siege_weapon
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_49 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_49 = { value = mwp_d21_upkeep_currency_49 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_49 = {
+    value = mwp_script_price_49
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_49
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_49
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_49
+        }
+    }
+}
+mwp_d21_title_price_50 = {
+    value = 200
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_50 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_50 = { value = mwp_d21_upkeep_currency_50 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_50 = {
+    value = mwp_script_price_50
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_50
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_50
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_50
+        }
+    }
+}
+mwp_d21_title_price_51 = {
+    value = 66
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_siege_weapon
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_51 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_51 = { value = mwp_d21_upkeep_currency_51 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_51 = {
+    value = mwp_script_price_51
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_51
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_51
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_51
+        }
+    }
+}
+mwp_d21_title_price_52 = {
+    value = 88
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_archers
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_52 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_52 = { value = mwp_d21_upkeep_currency_52 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_52 = {
+    value = mwp_script_price_52
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_52
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_52
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_52
+        }
+    }
+}
+mwp_d21_title_price_53 = {
+    value = 78
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_siege_weapon
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_53 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_53 = { value = mwp_d21_upkeep_currency_53 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_53 = {
+    value = mwp_script_price_53
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_53
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_53
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_53
+        }
+    }
+}
+mwp_d21_title_price_54 = {
+    value = 96
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_siege_weapon
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_54 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_54 = { value = mwp_d21_upkeep_currency_54 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_54 = {
+    value = mwp_script_price_54
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_54
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_54
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_54
+        }
+    }
+}
+mwp_d21_title_price_55 = {
+    value = 76
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_gunpowder
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_55 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_55 = { value = mwp_d21_upkeep_currency_55 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_55 = {
+    value = mwp_script_price_55
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_55
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_55
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_55
+        }
+    }
+}
+mwp_d21_title_price_56 = {
+    value = 50
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_infantry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_56 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_56 = { value = mwp_d21_upkeep_currency_56 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_56 = {
+    value = mwp_script_price_56
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_56
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_56
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_56
+        }
+    }
+}
+mwp_d21_title_price_58 = {
+    value = 85
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_camel_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_58 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_58 = { value = mwp_d21_upkeep_currency_58 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_58 = {
+    value = mwp_script_price_58
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_58
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_58
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_58
+        }
+    }
+}
+mwp_d21_title_price_59 = {
+    value = 400
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_elephant_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_59 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_59 = { value = mwp_d21_upkeep_currency_59 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_59 = {
+    value = mwp_script_price_59
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_59
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_59
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_59
+        }
+    }
+}
+mwp_d21_title_price_60 = {
+    value = 110
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_archers
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_60 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_60 = { value = mwp_d21_upkeep_currency_60 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_60 = {
+    value = mwp_script_price_60
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_60
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_60
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_60
+        }
+    }
+}
+mwp_d21_title_price_61 = {
+    value = 90
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_skirmishers
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_61 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_61 = { value = mwp_d21_upkeep_currency_61 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_61 = {
+    value = mwp_script_price_61
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_61
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_61
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_61
+        }
+    }
+}
+mwp_d21_title_price_62 = {
+    value = 150
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_pikemen
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_62 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_62 = { value = mwp_d21_upkeep_currency_62 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_62 = {
+    value = mwp_script_price_62
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_62
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_62
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_62
+        }
+    }
+}
+mwp_d21_title_price_63 = {
+    value = 170
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_light_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_63 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_63 = { value = mwp_d21_upkeep_currency_63 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_63 = {
+    value = mwp_script_price_63
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_63
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_63
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_63
+        }
+    }
+}
+mwp_d21_title_price_64 = {
+    value = 180
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_infantry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_64 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_64 = { value = mwp_d21_upkeep_currency_64 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_64 = {
+    value = mwp_script_price_64
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_64
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_64
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_64
+        }
+    }
+}
+mwp_d21_title_price_65 = {
+    value = 400
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_65 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_65 = { value = mwp_d21_upkeep_currency_65 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_65 = {
+    value = mwp_script_price_65
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_65
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_65
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_65
+        }
+    }
+}
+mwp_d21_title_price_66 = {
+    value = 176
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_archers
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_66 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_66 = { value = mwp_d21_upkeep_currency_66 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_66 = {
+    value = mwp_script_price_66
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_66
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_66
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_66
+        }
+    }
+}
+mwp_d21_title_price_67 = {
+    value = 170
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_camel_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_67 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_67 = { value = mwp_d21_upkeep_currency_67 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_67 = {
+    value = mwp_script_price_67
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_67
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_67
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_67
+        }
+    }
+}
+mwp_d21_title_price_68 = {
+    value = 800
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_elephant_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_68 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_68 = { value = mwp_d21_upkeep_currency_68 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_68 = {
+    value = mwp_script_price_68
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_68
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_68
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_68
+        }
+    }
+}
+mwp_d21_title_price_69 = {
+    value = 270
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_archer_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_69 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_69 = { value = mwp_d21_upkeep_currency_69 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_69 = {
+    value = mwp_script_price_69
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_69
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_69
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_69
+        }
+    }
+}
+mwp_d21_title_price_70 = {
+    value = 76
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_gunpowder
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_70 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_70 = { value = mwp_d21_upkeep_currency_70 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_70 = {
+    value = mwp_script_price_70
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_70
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_70
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_70
+        }
+    }
+}
+mwp_d21_title_price_71 = {
+    value = 60.5
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_archers
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_71 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_71 = { value = mwp_d21_upkeep_currency_71 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_71 = {
+    value = mwp_script_price_71
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_71
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_71
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_71
+        }
+    }
+}
+mwp_d21_title_price_72 = {
+    value = 50.25
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_pikemen
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_72 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_72 = { value = mwp_d21_upkeep_currency_72 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_72 = {
+    value = mwp_script_price_72
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_72
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_72
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_72
+        }
+    }
+}
+mwp_d21_title_price_73 = {
+    value = 150.3
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_infantry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_73 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_73 = { value = mwp_d21_upkeep_currency_73 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_73 = {
+    value = mwp_script_price_73
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_73
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_73
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_73
+        }
+    }
+}
+mwp_d21_title_price_75 = {
+    value = 85
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_light_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_75 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_75 = { value = mwp_d21_upkeep_currency_75 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_75 = {
+    value = mwp_script_price_75
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_75
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_75
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_75
+        }
+    }
+}
+mwp_d21_title_price_76 = {
+    value = 170
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_76 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_76 = { value = mwp_d21_upkeep_currency_76 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_76 = {
+    value = mwp_script_price_76
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_76
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_76
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_76
+        }
+    }
+}
+mwp_d21_title_price_77 = {
+    value = 40.5
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_skirmishers
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_77 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_77 = { value = mwp_d21_upkeep_currency_77 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_77 = {
+    value = mwp_script_price_77
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_77
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_77
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_77
+        }
+    }
+}
+mwp_d21_title_price_78 = {
+    value = 63.25
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_archers
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_78 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_78 = { value = mwp_d21_upkeep_currency_78 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_78 = {
+    value = mwp_script_price_78
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_78
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_78
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_78
+        }
+    }
+}
+mwp_d21_title_price_79 = {
+    value = 82.5
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_pikemen
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_79 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_79 = { value = mwp_d21_upkeep_currency_79 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_79 = {
+    value = mwp_script_price_79
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_79
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_79
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_79
+        }
+    }
+}
+mwp_d21_title_price_80 = {
+    value = 72
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_infantry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_80 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_80 = { value = mwp_d21_upkeep_currency_80 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_80 = {
+    value = mwp_script_price_80
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_80
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_80
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_80
+        }
+    }
+}
+mwp_d21_title_price_81 = {
+    value = 67.5
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_infantry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_81 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_81 = { value = mwp_d21_upkeep_currency_81 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_81 = {
+    value = mwp_script_price_81
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_81
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_81
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_81
+        }
+    }
+}
+mwp_d21_title_price_87 = {
+    value = 30
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_siege_weapon
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_87 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_87 = { value = mwp_d21_upkeep_currency_87 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_87 = {
+    value = mwp_script_price_87
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_87
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_87
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_87
+        }
+    }
+}
+mwp_d21_title_price_95 = {
+    value = 85
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_archer_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_95 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_95 = { value = mwp_d21_upkeep_currency_95 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_95 = {
+    value = mwp_script_price_95
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_95
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_95
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_95
+        }
+    }
+}
+mwp_d21_title_price_96 = {
+    value = 135
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_archer_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_96 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_96 = { value = mwp_d21_upkeep_currency_96 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_96 = {
+    value = mwp_script_price_96
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_96
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_96
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_96
+        }
+    }
+}
+mwp_d21_title_price_98 = {
+    value = 88
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_gunpowder
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_98 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_98 = { value = mwp_d21_upkeep_currency_98 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_98 = {
+    value = mwp_script_price_98
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_98
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_98
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_98
+        }
+    }
+}
+mwp_d21_title_price_99 = {
+    value = 66
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_archers
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_99 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_99 = { value = mwp_d21_upkeep_currency_99 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_99 = {
+    value = mwp_script_price_99
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_99
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_99
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_99
+        }
+    }
+}
+mwp_d21_title_price_100 = {
+    value = 440
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_elephant_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_100 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_100 = { value = mwp_d21_upkeep_currency_100 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_100 = {
+    value = mwp_script_price_100
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_100
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_100
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_100
+        }
+    }
+}
+mwp_d21_title_price_101 = {
+    value = 40.5
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_skirmishers
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_101 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_101 = { value = mwp_d21_upkeep_currency_101 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_101 = {
+    value = mwp_script_price_101
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_101
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_101
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_101
+        }
+    }
+}
+mwp_d21_title_price_102 = {
+    value = 150.3
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_infantry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_102 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_102 = { value = mwp_d21_upkeep_currency_102 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_102 = {
+    value = mwp_script_price_102
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_102
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_102
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_102
+        }
+    }
+}
+mwp_d21_title_price_103 = {
+    value = 85.5
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_infantry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_103 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_103 = { value = mwp_d21_upkeep_currency_103 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_103 = {
+    value = mwp_script_price_103
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_103
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_103
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_103
+        }
+    }
+}
+mwp_d21_title_price_104 = {
+    value = 260
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_104 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_104 = { value = mwp_d21_upkeep_currency_104 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_104 = {
+    value = mwp_script_price_104
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_104
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_104
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_104
+        }
+    }
+}
+mwp_d21_title_price_105 = {
+    value = 260
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_105 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_105 = { value = mwp_d21_upkeep_currency_105 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_105 = {
+    value = mwp_script_price_105
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_105
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_105
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_105
+        }
+    }
+}
+mwp_d21_title_price_106 = {
+    value = 75
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_infantry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_106 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_106 = { value = mwp_d21_upkeep_currency_106 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_106 = {
+    value = mwp_script_price_106
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_106
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_106
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_106
+        }
+    }
+}
+mwp_d21_title_price_107 = {
+    value = 68.75
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_archers
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_107 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_107 = { value = mwp_d21_upkeep_currency_107 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_107 = {
+    value = mwp_script_price_107
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_107
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_107
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_107
+        }
+    }
+}
+mwp_d21_title_price_108 = {
+    value = 60
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_siege_weapon
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_108 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_108 = { value = mwp_d21_upkeep_currency_108 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_108 = {
+    value = mwp_script_price_108
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_108
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_108
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_108
+        }
+    }
+}
+mwp_d21_title_price_109 = {
+    value = 66
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_siege_weapon
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_109 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_109 = { value = mwp_d21_upkeep_currency_109 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_109 = {
+    value = mwp_script_price_109
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_109
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_109
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_109
+        }
+    }
+}
+mwp_d21_title_price_110 = {
+    value = 78
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_siege_weapon
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_110 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_110 = { value = mwp_d21_upkeep_currency_110 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_110 = {
+    value = mwp_script_price_110
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_110
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_110
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_110
+        }
+    }
+}
+mwp_d21_title_price_111 = {
+    value = 121.6
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_siege_weapon
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = replace_gold_cost_by_treasury
+        }
+        multiply = 2
+    }
+}
+mwp_d21_title_currency_111 = { value = 1 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_title_upkeep_currency_111 = { value = mwp_d21_upkeep_currency_111 if = { limit = { government_allows = replace_gold_cost_by_treasury } value = 4 } }
+mwp_d21_route_price_111 = {
+    value = mwp_script_price_111
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 2
+        }
+        value = mwp_d21_title_price_111
+    }
+    if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            value = mwp_d21_subject_price_111
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+            }
+            value = mwp_d21_conversion_price_111
+        }
+    }
+}

@@ -1,0 +1,271 @@
+﻿mwp_d21_pending_rollback_effect = {
+    if = {
+        limit = {
+            mwp_d21_pending_recovery_matches_trigger = yes
+        }
+        if = {
+            limit = {
+                mwp_d21_nomad_mode_value = 1
+                NOT = {
+                    has_variable = mwp_d21p_herd_target
+                }
+            }
+            set_variable = {
+                name = mwp_d21p_herd_before
+                value = domicile.herd
+            }
+            set_variable = {
+                name = mwp_d21p_herd_target
+                value = {
+                    value = domicile.herd
+                    add = var:mwp_d21_tx_herd_cost
+                }
+            }
+        }
+        if = {
+            limit = {
+                NOT = {
+                    has_variable = mwp_d21p_refund_target
+                }
+            }
+            set_variable = {
+                name = mwp_d21p_refund_before
+                value = mwp_d21_selected_wallet_value
+            }
+            set_variable = {
+                name = mwp_d21p_refund_target
+                value = {
+                    value = mwp_d21_selected_wallet_value
+                    add = var:mwp_d19_tx_price
+                }
+            }
+        }
+        if = {
+            limit = {
+                var:mwp_d19_tx_action = 2
+            }
+            var:mwp_d19_tx_regiment = {
+                save_scope_value_as = {
+                    name = mwp_d21p_current_before_inverse
+                    value = {
+                        value = maa_current_troops_count
+                        max = root.var:mwp_d19_tx_max
+                    }
+                }
+            }
+            set_variable = {
+                name = mwp_d21p_rollback_current
+                value = scope:mwp_d21p_current_before_inverse
+            }
+        }
+        if = {
+            limit = {
+                var:mwp_d19_tx_action = 2
+            }
+            var:mwp_d19_tx_regiment = {
+                change_maa_regiment_size = {
+                    size = -1
+                    reinforce = no
+                }
+                if = {
+                    limit = {
+                        root = {
+                            mwp_d21_nomad_mode_value = 1
+                        }
+                    }
+                    change_maa_troops_count = {
+                        value = root.var:mwp_d21p_rollback_current
+                        subtract = maa_current_troops_count
+                    }
+                }
+            }
+        }
+        else = {
+            var:mwp_d19_tx_regiment = {
+                destroy_maa_regiment = yes
+            }
+        }
+        if = {
+            limit = {
+                mwp_d21_pending_restored_trigger = yes
+                mwp_d21_selected_wallet_value = var:mwp_d21p_refund_before
+                var:mwp_auto_purchase_count = var:mwp_d19_tx_expected_counter
+                NOT = {
+                    has_variable = mwp_d19_tx_refunded
+                }
+            }
+            mwp_d21_refund_transaction_effect = yes
+            mwp_d21_pending_refund_herd_effect = yes
+            set_variable = {
+                name = mwp_d19_tx_refunded
+                value = yes
+            }
+            if = {
+                limit = {
+                    mwp_d21_selected_wallet_value = var:mwp_d21p_refund_target
+                    trigger_if = {
+                        limit = {
+                            mwp_d21_nomad_mode_value = 1
+                        }
+                        domicile = {
+                            herd = root.var:mwp_d21p_herd_target
+                        }
+                    }
+                }
+                set_variable = {
+                    name = mwp_auto_purchase_count
+                    value = var:mwp_d19_tx_counter
+                }
+                remove_variable = mwp_auto_last_paid_verified
+                remove_variable = mwp_script_purchase_verified
+                remove_variable = mwp_script_mutated_regiment
+                remove_variable = mwp_batch_continue
+                set_variable = {
+                    name = mwp_d19_rollback_id
+                    value = var:mwp_d19_tx_id
+                }
+                set_variable = {
+                    name = mwp_d19_rollback_owner
+                    value = this
+                }
+                set_variable = {
+                    name = mwp_d19_rollback_day
+                    value = var:mwp_d19_tx_day
+                }
+                set_variable = {
+                    name = mwp_d19_rollback_gold
+                    value = var:mwp_d21p_refund_target
+                }
+                set_variable = {
+                    name = mwp_d19_rollback_expenses
+                    value = var:mwp_d19_tx_expenses
+                }
+                set_variable = {
+                    name = mwp_d19_rollback_unraised
+                    value = var:mwp_d19_tx_unraised
+                }
+                set_variable = {
+                    name = mwp_d19_transaction_status
+                    value = 2
+                }
+                set_variable = {
+                    name = mwp_d19_transaction_rebuild_requested
+                    value = yes
+                }
+                set_variable = {
+                    name = mwp_auto_status
+                    value = 13
+                }
+                if = {
+                    limit = {
+                        mwp_d21_selected_legacy_rejection_trigger = yes
+                    }
+                    mwp_d19_reject_record_effect = yes
+                }
+                else = {
+                    mwp_d21_reject_record_effect = yes
+                }
+                mwp_native_cost_invalidate_effect = yes
+                mwp_d19_transaction_clear_effect = yes
+            }
+            else = {
+                mwp_d19_transaction_failure_effect = yes
+            }
+        }
+        else = {
+            mwp_d19_transaction_failure_effect = yes
+        }
+    }
+    else = {
+        mwp_d19_transaction_failure_effect = yes
+    }
+}
+mwp_d21_pending_refund_herd_effect = {
+ if = { limit = { mwp_d21_nomad_mode_value = 1 mwp_d21_pending_herd_owned_trigger = yes
+  has_variable = mwp_d21p_herd_before has_variable = mwp_d21p_herd_target
+  domicile = { herd >= root.var:mwp_d21p_herd_before herd <= root.var:mwp_d21p_herd_before }
+ }
+  domicile = { change_herd = root.var:mwp_d21_tx_herd_cost }
+  set_variable = { name = mwp_d21_tx_herd_refunded value = yes }
+ }
+}
+mwp_d21_pending_clear_effect = {
+remove_variable = mwp_d21p_pending
+remove_variable = mwp_d21p_owner
+remove_variable = mwp_d21p_epoch
+remove_variable = mwp_d21p_start
+remove_variable = mwp_d21p_sample
+remove_variable = mwp_d21p_sample_clock
+remove_variable = mwp_d21p_sample_balance
+remove_variable = mwp_d21p_conflict
+remove_variable = mwp_d21p_refund_before
+remove_variable = mwp_d21p_refund_target
+remove_variable = mwp_d21p_rollback_current
+remove_variable = mwp_d21p_herd_before
+remove_variable = mwp_d21p_herd_target
+remove_variable = mwp_d21p_id
+remove_variable = mwp_d21p_action
+remove_variable = mwp_d21p_price
+remove_variable = mwp_d21p_currency
+remove_variable = mwp_d21p_upkeep
+remove_variable = mwp_d21p_upkeep_currency
+remove_variable = mwp_d21p_route
+remove_variable = mwp_d21p_title
+remove_variable = mwp_d21p_regiment
+remove_variable = mwp_d21p_nomad_mode
+remove_variable = mwp_d21p_subject_source
+remove_variable = mwp_d21p_herd
+}
+mwp_d21_pending_begin_effect = {
+set_variable = { name = mwp_d21p_pending value = yes }
+set_variable = { name = mwp_d21p_owner value = this }
+set_variable = { name = mwp_d21p_epoch value = var:mwp_d21r_epoch }
+set_variable = { name = mwp_d21p_start value = var:mwp_d21r_clock }
+if = { limit = { NOT = { has_variable = mwp_d21p_sequence } } set_variable = { name = mwp_d21p_sequence value = 0 } }
+change_variable = { name = mwp_d21p_sequence add = 1 }
+remove_variable = mwp_d21p_sample
+remove_variable = mwp_d21p_conflict
+remove_variable = mwp_auto_last_paid_verified
+remove_variable = mwp_batch_continue
+set_variable = { name = mwp_d21p_id value = var:mwp_script_selected_id }
+set_variable = { name = mwp_d21p_action value = var:mwp_script_selected_action }
+set_variable = { name = mwp_d21p_price value = var:mwp_script_selected_price }
+set_variable = { name = mwp_d21p_currency value = var:mwp_script_selected_currency }
+set_variable = { name = mwp_d21p_upkeep value = var:mwp_script_selected_upkeep }
+set_variable = { name = mwp_d21p_upkeep_currency value = var:mwp_script_selected_upkeep_currency }
+if = { limit = { has_variable = mwp_script_selected_route } set_variable = { name = mwp_d21p_route value = var:mwp_script_selected_route }
+}
+if = { limit = { has_variable = mwp_script_selected_title } set_variable = { name = mwp_d21p_title value = var:mwp_script_selected_title }
+}
+if = { limit = { has_variable = mwp_script_selected_regiment } set_variable = { name = mwp_d21p_regiment value = var:mwp_script_selected_regiment }
+}
+set_variable = { name = mwp_d21p_nomad_mode value = 0 }
+if = { limit = { has_variable = mwp_script_selected_nomad_mode } set_variable = { name = mwp_d21p_nomad_mode value = var:mwp_script_selected_nomad_mode }
+}
+set_variable = { name = mwp_d21p_subject_source value = 0 }
+if = { limit = { has_variable = mwp_script_selected_subject_source } set_variable = { name = mwp_d21p_subject_source value = var:mwp_script_selected_subject_source }
+}
+set_variable = { name = mwp_d21p_herd value = 0 }
+if = { limit = { has_variable = mwp_script_selected_herd } set_variable = { name = mwp_d21p_herd value = var:mwp_script_selected_herd }
+}
+}
+mwp_d21_pending_restore_selection_effect = {
+set_variable = { name = mwp_script_selected_id value = var:mwp_d21p_id }
+set_variable = { name = mwp_script_selected_action value = var:mwp_d21p_action }
+set_variable = { name = mwp_script_selected_price value = var:mwp_d21p_price }
+set_variable = { name = mwp_script_selected_currency value = var:mwp_d21p_currency }
+set_variable = { name = mwp_script_selected_upkeep value = var:mwp_d21p_upkeep }
+set_variable = { name = mwp_script_selected_upkeep_currency value = var:mwp_d21p_upkeep_currency }
+remove_variable = mwp_script_selected_route
+if = { limit = { has_variable = mwp_d21p_route } set_variable = { name = mwp_script_selected_route value = var:mwp_d21p_route }
+}
+remove_variable = mwp_script_selected_title
+if = { limit = { has_variable = mwp_d21p_title } set_variable = { name = mwp_script_selected_title value = var:mwp_d21p_title }
+}
+remove_variable = mwp_script_selected_regiment
+if = { limit = { has_variable = mwp_d21p_regiment } set_variable = { name = mwp_script_selected_regiment value = var:mwp_d21p_regiment }
+}
+set_variable = { name = mwp_script_selected_nomad_mode value = var:mwp_d21p_nomad_mode }
+set_variable = { name = mwp_script_selected_subject_source value = var:mwp_d21p_subject_source }
+set_variable = { name = mwp_script_selected_herd value = var:mwp_d21p_herd }
+}

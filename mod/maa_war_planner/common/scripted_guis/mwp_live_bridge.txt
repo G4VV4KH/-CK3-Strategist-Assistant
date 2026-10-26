@@ -1,0 +1,480 @@
+﻿# GENERATED MWP LIVE BRIDGE; source: tests/maa_war_planner/build_live_bridge.py
+mwp_native_begin_analysis = {
+    scope = character
+    saved_scopes = { mwp_candidate_owner mwp_candidate_generation }
+    is_shown = { is_ai = no }
+    is_valid = {
+        is_ai = no
+        is_alive = yes
+        exists = scope:mwp_candidate_owner
+        exists = scope:mwp_candidate_generation
+        scope:mwp_candidate_owner = this
+        has_variable = mwp_generation
+        scope:mwp_candidate_generation = var:mwp_generation
+        has_variable = mwp_analysis_requested
+        var:mwp_analysis_requested = yes
+    }
+    effect = {
+        # Repeat validity here: callers must not bypass the dispatch guard.
+        if = {
+            limit = {
+                is_ai = no
+        is_alive = yes
+        exists = scope:mwp_candidate_owner
+        exists = scope:mwp_candidate_generation
+        scope:mwp_candidate_owner = this
+        has_variable = mwp_generation
+        scope:mwp_candidate_generation = var:mwp_generation
+        has_variable = mwp_analysis_requested
+        var:mwp_analysis_requested = yes
+            }
+            remove_variable = mwp_analysis_requested
+            if = {
+                limit = { NOT = { mwp_enemy_cache_current_trigger = yes } }
+                mwp_war_refresh_effect = yes
+                mwp_enemy_cache_build_effect = yes
+            }
+            mwp_scoring_begin_effect = yes
+        }
+    }
+}
+mwp_native_consider_candidate = {
+    scope = character
+    saved_scopes = { mwp_d21_candidate_subject_provider mwp_candidate_owner mwp_candidate_generation mwp_candidate_catalog_id mwp_candidate_damage mwp_candidate_toughness mwp_candidate_pursuit mwp_candidate_screen mwp_candidate_siege mwp_candidate_stack }
+    is_shown = { is_ai = no }
+    is_valid = {
+        is_ai = no
+        is_alive = yes
+        exists = scope:mwp_candidate_owner
+        exists = scope:mwp_candidate_generation
+        scope:mwp_candidate_owner = this
+        has_variable = mwp_generation
+        scope:mwp_candidate_generation = var:mwp_generation
+        has_variable = mwp_scoring_active
+        var:mwp_scoring_active = yes
+        has_variable = mwp_scoring_owner
+        var:mwp_scoring_owner = this
+        has_variable = mwp_scoring_generation
+        var:mwp_scoring_generation = var:mwp_generation
+    }
+    effect = {
+        # Repeat validity here: callers must not bypass the dispatch guard.
+        if = {
+            limit = {
+                is_ai = no
+        is_alive = yes
+        exists = scope:mwp_candidate_owner
+        exists = scope:mwp_candidate_generation
+        scope:mwp_candidate_owner = this
+        has_variable = mwp_generation
+        scope:mwp_candidate_generation = var:mwp_generation
+        has_variable = mwp_scoring_active
+        var:mwp_scoring_active = yes
+        has_variable = mwp_scoring_owner
+        var:mwp_scoring_owner = this
+        has_variable = mwp_scoring_generation
+        var:mwp_scoring_generation = var:mwp_generation
+            }
+            mwp_d21_capture_subject_access_effect = yes
+            mwp_consider_candidate_effect = yes
+            # DEV11 synchronous last-ACK join; GUI worker remains fallback.
+            if = { limit = {
+        is_ai = no
+        is_alive = yes
+        exists = scope:mwp_candidate_owner
+        exists = scope:mwp_candidate_generation
+        scope:mwp_candidate_owner = this
+        has_variable = mwp_generation
+        scope:mwp_candidate_generation = var:mwp_generation
+        has_variable = mwp_scoring_active
+        var:mwp_scoring_active = yes
+        has_variable = mwp_scoring_owner
+        var:mwp_scoring_owner = this
+        has_variable = mwp_scoring_generation
+        var:mwp_scoring_generation = var:mwp_generation
+        var:mwp_scoring_seen_count = 111
+        NOT = { has_variable = mwp_live_collecting }
+    
+                has_variable = mwp_enemy_cache_forts_ready
+                var:mwp_enemy_cache_forts_ready = yes
+            } mwp_live_start_effect = yes }
+        }
+    }
+}
+mwp_native_finish_analysis = {
+    scope = character
+    saved_scopes = { mwp_candidate_owner mwp_candidate_generation }
+    is_shown = { is_ai = no }
+    is_valid = {
+        is_ai = no
+        is_alive = yes
+        exists = scope:mwp_candidate_owner
+        exists = scope:mwp_candidate_generation
+        scope:mwp_candidate_owner = this
+        has_variable = mwp_generation
+        scope:mwp_candidate_generation = var:mwp_generation
+        has_variable = mwp_scoring_active
+        var:mwp_scoring_active = yes
+        has_variable = mwp_scoring_owner
+        var:mwp_scoring_owner = this
+        has_variable = mwp_scoring_generation
+        var:mwp_scoring_generation = var:mwp_generation
+        var:mwp_scoring_seen_count = 111
+        NOT = { has_variable = mwp_live_collecting }
+    }
+    effect = {
+        # Repeat validity here: callers must not bypass the dispatch guard.
+        if = {
+            limit = {
+                is_ai = no
+        is_alive = yes
+        exists = scope:mwp_candidate_owner
+        exists = scope:mwp_candidate_generation
+        scope:mwp_candidate_owner = this
+        has_variable = mwp_generation
+        scope:mwp_candidate_generation = var:mwp_generation
+        has_variable = mwp_scoring_active
+        var:mwp_scoring_active = yes
+        has_variable = mwp_scoring_owner
+        var:mwp_scoring_owner = this
+        has_variable = mwp_scoring_generation
+        var:mwp_scoring_generation = var:mwp_generation
+        var:mwp_scoring_seen_count = 111
+        NOT = { has_variable = mwp_live_collecting }
+            }
+            mwp_live_start_effect = yes
+        }
+    }
+}
+mwp_native_live_regiment = {
+    scope = character
+    saved_scopes = { mwp_candidate_owner mwp_candidate_generation mwp_live_actor mwp_live_epoch mwp_live_regiment mwp_live_damage mwp_live_toughness mwp_live_pursuit mwp_live_screen mwp_live_siege mwp_live_stack }
+    is_shown = { is_ai = no }
+    is_valid = {
+        is_ai = no
+        is_alive = yes
+        exists = scope:mwp_candidate_owner
+        exists = scope:mwp_candidate_generation
+        scope:mwp_candidate_owner = this
+        has_variable = mwp_generation
+        scope:mwp_candidate_generation = var:mwp_generation
+        has_variable = mwp_scoring_active
+        var:mwp_scoring_active = yes
+        has_variable = mwp_scoring_owner
+        var:mwp_scoring_owner = this
+        has_variable = mwp_scoring_generation
+        var:mwp_scoring_generation = var:mwp_generation
+    }
+    effect = {
+        # Repeat validity here: callers must not bypass the dispatch guard.
+        if = {
+            limit = {
+                is_ai = no
+        is_alive = yes
+        exists = scope:mwp_candidate_owner
+        exists = scope:mwp_candidate_generation
+        scope:mwp_candidate_owner = this
+        has_variable = mwp_generation
+        scope:mwp_candidate_generation = var:mwp_generation
+        has_variable = mwp_scoring_active
+        var:mwp_scoring_active = yes
+        has_variable = mwp_scoring_owner
+        var:mwp_scoring_owner = this
+        has_variable = mwp_scoring_generation
+        var:mwp_scoring_generation = var:mwp_generation
+            }
+            mwp_live_receive_regiment_effect = yes
+            # Existing effect rechecks actor/epoch and every receipt.
+            mwp_live_finish_actor_effect = yes
+        }
+    }
+}
+mwp_native_live_character = {
+    scope = character
+    saved_scopes = { mwp_candidate_owner mwp_candidate_generation mwp_live_actor mwp_live_epoch mwp_live_knight_effectiveness mwp_live_commander_advantage }
+    is_shown = { is_ai = no }
+    is_valid = {
+        is_ai = no
+        is_alive = yes
+        exists = scope:mwp_candidate_owner
+        exists = scope:mwp_candidate_generation
+        scope:mwp_candidate_owner = this
+        has_variable = mwp_generation
+        scope:mwp_candidate_generation = var:mwp_generation
+        has_variable = mwp_scoring_active
+        var:mwp_scoring_active = yes
+        has_variable = mwp_scoring_owner
+        var:mwp_scoring_owner = this
+        has_variable = mwp_scoring_generation
+        var:mwp_scoring_generation = var:mwp_generation
+    }
+    effect = {
+        # Repeat validity here: callers must not bypass the dispatch guard.
+        if = {
+            limit = {
+                is_ai = no
+        is_alive = yes
+        exists = scope:mwp_candidate_owner
+        exists = scope:mwp_candidate_generation
+        scope:mwp_candidate_owner = this
+        has_variable = mwp_generation
+        scope:mwp_candidate_generation = var:mwp_generation
+        has_variable = mwp_scoring_active
+        var:mwp_scoring_active = yes
+        has_variable = mwp_scoring_owner
+        var:mwp_scoring_owner = this
+        has_variable = mwp_scoring_generation
+        var:mwp_scoring_generation = var:mwp_generation
+            }
+            mwp_live_receive_character_effect = yes
+            # Existing effect rechecks actor/epoch and every receipt.
+            mwp_live_finish_actor_effect = yes
+        }
+    }
+}
+mwp_native_live_fort = {
+    scope = character
+    saved_scopes = { mwp_candidate_owner mwp_candidate_generation mwp_live_fort mwp_live_garrison mwp_live_garrison_max }
+    is_shown = { is_ai = no }
+    is_valid = {
+        is_ai = no
+        is_alive = yes
+        exists = scope:mwp_candidate_owner
+        exists = scope:mwp_candidate_generation
+        scope:mwp_candidate_owner = this
+        has_variable = mwp_generation
+        scope:mwp_candidate_generation = var:mwp_generation
+        has_variable = mwp_scoring_active
+        var:mwp_scoring_active = yes
+        has_variable = mwp_scoring_owner
+        var:mwp_scoring_owner = this
+        has_variable = mwp_scoring_generation
+        var:mwp_scoring_generation = var:mwp_generation
+    }
+    effect = {
+        # Repeat validity here: callers must not bypass the dispatch guard.
+        if = {
+            limit = {
+                is_ai = no
+        is_alive = yes
+        exists = scope:mwp_candidate_owner
+        exists = scope:mwp_candidate_generation
+        scope:mwp_candidate_owner = this
+        has_variable = mwp_generation
+        scope:mwp_candidate_generation = var:mwp_generation
+        has_variable = mwp_scoring_active
+        var:mwp_scoring_active = yes
+        has_variable = mwp_scoring_owner
+        var:mwp_scoring_owner = this
+        has_variable = mwp_scoring_generation
+        var:mwp_scoring_generation = var:mwp_generation
+            }
+            mwp_live_receive_fort_effect = yes
+            # DEV11 synchronous last-ACK join; GUI worker remains fallback.
+            if = { limit = {
+        is_ai = no
+        is_alive = yes
+        exists = scope:mwp_candidate_owner
+        exists = scope:mwp_candidate_generation
+        scope:mwp_candidate_owner = this
+        has_variable = mwp_generation
+        scope:mwp_candidate_generation = var:mwp_generation
+        has_variable = mwp_scoring_active
+        var:mwp_scoring_active = yes
+        has_variable = mwp_scoring_owner
+        var:mwp_scoring_owner = this
+        has_variable = mwp_scoring_generation
+        var:mwp_scoring_generation = var:mwp_generation
+        var:mwp_scoring_seen_count = 111
+        NOT = { has_variable = mwp_live_collecting }
+    
+                has_variable = mwp_enemy_cache_forts_ready
+                var:mwp_enemy_cache_forts_ready = yes
+            } mwp_live_start_effect = yes }
+        }
+    }
+}
+mwp_native_live_finish = {
+    scope = character
+    saved_scopes = { mwp_candidate_owner mwp_candidate_generation mwp_live_actor mwp_live_epoch }
+    is_shown = { is_ai = no }
+    is_valid = {
+        is_ai = no
+        is_alive = yes
+        exists = scope:mwp_candidate_owner
+        exists = scope:mwp_candidate_generation
+        scope:mwp_candidate_owner = this
+        has_variable = mwp_generation
+        scope:mwp_candidate_generation = var:mwp_generation
+        has_variable = mwp_scoring_active
+        var:mwp_scoring_active = yes
+        has_variable = mwp_scoring_owner
+        var:mwp_scoring_owner = this
+        has_variable = mwp_scoring_generation
+        var:mwp_scoring_generation = var:mwp_generation
+    }
+    effect = {
+        # Repeat validity here: callers must not bypass the dispatch guard.
+        if = {
+            limit = {
+                is_ai = no
+        is_alive = yes
+        exists = scope:mwp_candidate_owner
+        exists = scope:mwp_candidate_generation
+        scope:mwp_candidate_owner = this
+        has_variable = mwp_generation
+        scope:mwp_candidate_generation = var:mwp_generation
+        has_variable = mwp_scoring_active
+        var:mwp_scoring_active = yes
+        has_variable = mwp_scoring_owner
+        var:mwp_scoring_owner = this
+        has_variable = mwp_scoring_generation
+        var:mwp_scoring_generation = var:mwp_generation
+            }
+            mwp_live_finish_actor_effect = yes
+        }
+    }
+}
+
+# DEV11 cheap response; no stat payload and no UI attempt latch.
+mwp_native_skip_candidate = {
+    saved_scopes = { mwp_candidate_owner mwp_candidate_generation mwp_candidate_catalog_id }
+    scope = character
+    is_shown = {
+        is_ai = no
+    }
+    is_valid = {
+        is_ai = no
+        is_alive = yes
+        exists = scope:mwp_candidate_owner
+        exists = scope:mwp_candidate_generation
+        scope:mwp_candidate_owner = this
+        has_variable = mwp_generation
+        scope:mwp_candidate_generation = var:mwp_generation
+        has_variable = mwp_scoring_active
+        var:mwp_scoring_active = yes
+        has_variable = mwp_scoring_owner
+        var:mwp_scoring_owner = this
+        has_variable = mwp_scoring_generation
+        var:mwp_scoring_generation = var:mwp_generation
+    }
+    effect = {
+        if = {
+            limit = {
+                is_ai = no
+                is_alive = yes
+                exists = scope:mwp_candidate_owner
+                exists = scope:mwp_candidate_generation
+                scope:mwp_candidate_owner = this
+                has_variable = mwp_generation
+                scope:mwp_candidate_generation = var:mwp_generation
+                has_variable = mwp_scoring_active
+                var:mwp_scoring_active = yes
+                has_variable = mwp_scoring_owner
+                var:mwp_scoring_owner = this
+                has_variable = mwp_scoring_generation
+                var:mwp_scoring_generation = var:mwp_generation
+            }
+            mwp_bridge_skip_candidate_effect = yes
+            # DEV11 synchronous last-ACK join; GUI worker remains fallback.
+            if = { limit = {
+        is_ai = no
+        is_alive = yes
+        exists = scope:mwp_candidate_owner
+        exists = scope:mwp_candidate_generation
+        scope:mwp_candidate_owner = this
+        has_variable = mwp_generation
+        scope:mwp_candidate_generation = var:mwp_generation
+        has_variable = mwp_scoring_active
+        var:mwp_scoring_active = yes
+        has_variable = mwp_scoring_owner
+        var:mwp_scoring_owner = this
+        has_variable = mwp_scoring_generation
+        var:mwp_scoring_generation = var:mwp_generation
+        var:mwp_scoring_seen_count = 111
+        NOT = { has_variable = mwp_live_collecting }
+    
+                has_variable = mwp_enemy_cache_forts_ready
+                var:mwp_enemy_cache_forts_ready = yes
+            } mwp_live_start_effect = yes }
+        }
+    }
+}
+
+# DEV12: independent of auto-recruitment, open military panels and game time.
+mwp_native_live_verify_inventory = {
+    scope = character
+    saved_scopes = { mwp_candidate_owner mwp_candidate_generation mwp_live_actor mwp_live_epoch }
+    is_shown = { is_ai = no }
+    is_valid = {
+is_ai = no
+is_alive = yes
+exists = scope:mwp_candidate_owner
+scope:mwp_candidate_owner = this
+exists = scope:mwp_candidate_generation
+has_variable = mwp_generation
+scope:mwp_candidate_generation = var:mwp_generation
+has_variable = mwp_scoring_active
+var:mwp_scoring_active = yes
+has_variable = mwp_scoring_schema
+var:mwp_scoring_schema = 2
+has_variable = mwp_scoring_owner
+var:mwp_scoring_owner = this
+has_variable = mwp_scoring_generation
+var:mwp_scoring_generation = var:mwp_generation
+var:mwp_scoring_seen_count = 111
+has_variable = mwp_live_collecting
+var:mwp_live_collecting = yes
+has_variable = mwp_live_stage
+var:mwp_live_stage = 1
+exists = scope:mwp_live_actor
+has_variable = mwp_live_character
+scope:mwp_live_actor = var:mwp_live_character
+exists = scope:mwp_live_epoch
+has_variable = mwp_live_epoch
+scope:mwp_live_epoch = var:mwp_live_epoch
+    }
+    effect = { mwp_live_verify_inventory_effect = yes }
+}
+
+# DEV18: an empty native holding cannot supply a numeric garrison receipt.
+mwp_native_empty_fort = {
+ scope = character
+ saved_scopes = { mwp_candidate_owner mwp_candidate_generation mwp_live_fort mwp_live_fort_empty }
+ is_shown = { is_ai = no }
+ is_valid = { is_ai = no is_alive = yes
+exists = scope:mwp_candidate_owner scope:mwp_candidate_owner = this
+exists = scope:mwp_candidate_generation has_variable = mwp_generation
+scope:mwp_candidate_generation = var:mwp_generation
+has_variable = mwp_scoring_active var:mwp_scoring_active = yes
+has_variable = mwp_scoring_owner var:mwp_scoring_owner = this
+has_variable = mwp_scoring_generation var:mwp_scoring_generation = var:mwp_generation
+NOT = { has_variable = mwp_live_collecting }
+NOT = { has_variable = mwp_enemy_cache_forts_ready }
+has_variable = mwp_enemy_cache_owner var:mwp_enemy_cache_owner = this
+exists = scope:mwp_live_fort exists = scope:mwp_live_fort_empty
+scope:mwp_live_fort_empty = yes
+scope:mwp_live_fort = { has_holding = no }
+is_target_in_variable_list = { name = mwp_enemy_cache_fort_samples target = scope:mwp_live_fort }
+NOT = { is_target_in_variable_list = { name = mwp_live_forts_received target = scope:mwp_live_fort } } }
+ effect = { if = { limit = { is_ai = no is_alive = yes
+exists = scope:mwp_candidate_owner scope:mwp_candidate_owner = this
+exists = scope:mwp_candidate_generation has_variable = mwp_generation
+scope:mwp_candidate_generation = var:mwp_generation
+has_variable = mwp_scoring_active var:mwp_scoring_active = yes
+has_variable = mwp_scoring_owner var:mwp_scoring_owner = this
+has_variable = mwp_scoring_generation var:mwp_scoring_generation = var:mwp_generation
+NOT = { has_variable = mwp_live_collecting }
+NOT = { has_variable = mwp_enemy_cache_forts_ready }
+has_variable = mwp_enemy_cache_owner var:mwp_enemy_cache_owner = this
+exists = scope:mwp_live_fort exists = scope:mwp_live_fort_empty
+scope:mwp_live_fort_empty = yes
+scope:mwp_live_fort = { has_holding = no }
+is_target_in_variable_list = { name = mwp_enemy_cache_fort_samples target = scope:mwp_live_fort }
+NOT = { is_target_in_variable_list = { name = mwp_live_forts_received target = scope:mwp_live_fort } } }
+    remove_variable = mwp_scoring_active
+    remove_variable = mwp_live_collecting
+    remove_variable = mwp_live_stage
+    mwp_request_analysis_effect = yes
+ } }
+}

@@ -1,0 +1,901 @@
+﻿mwp_type_unlocked_1_trigger = {
+    OR = { has_access_to_maa = huscarl mwp_d21_type_subject_access_1_trigger = yes }
+}
+
+mwp_type_replacement_available_1_trigger = {
+    mwp_type_unlocked_1_trigger = yes
+}
+
+mwp_type_unlocked_2_trigger = {
+    OR = { has_access_to_maa = landsknecht mwp_d21_type_subject_access_2_trigger = yes }
+}
+
+mwp_type_replacement_available_2_trigger = {
+    mwp_type_unlocked_2_trigger = yes
+}
+
+mwp_type_unlocked_3_trigger = {
+    OR = { has_access_to_maa = longbowmen mwp_d21_type_subject_access_3_trigger = yes }
+}
+
+mwp_type_replacement_available_3_trigger = {
+    mwp_type_unlocked_3_trigger = yes
+}
+
+mwp_type_unlocked_4_trigger = {
+    OR = { has_access_to_maa = goedendag mwp_d21_type_subject_access_4_trigger = yes }
+}
+
+mwp_type_replacement_available_4_trigger = {
+    mwp_type_unlocked_4_trigger = yes
+}
+
+mwp_type_unlocked_5_trigger = {
+    OR = { has_access_to_maa = gendarme mwp_d21_type_subject_access_5_trigger = yes }
+}
+
+mwp_type_replacement_available_5_trigger = {
+    mwp_type_unlocked_5_trigger = yes
+}
+
+mwp_type_unlocked_6_trigger = {
+    OR = { has_access_to_maa = chasseur mwp_d21_type_subject_access_6_trigger = yes }
+}
+
+mwp_type_replacement_available_6_trigger = {
+    mwp_type_unlocked_6_trigger = yes
+}
+
+mwp_type_unlocked_7_trigger = {
+    OR = { has_access_to_maa = picchieri mwp_d21_type_subject_access_7_trigger = yes }
+}
+
+mwp_type_replacement_available_7_trigger = {
+    mwp_type_unlocked_7_trigger = yes
+}
+
+mwp_type_unlocked_8_trigger = {
+    OR = { has_access_to_maa = praetorian mwp_d21_type_subject_access_8_trigger = yes }
+}
+
+mwp_type_replacement_available_8_trigger = {
+    mwp_type_unlocked_8_trigger = yes
+}
+
+mwp_type_unlocked_9_trigger = {
+    OR = { has_access_to_maa = caballero mwp_d21_type_subject_access_9_trigger = yes }
+}
+
+mwp_type_replacement_available_9_trigger = {
+    mwp_type_unlocked_9_trigger = yes
+}
+
+mwp_type_unlocked_10_trigger = {
+    OR = { has_access_to_maa = monaspa mwp_d21_type_subject_access_10_trigger = yes }
+}
+
+mwp_type_replacement_available_10_trigger = {
+    mwp_type_unlocked_10_trigger = yes
+}
+
+mwp_type_unlocked_11_trigger = {
+    OR = { has_access_to_maa = cataphract mwp_d21_type_subject_access_11_trigger = yes }
+}
+
+mwp_type_replacement_available_11_trigger = {
+    mwp_type_unlocked_11_trigger = yes
+}
+
+mwp_type_unlocked_12_trigger = {
+    OR = { has_access_to_maa = hobelar mwp_d21_type_subject_access_12_trigger = yes }
+}
+
+mwp_type_replacement_available_12_trigger = {
+    mwp_type_unlocked_12_trigger = yes
+}
+
+mwp_type_unlocked_13_trigger = {
+    OR = { has_access_to_maa = schiltron mwp_d21_type_subject_access_13_trigger = yes }
+}
+
+mwp_type_replacement_available_13_trigger = {
+    mwp_type_unlocked_13_trigger = yes
+}
+
+mwp_type_unlocked_14_trigger = {
+    OR = { has_access_to_maa = metsanvartija mwp_d21_type_subject_access_14_trigger = yes }
+}
+
+mwp_type_replacement_available_14_trigger = {
+    mwp_type_unlocked_14_trigger = yes
+}
+
+mwp_type_unlocked_15_trigger = {
+    OR = { has_access_to_maa = horse_archers mwp_d21_type_subject_access_15_trigger = yes }
+}
+
+mwp_type_replacement_available_15_trigger = {
+    mwp_type_unlocked_15_trigger = yes
+}
+
+mwp_type_unlocked_16_trigger = {
+    OR = { has_access_to_maa = ayyar mwp_d21_type_subject_access_16_trigger = yes }
+}
+
+mwp_type_replacement_available_16_trigger = {
+    mwp_type_unlocked_16_trigger = yes
+}
+
+mwp_type_unlocked_17_trigger = {
+    OR = { has_access_to_maa = mubarizun mwp_d21_type_subject_access_17_trigger = yes }
+}
+
+mwp_type_replacement_available_17_trigger = {
+    mwp_type_unlocked_17_trigger = yes
+}
+
+mwp_type_unlocked_18_trigger = {
+    OR = { has_access_to_maa = mulaththamun mwp_d21_type_subject_access_18_trigger = yes }
+}
+
+mwp_type_replacement_available_18_trigger = {
+    mwp_type_unlocked_18_trigger = yes
+}
+
+mwp_type_unlocked_19_trigger = {
+    OR = { has_access_to_maa = archers_of_the_nile mwp_d21_type_subject_access_19_trigger = yes }
+}
+
+mwp_type_replacement_available_19_trigger = {
+    mwp_type_unlocked_19_trigger = yes
+}
+
+mwp_type_unlocked_20_trigger = {
+    OR = { has_access_to_maa = paiks mwp_d21_type_subject_access_20_trigger = yes }
+}
+
+mwp_type_replacement_available_20_trigger = {
+    mwp_type_unlocked_20_trigger = yes
+}
+
+mwp_type_unlocked_21_trigger = {
+    OR = { has_access_to_maa = druzhina mwp_d21_type_subject_access_21_trigger = yes }
+}
+
+mwp_type_replacement_available_21_trigger = {
+    mwp_type_unlocked_21_trigger = yes
+}
+
+mwp_type_unlocked_22_trigger = {
+    OR = { has_access_to_maa = hussar mwp_d21_type_subject_access_22_trigger = yes }
+}
+
+mwp_type_replacement_available_22_trigger = {
+    mwp_type_unlocked_22_trigger = yes
+}
+
+mwp_type_unlocked_23_trigger = {
+    OR = { has_access_to_maa = horn_warrior mwp_d21_type_subject_access_23_trigger = yes }
+}
+
+mwp_type_replacement_available_23_trigger = {
+    mwp_type_unlocked_23_trigger = yes
+}
+
+mwp_type_unlocked_24_trigger = {
+    OR = { has_access_to_maa = bush_hunter mwp_d21_type_subject_access_24_trigger = yes }
+}
+
+mwp_type_replacement_available_24_trigger = {
+    mwp_type_unlocked_24_trigger = yes
+}
+
+mwp_type_unlocked_25_trigger = {
+    OR = { has_access_to_maa = shomer mwp_d21_type_subject_access_25_trigger = yes }
+}
+
+mwp_type_replacement_available_25_trigger = {
+    mwp_type_unlocked_25_trigger = yes
+}
+
+mwp_type_unlocked_26_trigger = {
+    OR = { has_access_to_maa = garudas mwp_d21_type_subject_access_26_trigger = yes }
+}
+
+mwp_type_replacement_available_26_trigger = {
+    mwp_type_unlocked_26_trigger = yes
+}
+
+mwp_type_unlocked_27_trigger = {
+    OR = { has_access_to_maa = khandayat mwp_d21_type_subject_access_27_trigger = yes }
+}
+
+mwp_type_replacement_available_27_trigger = {
+    mwp_type_unlocked_27_trigger = yes
+}
+
+mwp_type_unlocked_28_trigger = {
+    OR = { has_access_to_maa = mountaineer mwp_d21_type_subject_access_28_trigger = yes }
+}
+
+mwp_type_replacement_available_28_trigger = {
+    mwp_type_unlocked_28_trigger = yes
+}
+
+mwp_type_unlocked_29_trigger = {
+    OR = { has_access_to_maa = sahel_horsemen mwp_d21_type_subject_access_29_trigger = yes }
+}
+
+mwp_type_replacement_available_29_trigger = {
+    mwp_type_unlocked_29_trigger = yes
+}
+
+mwp_type_unlocked_30_trigger = {
+    OR = { has_access_to_maa = guinea_warrior mwp_d21_type_subject_access_30_trigger = yes }
+}
+
+mwp_type_replacement_available_30_trigger = {
+    mwp_type_unlocked_30_trigger = yes
+}
+
+mwp_type_unlocked_31_trigger = {
+    OR = { has_access_to_maa = sarawit mwp_d21_type_subject_access_31_trigger = yes }
+}
+
+mwp_type_replacement_available_31_trigger = {
+    mwp_type_unlocked_31_trigger = yes
+}
+
+mwp_type_unlocked_32_trigger = {
+    OR = { has_access_to_maa = abudrar mwp_d21_type_subject_access_32_trigger = yes }
+}
+
+mwp_type_replacement_available_32_trigger = {
+    mwp_type_unlocked_32_trigger = yes
+}
+
+mwp_type_unlocked_33_trigger = {
+    OR = { has_access_to_maa = zbrojnosh mwp_d21_type_subject_access_33_trigger = yes }
+}
+
+mwp_type_replacement_available_33_trigger = {
+    mwp_type_unlocked_33_trigger = yes
+}
+
+mwp_type_unlocked_34_trigger = {
+    OR = { has_access_to_maa = palace_guards mwp_d21_type_subject_access_34_trigger = yes }
+}
+
+mwp_type_replacement_available_34_trigger = {
+    mwp_type_unlocked_34_trigger = yes
+}
+
+mwp_type_unlocked_35_trigger = {
+    OR = { has_access_to_maa = shenbigong mwp_d21_type_subject_access_35_trigger = yes }
+}
+
+mwp_type_replacement_available_35_trigger = {
+    mwp_type_unlocked_35_trigger = yes
+}
+
+mwp_type_unlocked_36_trigger = {
+    OR = { has_access_to_maa = guanch_vaulter mwp_d21_type_subject_access_36_trigger = yes }
+}
+
+mwp_type_replacement_available_36_trigger = {
+    mwp_type_unlocked_36_trigger = yes
+}
+
+mwp_type_unlocked_37_trigger = {
+    OR = { has_access_to_maa = teulu mwp_d21_type_subject_access_37_trigger = yes }
+}
+
+mwp_type_replacement_available_37_trigger = {
+    mwp_type_unlocked_37_trigger = yes
+}
+
+mwp_type_unlocked_38_trigger = {
+    OR = { has_access_to_maa = asawira mwp_d21_type_subject_access_38_trigger = yes }
+}
+
+mwp_type_replacement_available_38_trigger = {
+    mwp_type_unlocked_38_trigger = yes
+}
+
+mwp_type_unlocked_39_trigger = {
+    OR = { has_access_to_maa = tarkhan mwp_d21_type_subject_access_39_trigger = yes }
+}
+
+mwp_type_replacement_available_39_trigger = {
+    mwp_type_unlocked_39_trigger = yes
+}
+
+mwp_type_unlocked_40_trigger = {
+    OR = { has_access_to_maa = zupin_warrior mwp_d21_type_subject_access_40_trigger = yes }
+}
+
+mwp_type_replacement_available_40_trigger = {
+    mwp_type_unlocked_40_trigger = yes
+}
+
+mwp_type_unlocked_41_trigger = {
+    OR = { has_access_to_maa = tawashi mwp_d21_type_subject_access_41_trigger = yes }
+}
+
+mwp_type_replacement_available_41_trigger = {
+    mwp_type_unlocked_41_trigger = yes
+}
+
+mwp_type_unlocked_42_trigger = {
+    always = no
+}
+
+mwp_type_replacement_available_42_trigger = {
+    mwp_type_unlocked_42_trigger = yes
+}
+
+mwp_type_unlocked_43_trigger = {
+    always = no
+}
+
+mwp_type_replacement_available_43_trigger = {
+    mwp_type_unlocked_43_trigger = yes
+}
+
+mwp_type_unlocked_44_trigger = {
+    OR = { has_access_to_maa = light_footmen mwp_d21_type_subject_access_44_trigger = yes }
+}
+
+mwp_type_replacement_available_44_trigger = {
+    mwp_type_unlocked_44_trigger = yes
+}
+
+mwp_type_unlocked_45_trigger = {
+    OR = { has_access_to_maa = bowmen mwp_d21_type_subject_access_45_trigger = yes }
+}
+
+mwp_type_replacement_available_45_trigger = {
+    mwp_type_unlocked_45_trigger = yes
+}
+
+mwp_type_unlocked_46_trigger = {
+    OR = { has_access_to_maa = light_horsemen mwp_d21_type_subject_access_46_trigger = yes }
+}
+
+mwp_type_replacement_available_46_trigger = {
+    mwp_type_unlocked_46_trigger = yes
+}
+
+mwp_type_unlocked_47_trigger = {
+    OR = { has_access_to_maa = pikemen_unit mwp_d21_type_subject_access_47_trigger = yes }
+}
+
+mwp_type_replacement_available_47_trigger = {
+    mwp_type_unlocked_47_trigger = yes
+}
+
+mwp_type_unlocked_48_trigger = {
+    OR = { has_access_to_maa = armored_footmen mwp_d21_type_subject_access_48_trigger = yes }
+}
+
+mwp_type_replacement_available_48_trigger = {
+    mwp_type_unlocked_48_trigger = yes
+}
+
+mwp_type_unlocked_49_trigger = {
+    OR = { has_access_to_maa = onager mwp_d21_type_subject_access_49_trigger = yes }
+}
+
+mwp_type_replacement_available_49_trigger = {
+    mwp_type_unlocked_49_trigger = yes
+}
+
+mwp_type_unlocked_50_trigger = {
+    OR = { has_access_to_maa = armored_horsemen mwp_d21_type_subject_access_50_trigger = yes }
+}
+
+mwp_type_replacement_available_50_trigger = {
+    mwp_type_unlocked_50_trigger = yes
+}
+
+mwp_type_unlocked_51_trigger = {
+    OR = { has_access_to_maa = mangonel mwp_d21_type_subject_access_51_trigger = yes }
+}
+
+mwp_type_replacement_available_51_trigger = {
+    mwp_type_unlocked_51_trigger = yes
+}
+
+mwp_type_unlocked_52_trigger = {
+    OR = { has_access_to_maa = crossbowmen mwp_d21_type_subject_access_52_trigger = yes }
+}
+
+mwp_type_replacement_available_52_trigger = {
+    mwp_type_unlocked_52_trigger = yes
+}
+
+mwp_type_unlocked_53_trigger = {
+    OR = { has_access_to_maa = trebuchet mwp_d21_type_subject_access_53_trigger = yes }
+}
+
+mwp_type_replacement_available_53_trigger = {
+    mwp_type_unlocked_53_trigger = yes
+}
+
+mwp_type_unlocked_54_trigger = {
+    OR = { has_access_to_maa = bombard mwp_d21_type_subject_access_54_trigger = yes }
+}
+
+mwp_type_replacement_available_54_trigger = {
+    mwp_type_unlocked_54_trigger = yes
+}
+
+mwp_type_unlocked_55_trigger = {
+    OR = { has_access_to_maa = handgunners mwp_d21_type_subject_access_55_trigger = yes }
+}
+
+mwp_type_replacement_available_55_trigger = {
+    mwp_type_unlocked_55_trigger = yes
+}
+
+mwp_type_unlocked_56_trigger = {
+    OR = { has_access_to_maa = house_guard mwp_d21_type_subject_access_56_trigger = yes }
+}
+
+mwp_type_replacement_available_56_trigger = {
+    mwp_type_unlocked_56_trigger = yes
+    NOT = { any_maa_regiment = { is_personal_maa_regiment = yes is_maa_type = house_guard } }
+}
+
+mwp_type_unlocked_57_trigger = {
+    always = no
+}
+
+mwp_type_replacement_available_57_trigger = {
+    mwp_type_unlocked_57_trigger = yes
+}
+
+mwp_type_unlocked_58_trigger = {
+    OR = { has_access_to_maa = camel_rider mwp_d21_type_subject_access_58_trigger = yes }
+}
+
+mwp_type_replacement_available_58_trigger = {
+    mwp_type_unlocked_58_trigger = yes
+}
+
+mwp_type_unlocked_59_trigger = {
+    OR = { has_access_to_maa = war_elephant mwp_d21_type_subject_access_59_trigger = yes }
+}
+
+mwp_type_replacement_available_59_trigger = {
+    mwp_type_unlocked_59_trigger = yes
+}
+
+mwp_type_unlocked_60_trigger = {
+    OR = { has_access_to_maa = accolade_maa_archers mwp_d21_type_subject_access_60_trigger = yes }
+}
+
+mwp_type_replacement_available_60_trigger = {
+    mwp_type_unlocked_60_trigger = yes
+    NOT = { any_maa_regiment = { is_personal_maa_regiment = yes is_maa_type = accolade_maa_archers } }
+}
+
+mwp_type_unlocked_61_trigger = {
+    OR = { has_access_to_maa = accolade_maa_skirmishers mwp_d21_type_subject_access_61_trigger = yes }
+}
+
+mwp_type_replacement_available_61_trigger = {
+    mwp_type_unlocked_61_trigger = yes
+    NOT = { any_maa_regiment = { is_personal_maa_regiment = yes is_maa_type = accolade_maa_skirmishers } }
+}
+
+mwp_type_unlocked_62_trigger = {
+    OR = { has_access_to_maa = accolade_maa_pikes mwp_d21_type_subject_access_62_trigger = yes }
+}
+
+mwp_type_replacement_available_62_trigger = {
+    mwp_type_unlocked_62_trigger = yes
+    NOT = { any_maa_regiment = { is_personal_maa_regiment = yes is_maa_type = accolade_maa_pikes } }
+}
+
+mwp_type_unlocked_63_trigger = {
+    OR = { has_access_to_maa = accolade_maa_outriders mwp_d21_type_subject_access_63_trigger = yes }
+}
+
+mwp_type_replacement_available_63_trigger = {
+    mwp_type_unlocked_63_trigger = yes
+    NOT = { any_maa_regiment = { is_personal_maa_regiment = yes is_maa_type = accolade_maa_outriders } }
+}
+
+mwp_type_unlocked_64_trigger = {
+    OR = { has_access_to_maa = accolade_maa_vanguards mwp_d21_type_subject_access_64_trigger = yes }
+}
+
+mwp_type_replacement_available_64_trigger = {
+    mwp_type_unlocked_64_trigger = yes
+    NOT = { any_maa_regiment = { is_personal_maa_regiment = yes is_maa_type = accolade_maa_vanguards } }
+}
+
+mwp_type_unlocked_65_trigger = {
+    OR = { has_access_to_maa = accolade_maa_lancers mwp_d21_type_subject_access_65_trigger = yes }
+}
+
+mwp_type_replacement_available_65_trigger = {
+    mwp_type_unlocked_65_trigger = yes
+    NOT = { any_maa_regiment = { is_personal_maa_regiment = yes is_maa_type = accolade_maa_lancers } }
+}
+
+mwp_type_unlocked_66_trigger = {
+    OR = { has_access_to_maa = accolade_maa_crossbowers mwp_d21_type_subject_access_66_trigger = yes }
+}
+
+mwp_type_replacement_available_66_trigger = {
+    mwp_type_unlocked_66_trigger = yes
+    NOT = { any_maa_regiment = { is_personal_maa_regiment = yes is_maa_type = accolade_maa_crossbowers } }
+}
+
+mwp_type_unlocked_67_trigger = {
+    OR = { has_access_to_maa = accolade_maa_cameliers mwp_d21_type_subject_access_67_trigger = yes }
+}
+
+mwp_type_replacement_available_67_trigger = {
+    mwp_type_unlocked_67_trigger = yes
+    NOT = { any_maa_regiment = { is_personal_maa_regiment = yes is_maa_type = accolade_maa_cameliers } }
+}
+
+mwp_type_unlocked_68_trigger = {
+    OR = { has_access_to_maa = accolade_maa_elephantiers mwp_d21_type_subject_access_68_trigger = yes }
+}
+
+mwp_type_replacement_available_68_trigger = {
+    mwp_type_unlocked_68_trigger = yes
+    NOT = { any_maa_regiment = { is_personal_maa_regiment = yes is_maa_type = accolade_maa_elephantiers } }
+}
+
+mwp_type_unlocked_69_trigger = {
+    OR = { has_access_to_maa = accolade_maa_horse_archers mwp_d21_type_subject_access_69_trigger = yes }
+}
+
+mwp_type_replacement_available_69_trigger = {
+    mwp_type_unlocked_69_trigger = yes
+    NOT = { any_maa_regiment = { is_personal_maa_regiment = yes is_maa_type = accolade_maa_horse_archers } }
+}
+
+mwp_type_unlocked_70_trigger = {
+    OR = { has_access_to_maa = accolade_maa_handgunners mwp_d21_type_subject_access_70_trigger = yes }
+}
+
+mwp_type_replacement_available_70_trigger = {
+    mwp_type_unlocked_70_trigger = yes
+    NOT = { any_maa_regiment = { is_personal_maa_regiment = yes is_maa_type = accolade_maa_handgunners } }
+}
+
+mwp_type_unlocked_71_trigger = {
+    OR = { has_access_to_maa = vigmen mwp_d21_type_subject_access_71_trigger = yes }
+}
+
+mwp_type_replacement_available_71_trigger = {
+    mwp_type_unlocked_71_trigger = yes
+}
+
+mwp_type_unlocked_72_trigger = {
+    OR = { has_access_to_maa = bondi mwp_d21_type_subject_access_72_trigger = yes }
+}
+
+mwp_type_replacement_available_72_trigger = {
+    mwp_type_unlocked_72_trigger = yes
+}
+
+mwp_type_unlocked_73_trigger = {
+    OR = { has_access_to_maa = varangian_veterans mwp_d21_type_subject_access_73_trigger = yes }
+}
+
+mwp_type_replacement_available_73_trigger = {
+    mwp_type_unlocked_73_trigger = yes
+    NOT = { any_maa_regiment = { is_personal_maa_regiment = yes is_maa_type = varangian_veterans } }
+}
+
+mwp_type_unlocked_74_trigger = {
+    always = no
+}
+
+mwp_type_replacement_available_74_trigger = {
+    mwp_type_unlocked_74_trigger = yes
+}
+
+mwp_type_unlocked_75_trigger = {
+    OR = { has_access_to_maa = ayrudzi mwp_d21_type_subject_access_75_trigger = yes }
+}
+
+mwp_type_replacement_available_75_trigger = {
+    mwp_type_unlocked_75_trigger = yes
+}
+
+mwp_type_unlocked_76_trigger = {
+    OR = { has_access_to_maa = conrois mwp_d21_type_subject_access_76_trigger = yes }
+}
+
+mwp_type_replacement_available_76_trigger = {
+    mwp_type_unlocked_76_trigger = yes
+}
+
+mwp_type_unlocked_77_trigger = {
+    OR = { has_access_to_maa = akritai mwp_d21_type_subject_access_77_trigger = yes }
+}
+
+mwp_type_replacement_available_77_trigger = {
+    mwp_type_unlocked_77_trigger = yes
+}
+
+mwp_type_unlocked_78_trigger = {
+    OR = { has_access_to_maa = ballistrai mwp_d21_type_subject_access_78_trigger = yes }
+}
+
+mwp_type_replacement_available_78_trigger = {
+    mwp_type_unlocked_78_trigger = yes
+}
+
+mwp_type_unlocked_79_trigger = {
+    OR = { has_access_to_maa = skoutatoi mwp_d21_type_subject_access_79_trigger = yes }
+}
+
+mwp_type_replacement_available_79_trigger = {
+    mwp_type_unlocked_79_trigger = yes
+}
+
+mwp_type_unlocked_80_trigger = {
+    OR = { has_access_to_maa = varangian_guards mwp_d21_type_subject_access_80_trigger = yes }
+}
+
+mwp_type_replacement_available_80_trigger = {
+    mwp_type_unlocked_80_trigger = yes
+}
+
+mwp_type_unlocked_81_trigger = {
+    OR = { has_access_to_maa = handpicked_faithful mwp_d21_type_subject_access_81_trigger = yes }
+}
+
+mwp_type_replacement_available_81_trigger = {
+    mwp_type_unlocked_81_trigger = yes
+}
+
+mwp_type_unlocked_82_trigger = {
+    always = no
+}
+
+mwp_type_replacement_available_82_trigger = {
+    mwp_type_unlocked_82_trigger = yes
+}
+
+mwp_type_unlocked_83_trigger = {
+    always = no
+}
+
+mwp_type_replacement_available_83_trigger = {
+    mwp_type_unlocked_83_trigger = yes
+}
+
+mwp_type_unlocked_84_trigger = {
+    always = no
+}
+
+mwp_type_replacement_available_84_trigger = {
+    mwp_type_unlocked_84_trigger = yes
+}
+
+mwp_type_unlocked_85_trigger = {
+    always = no
+}
+
+mwp_type_replacement_available_85_trigger = {
+    mwp_type_unlocked_85_trigger = yes
+}
+
+mwp_type_unlocked_86_trigger = {
+    always = no
+}
+
+mwp_type_replacement_available_86_trigger = {
+    mwp_type_unlocked_86_trigger = yes
+}
+
+mwp_type_unlocked_87_trigger = {
+    OR = { has_access_to_maa = torch_bearers mwp_d21_type_subject_access_87_trigger = yes }
+}
+
+mwp_type_replacement_available_87_trigger = {
+    mwp_type_unlocked_87_trigger = yes
+}
+
+mwp_type_unlocked_88_trigger = {
+    OR = { has_access_to_maa = kheshig mwp_d21_type_subject_access_88_trigger = yes }
+}
+
+mwp_type_replacement_available_88_trigger = {
+    mwp_type_unlocked_88_trigger = yes
+    NOT = { any_maa_regiment = { is_personal_maa_regiment = yes is_maa_type = kheshig } }
+}
+
+mwp_type_unlocked_89_trigger = {
+    OR = { has_access_to_maa = steppe_raiders mwp_d21_type_subject_access_89_trigger = yes }
+}
+
+mwp_type_replacement_available_89_trigger = {
+    mwp_type_unlocked_89_trigger = yes
+}
+
+mwp_type_unlocked_90_trigger = {
+    OR = { has_access_to_maa = heavy_horse_archers mwp_d21_type_subject_access_90_trigger = yes }
+}
+
+mwp_type_replacement_available_90_trigger = {
+    mwp_type_unlocked_90_trigger = yes
+}
+
+mwp_type_unlocked_91_trigger = {
+    OR = { has_access_to_maa = nomad_lancers mwp_d21_type_subject_access_91_trigger = yes }
+}
+
+mwp_type_replacement_available_91_trigger = {
+    mwp_type_unlocked_91_trigger = yes
+}
+
+mwp_type_unlocked_92_trigger = {
+    OR = { has_access_to_maa = mangudai mwp_d21_type_subject_access_92_trigger = yes }
+}
+
+mwp_type_replacement_available_92_trigger = {
+    mwp_type_unlocked_92_trigger = yes
+}
+
+mwp_type_unlocked_93_trigger = {
+    OR = { has_access_to_maa = cataphract_archers mwp_d21_type_subject_access_93_trigger = yes }
+}
+
+mwp_type_replacement_available_93_trigger = {
+    mwp_type_unlocked_93_trigger = yes
+}
+
+mwp_type_unlocked_94_trigger = {
+    OR = { has_access_to_maa = maturkan_warriors mwp_d21_type_subject_access_94_trigger = yes }
+}
+
+mwp_type_replacement_available_94_trigger = {
+    mwp_type_unlocked_94_trigger = yes
+}
+
+mwp_type_unlocked_95_trigger = {
+    OR = { has_access_to_maa = emishi_horse_archers mwp_d21_type_subject_access_95_trigger = yes }
+}
+
+mwp_type_replacement_available_95_trigger = {
+    mwp_type_unlocked_95_trigger = yes
+}
+
+mwp_type_unlocked_96_trigger = {
+    OR = { has_access_to_maa = japanese_horse_archers mwp_d21_type_subject_access_96_trigger = yes }
+}
+
+mwp_type_replacement_available_96_trigger = {
+    mwp_type_unlocked_96_trigger = yes
+}
+
+mwp_type_unlocked_97_trigger = {
+    OR = { has_access_to_maa = warrior_monks mwp_d21_type_subject_access_97_trigger = yes }
+}
+
+mwp_type_replacement_available_97_trigger = {
+    mwp_type_unlocked_97_trigger = yes
+}
+
+mwp_type_unlocked_98_trigger = {
+    OR = { has_access_to_maa = fire_lancers mwp_d21_type_subject_access_98_trigger = yes }
+}
+
+mwp_type_replacement_available_98_trigger = {
+    mwp_type_unlocked_98_trigger = yes
+}
+
+mwp_type_unlocked_99_trigger = {
+    OR = { has_access_to_maa = gakgung_archers mwp_d21_type_subject_access_99_trigger = yes }
+}
+
+mwp_type_replacement_available_99_trigger = {
+    mwp_type_unlocked_99_trigger = yes
+}
+
+mwp_type_unlocked_100_trigger = {
+    OR = { has_access_to_maa = ballista_elephant mwp_d21_type_subject_access_100_trigger = yes }
+}
+
+mwp_type_replacement_available_100_trigger = {
+    mwp_type_unlocked_100_trigger = yes
+}
+
+mwp_type_unlocked_101_trigger = {
+    OR = { has_access_to_maa = pesilat_warriors mwp_d21_type_subject_access_101_trigger = yes }
+}
+
+mwp_type_replacement_available_101_trigger = {
+    mwp_type_unlocked_101_trigger = yes
+}
+
+mwp_type_unlocked_102_trigger = {
+    OR = { has_access_to_maa = samurai mwp_d21_type_subject_access_102_trigger = yes }
+}
+
+mwp_type_replacement_available_102_trigger = {
+    mwp_type_unlocked_102_trigger = yes
+}
+
+mwp_type_unlocked_103_trigger = {
+    OR = { has_access_to_maa = zhanmadao_infantry mwp_d21_type_subject_access_103_trigger = yes }
+}
+
+mwp_type_replacement_available_103_trigger = {
+    mwp_type_unlocked_103_trigger = yes
+}
+
+mwp_type_unlocked_104_trigger = {
+    OR = { has_access_to_maa = black_armor_cavalry mwp_d21_type_subject_access_104_trigger = yes }
+}
+
+mwp_type_replacement_available_104_trigger = {
+    mwp_type_unlocked_104_trigger = yes
+}
+
+mwp_type_unlocked_105_trigger = {
+    OR = { has_access_to_maa = tiefutu mwp_d21_type_subject_access_105_trigger = yes }
+}
+
+mwp_type_replacement_available_105_trigger = {
+    mwp_type_unlocked_105_trigger = yes
+}
+
+mwp_type_unlocked_106_trigger = {
+    OR = { has_access_to_maa = burenjia mwp_d21_type_subject_access_106_trigger = yes }
+}
+
+mwp_type_replacement_available_106_trigger = {
+    mwp_type_unlocked_106_trigger = yes
+}
+
+mwp_type_unlocked_107_trigger = {
+    OR = { has_access_to_maa = rocket_carts mwp_d21_type_subject_access_107_trigger = yes }
+}
+
+mwp_type_replacement_available_107_trigger = {
+    mwp_type_unlocked_107_trigger = yes
+}
+
+mwp_type_unlocked_108_trigger = {
+    OR = { has_access_to_maa = ballista mwp_d21_type_subject_access_108_trigger = yes }
+}
+
+mwp_type_replacement_available_108_trigger = {
+    mwp_type_unlocked_108_trigger = yes
+}
+
+mwp_type_unlocked_109_trigger = {
+    OR = { has_access_to_maa = cloud_ladder mwp_d21_type_subject_access_109_trigger = yes }
+}
+
+mwp_type_replacement_available_109_trigger = {
+    mwp_type_unlocked_109_trigger = yes
+}
+
+mwp_type_unlocked_110_trigger = {
+    OR = { has_access_to_maa = siege_tower mwp_d21_type_subject_access_110_trigger = yes }
+}
+
+mwp_type_replacement_available_110_trigger = {
+    mwp_type_unlocked_110_trigger = yes
+}
+
+mwp_type_unlocked_111_trigger = {
+    OR = { has_access_to_maa = cannon mwp_d21_type_subject_access_111_trigger = yes }
+}
+
+mwp_type_replacement_available_111_trigger = {
+    mwp_type_unlocked_111_trigger = yes
+}

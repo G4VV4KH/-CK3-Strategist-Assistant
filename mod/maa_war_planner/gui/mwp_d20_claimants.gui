@@ -1,0 +1,43 @@
+﻿types MwpDev20Claimants {
+ type mwp_d20_claimants_panel = vbox {
+  name = "mwp_d20_claimants_panel" size = { 590 0 } layoutpolicy_vertical = expanding spacing = 6
+  text_multi = { text = "mwp_d20_claim_help" max_width = 580 autoresize = yes fontsize = 14 }
+  hbox = { spacing = 6
+   button_standard = { name = "mwp_d20_claim_refresh" size = { 150 32 } text = "mwp_d20_claim_refresh" onclick = "[GetScriptedGui('mwp_d20_claimants_refresh').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]" }
+   text_single = { text = "mwp_d20_claim_count" max_width = 410 fontsize = 16 }
+  }
+  hbox = { spacing = 6 button_standard = { name = "mwp_d20_claim_sort_1" size = { 126 30 } text = "mwp_d20_claim_sort_1" onclick = "[GetScriptedGui('mwp_d20_claimants_sort_1').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]" }
+button_standard = { name = "mwp_d20_claim_sort_2" size = { 126 30 } text = "mwp_d20_claim_sort_2" onclick = "[GetScriptedGui('mwp_d20_claimants_sort_2').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]" }
+button_standard = { name = "mwp_d20_claim_sort_3" size = { 126 30 } text = "mwp_d20_claim_sort_3" onclick = "[GetScriptedGui('mwp_d20_claimants_sort_3').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]" } }
+  text_multi = { text = "mwp_d20_claim_empty" max_width = 580 autoresize = yes visible = "[Not(DataModelHasItems(GetPlayer.MakeScope.GetList('mwp_d20_claimants')))]" }
+  scrollbox = { size = { 590 0 } layoutpolicy_vertical = expanding
+   blockoverride "scrollbox_content" { fixedgridbox = { size = { 568 -1 } addcolumn = 568 addrow = 118
+    datamodel = "[GetPlayer.MakeScope.GetList('mwp_d20_claimants_page')]" datamodel_reuse_widgets = yes
+    item = { widget = { name = "mwp_d20_claim_row" size = { 568 112 } datacontext = "[Scope.GetCharacter]"
+     background = { using = Background_Area }
+     portrait_head_small = { position = { 8 10 } }
+     text_single = { position = { 104 4 } size = { 452 26 } max_width = 452 fontsize = 17 elide = right text = "[Character.GetName]" }
+     text_single = { position = { 104 30 } size = { 452 24 } max_width = 452 fontsize = 16 elide = right text = "mwp_d20_claim_title" }
+     text_single = { position = { 104 55 } size = { 452 22 } max_width = 452 fontsize = 14 elide = right text = "mwp_d20_claim_stats" }
+     button_standard = { name = "mwp_d20_claim_invite" position = { 104 79 } size = { 180 28 } text = "mwp_d20_claim_invite"
+      enabled = "[GetScriptedGui('mwp_d20_claimant_current').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('mwp_d20_claim_candidate',Character.MakeScope).End)]"
+      onclick = "[Character.OpenPlayerInteraction('invite_to_court_interaction')]"
+      tooltip = "mwp_d20_claim_invite_tooltip"
+     }
+     text_single = { position = { 293 81 } max_width = 260 fontsize = 14 text = "mwp_d20_claim_stale" visible = "[Not(GetScriptedGui('mwp_d20_claimant_current').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('mwp_d20_claim_candidate',Character.MakeScope).End))]" }
+    } }
+   } }
+  }
+  hbox = { spacing = 8
+   button_standard = { name = "mwp_d20_claim_page_prev" size = { 44 30 } text = "mwp_d20_claim_prev"
+    enabled = "[GetScriptedGui('mwp_d20_claimants_page_prev').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+    onclick = "[GetScriptedGui('mwp_d20_claimants_page_prev').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+   }
+   text_single = { text = "mwp_d20_claim_page" max_width = 400 fontsize = 15 }
+   button_standard = { name = "mwp_d20_claim_page_next" size = { 44 30 } text = "mwp_d20_claim_next"
+    enabled = "[GetScriptedGui('mwp_d20_claimants_page_next').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+    onclick = "[GetScriptedGui('mwp_d20_claimants_page_next').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+   }
+  }
+ }
+}

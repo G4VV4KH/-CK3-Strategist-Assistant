@@ -1,0 +1,19 @@
+﻿# Native read-only query, using the exact currently scoped war. No send or end_war effect.
+mwp20_white_peace_native_can_send = { scope = character saved_scopes = { mwp20_war }
+ is_valid = { is_ai = no is_alive = yes exists = scope:mwp20_war
+  save_temporary_scope_as = actor
+  scope:mwp20_war = {
+   save_temporary_scope_as = war
+   is_war_leader = root has_valid_casus_belli = yes is_white_peace_possible = yes
+   trigger_if = { limit = { primary_attacker = root }
+    primary_defender = { save_temporary_scope_as = recipient }
+   }
+   trigger_else = { primary_attacker = { save_temporary_scope_as = recipient } }
+  }
+  OR = {
+   scope:recipient = { is_ai = no }
+   is_character_interaction_potentially_accepted = {
+    recipient = scope:recipient interaction = end_war_attacker_white_peace_interaction required_response = yes
+   }
+  } }
+}

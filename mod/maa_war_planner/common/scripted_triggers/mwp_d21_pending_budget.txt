@@ -1,0 +1,303 @@
+﻿mwp_d21_pending_required_trigger = {
+ NOT = { mwp_auto_budget_mode_value = 3 }
+ NOT = { mwp_d21_upkeep_free_trigger = yes }
+ has_variable = mwp_script_selected_upkeep_currency
+ OR = { var:mwp_script_selected_upkeep_currency = 2 var:mwp_script_selected_upkeep_currency = 3 var:mwp_script_selected_upkeep_currency = 5 }
+}
+mwp_d21_pending_herd_owned_trigger = {
+ trigger_if = { limit = { mwp_d21_nomad_mode_value = 1 }
+  has_variable = mwp_d21_tx_herd_paid var:mwp_d21_tx_herd_paid = yes
+  NOT = { has_variable = mwp_d21_tx_herd_refunded }
+  has_variable = mwp_d21_tx_herd_before has_variable = mwp_d21_tx_herd_cost
+  var:mwp_d21_tx_herd_cost >= 0 var:mwp_d21_tx_herd_before >= var:mwp_d21_tx_herd_cost
+  exists = var:mwp_d21_tx_domicile domicile = var:mwp_d21_tx_domicile
+ }
+}
+mwp_d21_pending_commit_matches_trigger = {
+    mwp_d21_selected_route_valid_trigger = yes
+    trigger_if = {
+        limit = {
+            has_variable = mwp_d19_tx_active
+            has_variable = mwp_d19_tx_paid
+            has_variable = mwp_d19_tx_owner
+            has_variable = mwp_d19_tx_generation
+            has_variable = mwp_generation
+            has_variable = mwp_d19_tx_day
+            has_variable = mwp_d19_tx_mode
+            has_variable = mwp_d19_tx_counter
+            has_variable = mwp_d19_tx_expected_counter
+            has_variable = mwp_d19_tx_created_current
+            has_variable = mwp_auto_purchase_count
+            has_variable = mwp_d19_tx_gold
+            has_variable = mwp_d19_tx_price
+            has_variable = mwp_d19_tx_id
+            has_variable = mwp_d19_tx_action
+            has_variable = mwp_d19_tx_count
+            has_variable = mwp_d19_tx_post_size
+            has_variable = mwp_d19_tx_post_max
+            has_variable = mwp_d19_tx_post_current
+            exists = var:mwp_d19_tx_regiment
+        }
+        var:mwp_d19_tx_owner = this
+        var:mwp_d19_tx_generation = var:mwp_generation
+        var:mwp_d19_tx_day = days_since_birth
+        var:mwp_d19_tx_mode = mwp_auto_budget_mode_value
+        var:mwp_auto_purchase_count = var:mwp_d19_tx_expected_counter
+        var:mwp_d19_tx_paid = yes
+        NOT = {
+            has_variable = mwp_d19_tx_refunded
+        }
+        var:mwp_d19_tx_regiment = {
+            is_regular_maa_regiment = yes
+            mwp_d21_selected_regiment_route_trigger = yes
+            regiment_owner = {
+                this = root
+            }
+            mwp_d19_transaction_type_trigger = yes
+            maa_size = root.var:mwp_d19_tx_post_size
+            maa_max_troops_count = root.var:mwp_d19_tx_post_max
+            maa_current_troops_count >= 0
+            maa_current_troops_count <= root.var:mwp_d19_tx_post_max
+        }
+        trigger_if = {
+            limit = {
+                var:mwp_d19_tx_action = 1
+            }
+            mwp_d21_route_count_value = mwp_d21_transaction_created_count_value
+            var:mwp_d19_tx_post_size = 1
+            var:mwp_d19_tx_post_max > 0
+            var:mwp_d19_tx_post_current = var:mwp_d19_tx_created_current
+            NOT = {
+                has_variable = mwp_d19_tx_post_station
+            }
+        }
+        trigger_else = {
+            trigger_if = {
+                limit = {
+                    has_variable = mwp_d19_tx_size
+                    has_variable = mwp_d19_tx_max
+                    has_variable = mwp_d19_tx_current
+                    has_variable = mwp_d19_tx_expected_size
+                    exists = var:mwp_d19_tx_pre_regiment
+                }
+                var:mwp_d19_tx_action = 2
+                mwp_d21_route_count_value = var:mwp_d19_tx_count
+                var:mwp_d19_tx_regiment = var:mwp_d19_tx_pre_regiment
+                var:mwp_d19_tx_post_size = var:mwp_d19_tx_expected_size
+                var:mwp_d19_tx_post_current = mwp_d21_nomad_expected_current_value
+                var:mwp_d19_tx_post_max >= var:mwp_d19_tx_max
+            }
+            trigger_else = {
+                always = no
+            }
+        }
+        trigger_if = {
+            limit = {
+                has_variable = mwp_d19_tx_post_station
+            }
+            var:mwp_d19_tx_regiment = {
+                exists = regiment_station
+                regiment_station = root.var:mwp_d19_tx_post_station
+            }
+        }
+        trigger_else = {
+            var:mwp_d19_tx_regiment = {
+                NOT = {
+                    exists = regiment_station
+                }
+            }
+        }
+        trigger_if = {
+            limit = {
+                var:mwp_d19_tx_action = 2
+            }
+            trigger_if = {
+                limit = {
+                    has_variable = mwp_d19_tx_station
+                }
+                var:mwp_d19_tx_regiment = {
+                    exists = regiment_station
+                    regiment_station = root.var:mwp_d19_tx_station
+                }
+            }
+            trigger_else = {
+                var:mwp_d19_tx_regiment = {
+                    NOT = {
+                        exists = regiment_station
+                    }
+                }
+            }
+        }
+    }
+    trigger_else = {
+        always = no
+    }
+    mwp_d21_pending_herd_owned_trigger = yes
+}
+mwp_d21_pending_recovery_matches_trigger = {
+    mwp_d21_selected_route_valid_trigger = yes
+    trigger_if = {
+        limit = {
+            has_variable = mwp_d19_tx_active
+            has_variable = mwp_d19_tx_paid
+            has_variable = mwp_d19_tx_owner
+            has_variable = mwp_d19_tx_generation
+            has_variable = mwp_generation
+            has_variable = mwp_d19_tx_day
+            has_variable = mwp_d19_tx_mode
+            has_variable = mwp_d19_tx_counter
+            has_variable = mwp_d19_tx_expected_counter
+            has_variable = mwp_d19_tx_created_current
+            has_variable = mwp_auto_purchase_count
+            has_variable = mwp_d19_tx_gold
+            has_variable = mwp_d19_tx_price
+            has_variable = mwp_d19_tx_id
+            has_variable = mwp_d19_tx_action
+            has_variable = mwp_d19_tx_count
+            has_variable = mwp_d19_tx_post_size
+            has_variable = mwp_d19_tx_post_max
+            has_variable = mwp_d19_tx_post_current
+            exists = var:mwp_d19_tx_regiment
+        }
+        var:mwp_d19_tx_owner = this
+        var:mwp_auto_purchase_count = var:mwp_d19_tx_expected_counter
+        var:mwp_d19_tx_paid = yes
+        NOT = {
+            has_variable = mwp_d19_tx_refunded
+        }
+        var:mwp_d19_tx_regiment = {
+            is_regular_maa_regiment = yes
+            mwp_d21_selected_regiment_route_trigger = yes
+            regiment_owner = {
+                this = root
+            }
+            mwp_d19_transaction_type_trigger = yes
+            maa_size = root.var:mwp_d19_tx_post_size
+            maa_max_troops_count = root.var:mwp_d19_tx_post_max
+            maa_current_troops_count >= 0
+            maa_current_troops_count <= root.var:mwp_d19_tx_post_max
+        }
+        trigger_if = {
+            limit = {
+                var:mwp_d19_tx_action = 1
+            }
+            mwp_d21_route_count_value = mwp_d21_transaction_created_count_value
+            var:mwp_d19_tx_post_size = 1
+            var:mwp_d19_tx_post_max > 0
+            var:mwp_d19_tx_post_current = var:mwp_d19_tx_created_current
+            NOT = {
+                has_variable = mwp_d19_tx_post_station
+            }
+        }
+        trigger_else = {
+            trigger_if = {
+                limit = {
+                    has_variable = mwp_d19_tx_size
+                    has_variable = mwp_d19_tx_max
+                    has_variable = mwp_d19_tx_current
+                    has_variable = mwp_d19_tx_expected_size
+                    exists = var:mwp_d19_tx_pre_regiment
+                }
+                var:mwp_d19_tx_action = 2
+                mwp_d21_route_count_value = var:mwp_d19_tx_count
+                var:mwp_d19_tx_regiment = var:mwp_d19_tx_pre_regiment
+                var:mwp_d19_tx_post_size = var:mwp_d19_tx_expected_size
+                var:mwp_d19_tx_post_current = mwp_d21_nomad_expected_current_value
+                var:mwp_d19_tx_post_max >= var:mwp_d19_tx_max
+            }
+            trigger_else = {
+                always = no
+            }
+        }
+        trigger_if = {
+            limit = {
+                has_variable = mwp_d19_tx_post_station
+            }
+            var:mwp_d19_tx_regiment = {
+                exists = regiment_station
+                regiment_station = root.var:mwp_d19_tx_post_station
+            }
+        }
+        trigger_else = {
+            var:mwp_d19_tx_regiment = {
+                NOT = {
+                    exists = regiment_station
+                }
+            }
+        }
+        trigger_if = {
+            limit = {
+                var:mwp_d19_tx_action = 2
+            }
+            trigger_if = {
+                limit = {
+                    has_variable = mwp_d19_tx_station
+                }
+                var:mwp_d19_tx_regiment = {
+                    exists = regiment_station
+                    regiment_station = root.var:mwp_d19_tx_station
+                }
+            }
+            trigger_else = {
+                var:mwp_d19_tx_regiment = {
+                    NOT = {
+                        exists = regiment_station
+                    }
+                }
+            }
+        }
+    }
+    trigger_else = {
+        always = no
+    }
+    mwp_d21_pending_herd_owned_trigger = yes
+}
+mwp_d21_pending_restored_trigger = {
+    mwp_d21_selected_route_valid_trigger = yes
+    mwp_d21_route_count_value = var:mwp_d19_tx_count
+    trigger_if = {
+        limit = {
+            var:mwp_d19_tx_action = 1
+        }
+        NOT = {
+            exists = var:mwp_d19_tx_regiment
+        }
+    }
+    trigger_else = {
+        trigger_if = {
+            limit = {
+                exists = var:mwp_d19_tx_regiment
+            }
+            var:mwp_d19_tx_regiment = {
+                is_regular_maa_regiment = yes
+                mwp_d21_selected_regiment_route_trigger = yes
+                regiment_owner = {
+                    this = root
+                }
+                mwp_d19_transaction_type_trigger = yes
+                maa_size = root.var:mwp_d19_tx_size
+                maa_max_troops_count = root.var:mwp_d19_tx_max
+                maa_current_troops_count = root.var:mwp_d21p_rollback_current
+            }
+            trigger_if = {
+                limit = {
+                    has_variable = mwp_d19_tx_station
+                }
+                var:mwp_d19_tx_regiment = {
+                    exists = regiment_station
+                    regiment_station = root.var:mwp_d19_tx_station
+                }
+            }
+            trigger_else = {
+                var:mwp_d19_tx_regiment = {
+                    NOT = {
+                        exists = regiment_station
+                    }
+                }
+            }
+        }
+        trigger_else = {
+            always = no
+        }
+    }
+}

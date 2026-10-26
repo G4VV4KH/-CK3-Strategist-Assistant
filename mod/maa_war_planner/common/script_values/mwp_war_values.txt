@@ -1,0 +1,12 @@
+﻿# DEV11: unused legacy enemy summaries retired; native fort descriptor retained.
+mwp_war_average_fort_value = {
+    value = 0
+    if = {
+        limit = {
+            has_variable = mwp_war_fort_sample_count
+            var:mwp_war_fort_sample_count > 0
+        }
+        add = var:mwp_war_fort_total
+        divide = var:mwp_war_fort_sample_count
+    }
+}

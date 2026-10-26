@@ -1,0 +1,1752 @@
+﻿# Rule predicates deliberately contain no government-name whitelist.
+mwp_d21_maa_uses_prestige_trigger = { government_allows = regiments_prestige_as_gold }
+mwp_d21_maa_uses_barter_goods_trigger = { government_allows = regiments_use_barter_goods_as_gold }
+mwp_d21_maa_conditional_refill_trigger = { government_allows = conditional_maa_refill }
+mwp_d21_maa_no_upkeep_trigger = {
+    government_disallows = use_maa_maintenance
+}
+mwp_d21_title_maa_uses_treasury_trigger = { government_allows = replace_gold_cost_by_treasury }
+mwp_d21_subject_maa_enabled_trigger = { government_allows = subject_men_at_arms }
+mwp_d21_type_subject_access_1_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_1
+    has_variable = mwp_d21_access_generation_1
+    var:mwp_d21_access_generation_1 = var:mwp_generation
+    has_variable = mwp_d21_access_day_1
+    var:mwp_d21_access_day_1 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_1 }
+    var:mwp_d21_subject_provider_1 = {
+        is_alive = yes
+        has_access_to_maa = huscarl
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_2_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_2
+    has_variable = mwp_d21_access_generation_2
+    var:mwp_d21_access_generation_2 = var:mwp_generation
+    has_variable = mwp_d21_access_day_2
+    var:mwp_d21_access_day_2 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_2 }
+    var:mwp_d21_subject_provider_2 = {
+        is_alive = yes
+        has_access_to_maa = landsknecht
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_3_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_3
+    has_variable = mwp_d21_access_generation_3
+    var:mwp_d21_access_generation_3 = var:mwp_generation
+    has_variable = mwp_d21_access_day_3
+    var:mwp_d21_access_day_3 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_3 }
+    var:mwp_d21_subject_provider_3 = {
+        is_alive = yes
+        has_access_to_maa = longbowmen
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_4_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_4
+    has_variable = mwp_d21_access_generation_4
+    var:mwp_d21_access_generation_4 = var:mwp_generation
+    has_variable = mwp_d21_access_day_4
+    var:mwp_d21_access_day_4 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_4 }
+    var:mwp_d21_subject_provider_4 = {
+        is_alive = yes
+        has_access_to_maa = goedendag
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_5_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_5
+    has_variable = mwp_d21_access_generation_5
+    var:mwp_d21_access_generation_5 = var:mwp_generation
+    has_variable = mwp_d21_access_day_5
+    var:mwp_d21_access_day_5 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_5 }
+    var:mwp_d21_subject_provider_5 = {
+        is_alive = yes
+        has_access_to_maa = gendarme
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_6_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_6
+    has_variable = mwp_d21_access_generation_6
+    var:mwp_d21_access_generation_6 = var:mwp_generation
+    has_variable = mwp_d21_access_day_6
+    var:mwp_d21_access_day_6 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_6 }
+    var:mwp_d21_subject_provider_6 = {
+        is_alive = yes
+        has_access_to_maa = chasseur
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_7_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_7
+    has_variable = mwp_d21_access_generation_7
+    var:mwp_d21_access_generation_7 = var:mwp_generation
+    has_variable = mwp_d21_access_day_7
+    var:mwp_d21_access_day_7 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_7 }
+    var:mwp_d21_subject_provider_7 = {
+        is_alive = yes
+        has_access_to_maa = picchieri
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_8_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_8
+    has_variable = mwp_d21_access_generation_8
+    var:mwp_d21_access_generation_8 = var:mwp_generation
+    has_variable = mwp_d21_access_day_8
+    var:mwp_d21_access_day_8 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_8 }
+    var:mwp_d21_subject_provider_8 = {
+        is_alive = yes
+        has_access_to_maa = praetorian
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_9_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_9
+    has_variable = mwp_d21_access_generation_9
+    var:mwp_d21_access_generation_9 = var:mwp_generation
+    has_variable = mwp_d21_access_day_9
+    var:mwp_d21_access_day_9 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_9 }
+    var:mwp_d21_subject_provider_9 = {
+        is_alive = yes
+        has_access_to_maa = caballero
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_10_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_10
+    has_variable = mwp_d21_access_generation_10
+    var:mwp_d21_access_generation_10 = var:mwp_generation
+    has_variable = mwp_d21_access_day_10
+    var:mwp_d21_access_day_10 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_10 }
+    var:mwp_d21_subject_provider_10 = {
+        is_alive = yes
+        has_access_to_maa = monaspa
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_11_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_11
+    has_variable = mwp_d21_access_generation_11
+    var:mwp_d21_access_generation_11 = var:mwp_generation
+    has_variable = mwp_d21_access_day_11
+    var:mwp_d21_access_day_11 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_11 }
+    var:mwp_d21_subject_provider_11 = {
+        is_alive = yes
+        has_access_to_maa = cataphract
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_12_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_12
+    has_variable = mwp_d21_access_generation_12
+    var:mwp_d21_access_generation_12 = var:mwp_generation
+    has_variable = mwp_d21_access_day_12
+    var:mwp_d21_access_day_12 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_12 }
+    var:mwp_d21_subject_provider_12 = {
+        is_alive = yes
+        has_access_to_maa = hobelar
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_13_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_13
+    has_variable = mwp_d21_access_generation_13
+    var:mwp_d21_access_generation_13 = var:mwp_generation
+    has_variable = mwp_d21_access_day_13
+    var:mwp_d21_access_day_13 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_13 }
+    var:mwp_d21_subject_provider_13 = {
+        is_alive = yes
+        has_access_to_maa = schiltron
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_14_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_14
+    has_variable = mwp_d21_access_generation_14
+    var:mwp_d21_access_generation_14 = var:mwp_generation
+    has_variable = mwp_d21_access_day_14
+    var:mwp_d21_access_day_14 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_14 }
+    var:mwp_d21_subject_provider_14 = {
+        is_alive = yes
+        has_access_to_maa = metsanvartija
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_15_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_15
+    has_variable = mwp_d21_access_generation_15
+    var:mwp_d21_access_generation_15 = var:mwp_generation
+    has_variable = mwp_d21_access_day_15
+    var:mwp_d21_access_day_15 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_15 }
+    var:mwp_d21_subject_provider_15 = {
+        is_alive = yes
+        has_access_to_maa = horse_archers
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_16_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_16
+    has_variable = mwp_d21_access_generation_16
+    var:mwp_d21_access_generation_16 = var:mwp_generation
+    has_variable = mwp_d21_access_day_16
+    var:mwp_d21_access_day_16 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_16 }
+    var:mwp_d21_subject_provider_16 = {
+        is_alive = yes
+        has_access_to_maa = ayyar
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_17_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_17
+    has_variable = mwp_d21_access_generation_17
+    var:mwp_d21_access_generation_17 = var:mwp_generation
+    has_variable = mwp_d21_access_day_17
+    var:mwp_d21_access_day_17 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_17 }
+    var:mwp_d21_subject_provider_17 = {
+        is_alive = yes
+        has_access_to_maa = mubarizun
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_18_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_18
+    has_variable = mwp_d21_access_generation_18
+    var:mwp_d21_access_generation_18 = var:mwp_generation
+    has_variable = mwp_d21_access_day_18
+    var:mwp_d21_access_day_18 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_18 }
+    var:mwp_d21_subject_provider_18 = {
+        is_alive = yes
+        has_access_to_maa = mulaththamun
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_19_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_19
+    has_variable = mwp_d21_access_generation_19
+    var:mwp_d21_access_generation_19 = var:mwp_generation
+    has_variable = mwp_d21_access_day_19
+    var:mwp_d21_access_day_19 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_19 }
+    var:mwp_d21_subject_provider_19 = {
+        is_alive = yes
+        has_access_to_maa = archers_of_the_nile
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_20_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_20
+    has_variable = mwp_d21_access_generation_20
+    var:mwp_d21_access_generation_20 = var:mwp_generation
+    has_variable = mwp_d21_access_day_20
+    var:mwp_d21_access_day_20 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_20 }
+    var:mwp_d21_subject_provider_20 = {
+        is_alive = yes
+        has_access_to_maa = paiks
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_21_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_21
+    has_variable = mwp_d21_access_generation_21
+    var:mwp_d21_access_generation_21 = var:mwp_generation
+    has_variable = mwp_d21_access_day_21
+    var:mwp_d21_access_day_21 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_21 }
+    var:mwp_d21_subject_provider_21 = {
+        is_alive = yes
+        has_access_to_maa = druzhina
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_22_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_22
+    has_variable = mwp_d21_access_generation_22
+    var:mwp_d21_access_generation_22 = var:mwp_generation
+    has_variable = mwp_d21_access_day_22
+    var:mwp_d21_access_day_22 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_22 }
+    var:mwp_d21_subject_provider_22 = {
+        is_alive = yes
+        has_access_to_maa = hussar
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_23_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_23
+    has_variable = mwp_d21_access_generation_23
+    var:mwp_d21_access_generation_23 = var:mwp_generation
+    has_variable = mwp_d21_access_day_23
+    var:mwp_d21_access_day_23 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_23 }
+    var:mwp_d21_subject_provider_23 = {
+        is_alive = yes
+        has_access_to_maa = horn_warrior
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_24_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_24
+    has_variable = mwp_d21_access_generation_24
+    var:mwp_d21_access_generation_24 = var:mwp_generation
+    has_variable = mwp_d21_access_day_24
+    var:mwp_d21_access_day_24 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_24 }
+    var:mwp_d21_subject_provider_24 = {
+        is_alive = yes
+        has_access_to_maa = bush_hunter
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_25_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_25
+    has_variable = mwp_d21_access_generation_25
+    var:mwp_d21_access_generation_25 = var:mwp_generation
+    has_variable = mwp_d21_access_day_25
+    var:mwp_d21_access_day_25 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_25 }
+    var:mwp_d21_subject_provider_25 = {
+        is_alive = yes
+        has_access_to_maa = shomer
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_26_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_26
+    has_variable = mwp_d21_access_generation_26
+    var:mwp_d21_access_generation_26 = var:mwp_generation
+    has_variable = mwp_d21_access_day_26
+    var:mwp_d21_access_day_26 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_26 }
+    var:mwp_d21_subject_provider_26 = {
+        is_alive = yes
+        has_access_to_maa = garudas
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_27_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_27
+    has_variable = mwp_d21_access_generation_27
+    var:mwp_d21_access_generation_27 = var:mwp_generation
+    has_variable = mwp_d21_access_day_27
+    var:mwp_d21_access_day_27 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_27 }
+    var:mwp_d21_subject_provider_27 = {
+        is_alive = yes
+        has_access_to_maa = khandayat
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_28_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_28
+    has_variable = mwp_d21_access_generation_28
+    var:mwp_d21_access_generation_28 = var:mwp_generation
+    has_variable = mwp_d21_access_day_28
+    var:mwp_d21_access_day_28 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_28 }
+    var:mwp_d21_subject_provider_28 = {
+        is_alive = yes
+        has_access_to_maa = mountaineer
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_29_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_29
+    has_variable = mwp_d21_access_generation_29
+    var:mwp_d21_access_generation_29 = var:mwp_generation
+    has_variable = mwp_d21_access_day_29
+    var:mwp_d21_access_day_29 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_29 }
+    var:mwp_d21_subject_provider_29 = {
+        is_alive = yes
+        has_access_to_maa = sahel_horsemen
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_30_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_30
+    has_variable = mwp_d21_access_generation_30
+    var:mwp_d21_access_generation_30 = var:mwp_generation
+    has_variable = mwp_d21_access_day_30
+    var:mwp_d21_access_day_30 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_30 }
+    var:mwp_d21_subject_provider_30 = {
+        is_alive = yes
+        has_access_to_maa = guinea_warrior
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_31_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_31
+    has_variable = mwp_d21_access_generation_31
+    var:mwp_d21_access_generation_31 = var:mwp_generation
+    has_variable = mwp_d21_access_day_31
+    var:mwp_d21_access_day_31 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_31 }
+    var:mwp_d21_subject_provider_31 = {
+        is_alive = yes
+        has_access_to_maa = sarawit
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_32_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_32
+    has_variable = mwp_d21_access_generation_32
+    var:mwp_d21_access_generation_32 = var:mwp_generation
+    has_variable = mwp_d21_access_day_32
+    var:mwp_d21_access_day_32 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_32 }
+    var:mwp_d21_subject_provider_32 = {
+        is_alive = yes
+        has_access_to_maa = abudrar
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_33_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_33
+    has_variable = mwp_d21_access_generation_33
+    var:mwp_d21_access_generation_33 = var:mwp_generation
+    has_variable = mwp_d21_access_day_33
+    var:mwp_d21_access_day_33 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_33 }
+    var:mwp_d21_subject_provider_33 = {
+        is_alive = yes
+        has_access_to_maa = zbrojnosh
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_34_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_34
+    has_variable = mwp_d21_access_generation_34
+    var:mwp_d21_access_generation_34 = var:mwp_generation
+    has_variable = mwp_d21_access_day_34
+    var:mwp_d21_access_day_34 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_34 }
+    var:mwp_d21_subject_provider_34 = {
+        is_alive = yes
+        has_access_to_maa = palace_guards
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_35_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_35
+    has_variable = mwp_d21_access_generation_35
+    var:mwp_d21_access_generation_35 = var:mwp_generation
+    has_variable = mwp_d21_access_day_35
+    var:mwp_d21_access_day_35 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_35 }
+    var:mwp_d21_subject_provider_35 = {
+        is_alive = yes
+        has_access_to_maa = shenbigong
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_36_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_36
+    has_variable = mwp_d21_access_generation_36
+    var:mwp_d21_access_generation_36 = var:mwp_generation
+    has_variable = mwp_d21_access_day_36
+    var:mwp_d21_access_day_36 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_36 }
+    var:mwp_d21_subject_provider_36 = {
+        is_alive = yes
+        has_access_to_maa = guanch_vaulter
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_37_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_37
+    has_variable = mwp_d21_access_generation_37
+    var:mwp_d21_access_generation_37 = var:mwp_generation
+    has_variable = mwp_d21_access_day_37
+    var:mwp_d21_access_day_37 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_37 }
+    var:mwp_d21_subject_provider_37 = {
+        is_alive = yes
+        has_access_to_maa = teulu
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_38_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_38
+    has_variable = mwp_d21_access_generation_38
+    var:mwp_d21_access_generation_38 = var:mwp_generation
+    has_variable = mwp_d21_access_day_38
+    var:mwp_d21_access_day_38 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_38 }
+    var:mwp_d21_subject_provider_38 = {
+        is_alive = yes
+        has_access_to_maa = asawira
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_39_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_39
+    has_variable = mwp_d21_access_generation_39
+    var:mwp_d21_access_generation_39 = var:mwp_generation
+    has_variable = mwp_d21_access_day_39
+    var:mwp_d21_access_day_39 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_39 }
+    var:mwp_d21_subject_provider_39 = {
+        is_alive = yes
+        has_access_to_maa = tarkhan
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_40_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_40
+    has_variable = mwp_d21_access_generation_40
+    var:mwp_d21_access_generation_40 = var:mwp_generation
+    has_variable = mwp_d21_access_day_40
+    var:mwp_d21_access_day_40 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_40 }
+    var:mwp_d21_subject_provider_40 = {
+        is_alive = yes
+        has_access_to_maa = zupin_warrior
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_41_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_41
+    has_variable = mwp_d21_access_generation_41
+    var:mwp_d21_access_generation_41 = var:mwp_generation
+    has_variable = mwp_d21_access_day_41
+    var:mwp_d21_access_day_41 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_41 }
+    var:mwp_d21_subject_provider_41 = {
+        is_alive = yes
+        has_access_to_maa = tawashi
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_42_trigger = { always = no }
+mwp_d21_type_subject_access_43_trigger = { always = no }
+mwp_d21_type_subject_access_44_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_44
+    has_variable = mwp_d21_access_generation_44
+    var:mwp_d21_access_generation_44 = var:mwp_generation
+    has_variable = mwp_d21_access_day_44
+    var:mwp_d21_access_day_44 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_44 }
+    var:mwp_d21_subject_provider_44 = {
+        is_alive = yes
+        has_access_to_maa = light_footmen
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_45_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_45
+    has_variable = mwp_d21_access_generation_45
+    var:mwp_d21_access_generation_45 = var:mwp_generation
+    has_variable = mwp_d21_access_day_45
+    var:mwp_d21_access_day_45 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_45 }
+    var:mwp_d21_subject_provider_45 = {
+        is_alive = yes
+        has_access_to_maa = bowmen
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_46_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_46
+    has_variable = mwp_d21_access_generation_46
+    var:mwp_d21_access_generation_46 = var:mwp_generation
+    has_variable = mwp_d21_access_day_46
+    var:mwp_d21_access_day_46 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_46 }
+    var:mwp_d21_subject_provider_46 = {
+        is_alive = yes
+        has_access_to_maa = light_horsemen
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    NOT = { has_access_to_maa = steppe_raiders }
+}
+mwp_d21_type_subject_access_47_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_47
+    has_variable = mwp_d21_access_generation_47
+    var:mwp_d21_access_generation_47 = var:mwp_generation
+    has_variable = mwp_d21_access_day_47
+    var:mwp_d21_access_day_47 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_47 }
+    var:mwp_d21_subject_provider_47 = {
+        is_alive = yes
+        has_access_to_maa = pikemen_unit
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_48_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_48
+    has_variable = mwp_d21_access_generation_48
+    var:mwp_d21_access_generation_48 = var:mwp_generation
+    has_variable = mwp_d21_access_day_48
+    var:mwp_d21_access_day_48 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_48 }
+    var:mwp_d21_subject_provider_48 = {
+        is_alive = yes
+        has_access_to_maa = armored_footmen
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_49_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_49
+    has_variable = mwp_d21_access_generation_49
+    var:mwp_d21_access_generation_49 = var:mwp_generation
+    has_variable = mwp_d21_access_day_49
+    var:mwp_d21_access_day_49 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_49 }
+    var:mwp_d21_subject_provider_49 = {
+        is_alive = yes
+        has_access_to_maa = onager
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_50_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_50
+    has_variable = mwp_d21_access_generation_50
+    var:mwp_d21_access_generation_50 = var:mwp_generation
+    has_variable = mwp_d21_access_day_50
+    var:mwp_d21_access_day_50 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_50 }
+    var:mwp_d21_subject_provider_50 = {
+        is_alive = yes
+        has_access_to_maa = armored_horsemen
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    NOT = { has_access_to_maa = nomad_lancers }
+}
+mwp_d21_type_subject_access_51_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_51
+    has_variable = mwp_d21_access_generation_51
+    var:mwp_d21_access_generation_51 = var:mwp_generation
+    has_variable = mwp_d21_access_day_51
+    var:mwp_d21_access_day_51 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_51 }
+    var:mwp_d21_subject_provider_51 = {
+        is_alive = yes
+        has_access_to_maa = mangonel
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_52_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_52
+    has_variable = mwp_d21_access_generation_52
+    var:mwp_d21_access_generation_52 = var:mwp_generation
+    has_variable = mwp_d21_access_day_52
+    var:mwp_d21_access_day_52 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_52 }
+    var:mwp_d21_subject_provider_52 = {
+        is_alive = yes
+        has_access_to_maa = crossbowmen
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_53_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_53
+    has_variable = mwp_d21_access_generation_53
+    var:mwp_d21_access_generation_53 = var:mwp_generation
+    has_variable = mwp_d21_access_day_53
+    var:mwp_d21_access_day_53 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_53 }
+    var:mwp_d21_subject_provider_53 = {
+        is_alive = yes
+        has_access_to_maa = trebuchet
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_54_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_54
+    has_variable = mwp_d21_access_generation_54
+    var:mwp_d21_access_generation_54 = var:mwp_generation
+    has_variable = mwp_d21_access_day_54
+    var:mwp_d21_access_day_54 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_54 }
+    var:mwp_d21_subject_provider_54 = {
+        is_alive = yes
+        has_access_to_maa = bombard
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_55_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_55
+    has_variable = mwp_d21_access_generation_55
+    var:mwp_d21_access_generation_55 = var:mwp_generation
+    has_variable = mwp_d21_access_day_55
+    var:mwp_d21_access_day_55 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_55 }
+    var:mwp_d21_subject_provider_55 = {
+        is_alive = yes
+        has_access_to_maa = handgunners
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_56_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_56
+    has_variable = mwp_d21_access_generation_56
+    var:mwp_d21_access_generation_56 = var:mwp_generation
+    has_variable = mwp_d21_access_day_56
+    var:mwp_d21_access_day_56 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_56 }
+    var:mwp_d21_subject_provider_56 = {
+        is_alive = yes
+        has_access_to_maa = house_guard
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_57_trigger = { always = no }
+mwp_d21_type_subject_access_58_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_58
+    has_variable = mwp_d21_access_generation_58
+    var:mwp_d21_access_generation_58 = var:mwp_generation
+    has_variable = mwp_d21_access_day_58
+    var:mwp_d21_access_day_58 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_58 }
+    var:mwp_d21_subject_provider_58 = {
+        is_alive = yes
+        has_access_to_maa = camel_rider
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_59_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_59
+    has_variable = mwp_d21_access_generation_59
+    var:mwp_d21_access_generation_59 = var:mwp_generation
+    has_variable = mwp_d21_access_day_59
+    var:mwp_d21_access_day_59 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_59 }
+    var:mwp_d21_subject_provider_59 = {
+        is_alive = yes
+        has_access_to_maa = war_elephant
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_60_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_60
+    has_variable = mwp_d21_access_generation_60
+    var:mwp_d21_access_generation_60 = var:mwp_generation
+    has_variable = mwp_d21_access_day_60
+    var:mwp_d21_access_day_60 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_60 }
+    var:mwp_d21_subject_provider_60 = {
+        is_alive = yes
+        has_access_to_maa = accolade_maa_archers
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_61_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_61
+    has_variable = mwp_d21_access_generation_61
+    var:mwp_d21_access_generation_61 = var:mwp_generation
+    has_variable = mwp_d21_access_day_61
+    var:mwp_d21_access_day_61 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_61 }
+    var:mwp_d21_subject_provider_61 = {
+        is_alive = yes
+        has_access_to_maa = accolade_maa_skirmishers
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_62_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_62
+    has_variable = mwp_d21_access_generation_62
+    var:mwp_d21_access_generation_62 = var:mwp_generation
+    has_variable = mwp_d21_access_day_62
+    var:mwp_d21_access_day_62 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_62 }
+    var:mwp_d21_subject_provider_62 = {
+        is_alive = yes
+        has_access_to_maa = accolade_maa_pikes
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_63_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_63
+    has_variable = mwp_d21_access_generation_63
+    var:mwp_d21_access_generation_63 = var:mwp_generation
+    has_variable = mwp_d21_access_day_63
+    var:mwp_d21_access_day_63 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_63 }
+    var:mwp_d21_subject_provider_63 = {
+        is_alive = yes
+        has_access_to_maa = accolade_maa_outriders
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_64_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_64
+    has_variable = mwp_d21_access_generation_64
+    var:mwp_d21_access_generation_64 = var:mwp_generation
+    has_variable = mwp_d21_access_day_64
+    var:mwp_d21_access_day_64 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_64 }
+    var:mwp_d21_subject_provider_64 = {
+        is_alive = yes
+        has_access_to_maa = accolade_maa_vanguards
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_65_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_65
+    has_variable = mwp_d21_access_generation_65
+    var:mwp_d21_access_generation_65 = var:mwp_generation
+    has_variable = mwp_d21_access_day_65
+    var:mwp_d21_access_day_65 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_65 }
+    var:mwp_d21_subject_provider_65 = {
+        is_alive = yes
+        has_access_to_maa = accolade_maa_lancers
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_66_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_66
+    has_variable = mwp_d21_access_generation_66
+    var:mwp_d21_access_generation_66 = var:mwp_generation
+    has_variable = mwp_d21_access_day_66
+    var:mwp_d21_access_day_66 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_66 }
+    var:mwp_d21_subject_provider_66 = {
+        is_alive = yes
+        has_access_to_maa = accolade_maa_crossbowers
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_67_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_67
+    has_variable = mwp_d21_access_generation_67
+    var:mwp_d21_access_generation_67 = var:mwp_generation
+    has_variable = mwp_d21_access_day_67
+    var:mwp_d21_access_day_67 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_67 }
+    var:mwp_d21_subject_provider_67 = {
+        is_alive = yes
+        has_access_to_maa = accolade_maa_cameliers
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_68_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_68
+    has_variable = mwp_d21_access_generation_68
+    var:mwp_d21_access_generation_68 = var:mwp_generation
+    has_variable = mwp_d21_access_day_68
+    var:mwp_d21_access_day_68 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_68 }
+    var:mwp_d21_subject_provider_68 = {
+        is_alive = yes
+        has_access_to_maa = accolade_maa_elephantiers
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_69_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_69
+    has_variable = mwp_d21_access_generation_69
+    var:mwp_d21_access_generation_69 = var:mwp_generation
+    has_variable = mwp_d21_access_day_69
+    var:mwp_d21_access_day_69 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_69 }
+    var:mwp_d21_subject_provider_69 = {
+        is_alive = yes
+        has_access_to_maa = accolade_maa_horse_archers
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_70_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_70
+    has_variable = mwp_d21_access_generation_70
+    var:mwp_d21_access_generation_70 = var:mwp_generation
+    has_variable = mwp_d21_access_day_70
+    var:mwp_d21_access_day_70 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_70 }
+    var:mwp_d21_subject_provider_70 = {
+        is_alive = yes
+        has_access_to_maa = accolade_maa_handgunners
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_71_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_71
+    has_variable = mwp_d21_access_generation_71
+    var:mwp_d21_access_generation_71 = var:mwp_generation
+    has_variable = mwp_d21_access_day_71
+    var:mwp_d21_access_day_71 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_71 }
+    var:mwp_d21_subject_provider_71 = {
+        is_alive = yes
+        has_access_to_maa = vigmen
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_72_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_72
+    has_variable = mwp_d21_access_generation_72
+    var:mwp_d21_access_generation_72 = var:mwp_generation
+    has_variable = mwp_d21_access_day_72
+    var:mwp_d21_access_day_72 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_72 }
+    var:mwp_d21_subject_provider_72 = {
+        is_alive = yes
+        has_access_to_maa = bondi
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_73_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_73
+    has_variable = mwp_d21_access_generation_73
+    var:mwp_d21_access_generation_73 = var:mwp_generation
+    has_variable = mwp_d21_access_day_73
+    var:mwp_d21_access_day_73 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_73 }
+    var:mwp_d21_subject_provider_73 = {
+        is_alive = yes
+        has_access_to_maa = varangian_veterans
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_74_trigger = { always = no }
+mwp_d21_type_subject_access_75_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_75
+    has_variable = mwp_d21_access_generation_75
+    var:mwp_d21_access_generation_75 = var:mwp_generation
+    has_variable = mwp_d21_access_day_75
+    var:mwp_d21_access_day_75 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_75 }
+    var:mwp_d21_subject_provider_75 = {
+        is_alive = yes
+        has_access_to_maa = ayrudzi
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_76_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_76
+    has_variable = mwp_d21_access_generation_76
+    var:mwp_d21_access_generation_76 = var:mwp_generation
+    has_variable = mwp_d21_access_day_76
+    var:mwp_d21_access_day_76 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_76 }
+    var:mwp_d21_subject_provider_76 = {
+        is_alive = yes
+        has_access_to_maa = conrois
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_77_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_77
+    has_variable = mwp_d21_access_generation_77
+    var:mwp_d21_access_generation_77 = var:mwp_generation
+    has_variable = mwp_d21_access_day_77
+    var:mwp_d21_access_day_77 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_77 }
+    var:mwp_d21_subject_provider_77 = {
+        is_alive = yes
+        has_access_to_maa = akritai
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_78_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_78
+    has_variable = mwp_d21_access_generation_78
+    var:mwp_d21_access_generation_78 = var:mwp_generation
+    has_variable = mwp_d21_access_day_78
+    var:mwp_d21_access_day_78 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_78 }
+    var:mwp_d21_subject_provider_78 = {
+        is_alive = yes
+        has_access_to_maa = ballistrai
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_79_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_79
+    has_variable = mwp_d21_access_generation_79
+    var:mwp_d21_access_generation_79 = var:mwp_generation
+    has_variable = mwp_d21_access_day_79
+    var:mwp_d21_access_day_79 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_79 }
+    var:mwp_d21_subject_provider_79 = {
+        is_alive = yes
+        has_access_to_maa = skoutatoi
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_80_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_80
+    has_variable = mwp_d21_access_generation_80
+    var:mwp_d21_access_generation_80 = var:mwp_generation
+    has_variable = mwp_d21_access_day_80
+    var:mwp_d21_access_day_80 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_80 }
+    var:mwp_d21_subject_provider_80 = {
+        is_alive = yes
+        has_access_to_maa = varangian_guards
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_81_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_81
+    has_variable = mwp_d21_access_generation_81
+    var:mwp_d21_access_generation_81 = var:mwp_generation
+    has_variable = mwp_d21_access_day_81
+    var:mwp_d21_access_day_81 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_81 }
+    var:mwp_d21_subject_provider_81 = {
+        is_alive = yes
+        has_access_to_maa = handpicked_faithful
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_82_trigger = { always = no }
+mwp_d21_type_subject_access_83_trigger = { always = no }
+mwp_d21_type_subject_access_84_trigger = { always = no }
+mwp_d21_type_subject_access_85_trigger = { always = no }
+mwp_d21_type_subject_access_86_trigger = { always = no }
+mwp_d21_type_subject_access_87_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_87
+    has_variable = mwp_d21_access_generation_87
+    var:mwp_d21_access_generation_87 = var:mwp_generation
+    has_variable = mwp_d21_access_day_87
+    var:mwp_d21_access_day_87 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_87 }
+    var:mwp_d21_subject_provider_87 = {
+        is_alive = yes
+        has_access_to_maa = torch_bearers
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_88_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_88
+    has_variable = mwp_d21_access_generation_88
+    var:mwp_d21_access_generation_88 = var:mwp_generation
+    has_variable = mwp_d21_access_day_88
+    var:mwp_d21_access_day_88 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_88 }
+    var:mwp_d21_subject_provider_88 = {
+        is_alive = yes
+        has_access_to_maa = kheshig
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_89_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_89
+    has_variable = mwp_d21_access_generation_89
+    var:mwp_d21_access_generation_89 = var:mwp_generation
+    has_variable = mwp_d21_access_day_89
+    var:mwp_d21_access_day_89 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_89 }
+    var:mwp_d21_subject_provider_89 = {
+        is_alive = yes
+        has_access_to_maa = steppe_raiders
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_90_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_90
+    has_variable = mwp_d21_access_generation_90
+    var:mwp_d21_access_generation_90 = var:mwp_generation
+    has_variable = mwp_d21_access_day_90
+    var:mwp_d21_access_day_90 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_90 }
+    var:mwp_d21_subject_provider_90 = {
+        is_alive = yes
+        has_access_to_maa = heavy_horse_archers
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_91_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_91
+    has_variable = mwp_d21_access_generation_91
+    var:mwp_d21_access_generation_91 = var:mwp_generation
+    has_variable = mwp_d21_access_day_91
+    var:mwp_d21_access_day_91 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_91 }
+    var:mwp_d21_subject_provider_91 = {
+        is_alive = yes
+        has_access_to_maa = nomad_lancers
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_92_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_92
+    has_variable = mwp_d21_access_generation_92
+    var:mwp_d21_access_generation_92 = var:mwp_generation
+    has_variable = mwp_d21_access_day_92
+    var:mwp_d21_access_day_92 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_92 }
+    var:mwp_d21_subject_provider_92 = {
+        is_alive = yes
+        has_access_to_maa = mangudai
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_93_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_93
+    has_variable = mwp_d21_access_generation_93
+    var:mwp_d21_access_generation_93 = var:mwp_generation
+    has_variable = mwp_d21_access_day_93
+    var:mwp_d21_access_day_93 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_93 }
+    var:mwp_d21_subject_provider_93 = {
+        is_alive = yes
+        has_access_to_maa = cataphract_archers
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_94_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_94
+    has_variable = mwp_d21_access_generation_94
+    var:mwp_d21_access_generation_94 = var:mwp_generation
+    has_variable = mwp_d21_access_day_94
+    var:mwp_d21_access_day_94 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_94 }
+    var:mwp_d21_subject_provider_94 = {
+        is_alive = yes
+        has_access_to_maa = maturkan_warriors
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_95_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_95
+    has_variable = mwp_d21_access_generation_95
+    var:mwp_d21_access_generation_95 = var:mwp_generation
+    has_variable = mwp_d21_access_day_95
+    var:mwp_d21_access_day_95 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_95 }
+    var:mwp_d21_subject_provider_95 = {
+        is_alive = yes
+        has_access_to_maa = emishi_horse_archers
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_96_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_96
+    has_variable = mwp_d21_access_generation_96
+    var:mwp_d21_access_generation_96 = var:mwp_generation
+    has_variable = mwp_d21_access_day_96
+    var:mwp_d21_access_day_96 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_96 }
+    var:mwp_d21_subject_provider_96 = {
+        is_alive = yes
+        has_access_to_maa = japanese_horse_archers
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_97_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_97
+    has_variable = mwp_d21_access_generation_97
+    var:mwp_d21_access_generation_97 = var:mwp_generation
+    has_variable = mwp_d21_access_day_97
+    var:mwp_d21_access_day_97 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_97 }
+    var:mwp_d21_subject_provider_97 = {
+        is_alive = yes
+        has_access_to_maa = warrior_monks
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_98_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_98
+    has_variable = mwp_d21_access_generation_98
+    var:mwp_d21_access_generation_98 = var:mwp_generation
+    has_variable = mwp_d21_access_day_98
+    var:mwp_d21_access_day_98 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_98 }
+    var:mwp_d21_subject_provider_98 = {
+        is_alive = yes
+        has_access_to_maa = fire_lancers
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_99_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_99
+    has_variable = mwp_d21_access_generation_99
+    var:mwp_d21_access_generation_99 = var:mwp_generation
+    has_variable = mwp_d21_access_day_99
+    var:mwp_d21_access_day_99 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_99 }
+    var:mwp_d21_subject_provider_99 = {
+        is_alive = yes
+        has_access_to_maa = gakgung_archers
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_100_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_100
+    has_variable = mwp_d21_access_generation_100
+    var:mwp_d21_access_generation_100 = var:mwp_generation
+    has_variable = mwp_d21_access_day_100
+    var:mwp_d21_access_day_100 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_100 }
+    var:mwp_d21_subject_provider_100 = {
+        is_alive = yes
+        has_access_to_maa = ballista_elephant
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_101_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_101
+    has_variable = mwp_d21_access_generation_101
+    var:mwp_d21_access_generation_101 = var:mwp_generation
+    has_variable = mwp_d21_access_day_101
+    var:mwp_d21_access_day_101 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_101 }
+    var:mwp_d21_subject_provider_101 = {
+        is_alive = yes
+        has_access_to_maa = pesilat_warriors
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_102_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_102
+    has_variable = mwp_d21_access_generation_102
+    var:mwp_d21_access_generation_102 = var:mwp_generation
+    has_variable = mwp_d21_access_day_102
+    var:mwp_d21_access_day_102 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_102 }
+    var:mwp_d21_subject_provider_102 = {
+        is_alive = yes
+        has_access_to_maa = samurai
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_103_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_103
+    has_variable = mwp_d21_access_generation_103
+    var:mwp_d21_access_generation_103 = var:mwp_generation
+    has_variable = mwp_d21_access_day_103
+    var:mwp_d21_access_day_103 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_103 }
+    var:mwp_d21_subject_provider_103 = {
+        is_alive = yes
+        has_access_to_maa = zhanmadao_infantry
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_104_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_104
+    has_variable = mwp_d21_access_generation_104
+    var:mwp_d21_access_generation_104 = var:mwp_generation
+    has_variable = mwp_d21_access_day_104
+    var:mwp_d21_access_day_104 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_104 }
+    var:mwp_d21_subject_provider_104 = {
+        is_alive = yes
+        has_access_to_maa = black_armor_cavalry
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_105_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_105
+    has_variable = mwp_d21_access_generation_105
+    var:mwp_d21_access_generation_105 = var:mwp_generation
+    has_variable = mwp_d21_access_day_105
+    var:mwp_d21_access_day_105 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_105 }
+    var:mwp_d21_subject_provider_105 = {
+        is_alive = yes
+        has_access_to_maa = tiefutu
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_106_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_106
+    has_variable = mwp_d21_access_generation_106
+    var:mwp_d21_access_generation_106 = var:mwp_generation
+    has_variable = mwp_d21_access_day_106
+    var:mwp_d21_access_day_106 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_106 }
+    var:mwp_d21_subject_provider_106 = {
+        is_alive = yes
+        has_access_to_maa = burenjia
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_107_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_107
+    has_variable = mwp_d21_access_generation_107
+    var:mwp_d21_access_generation_107 = var:mwp_generation
+    has_variable = mwp_d21_access_day_107
+    var:mwp_d21_access_day_107 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_107 }
+    var:mwp_d21_subject_provider_107 = {
+        is_alive = yes
+        has_access_to_maa = rocket_carts
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_108_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_108
+    has_variable = mwp_d21_access_generation_108
+    var:mwp_d21_access_generation_108 = var:mwp_generation
+    has_variable = mwp_d21_access_day_108
+    var:mwp_d21_access_day_108 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_108 }
+    var:mwp_d21_subject_provider_108 = {
+        is_alive = yes
+        has_access_to_maa = ballista
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_109_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_109
+    has_variable = mwp_d21_access_generation_109
+    var:mwp_d21_access_generation_109 = var:mwp_generation
+    has_variable = mwp_d21_access_day_109
+    var:mwp_d21_access_day_109 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_109 }
+    var:mwp_d21_subject_provider_109 = {
+        is_alive = yes
+        has_access_to_maa = cloud_ladder
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_110_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_110
+    has_variable = mwp_d21_access_generation_110
+    var:mwp_d21_access_generation_110 = var:mwp_generation
+    has_variable = mwp_d21_access_day_110
+    var:mwp_d21_access_day_110 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_110 }
+    var:mwp_d21_subject_provider_110 = {
+        is_alive = yes
+        has_access_to_maa = siege_tower
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
+mwp_d21_type_subject_access_111_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_111
+    has_variable = mwp_d21_access_generation_111
+    var:mwp_d21_access_generation_111 = var:mwp_generation
+    has_variable = mwp_d21_access_day_111
+    var:mwp_d21_access_day_111 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_111 }
+    var:mwp_d21_subject_provider_111 = {
+        is_alive = yes
+        has_access_to_maa = cannon
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}

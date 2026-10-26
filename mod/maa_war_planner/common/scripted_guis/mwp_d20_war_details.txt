@@ -1,0 +1,35 @@
+﻿mwp_d20_page_select = { scope = character
+ saved_scopes = { mwp_d20_direction mwp_d20_tier mwp_d20_delta }
+ is_shown = { is_ai = no }
+ is_valid = { is_ai = no is_alive = yes mwp_d20_war_schema_current_trigger = yes
+  OR = { scope:mwp_d20_direction = 1 scope:mwp_d20_direction = 2 }
+  OR = { scope:mwp_d20_tier = 1 scope:mwp_d20_tier = 2 scope:mwp_d20_tier = 3 }
+  OR = { scope:mwp_d20_delta = -1 scope:mwp_d20_delta = 0 scope:mwp_d20_delta = 1 } }
+ effect = {
+ if = { limit = { is_ai = no is_alive = yes mwp_d20_war_schema_current_trigger = yes
+  OR = { scope:mwp_d20_direction = 1 scope:mwp_d20_direction = 2 }
+  OR = { scope:mwp_d20_tier = 1 scope:mwp_d20_tier = 2 scope:mwp_d20_tier = 3 }
+  OR = { scope:mwp_d20_delta = -1 scope:mwp_d20_delta = 0 scope:mwp_d20_delta = 1 } }
+  mwp_d20_page_defaults_effect = yes
+  if = { limit = { OR = {
+   NOT = { scope:mwp_d20_delta = 0 }
+   NOT = { var:mwp_d20_page_direction = scope:mwp_d20_direction }
+   NOT = { var:mwp_d20_page_tier = scope:mwp_d20_tier }
+   NOT = { has_variable = mwp_d20_page_owner }
+   NOT = { var:mwp_d20_page_owner = this }
+   NOT = { has_variable = mwp_d20_page_stamp }
+   NOT = { var:mwp_d20_page_stamp = var:mwp_war_scan_stamp }
+   NOT = { has_variable = mwp_d20_page_day }
+   NOT = { var:mwp_d20_page_day = days_since_birth }
+  } }
+  if = { limit = { OR = { NOT = { var:mwp_d20_page_direction = scope:mwp_d20_direction } NOT = { var:mwp_d20_page_tier = scope:mwp_d20_tier } } }
+   set_variable = { name = mwp_d20_page_number value = 1 }
+  }
+  set_variable = { name = mwp_d20_page_direction value = scope:mwp_d20_direction }
+  set_variable = { name = mwp_d20_page_tier value = scope:mwp_d20_tier }
+  change_variable = { name = mwp_d20_page_number add = scope:mwp_d20_delta }
+  mwp_d20_page_build_effect = yes
+ }
+ }
+ }
+}

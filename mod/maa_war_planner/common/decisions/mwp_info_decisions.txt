@@ -1,0 +1,2 @@
+﻿# GENERATED DEV10 GUI; tests/maa_war_planner/build_dev10_gui.py
+# The standalone Info decision is replaced by Military > Wars.

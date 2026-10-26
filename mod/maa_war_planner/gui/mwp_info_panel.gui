@@ -1,0 +1,84 @@
+﻿types MwpDev20Opponents {
+type mwp_d20_opponent_row = widget {
+ name = "mwp_d20_opponent_row" size = { 568 124 } datacontext = "[Scope.GetCharacter]"
+ background = { using = Background_Area }
+ portrait_head_small = { position = { 7 14 } }
+ text_single = { text = "[Character.GetName]" position = { 104 7 } size = { 450 25 } max_width = 450 elide = right fontsize = 18 }
+ text_single = { text = "[Character.GetPrimaryTitle.GetName]" position = { 104 33 } max_width = 450 elide = right fontsize = 14 using = Color_Grey }
+ text_single = { text = "mwp_d20_row_strength" position = { 104 54 } max_width = 300 fontsize = 15 }
+ text_single = { text = "mwp_d20_row_fort" position = { 402 54 } max_width = 154 fontsize = 15 visible = "[Character.GetCapitalLocation.IsValid]" }
+widget = { size = { 450 40 } position = { 104 77 } visible = "[Not(Or(GetVariableSystem.HasValue('mwp_dev10_direction','defensive'),GetVariableSystem.HasValue('mwp_dev10_direction','active')))]"
+ text_single = { name = "mwp_d20_offensive_cb" text = "mwp_d20_offensive_cb" max_width = 450 elide = right fontsize = 15 visible = "[Character.MakeScope.GetVariable('mwp_d20_offensive_cb').IsSet]" tooltip = "mwp_d20_cb_tooltip" }
+ text_single = { text = "mwp_d20_cb_unknown" max_width = 450 elide = right fontsize = 14 visible = "[Not(Character.MakeScope.GetVariable('mwp_d20_offensive_cb').IsSet)]" }
+ text_single = { text = "mwp_d20_offensive_rank" position = { 0 22 } max_width = 260 fontsize = 13 using = Color_Grey tooltip = "mwp_d20_priority_tooltip" }
+}
+widget = { size = { 450 40 } position = { 104 77 } visible = "[GetVariableSystem.HasValue('mwp_dev10_direction','defensive')]"
+ text_single = { name = "mwp_d20_defensive_cb" text = "mwp_d20_defensive_cb" max_width = 450 elide = right fontsize = 15 visible = "[Character.MakeScope.GetVariable('mwp_d20_defensive_cb').IsSet]" tooltip = "mwp_d20_cb_tooltip" }
+ text_single = { text = "mwp_d20_cb_unknown" max_width = 450 elide = right fontsize = 14 visible = "[Not(Character.MakeScope.GetVariable('mwp_d20_defensive_cb').IsSet)]" }
+ text_single = { text = "mwp_d20_defensive_rank" position = { 0 22 } max_width = 260 fontsize = 13 using = Color_Grey tooltip = "mwp_d20_priority_tooltip" }
+}
+button_tertiary = { name = "mwp_d20_declare_details" size = { 156 24 } position = { 400 98 }
+ text = "mwp_d20_cb_details" visible = "[Not(GetVariableSystem.HasValue('mwp_dev10_direction','defensive'))]"
+ enabled = "[GetScriptedGui('mwp_info_offensive_available').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('mwp_info_rival',Character.MakeScope).End)]"
+ onclick = "[Character.OpenPlayerInteraction('declare_war_interaction')]" tooltip = "mwp_d20_cb_details_tooltip"
+}
+}
+type mwp_dev10_wars = vbox {
+ name = "mwp_dev10_wars" size = { 590 0 } layoutpolicy_vertical = expanding spacing = 5
+widget = { name = mwp_d20_page_poll_worker size = { 1 1 } alwaystransparent = yes
+ state = { name = mwp_d20_page_poll_poll trigger_on_create = yes alpha = 1 duration = 0.25
+  on_finish = "[PdxGuiWidget.TriggerAnimation(Select_CString(And(GetPlayer.IsValid,And(GetVariableSystem.HasValue('mwp_dev10_tab','wars'),Not(GetVariableSystem.HasValue('mwp_dev10_direction','active')))),'mwp_d20_page_poll_decide','mwp_d20_page_poll_idle'))]" }
+ state = { name = mwp_d20_page_poll_decide alpha = 1 duration = 0
+  on_finish = "[PdxGuiWidget.TriggerAnimation(Select_CString(And(GetPlayer.IsValid,And(GetVariableSystem.HasValue('mwp_dev10_tab','wars'),Not(GetVariableSystem.HasValue('mwp_dev10_direction','active')))),'mwp_d20_page_poll_commit','mwp_d20_page_poll_idle'))]" }
+ state = { name = mwp_d20_page_poll_commit alpha = 1
+  on_start = "[PdxGuiWidget.TriggerAnimation('mwp_d20_page_poll_idle')]"
+  on_start = "[GetScriptedGui('mwp_d20_page_select').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('mwp_d20_direction',MakeScopeValue(Select_CFixedPoint(GetVariableSystem.HasValue('mwp_dev10_direction','defensive'),'(CFixedPoint)2','(CFixedPoint)1'))).AddScope('mwp_d20_tier',MakeScopeValue(Select_CFixedPoint(GetVariableSystem.HasValue('mwp_dev10_likelihood','low'),'(CFixedPoint)1',Select_CFixedPoint(GetVariableSystem.HasValue('mwp_dev10_likelihood','medium'),'(CFixedPoint)2','(CFixedPoint)3')))).AddScope('mwp_d20_delta',MakeScopeValue('(CFixedPoint)0')).End)]"
+ }
+ state = { name = mwp_d20_page_poll_idle alpha = 1 duration = 0 next = mwp_d20_page_poll_poll }
+}
+hbox = { name = "mwp_d20_direction" size = { 590 36 } spacing = 4
+button_tab = { name = "mwp_dev10_offensive_tab" size = { 194 36 } down = "[Not(Or(GetVariableSystem.HasValue('mwp_dev10_direction','defensive'),GetVariableSystem.HasValue('mwp_dev10_direction','active')))]"
+ onclick = "[GetVariableSystem.Set('mwp_dev10_direction','offensive')]"
+ blockoverride "tab_label" { text = "mwp_info_tab_offensive" fontsize = 16 } }
+button_tab = { name = "mwp_dev10_defensive_tab" size = { 194 36 } down = "[GetVariableSystem.HasValue('mwp_dev10_direction','defensive')]"
+ onclick = "[GetVariableSystem.Set('mwp_dev10_direction','defensive')]"
+ blockoverride "tab_label" { text = "mwp_info_tab_defensive" fontsize = 16 } }
+button_tab = { name = "mwp_dev10_active_tab" size = { 194 36 } down = "[GetVariableSystem.HasValue('mwp_dev10_direction','active')]"
+ onclick = "[GetVariableSystem.Set('mwp_dev10_direction','active')]"
+ blockoverride "tab_label" { text = "mwp_info_tab_active" fontsize = 16 } }
+}
+hbox = { size = { 590 30 } spacing = 4 visible = "[Not(GetVariableSystem.HasValue('mwp_dev10_direction','active'))]"
+button_radio_label = { name = "mwp_dev10_likelihood_high" size = { 140 28 }
+ onclick = "[GetVariableSystem.Set('mwp_dev10_likelihood','high')]" tooltip = "mwp_d20_priority_tooltip"
+ blockoverride "radio" { size = { 22 22 } frame = "[BoolTo1And2(Not(Or(GetVariableSystem.HasValue('mwp_dev10_likelihood','medium'),GetVariableSystem.HasValue('mwp_dev10_likelihood','low'))))]" }
+ blockoverride "text" { text = "mwp_d20_priority_high" fontsize = 15 max_width = 112 } }
+button_radio_label = { name = "mwp_dev10_likelihood_medium" size = { 140 28 }
+ onclick = "[GetVariableSystem.Set('mwp_dev10_likelihood','medium')]" tooltip = "mwp_d20_priority_tooltip"
+ blockoverride "radio" { size = { 22 22 } frame = "[BoolTo1And2(GetVariableSystem.HasValue('mwp_dev10_likelihood','medium'))]" }
+ blockoverride "text" { text = "mwp_d20_priority_medium" fontsize = 15 max_width = 112 } }
+button_radio_label = { name = "mwp_dev10_likelihood_low" size = { 140 28 }
+ onclick = "[GetVariableSystem.Set('mwp_dev10_likelihood','low')]" tooltip = "mwp_d20_priority_tooltip"
+ blockoverride "radio" { size = { 22 22 } frame = "[BoolTo1And2(GetVariableSystem.HasValue('mwp_dev10_likelihood','low'))]" }
+ blockoverride "text" { text = "mwp_d20_priority_low" fontsize = 15 max_width = 112 } }
+button_tertiary = { name = "mwp_d20_refresh" size = { 154 28 } text = "mwp_refresh_label"
+ onclick = "[GetScriptedGui('mwp_request_analysis').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]" tooltip = "mwp_refresh_tooltip" }
+}
+vbox = { name = "mwp_d20_future_list" size = { 590 0 } layoutpolicy_vertical = expanding visible = "[Not(GetVariableSystem.HasValue('mwp_dev10_direction','active'))]"
+ text_single = { text = "mwp_d20_page_summary" max_width = 580 fontsize = 14 using = Color_Grey }
+ text_multi = { text = "mwp_info_empty" max_width = 570 autoresize = yes visible = "[Not(DataModelHasItems(GetPlayer.MakeScope.GetList('mwp_d20_page')))]" }
+ scrollbox = { size = { 590 0 } layoutpolicy_vertical = expanding
+ blockoverride "scrollbox_content" { fixedgridbox = { size = { 568 -1 } addcolumn = 568 addrow = 128
+ datamodel = "[GetPlayer.MakeScope.GetList('mwp_d20_page')]" datamodel_reuse_widgets = yes
+ item = { mwp_d20_opponent_row = { } } } } }
+ hbox = { size = { 590 30 } spacing = 6
+button_tertiary = { name = "mwp_d20_page_previous" size = { 288 28 } text = "mwp_d20_previous"
+ enabled = "[GreaterThan_CFixedPoint(GetPlayer.MakeScope.GetVariable('mwp_d20_page_number').GetValueWithDefault('(CFixedPoint)1'),'(CFixedPoint)1')]" onclick = "[GetScriptedGui('mwp_d20_page_select').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('mwp_d20_direction',MakeScopeValue(Select_CFixedPoint(GetVariableSystem.HasValue('mwp_dev10_direction','defensive'),'(CFixedPoint)2','(CFixedPoint)1'))).AddScope('mwp_d20_tier',MakeScopeValue(Select_CFixedPoint(GetVariableSystem.HasValue('mwp_dev10_likelihood','low'),'(CFixedPoint)1',Select_CFixedPoint(GetVariableSystem.HasValue('mwp_dev10_likelihood','medium'),'(CFixedPoint)2','(CFixedPoint)3')))).AddScope('mwp_d20_delta',MakeScopeValue('(CFixedPoint)-1')).End)]" }
+button_tertiary = { name = "mwp_d20_page_next" size = { 288 28 } text = "mwp_d20_next"
+ enabled = "[LessThan_CFixedPoint(GetPlayer.MakeScope.GetVariable('mwp_d20_page_number').GetValueWithDefault('(CFixedPoint)1'),GetPlayer.MakeScope.GetVariable('mwp_d20_page_total').GetValueWithDefault('(CFixedPoint)1'))]" onclick = "[GetScriptedGui('mwp_d20_page_select').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('mwp_d20_direction',MakeScopeValue(Select_CFixedPoint(GetVariableSystem.HasValue('mwp_dev10_direction','defensive'),'(CFixedPoint)2','(CFixedPoint)1'))).AddScope('mwp_d20_tier',MakeScopeValue(Select_CFixedPoint(GetVariableSystem.HasValue('mwp_dev10_likelihood','low'),'(CFixedPoint)1',Select_CFixedPoint(GetVariableSystem.HasValue('mwp_dev10_likelihood','medium'),'(CFixedPoint)2','(CFixedPoint)3')))).AddScope('mwp_d20_delta',MakeScopeValue('(CFixedPoint)1')).End)]" }
+}
+}
+vbox = { name = "mwp_dev10_active_list" size = { 590 0 } layoutpolicy_vertical = expanding visible = "[GetVariableSystem.HasValue('mwp_dev10_direction','active')]"
+ mwp_dev20_active_wars = { }
+}
+}
+}

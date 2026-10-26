@@ -1,0 +1,21 @@
+﻿namespace = mwp_cycle
+
+# One player-local refresh opportunity every 30 game days. A current pending
+# request or collector continues; elapsed game time does not erase its progress.
+mwp_cycle.1 = {
+	type = character_event
+	hidden = yes
+	immediate = {
+		if = {
+			limit = {
+				is_ai = no
+				is_alive = yes
+				exists = scope:mwp_scheduled_token
+				has_variable = mwp_cycle_token
+				scope:mwp_scheduled_token = var:mwp_cycle_token
+			}
+			mwp_periodic_analysis_effect = yes
+			mwp_schedule_cycle_effect = yes
+		}
+	}
+}

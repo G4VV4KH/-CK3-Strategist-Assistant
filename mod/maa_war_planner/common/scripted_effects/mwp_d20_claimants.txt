@@ -1,0 +1,95 @@
+﻿# Snapshot search runs only on explicit entry/Refresh, never on an AI or daily pulse.
+mwp_d20_claimants_refresh_effect = {
+ save_scope_as = mwp_d20_claim_player
+ every_in_list = { variable = mwp_d20_claimants_raw
+  limit = { has_variable = mwp_d20_claim_owner var:mwp_d20_claim_owner = scope:mwp_d20_claim_player }
+  remove_variable = mwp_d20_claim_owner remove_variable = mwp_d20_claim_sequence
+  remove_variable = mwp_d20_claim_best_title remove_variable = mwp_d20_claim_defender
+  remove_variable = mwp_d20_claim_tier remove_variable = mwp_d20_claim_opinion
+ }
+ clear_variable_list = mwp_d20_claimants_raw
+ clear_variable_list = mwp_d20_claimants
+ clear_variable_list = mwp_d20_claimants_page
+ if = { limit = { NOT = { has_variable = mwp_d20_claim_sequence } } set_variable = { name = mwp_d20_claim_sequence value = 0 } }
+ change_variable = { name = mwp_d20_claim_sequence add = 1 }
+ if = { limit = { NOT = { has_variable = mwp_d20_claim_sort } } set_variable = { name = mwp_d20_claim_sort value = 1 } }
+ set_variable = { name = mwp_d20_claim_count value = 0 }
+ set_variable = { name = mwp_d20_claim_page_start value = 0 }
+ every_living_character = {
+  limit = {
+   is_ai = yes is_ruler = no is_claimant = yes is_imprisoned = no
+   NOT = { is_courtier_of = scope:mwp_d20_claim_player }
+   NOT = { host = scope:mwp_d20_claim_player }
+   in_diplomatic_range = scope:mwp_d20_claim_player
+  }
+  save_scope_as = mwp_d20_claim_candidate
+  if = { limit = { mwp_d20_claim_invite_trigger = yes }
+   set_variable = { name = mwp_d20_claim_tier value = 0 }
+   remove_variable = mwp_d20_claim_best_title
+   remove_variable = mwp_d20_claim_defender
+   every_claim = {
+    explicit = yes pressed = all
+    limit = { tier >= tier_county exists = holder is_titular = no tier > scope:mwp_d20_claim_candidate.var:mwp_d20_claim_tier }
+    save_scope_as = mwp_d20_claim_title
+    holder = {
+     save_scope_as = mwp_d20_claim_defender
+     mwp_d20_claim_consider_defender_effect = yes
+     every_liege_or_above = {
+      limit = { scope:mwp_d20_claim_title = { tier > scope:mwp_d20_claim_candidate.var:mwp_d20_claim_tier } }
+      save_scope_as = mwp_d20_claim_defender
+      mwp_d20_claim_consider_defender_effect = yes
+     }
+    }
+   }
+   if = { limit = { exists = var:mwp_d20_claim_best_title }
+    set_variable = { name = mwp_d20_claim_owner value = scope:mwp_d20_claim_player }
+    set_variable = { name = mwp_d20_claim_sequence value = scope:mwp_d20_claim_player.var:mwp_d20_claim_sequence }
+    save_opinion_value_as = { name = mwp_d20_claim_opinion target = scope:mwp_d20_claim_player }
+    set_variable = { name = mwp_d20_claim_opinion value = scope:mwp_d20_claim_opinion }
+    scope:mwp_d20_claim_player = {
+     add_to_variable_list = { name = mwp_d20_claimants_raw target = scope:mwp_d20_claim_candidate }
+     change_variable = { name = mwp_d20_claim_count add = 1 }
+    }
+   }
+   else = { remove_variable = mwp_d20_claim_tier }
+  }
+ }
+ mwp_d20_claimants_sort_effect = yes
+}
+mwp_d20_claim_consider_defender_effect = {
+ if = { limit = { mwp_d20_claim_cb_trigger = yes mwp_d20_claim_new_title_trigger = yes }
+  scope:mwp_d20_claim_candidate = {
+   set_variable = { name = mwp_d20_claim_best_title value = scope:mwp_d20_claim_title }
+   set_variable = { name = mwp_d20_claim_defender value = scope:mwp_d20_claim_defender }
+   set_variable = { name = mwp_d20_claim_tier value = scope:mwp_d20_claim_title.tier }
+  }
+ }
+}
+mwp_d20_claimants_sort_effect = {
+ save_scope_as = mwp_d20_claim_player
+ clear_variable_list = mwp_d20_claimants
+ ordered_in_list = {
+  variable = mwp_d20_claimants_raw order_by = mwp_d20_claim_sort_value
+  max = var:mwp_d20_claim_count check_range_bounds = no
+  save_scope_as = mwp_d20_claim_candidate
+  scope:mwp_d20_claim_player = { add_to_variable_list = { name = mwp_d20_claimants target = scope:mwp_d20_claim_candidate } }
+ }
+ set_variable = { name = mwp_d20_claim_page_start value = 0 }
+ mwp_d20_claimants_page_effect = yes
+}
+mwp_d20_claimants_page_effect = {
+ save_scope_as = mwp_d20_claim_player
+ clear_variable_list = mwp_d20_claimants_page
+ set_variable = { name = mwp_d20_claim_page_index value = 0 }
+ set_variable = { name = mwp_d20_claim_page_end value = { value = var:mwp_d20_claim_page_start add = 20 } }
+ every_in_list = { variable = mwp_d20_claimants
+  save_scope_as = mwp_d20_claim_candidate
+  scope:mwp_d20_claim_player = {
+   change_variable = { name = mwp_d20_claim_page_index add = 1 }
+   if = { limit = { var:mwp_d20_claim_page_index > var:mwp_d20_claim_page_start var:mwp_d20_claim_page_index <= var:mwp_d20_claim_page_end }
+    add_to_variable_list = { name = mwp_d20_claimants_page target = scope:mwp_d20_claim_candidate }
+   }
+  }
+ }
+ set_variable = { name = mwp_d20_claim_page_end value = { value = var:mwp_d20_claim_page_end max = var:mwp_d20_claim_count } }
+}

@@ -1,0 +1,6 @@
+﻿mwp_d21_reject_herd_stock_value = { value = 0
+ if = { limit = { exists = domicile } value = domicile.herd }
+}
+mwp_d21_reject_raised_value = { value = 0
+ if = { limit = { has_raised_armies = yes } value = 1 }
+}

@@ -1,0 +1,4303 @@
+﻿mwp_d21_nomad_unraised_trigger = {
+ government_has_flag = government_is_nomadic exists = domicile NOT = { has_raised_armies = yes }
+}
+mwp_d21_nomad_selected_resources_trigger = {
+ trigger_if = { limit = { mwp_d21_nomad_mode_value = 1 }
+  mwp_d21_active_route_value = 1 mwp_d21_nomad_unraised_trigger = yes
+  domicile.herd >= mwp_d21_nomad_herd_cost_value domicile.horde >= mwp_d21_nomad_herd_cost_value
+  trigger_if = { limit = { has_variable = mwp_d19_tx_active }
+   exists = var:mwp_d21_tx_domicile domicile = var:mwp_d21_tx_domicile
+   domicile = { herd = root.var:mwp_d21_tx_herd_before }
+  }
+ }
+}
+mwp_d21_nomad_post_herd_trigger = {
+ trigger_if = { limit = { mwp_d21_nomad_mode_value = 1 }
+  exists = var:mwp_d21_tx_domicile domicile = var:mwp_d21_tx_domicile
+  domicile.herd = mwp_d21_nomad_expected_herd_value
+ }
+}
+mwp_d21_nomad_source_1_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = huscarl
+            }
+            mwp_d21_type_subject_access_1_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = huscarl
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_2_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = landsknecht
+            }
+            mwp_d21_type_subject_access_2_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = landsknecht
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_3_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = longbowmen
+            }
+            mwp_d21_type_subject_access_3_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = longbowmen
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_4_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = goedendag
+            }
+            mwp_d21_type_subject_access_4_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = goedendag
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_5_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = gendarme
+            }
+            mwp_d21_type_subject_access_5_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = gendarme
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 50.0
+        mwp_d21_nomad_herd_cost_value <= 50.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_6_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = chasseur
+            }
+            mwp_d21_type_subject_access_6_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = chasseur
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_7_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = picchieri
+            }
+            mwp_d21_type_subject_access_7_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = picchieri
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_8_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = praetorian
+            }
+            mwp_d21_type_subject_access_8_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = praetorian
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_9_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = caballero
+            }
+            mwp_d21_type_subject_access_9_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = caballero
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_10_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = monaspa
+            }
+            mwp_d21_type_subject_access_10_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = monaspa
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 50.0
+        mwp_d21_nomad_herd_cost_value <= 50.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_11_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = cataphract
+            }
+            mwp_d21_type_subject_access_11_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = cataphract
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 50.0
+        mwp_d21_nomad_herd_cost_value <= 50.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_12_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = hobelar
+            }
+            mwp_d21_type_subject_access_12_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = hobelar
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_13_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = schiltron
+            }
+            mwp_d21_type_subject_access_13_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = schiltron
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_14_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = metsanvartija
+            }
+            mwp_d21_type_subject_access_14_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = metsanvartija
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_15_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = horse_archers
+            }
+            mwp_d21_type_subject_access_15_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = horse_archers
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_16_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = ayyar
+            }
+            mwp_d21_type_subject_access_16_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = ayyar
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_17_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = mubarizun
+            }
+            mwp_d21_type_subject_access_17_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = mubarizun
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_18_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = mulaththamun
+            }
+            mwp_d21_type_subject_access_18_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = mulaththamun
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_19_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = archers_of_the_nile
+            }
+            mwp_d21_type_subject_access_19_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = archers_of_the_nile
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_20_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = paiks
+            }
+            mwp_d21_type_subject_access_20_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = paiks
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_21_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = druzhina
+            }
+            mwp_d21_type_subject_access_21_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = druzhina
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_22_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = hussar
+            }
+            mwp_d21_type_subject_access_22_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = hussar
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_23_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = horn_warrior
+            }
+            mwp_d21_type_subject_access_23_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = horn_warrior
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_24_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = bush_hunter
+            }
+            mwp_d21_type_subject_access_24_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = bush_hunter
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_25_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = shomer
+            }
+            mwp_d21_type_subject_access_25_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = shomer
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_26_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = garudas
+            }
+            mwp_d21_type_subject_access_26_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = garudas
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_27_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = khandayat
+            }
+            mwp_d21_type_subject_access_27_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = khandayat
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_28_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = mountaineer
+            }
+            mwp_d21_type_subject_access_28_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = mountaineer
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_29_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = sahel_horsemen
+            }
+            mwp_d21_type_subject_access_29_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = sahel_horsemen
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_30_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = guinea_warrior
+            }
+            mwp_d21_type_subject_access_30_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = guinea_warrior
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_31_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = sarawit
+            }
+            mwp_d21_type_subject_access_31_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = sarawit
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_32_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = abudrar
+            }
+            mwp_d21_type_subject_access_32_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = abudrar
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_33_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = zbrojnosh
+            }
+            mwp_d21_type_subject_access_33_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = zbrojnosh
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_34_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = palace_guards
+            }
+            mwp_d21_type_subject_access_34_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = palace_guards
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_35_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = shenbigong
+            }
+            mwp_d21_type_subject_access_35_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = shenbigong
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_36_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = guanch_vaulter
+            }
+            mwp_d21_type_subject_access_36_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = guanch_vaulter
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_37_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = teulu
+            }
+            mwp_d21_type_subject_access_37_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = teulu
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_38_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = asawira
+            }
+            mwp_d21_type_subject_access_38_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = asawira
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 50.0
+        mwp_d21_nomad_herd_cost_value <= 50.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_39_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = tarkhan
+            }
+            mwp_d21_type_subject_access_39_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = tarkhan
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 50.0
+        mwp_d21_nomad_herd_cost_value <= 50.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_40_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = zupin_warrior
+            }
+            mwp_d21_type_subject_access_40_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = zupin_warrior
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_41_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = tawashi
+            }
+            mwp_d21_type_subject_access_41_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = tawashi
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_44_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = light_footmen
+            }
+            mwp_d21_type_subject_access_44_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = light_footmen
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_88_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = kheshig
+            }
+            mwp_d21_type_subject_access_88_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = kheshig
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 50.0
+        mwp_d21_nomad_herd_cost_value <= 50.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_89_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = steppe_raiders
+            }
+            mwp_d21_type_subject_access_89_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = steppe_raiders
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_90_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = heavy_horse_archers
+            }
+            mwp_d21_type_subject_access_90_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = heavy_horse_archers
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 50.0
+        mwp_d21_nomad_herd_cost_value <= 50.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_91_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = nomad_lancers
+            }
+            mwp_d21_type_subject_access_91_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = nomad_lancers
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 50.0
+        mwp_d21_nomad_herd_cost_value <= 50.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_92_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = mangudai
+            }
+            mwp_d21_type_subject_access_92_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = mangudai
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_93_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = cataphract_archers
+            }
+            mwp_d21_type_subject_access_93_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = cataphract_archers
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 50.0
+        mwp_d21_nomad_herd_cost_value <= 50.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_94_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = maturkan_warriors
+            }
+            mwp_d21_type_subject_access_94_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = maturkan_warriors
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_97_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = warrior_monks
+            }
+            mwp_d21_type_subject_access_97_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = warrior_monks
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_45_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = bowmen
+            }
+            mwp_d21_type_subject_access_45_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = bowmen
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_46_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = light_horsemen
+            }
+            mwp_d21_type_subject_access_46_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = light_horsemen
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_47_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = pikemen_unit
+            }
+            mwp_d21_type_subject_access_47_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = pikemen_unit
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_48_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = armored_footmen
+            }
+            mwp_d21_type_subject_access_48_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = armored_footmen
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_49_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = onager
+            }
+            mwp_d21_type_subject_access_49_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = onager
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 10.0
+        mwp_d21_nomad_herd_cost_value <= 10.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_50_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = armored_horsemen
+            }
+            mwp_d21_type_subject_access_50_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = armored_horsemen
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 50.0
+        mwp_d21_nomad_herd_cost_value <= 50.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_51_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = mangonel
+            }
+            mwp_d21_type_subject_access_51_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = mangonel
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 10.0
+        mwp_d21_nomad_herd_cost_value <= 10.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_52_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = crossbowmen
+            }
+            mwp_d21_type_subject_access_52_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = crossbowmen
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_53_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = trebuchet
+            }
+            mwp_d21_type_subject_access_53_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = trebuchet
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 10.0
+        mwp_d21_nomad_herd_cost_value <= 10.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_54_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = bombard
+            }
+            mwp_d21_type_subject_access_54_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = bombard
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 10.0
+        mwp_d21_nomad_herd_cost_value <= 10.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_55_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = handgunners
+            }
+            mwp_d21_type_subject_access_55_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = handgunners
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_56_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = house_guard
+            }
+            mwp_d21_type_subject_access_56_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = house_guard
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_58_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = camel_rider
+            }
+            mwp_d21_type_subject_access_58_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = camel_rider
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_59_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = war_elephant
+            }
+            mwp_d21_type_subject_access_59_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = war_elephant
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 25.0
+        mwp_d21_nomad_herd_cost_value <= 25.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_60_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = accolade_maa_archers
+            }
+            mwp_d21_type_subject_access_60_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = accolade_maa_archers
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_61_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = accolade_maa_skirmishers
+            }
+            mwp_d21_type_subject_access_61_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = accolade_maa_skirmishers
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_62_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = accolade_maa_pikes
+            }
+            mwp_d21_type_subject_access_62_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = accolade_maa_pikes
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_63_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = accolade_maa_outriders
+            }
+            mwp_d21_type_subject_access_63_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = accolade_maa_outriders
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_64_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = accolade_maa_vanguards
+            }
+            mwp_d21_type_subject_access_64_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = accolade_maa_vanguards
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_65_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = accolade_maa_lancers
+            }
+            mwp_d21_type_subject_access_65_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = accolade_maa_lancers
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 50.0
+        mwp_d21_nomad_herd_cost_value <= 50.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_66_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = accolade_maa_crossbowers
+            }
+            mwp_d21_type_subject_access_66_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = accolade_maa_crossbowers
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_67_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = accolade_maa_cameliers
+            }
+            mwp_d21_type_subject_access_67_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = accolade_maa_cameliers
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_68_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = accolade_maa_elephantiers
+            }
+            mwp_d21_type_subject_access_68_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = accolade_maa_elephantiers
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 25.0
+        mwp_d21_nomad_herd_cost_value <= 25.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_69_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = accolade_maa_horse_archers
+            }
+            mwp_d21_type_subject_access_69_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = accolade_maa_horse_archers
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_70_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = accolade_maa_handgunners
+            }
+            mwp_d21_type_subject_access_70_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = accolade_maa_handgunners
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_71_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = vigmen
+            }
+            mwp_d21_type_subject_access_71_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = vigmen
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_72_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = bondi
+            }
+            mwp_d21_type_subject_access_72_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = bondi
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_73_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = varangian_veterans
+            }
+            mwp_d21_type_subject_access_73_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = varangian_veterans
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_75_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = ayrudzi
+            }
+            mwp_d21_type_subject_access_75_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = ayrudzi
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 50.0
+        mwp_d21_nomad_herd_cost_value <= 50.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_76_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = conrois
+            }
+            mwp_d21_type_subject_access_76_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = conrois
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 50.0
+        mwp_d21_nomad_herd_cost_value <= 50.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_77_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = akritai
+            }
+            mwp_d21_type_subject_access_77_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = akritai
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_78_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = ballistrai
+            }
+            mwp_d21_type_subject_access_78_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = ballistrai
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 50.0
+        mwp_d21_nomad_herd_cost_value <= 50.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_79_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = skoutatoi
+            }
+            mwp_d21_type_subject_access_79_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = skoutatoi
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_80_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = varangian_guards
+            }
+            mwp_d21_type_subject_access_80_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = varangian_guards
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_81_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = handpicked_faithful
+            }
+            mwp_d21_type_subject_access_81_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = handpicked_faithful
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_87_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = torch_bearers
+            }
+            mwp_d21_type_subject_access_87_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = torch_bearers
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 10.0
+        mwp_d21_nomad_herd_cost_value <= 10.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_95_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = emishi_horse_archers
+            }
+            mwp_d21_type_subject_access_95_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = emishi_horse_archers
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_96_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = japanese_horse_archers
+            }
+            mwp_d21_type_subject_access_96_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = japanese_horse_archers
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 50.0
+        mwp_d21_nomad_herd_cost_value <= 50.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_98_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = fire_lancers
+            }
+            mwp_d21_type_subject_access_98_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = fire_lancers
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_99_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = gakgung_archers
+            }
+            mwp_d21_type_subject_access_99_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = gakgung_archers
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_100_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = ballista_elephant
+            }
+            mwp_d21_type_subject_access_100_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = ballista_elephant
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 25.0
+        mwp_d21_nomad_herd_cost_value <= 25.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_101_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = pesilat_warriors
+            }
+            mwp_d21_type_subject_access_101_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = pesilat_warriors
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_102_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = samurai
+            }
+            mwp_d21_type_subject_access_102_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = samurai
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_103_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = zhanmadao_infantry
+            }
+            mwp_d21_type_subject_access_103_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = zhanmadao_infantry
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 50.0
+        mwp_d21_nomad_herd_cost_value <= 50.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_104_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = black_armor_cavalry
+            }
+            mwp_d21_type_subject_access_104_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = black_armor_cavalry
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_105_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = tiefutu
+            }
+            mwp_d21_type_subject_access_105_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = tiefutu
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 50.0
+        mwp_d21_nomad_herd_cost_value <= 50.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_106_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = burenjia
+            }
+            mwp_d21_type_subject_access_106_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = burenjia
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 100.0
+        mwp_d21_nomad_herd_cost_value <= 100.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_107_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = rocket_carts
+            }
+            mwp_d21_type_subject_access_107_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = rocket_carts
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 50.0
+        mwp_d21_nomad_herd_cost_value <= 50.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_108_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = ballista
+            }
+            mwp_d21_type_subject_access_108_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = ballista
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 10.0
+        mwp_d21_nomad_herd_cost_value <= 10.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_109_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = cloud_ladder
+            }
+            mwp_d21_type_subject_access_109_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = cloud_ladder
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 10.0
+        mwp_d21_nomad_herd_cost_value <= 10.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_110_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = siege_tower
+            }
+            mwp_d21_type_subject_access_110_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = siege_tower
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 10.0
+        mwp_d21_nomad_herd_cost_value <= 10.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
+mwp_d21_nomad_source_111_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = cannon
+            }
+            mwp_d21_type_subject_access_111_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = cannon
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 10.0
+        mwp_d21_nomad_herd_cost_value <= 10.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}

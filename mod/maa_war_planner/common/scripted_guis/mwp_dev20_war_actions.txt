@@ -1,0 +1,247 @@
+﻿# GENERATED DEV20 native war entry and observation. No peace result effects.
+mwp20_active_wars_refresh = { scope = character
+ is_shown = { is_ai = no } is_valid = { is_ai = no is_alive = yes }
+ effect = { if = { limit = { is_ai = no is_alive = yes }
+  save_scope_as = mwp20_active_player
+  clear_variable_list = mwp_info_active_wars
+  every_character_war = {
+   save_scope_as = mwp20_active_war
+   scope:mwp20_active_player = { add_to_variable_list = { name = mwp_info_active_wars target = scope:mwp20_active_war } }
+  }
+ } }
+}
+mwp20_war_can_view = { scope = character saved_scopes = { mwp20_war }
+ is_shown = { is_ai = no } is_valid = { is_ai = no is_alive = yes exists = scope:mwp20_war
+ scope:mwp20_war = { OR = { is_attacker = root is_defender = root } } }
+}
+mwp20_war_can_white = { scope = character saved_scopes = { mwp20_war }
+ is_shown = { is_ai = no } is_valid = { is_ai = no is_alive = yes exists = scope:mwp20_war
+  save_temporary_scope_as = actor
+  scope:mwp20_war = {
+   save_temporary_scope_as = war
+   is_war_leader = root has_valid_casus_belli = yes is_white_peace_possible = yes
+   trigger_if = { limit = { primary_attacker = root }
+    primary_defender = { save_temporary_scope_as = recipient }
+   }
+   trigger_else = { primary_attacker = { save_temporary_scope_as = recipient } }
+  }
+  OR = {
+   scope:recipient = { is_ai = no }
+   is_character_interaction_potentially_accepted = {
+    recipient = scope:recipient interaction = end_war_attacker_white_peace_interaction required_response = yes
+   }
+  } }
+}
+mwp20_war_can_victory = { scope = character saved_scopes = { mwp20_war }
+ is_shown = { is_ai = no } is_valid = { is_ai = no is_alive = yes exists = scope:mwp20_war
+ scope:mwp20_war = { OR = { is_attacker = root is_defender = root } }
+ scope:mwp20_war = { is_war_leader = root }
+ is_target_in_variable_list = { name = mwp20_native_victory_wars target = scope:mwp20_war } }
+}
+mwp20_war_request_view = { scope = character saved_scopes = { mwp20_war }
+ is_shown = { is_ai = no } is_valid = { is_ai = no is_alive = yes exists = scope:mwp20_war
+ scope:mwp20_war = { OR = { is_attacker = root is_defender = root } } }
+ effect = { if = { limit = { is_ai = no is_alive = yes exists = scope:mwp20_war
+ scope:mwp20_war = { OR = { is_attacker = root is_defender = root } } }
+  set_variable = { name = mwp20_peace_request_owner value = this days = 1 }
+  set_variable = { name = mwp20_peace_request_war value = scope:mwp20_war days = 1 }
+  set_variable = { name = mwp20_peace_request_kind value = 0 days = 1 }
+  remove_variable = mwp20_peace_request_opened
+ } }
+}
+mwp20_war_request_white = { scope = character saved_scopes = { mwp20_war }
+ is_shown = { is_ai = no } is_valid = { is_ai = no is_alive = yes exists = scope:mwp20_war
+  save_temporary_scope_as = actor
+  scope:mwp20_war = {
+   save_temporary_scope_as = war
+   is_war_leader = root has_valid_casus_belli = yes is_white_peace_possible = yes
+   trigger_if = { limit = { primary_attacker = root }
+    primary_defender = { save_temporary_scope_as = recipient }
+   }
+   trigger_else = { primary_attacker = { save_temporary_scope_as = recipient } }
+  }
+  OR = {
+   scope:recipient = { is_ai = no }
+   is_character_interaction_potentially_accepted = {
+    recipient = scope:recipient interaction = end_war_attacker_white_peace_interaction required_response = yes
+   }
+  } }
+ effect = { if = { limit = { is_ai = no is_alive = yes exists = scope:mwp20_war
+  save_temporary_scope_as = actor
+  scope:mwp20_war = {
+   save_temporary_scope_as = war
+   is_war_leader = root has_valid_casus_belli = yes is_white_peace_possible = yes
+   trigger_if = { limit = { primary_attacker = root }
+    primary_defender = { save_temporary_scope_as = recipient }
+   }
+   trigger_else = { primary_attacker = { save_temporary_scope_as = recipient } }
+  }
+  OR = {
+   scope:recipient = { is_ai = no }
+   is_character_interaction_potentially_accepted = {
+    recipient = scope:recipient interaction = end_war_attacker_white_peace_interaction required_response = yes
+   }
+  } }
+  set_variable = { name = mwp20_peace_request_owner value = this days = 1 }
+  set_variable = { name = mwp20_peace_request_war value = scope:mwp20_war days = 1 }
+  set_variable = { name = mwp20_peace_request_kind value = 1 days = 1 }
+  remove_variable = mwp20_peace_request_opened
+ } }
+}
+mwp20_war_request_victory = { scope = character saved_scopes = { mwp20_war }
+ is_shown = { is_ai = no } is_valid = { is_ai = no is_alive = yes exists = scope:mwp20_war
+ scope:mwp20_war = { OR = { is_attacker = root is_defender = root } }
+ scope:mwp20_war = { is_war_leader = root }
+ is_target_in_variable_list = { name = mwp20_native_victory_wars target = scope:mwp20_war } }
+ effect = { if = { limit = { is_ai = no is_alive = yes exists = scope:mwp20_war
+ scope:mwp20_war = { OR = { is_attacker = root is_defender = root } }
+ scope:mwp20_war = { is_war_leader = root }
+ is_target_in_variable_list = { name = mwp20_native_victory_wars target = scope:mwp20_war } }
+  set_variable = { name = mwp20_peace_request_owner value = this days = 1 }
+  set_variable = { name = mwp20_peace_request_war value = scope:mwp20_war days = 1 }
+  set_variable = { name = mwp20_peace_request_kind value = 2 days = 1 }
+  remove_variable = mwp20_peace_request_opened
+ } }
+}
+mwp20_war_observe = { scope = character saved_scopes = { mwp20_war mwp20_native_victory }
+ is_shown = { is_ai = no }
+ is_valid = { is_ai = no is_alive = yes exists = scope:mwp20_war
+ scope:mwp20_war = { OR = { is_attacker = root is_defender = root } } exists = scope:mwp20_native_victory }
+ effect = { if = { limit = { is_ai = no is_alive = yes exists = scope:mwp20_war
+ scope:mwp20_war = { OR = { is_attacker = root is_defender = root } } exists = scope:mwp20_native_victory }
+  remove_list_variable = { name = mwp20_native_victory_wars target = scope:mwp20_war }
+  if = { limit = { scope:mwp20_native_victory = yes scope:mwp20_war = { is_war_leader = root } }
+   add_to_variable_list = { name = mwp20_native_victory_wars target = scope:mwp20_war }
+  }
+ } }
+}
+mwp20_war_native_dispatch = { scope = character saved_scopes = { mwp20_war mwp20_native_victory }
+ is_shown = { is_ai = no } is_valid = { is_ai = no is_alive = yes exists = scope:mwp20_war
+ scope:mwp20_war = { OR = { is_attacker = root is_defender = root } }
+ has_variable = mwp20_peace_request_owner var:mwp20_peace_request_owner = this
+ has_variable = mwp20_peace_request_war var:mwp20_peace_request_war = scope:mwp20_war
+ has_variable = mwp20_peace_request_kind
+ NOT = { has_variable = mwp20_peace_request_opened }
+ OR = {
+  var:mwp20_peace_request_kind = 0
+  AND = { var:mwp20_peace_request_kind = 1 is_ai = no is_alive = yes exists = scope:mwp20_war
+  save_temporary_scope_as = actor
+  scope:mwp20_war = {
+   save_temporary_scope_as = war
+   is_war_leader = root has_valid_casus_belli = yes is_white_peace_possible = yes
+   trigger_if = { limit = { primary_attacker = root }
+    primary_defender = { save_temporary_scope_as = recipient }
+   }
+   trigger_else = { primary_attacker = { save_temporary_scope_as = recipient } }
+  }
+  OR = {
+   scope:recipient = { is_ai = no }
+   is_character_interaction_potentially_accepted = {
+    recipient = scope:recipient interaction = end_war_attacker_white_peace_interaction required_response = yes
+   }
+  } }
+  AND = { var:mwp20_peace_request_kind = 2 scope:mwp20_native_victory = yes scope:mwp20_war = { is_war_leader = root } }
+ } }
+ effect = { if = { limit = { is_ai = no is_alive = yes exists = scope:mwp20_war
+ scope:mwp20_war = { OR = { is_attacker = root is_defender = root } }
+ has_variable = mwp20_peace_request_owner var:mwp20_peace_request_owner = this
+ has_variable = mwp20_peace_request_war var:mwp20_peace_request_war = scope:mwp20_war
+ has_variable = mwp20_peace_request_kind
+ NOT = { has_variable = mwp20_peace_request_opened }
+ OR = {
+  var:mwp20_peace_request_kind = 0
+  AND = { var:mwp20_peace_request_kind = 1 is_ai = no is_alive = yes exists = scope:mwp20_war
+  save_temporary_scope_as = actor
+  scope:mwp20_war = {
+   save_temporary_scope_as = war
+   is_war_leader = root has_valid_casus_belli = yes is_white_peace_possible = yes
+   trigger_if = { limit = { primary_attacker = root }
+    primary_defender = { save_temporary_scope_as = recipient }
+   }
+   trigger_else = { primary_attacker = { save_temporary_scope_as = recipient } }
+  }
+  OR = {
+   scope:recipient = { is_ai = no }
+   is_character_interaction_potentially_accepted = {
+    recipient = scope:recipient interaction = end_war_attacker_white_peace_interaction required_response = yes
+   }
+  } }
+  AND = { var:mwp20_peace_request_kind = 2 scope:mwp20_native_victory = yes scope:mwp20_war = { is_war_leader = root } }
+ } }
+  set_variable = { name = mwp20_peace_request_opened value = yes days = 1 }
+ } }
+}
+mwp20_war_native_open_receipt = { scope = character saved_scopes = { mwp20_war mwp20_native_victory }
+ is_shown = { is_ai = no } is_valid = { is_ai = no is_alive = yes exists = scope:mwp20_war
+ scope:mwp20_war = { OR = { is_attacker = root is_defender = root } }
+ has_variable = mwp20_peace_request_owner var:mwp20_peace_request_owner = this
+ has_variable = mwp20_peace_request_war var:mwp20_peace_request_war = scope:mwp20_war
+ has_variable = mwp20_peace_request_kind
+ has_variable = mwp20_peace_request_opened
+ OR = {
+  var:mwp20_peace_request_kind = 0
+  AND = { var:mwp20_peace_request_kind = 1 is_ai = no is_alive = yes exists = scope:mwp20_war
+  save_temporary_scope_as = actor
+  scope:mwp20_war = {
+   save_temporary_scope_as = war
+   is_war_leader = root has_valid_casus_belli = yes is_white_peace_possible = yes
+   trigger_if = { limit = { primary_attacker = root }
+    primary_defender = { save_temporary_scope_as = recipient }
+   }
+   trigger_else = { primary_attacker = { save_temporary_scope_as = recipient } }
+  }
+  OR = {
+   scope:recipient = { is_ai = no }
+   is_character_interaction_potentially_accepted = {
+    recipient = scope:recipient interaction = end_war_attacker_white_peace_interaction required_response = yes
+   }
+  } }
+  AND = { var:mwp20_peace_request_kind = 2 scope:mwp20_native_victory = yes scope:mwp20_war = { is_war_leader = root } }
+ } }
+}
+mwp20_war_select_view = { scope = character saved_scopes = { mwp20_war }
+ is_shown = { is_ai = no } is_valid = { is_ai = no is_alive = yes exists = scope:mwp20_war
+ scope:mwp20_war = { OR = { is_attacker = root is_defender = root } }
+ has_variable = mwp20_peace_request_owner var:mwp20_peace_request_owner = this
+ has_variable = mwp20_peace_request_war var:mwp20_peace_request_war = scope:mwp20_war
+ has_variable = mwp20_peace_request_kind
+  has_variable = mwp20_peace_request_opened var:mwp20_peace_request_kind = 0
+ }
+}
+mwp20_war_select_white = { scope = character saved_scopes = { mwp20_war }
+ is_shown = { is_ai = no } is_valid = { is_ai = no is_alive = yes exists = scope:mwp20_war
+ scope:mwp20_war = { OR = { is_attacker = root is_defender = root } }
+ has_variable = mwp20_peace_request_owner var:mwp20_peace_request_owner = this
+ has_variable = mwp20_peace_request_war var:mwp20_peace_request_war = scope:mwp20_war
+ has_variable = mwp20_peace_request_kind
+  has_variable = mwp20_peace_request_opened var:mwp20_peace_request_kind = 1
+ }
+}
+mwp20_war_select_victory = { scope = character saved_scopes = { mwp20_war }
+ is_shown = { is_ai = no } is_valid = { is_ai = no is_alive = yes exists = scope:mwp20_war
+ scope:mwp20_war = { OR = { is_attacker = root is_defender = root } }
+ has_variable = mwp20_peace_request_owner var:mwp20_peace_request_owner = this
+ has_variable = mwp20_peace_request_war var:mwp20_peace_request_war = scope:mwp20_war
+ has_variable = mwp20_peace_request_kind
+  has_variable = mwp20_peace_request_opened var:mwp20_peace_request_kind = 2
+ }
+}
+mwp20_war_request_complete = { scope = character saved_scopes = { mwp20_war mwp20_expected_kind }
+ is_shown = { is_ai = no } is_valid = { is_ai = no is_alive = yes exists = scope:mwp20_war
+ scope:mwp20_war = { OR = { is_attacker = root is_defender = root } }
+ has_variable = mwp20_peace_request_owner var:mwp20_peace_request_owner = this
+ has_variable = mwp20_peace_request_war var:mwp20_peace_request_war = scope:mwp20_war
+ has_variable = mwp20_peace_request_kind
+ exists = scope:mwp20_expected_kind var:mwp20_peace_request_kind = scope:mwp20_expected_kind }
+ effect = { if = { limit = { is_ai = no is_alive = yes exists = scope:mwp20_war
+ scope:mwp20_war = { OR = { is_attacker = root is_defender = root } }
+ has_variable = mwp20_peace_request_owner var:mwp20_peace_request_owner = this
+ has_variable = mwp20_peace_request_war var:mwp20_peace_request_war = scope:mwp20_war
+ has_variable = mwp20_peace_request_kind
+ exists = scope:mwp20_expected_kind var:mwp20_peace_request_kind = scope:mwp20_expected_kind }
+  remove_variable = mwp20_peace_request_owner
+  remove_variable = mwp20_peace_request_war
+  remove_variable = mwp20_peace_request_kind
+  remove_variable = mwp20_peace_request_opened
+ } }
+}

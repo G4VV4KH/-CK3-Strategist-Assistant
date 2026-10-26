@@ -1,0 +1,114 @@
+﻿# No prestige/devotion experience is gained on a refund.
+mwp_d21_wallet_refund_preflight_effect = {
+set_variable = { name = mwp_d21_wallet_refund_ready value = yes }
+if = { limit = { mwp_d21_selected_currency_value = 2 }
+ remove_variable = mwp_d21_wallet_refund_ready
+ set_variable = { name = mwp_d21_refund_probe_before value = prestige }
+ add_prestige_no_experience = 1
+ set_variable = { name = mwp_d21_refund_probe_gain value = { value = prestige subtract = var:mwp_d21_refund_probe_before } }
+ if = { limit = { var:mwp_d21_refund_probe_gain > 0 }
+  add_prestige_no_experience = { value = var:mwp_d21_refund_probe_gain multiply = -1 }
+  if = { limit = { prestige >= var:mwp_d21_refund_probe_before prestige <= var:mwp_d21_refund_probe_before }
+   set_variable = { name = mwp_d21_wallet_refund_ready value = yes }
+  }
+ }
+ remove_variable = mwp_d21_refund_probe_before
+ remove_variable = mwp_d21_refund_probe_gain
+}
+if = { limit = { mwp_d21_selected_currency_value = 3 }
+ remove_variable = mwp_d21_wallet_refund_ready
+ set_variable = { name = mwp_d21_refund_probe_before value = piety }
+ add_piety_no_experience = 1
+ set_variable = { name = mwp_d21_refund_probe_gain value = { value = piety subtract = var:mwp_d21_refund_probe_before } }
+ if = { limit = { var:mwp_d21_refund_probe_gain > 0 }
+  add_piety_no_experience = { value = var:mwp_d21_refund_probe_gain multiply = -1 }
+  if = { limit = { piety >= var:mwp_d21_refund_probe_before piety <= var:mwp_d21_refund_probe_before }
+   set_variable = { name = mwp_d21_wallet_refund_ready value = yes }
+  }
+ }
+ remove_variable = mwp_d21_refund_probe_before
+ remove_variable = mwp_d21_refund_probe_gain
+}
+}
+mwp_d21_debit_selected_effect = {
+ if = { limit = { mwp_d21_selected_currency_value = 1 } remove_short_term_gold = var:mwp_script_selected_price }
+ else_if = { limit = { mwp_d21_selected_currency_value = 2 } add_prestige_no_experience = { value = var:mwp_script_selected_price multiply = -1 } }
+ else_if = { limit = { mwp_d21_selected_currency_value = 3 } add_piety_no_experience = { value = var:mwp_script_selected_price multiply = -1 } }
+ else_if = { limit = { mwp_d21_selected_currency_value = 4 } remove_short_term_treasury = var:mwp_script_selected_price }
+ else_if = { limit = { mwp_d21_selected_currency_value = 5 } remove_barter_goods = var:mwp_script_selected_price }
+}
+mwp_d21_refund_transaction_effect = {
+ if = { limit = { mwp_d21_selected_currency_value = 1 } add_gold = var:mwp_d19_tx_price }
+ else_if = { limit = { mwp_d21_selected_currency_value = 2 } set_variable = { name = mwp_d21_refund_request value = { value = mwp_d21_refund_target_value subtract = prestige } }
+if = { limit = { prestige < mwp_d21_refund_target_value var:mwp_d21_refund_request > 0 }
+ set_variable = { name = mwp_d21_refund_before value = prestige }
+ add_prestige_no_experience = var:mwp_d21_refund_request
+ set_variable = { name = mwp_d21_refund_gain value = { value = prestige subtract = var:mwp_d21_refund_before } }
+ if = { limit = { var:mwp_d21_refund_gain > 0 prestige < mwp_d21_refund_target_value }
+  set_variable = { name = mwp_d21_refund_request value = { value = mwp_d21_refund_target_value subtract = prestige multiply = var:mwp_d21_refund_request divide = var:mwp_d21_refund_gain add = 0.01 } }
+ }
+ else = { set_variable = { name = mwp_d21_refund_request value = 0 } }
+}
+if = { limit = { prestige < mwp_d21_refund_target_value var:mwp_d21_refund_request > 0 }
+ set_variable = { name = mwp_d21_refund_before value = prestige }
+ add_prestige_no_experience = var:mwp_d21_refund_request
+ set_variable = { name = mwp_d21_refund_gain value = { value = prestige subtract = var:mwp_d21_refund_before } }
+ if = { limit = { var:mwp_d21_refund_gain > 0 prestige < mwp_d21_refund_target_value }
+  set_variable = { name = mwp_d21_refund_request value = { value = mwp_d21_refund_target_value subtract = prestige multiply = var:mwp_d21_refund_request divide = var:mwp_d21_refund_gain add = 0.01 } }
+ }
+ else = { set_variable = { name = mwp_d21_refund_request value = 0 } }
+}
+if = { limit = { prestige < mwp_d21_refund_target_value var:mwp_d21_refund_request > 0 }
+ set_variable = { name = mwp_d21_refund_before value = prestige }
+ add_prestige_no_experience = var:mwp_d21_refund_request
+ set_variable = { name = mwp_d21_refund_gain value = { value = prestige subtract = var:mwp_d21_refund_before } }
+ if = { limit = { var:mwp_d21_refund_gain > 0 prestige < mwp_d21_refund_target_value }
+  set_variable = { name = mwp_d21_refund_request value = { value = mwp_d21_refund_target_value subtract = prestige multiply = var:mwp_d21_refund_request divide = var:mwp_d21_refund_gain add = 0.01 } }
+ }
+ else = { set_variable = { name = mwp_d21_refund_request value = 0 } }
+}
+if = { limit = { prestige > mwp_d21_refund_target_value }
+ add_prestige_no_experience = { value = mwp_d21_refund_target_value subtract = prestige }
+}
+remove_variable = mwp_d21_refund_request
+remove_variable = mwp_d21_refund_before
+remove_variable = mwp_d21_refund_gain
+}
+ else_if = { limit = { mwp_d21_selected_currency_value = 3 } set_variable = { name = mwp_d21_refund_request value = { value = mwp_d21_refund_target_value subtract = piety } }
+if = { limit = { piety < mwp_d21_refund_target_value var:mwp_d21_refund_request > 0 }
+ set_variable = { name = mwp_d21_refund_before value = piety }
+ add_piety_no_experience = var:mwp_d21_refund_request
+ set_variable = { name = mwp_d21_refund_gain value = { value = piety subtract = var:mwp_d21_refund_before } }
+ if = { limit = { var:mwp_d21_refund_gain > 0 piety < mwp_d21_refund_target_value }
+  set_variable = { name = mwp_d21_refund_request value = { value = mwp_d21_refund_target_value subtract = piety multiply = var:mwp_d21_refund_request divide = var:mwp_d21_refund_gain add = 0.01 } }
+ }
+ else = { set_variable = { name = mwp_d21_refund_request value = 0 } }
+}
+if = { limit = { piety < mwp_d21_refund_target_value var:mwp_d21_refund_request > 0 }
+ set_variable = { name = mwp_d21_refund_before value = piety }
+ add_piety_no_experience = var:mwp_d21_refund_request
+ set_variable = { name = mwp_d21_refund_gain value = { value = piety subtract = var:mwp_d21_refund_before } }
+ if = { limit = { var:mwp_d21_refund_gain > 0 piety < mwp_d21_refund_target_value }
+  set_variable = { name = mwp_d21_refund_request value = { value = mwp_d21_refund_target_value subtract = piety multiply = var:mwp_d21_refund_request divide = var:mwp_d21_refund_gain add = 0.01 } }
+ }
+ else = { set_variable = { name = mwp_d21_refund_request value = 0 } }
+}
+if = { limit = { piety < mwp_d21_refund_target_value var:mwp_d21_refund_request > 0 }
+ set_variable = { name = mwp_d21_refund_before value = piety }
+ add_piety_no_experience = var:mwp_d21_refund_request
+ set_variable = { name = mwp_d21_refund_gain value = { value = piety subtract = var:mwp_d21_refund_before } }
+ if = { limit = { var:mwp_d21_refund_gain > 0 piety < mwp_d21_refund_target_value }
+  set_variable = { name = mwp_d21_refund_request value = { value = mwp_d21_refund_target_value subtract = piety multiply = var:mwp_d21_refund_request divide = var:mwp_d21_refund_gain add = 0.01 } }
+ }
+ else = { set_variable = { name = mwp_d21_refund_request value = 0 } }
+}
+if = { limit = { piety > mwp_d21_refund_target_value }
+ add_piety_no_experience = { value = mwp_d21_refund_target_value subtract = piety }
+}
+remove_variable = mwp_d21_refund_request
+remove_variable = mwp_d21_refund_before
+remove_variable = mwp_d21_refund_gain
+}
+ else_if = { limit = { mwp_d21_selected_currency_value = 4 } add_treasury = var:mwp_d19_tx_price }
+ else_if = { limit = { mwp_d21_selected_currency_value = 5 } add_barter_goods = var:mwp_d19_tx_price }
+}

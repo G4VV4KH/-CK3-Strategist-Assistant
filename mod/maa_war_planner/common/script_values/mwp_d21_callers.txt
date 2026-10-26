@@ -1,0 +1,2808 @@
+﻿mwp_d21_candidate_wallet_value = {
+    value = gold
+    if = {
+        limit = {
+            var:mwp_script_candidate_currency = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            var:mwp_script_candidate_currency = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            var:mwp_script_candidate_currency = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            var:mwp_script_candidate_currency = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_reorganization_wallet_value = {
+    value = gold
+    if = {
+        limit = {
+            var:mwp_reorganization_currency = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            var:mwp_reorganization_currency = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            var:mwp_reorganization_currency = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            var:mwp_reorganization_currency = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_1_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_1 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_1 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_1 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_1 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_2_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_2 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_2 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_2 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_2 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_3_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_3 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_3 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_3 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_3 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_4_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_4 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_4 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_4 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_4 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_5_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_5 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_5 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_5 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_5 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_6_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_6 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_6 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_6 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_6 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_7_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_7 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_7 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_7 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_7 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_8_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_8 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_8 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_8 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_8 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_9_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_9 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_9 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_9 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_9 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_10_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_10 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_10 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_10 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_10 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_11_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_11 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_11 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_11 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_11 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_12_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_12 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_12 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_12 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_12 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_13_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_13 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_13 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_13 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_13 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_14_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_14 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_14 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_14 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_14 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_15_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_15 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_15 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_15 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_15 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_16_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_16 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_16 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_16 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_16 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_17_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_17 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_17 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_17 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_17 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_18_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_18 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_18 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_18 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_18 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_19_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_19 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_19 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_19 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_19 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_20_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_20 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_20 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_20 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_20 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_21_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_21 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_21 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_21 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_21 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_22_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_22 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_22 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_22 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_22 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_23_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_23 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_23 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_23 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_23 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_24_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_24 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_24 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_24 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_24 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_25_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_25 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_25 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_25 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_25 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_26_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_26 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_26 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_26 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_26 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_27_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_27 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_27 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_27 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_27 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_28_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_28 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_28 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_28 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_28 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_29_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_29 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_29 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_29 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_29 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_30_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_30 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_30 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_30 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_30 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_31_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_31 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_31 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_31 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_31 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_32_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_32 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_32 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_32 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_32 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_33_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_33 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_33 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_33 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_33 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_34_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_34 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_34 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_34 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_34 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_35_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_35 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_35 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_35 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_35 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_36_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_36 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_36 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_36 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_36 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_37_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_37 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_37 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_37 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_37 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_38_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_38 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_38 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_38 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_38 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_39_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_39 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_39 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_39 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_39 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_40_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_40 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_40 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_40 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_40 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_41_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_41 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_41 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_41 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_41 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_44_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_44 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_44 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_44 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_44 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_45_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_45 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_45 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_45 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_45 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_46_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_46 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_46 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_46 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_46 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_47_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_47 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_47 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_47 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_47 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_48_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_48 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_48 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_48 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_48 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_49_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_49 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_49 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_49 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_49 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_50_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_50 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_50 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_50 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_50 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_51_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_51 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_51 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_51 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_51 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_52_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_52 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_52 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_52 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_52 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_53_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_53 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_53 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_53 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_53 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_54_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_54 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_54 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_54 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_54 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_55_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_55 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_55 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_55 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_55 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_56_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_56 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_56 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_56 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_56 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_58_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_58 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_58 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_58 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_58 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_59_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_59 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_59 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_59 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_59 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_60_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_60 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_60 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_60 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_60 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_61_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_61 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_61 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_61 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_61 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_62_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_62 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_62 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_62 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_62 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_63_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_63 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_63 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_63 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_63 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_64_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_64 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_64 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_64 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_64 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_65_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_65 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_65 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_65 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_65 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_66_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_66 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_66 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_66 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_66 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_67_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_67 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_67 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_67 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_67 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_68_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_68 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_68 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_68 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_68 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_69_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_69 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_69 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_69 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_69 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_70_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_70 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_70 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_70 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_70 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_71_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_71 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_71 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_71 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_71 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_72_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_72 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_72 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_72 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_72 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_73_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_73 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_73 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_73 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_73 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_75_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_75 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_75 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_75 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_75 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_76_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_76 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_76 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_76 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_76 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_77_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_77 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_77 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_77 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_77 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_78_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_78 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_78 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_78 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_78 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_79_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_79 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_79 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_79 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_79 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_80_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_80 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_80 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_80 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_80 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_81_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_81 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_81 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_81 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_81 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_87_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_87 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_87 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_87 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_87 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_88_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_88 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_88 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_88 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_88 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_89_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_89 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_89 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_89 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_89 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_90_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_90 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_90 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_90 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_90 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_91_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_91 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_91 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_91 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_91 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_92_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_92 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_92 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_92 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_92 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_93_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_93 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_93 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_93 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_93 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_94_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_94 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_94 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_94 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_94 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_95_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_95 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_95 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_95 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_95 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_96_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_96 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_96 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_96 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_96 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_97_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_97 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_97 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_97 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_97 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_98_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_98 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_98 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_98 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_98 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_99_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_99 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_99 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_99 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_99 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_100_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_100 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_100 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_100 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_100 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_101_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_101 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_101 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_101 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_101 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_102_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_102 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_102 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_102 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_102 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_103_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_103 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_103 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_103 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_103 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_104_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_104 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_104 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_104 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_104 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_105_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_105 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_105 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_105 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_105 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_106_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_106 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_106 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_106 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_106 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_107_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_107 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_107 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_107 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_107 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_108_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_108 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_108 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_108 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_108 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_109_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_109 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_109 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_109 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_109 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_110_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_110 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_110 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_110 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_110 = 5
+        }
+        value = barter_goods
+    }
+}
+mwp_d21_type_wallet_111_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_111 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_111 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_111 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_111 = 5
+        }
+        value = barter_goods
+    }
+}

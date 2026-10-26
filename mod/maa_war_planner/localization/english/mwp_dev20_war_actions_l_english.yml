@@ -1,0 +1,5 @@
+﻿l_english:
+ mwp20_war_open_tooltip: "#T Open war#!\nView participants, warscore and peace terms."
+ mwp20_war_score: "Attacker warscore: [War.GetWarScore|0]%"
+ mwp20_white_peace_tooltip: "#T White peace without hostages#!\nAvailable to a side leader when the game permits sending these peace terms. Opens the native confirmation window; clicking does not end the war. Open the war itself to select hostages."
+ mwp20_enforce_tooltip: "#T Enforce demands#!\nOpen the native victory terms. Available to a side leader when the game allows victory to be enforced. The resulting window performs the final check and sends the terms; clicking this button does not end the war."

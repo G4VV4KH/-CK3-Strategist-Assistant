@@ -1,0 +1,399 @@
+﻿mwp_d21r_reset = {
+ scope = character
+ saved_scopes = { mwp_d21r_input_owner }
+ is_valid = { is_ai = no is_alive = yes exists = scope:mwp_d21r_input_owner scope:mwp_d21r_input_owner = this }
+ effect = { if = { limit = { is_ai = no is_alive = yes exists = scope:mwp_d21r_input_owner scope:mwp_d21r_input_owner = this } 
+ set_variable = { name = mwp_d21r_owner value = this }
+ if = { limit = { NOT = { has_variable = mwp_d21r_epoch } } set_variable = { name = mwp_d21r_epoch value = 0 } }
+ change_variable = { name = mwp_d21r_epoch add = 1 }
+ set_variable = { name = mwp_d21r_clock value = 0 }
+ remove_variable = mwp_d21r_ready
+ remove_variable = mwp_d21r_pending
+ remove_variable = mwp_d21h_ready
+ remove_variable = mwp_d21h_collecting
+ clear_variable_list = mwp_d21h_houses
+ clear_variable_list = mwp_d21h_seen
+ } }
+}
+mwp_d21r_tick = {
+ scope = character
+ saved_scopes = {  }
+ is_valid = { is_ai = no is_alive = yes has_variable = mwp_d21r_owner var:mwp_d21r_owner = this has_variable = mwp_d21r_clock has_variable = mwp_d21r_epoch }
+ effect = { if = { limit = { is_ai = no is_alive = yes has_variable = mwp_d21r_owner var:mwp_d21r_owner = this has_variable = mwp_d21r_clock has_variable = mwp_d21r_epoch } change_variable = { name = mwp_d21r_clock add = 1 } } }
+}
+mwp_d21r_accept = {
+ scope = character
+ saved_scopes = { mwp_d21r_input_owner mwp_d21r_input_generation mwp_d21r_input_day mwp_d21r_input_purchases mwp_d21r_input_clock mwp_d21r_input_epoch mwp_d21r_input_max_levies mwp_d21r_input_gold_income mwp_d21r_input_gold_expenses mwp_d21r_input_gold_balance mwp_d21r_input_prestige_balance mwp_d21r_input_piety_balance mwp_d21r_input_barter_income mwp_d21r_input_barter_expenses mwp_d21r_input_barter_balance mwp_d21r_input_treasury_income mwp_d21r_input_treasury_expenses mwp_d21r_input_treasury_balance }
+ is_valid = { is_ai = no is_alive = yes has_variable = mwp_d21r_owner var:mwp_d21r_owner = this has_variable = mwp_d21r_clock has_variable = mwp_d21r_epoch
+has_variable = mwp_generation
+exists = scope:mwp_d21r_input_owner
+exists = scope:mwp_d21r_input_generation
+exists = scope:mwp_d21r_input_day
+exists = scope:mwp_d21r_input_purchases
+exists = scope:mwp_d21r_input_clock
+exists = scope:mwp_d21r_input_epoch
+ scope:mwp_d21r_input_owner = this
+ scope:mwp_d21r_input_generation = var:mwp_generation
+ scope:mwp_d21r_input_day = days_since_birth
+ scope:mwp_d21r_input_purchases = mwp_native_cost_purchase_count_value
+ scope:mwp_d21r_input_clock = var:mwp_d21r_clock
+ scope:mwp_d21r_input_epoch = var:mwp_d21r_epoch
+exists = scope:mwp_d21r_input_max_levies
+exists = scope:mwp_d21r_input_gold_income
+exists = scope:mwp_d21r_input_gold_expenses
+exists = scope:mwp_d21r_input_gold_balance
+exists = scope:mwp_d21r_input_prestige_balance
+exists = scope:mwp_d21r_input_piety_balance
+exists = scope:mwp_d21r_input_barter_income
+exists = scope:mwp_d21r_input_barter_expenses
+exists = scope:mwp_d21r_input_barter_balance
+exists = scope:mwp_d21r_input_treasury_income
+exists = scope:mwp_d21r_input_treasury_expenses
+exists = scope:mwp_d21r_input_treasury_balance }
+ effect = { if = { limit = { is_ai = no is_alive = yes has_variable = mwp_d21r_owner var:mwp_d21r_owner = this has_variable = mwp_d21r_clock has_variable = mwp_d21r_epoch
+has_variable = mwp_generation
+exists = scope:mwp_d21r_input_owner
+exists = scope:mwp_d21r_input_generation
+exists = scope:mwp_d21r_input_day
+exists = scope:mwp_d21r_input_purchases
+exists = scope:mwp_d21r_input_clock
+exists = scope:mwp_d21r_input_epoch
+ scope:mwp_d21r_input_owner = this
+ scope:mwp_d21r_input_generation = var:mwp_generation
+ scope:mwp_d21r_input_day = days_since_birth
+ scope:mwp_d21r_input_purchases = mwp_native_cost_purchase_count_value
+ scope:mwp_d21r_input_clock = var:mwp_d21r_clock
+ scope:mwp_d21r_input_epoch = var:mwp_d21r_epoch
+exists = scope:mwp_d21r_input_max_levies
+exists = scope:mwp_d21r_input_gold_income
+exists = scope:mwp_d21r_input_gold_expenses
+exists = scope:mwp_d21r_input_gold_balance
+exists = scope:mwp_d21r_input_prestige_balance
+exists = scope:mwp_d21r_input_piety_balance
+exists = scope:mwp_d21r_input_barter_income
+exists = scope:mwp_d21r_input_barter_expenses
+exists = scope:mwp_d21r_input_barter_balance
+exists = scope:mwp_d21r_input_treasury_income
+exists = scope:mwp_d21r_input_treasury_expenses
+exists = scope:mwp_d21r_input_treasury_balance } if = { limit = { has_variable = mwp_d21r_pending
+var:mwp_d21r_pending = yes
+has_variable = mwp_d21r_pending_clock
+var:mwp_d21r_clock > var:mwp_d21r_pending_clock
+has_variable = mwp_d21r_pending_max_levies
+var:mwp_d21r_pending_max_levies = scope:mwp_d21r_input_max_levies
+has_variable = mwp_d21r_pending_gold_income
+var:mwp_d21r_pending_gold_income = scope:mwp_d21r_input_gold_income
+has_variable = mwp_d21r_pending_gold_expenses
+var:mwp_d21r_pending_gold_expenses = scope:mwp_d21r_input_gold_expenses
+has_variable = mwp_d21r_pending_gold_balance
+var:mwp_d21r_pending_gold_balance = scope:mwp_d21r_input_gold_balance
+has_variable = mwp_d21r_pending_prestige_balance
+var:mwp_d21r_pending_prestige_balance = scope:mwp_d21r_input_prestige_balance
+has_variable = mwp_d21r_pending_piety_balance
+var:mwp_d21r_pending_piety_balance = scope:mwp_d21r_input_piety_balance
+has_variable = mwp_d21r_pending_barter_income
+var:mwp_d21r_pending_barter_income = scope:mwp_d21r_input_barter_income
+has_variable = mwp_d21r_pending_barter_expenses
+var:mwp_d21r_pending_barter_expenses = scope:mwp_d21r_input_barter_expenses
+has_variable = mwp_d21r_pending_barter_balance
+var:mwp_d21r_pending_barter_balance = scope:mwp_d21r_input_barter_balance
+has_variable = mwp_d21r_pending_treasury_income
+var:mwp_d21r_pending_treasury_income = scope:mwp_d21r_input_treasury_income
+has_variable = mwp_d21r_pending_treasury_expenses
+var:mwp_d21r_pending_treasury_expenses = scope:mwp_d21r_input_treasury_expenses
+has_variable = mwp_d21r_pending_treasury_balance
+var:mwp_d21r_pending_treasury_balance = scope:mwp_d21r_input_treasury_balance
+has_variable = mwp_d21r_pending_generation
+var:mwp_d21r_pending_generation = scope:mwp_d21r_input_generation
+has_variable = mwp_d21r_pending_day
+var:mwp_d21r_pending_day = scope:mwp_d21r_input_day
+has_variable = mwp_d21r_pending_purchases
+var:mwp_d21r_pending_purchases = scope:mwp_d21r_input_purchases
+has_variable = mwp_d21r_pending_epoch
+var:mwp_d21r_pending_epoch = scope:mwp_d21r_input_epoch } set_variable = { name = mwp_d21r_max_levies value = scope:mwp_d21r_input_max_levies }
+set_variable = { name = mwp_d21r_gold_income value = scope:mwp_d21r_input_gold_income }
+set_variable = { name = mwp_d21r_gold_expenses value = scope:mwp_d21r_input_gold_expenses }
+set_variable = { name = mwp_d21r_gold_balance value = scope:mwp_d21r_input_gold_balance }
+set_variable = { name = mwp_d21r_prestige_balance value = scope:mwp_d21r_input_prestige_balance }
+set_variable = { name = mwp_d21r_piety_balance value = scope:mwp_d21r_input_piety_balance }
+set_variable = { name = mwp_d21r_barter_income value = scope:mwp_d21r_input_barter_income }
+set_variable = { name = mwp_d21r_barter_expenses value = scope:mwp_d21r_input_barter_expenses }
+set_variable = { name = mwp_d21r_barter_balance value = scope:mwp_d21r_input_barter_balance }
+set_variable = { name = mwp_d21r_treasury_income value = scope:mwp_d21r_input_treasury_income }
+set_variable = { name = mwp_d21r_treasury_expenses value = scope:mwp_d21r_input_treasury_expenses }
+set_variable = { name = mwp_d21r_treasury_balance value = scope:mwp_d21r_input_treasury_balance }
+set_variable = { name = mwp_d21r_generation value = scope:mwp_d21r_input_generation }
+set_variable = { name = mwp_d21r_day value = scope:mwp_d21r_input_day }
+set_variable = { name = mwp_d21r_purchases value = scope:mwp_d21r_input_purchases }
+ set_variable = { name = mwp_d21r_stamp value = scope:mwp_d21r_input_clock }
+ set_variable = { name = mwp_d21r_receipt_epoch value = scope:mwp_d21r_input_epoch }
+ set_variable = { name = mwp_d21r_ready value = yes }
+ }
+else = { remove_variable = mwp_d21r_ready }
+set_variable = { name = mwp_d21r_pending_max_levies value = scope:mwp_d21r_input_max_levies }
+set_variable = { name = mwp_d21r_pending_gold_income value = scope:mwp_d21r_input_gold_income }
+set_variable = { name = mwp_d21r_pending_gold_expenses value = scope:mwp_d21r_input_gold_expenses }
+set_variable = { name = mwp_d21r_pending_gold_balance value = scope:mwp_d21r_input_gold_balance }
+set_variable = { name = mwp_d21r_pending_prestige_balance value = scope:mwp_d21r_input_prestige_balance }
+set_variable = { name = mwp_d21r_pending_piety_balance value = scope:mwp_d21r_input_piety_balance }
+set_variable = { name = mwp_d21r_pending_barter_income value = scope:mwp_d21r_input_barter_income }
+set_variable = { name = mwp_d21r_pending_barter_expenses value = scope:mwp_d21r_input_barter_expenses }
+set_variable = { name = mwp_d21r_pending_barter_balance value = scope:mwp_d21r_input_barter_balance }
+set_variable = { name = mwp_d21r_pending_treasury_income value = scope:mwp_d21r_input_treasury_income }
+set_variable = { name = mwp_d21r_pending_treasury_expenses value = scope:mwp_d21r_input_treasury_expenses }
+set_variable = { name = mwp_d21r_pending_treasury_balance value = scope:mwp_d21r_input_treasury_balance }
+set_variable = { name = mwp_d21r_pending_generation value = scope:mwp_d21r_input_generation }
+set_variable = { name = mwp_d21r_pending_day value = scope:mwp_d21r_input_day }
+set_variable = { name = mwp_d21r_pending_purchases value = scope:mwp_d21r_input_purchases }
+set_variable = { name = mwp_d21r_pending_epoch value = scope:mwp_d21r_input_epoch }
+set_variable = { name = mwp_d21r_pending_clock value = var:mwp_d21r_clock }
+set_variable = { name = mwp_d21r_pending value = yes }
+ } }
+}
+mwp_d21r_current = {
+ scope = character
+ saved_scopes = {  }
+ is_valid = { is_ai = no is_alive = yes has_variable = mwp_d21r_owner var:mwp_d21r_owner = this has_variable = mwp_d21r_clock has_variable = mwp_d21r_epoch
+ has_variable = mwp_generation has_variable = mwp_d21r_ready
+ var:mwp_d21r_ready = yes
+ has_variable = mwp_d21r_generation var:mwp_d21r_generation = var:mwp_generation
+ has_variable = mwp_d21r_day var:mwp_d21r_day = days_since_birth
+ has_variable = mwp_d21r_purchases var:mwp_d21r_purchases = mwp_native_cost_purchase_count_value
+ has_variable = mwp_d21r_receipt_epoch var:mwp_d21r_receipt_epoch = var:mwp_d21r_epoch
+ has_variable = mwp_d21r_stamp
+ var:mwp_d21r_clock >= var:mwp_d21r_stamp
+ var:mwp_d21r_clock <= { value = var:mwp_d21r_stamp add = 3 }
+ }
+ effect = { if = { limit = { is_ai = no is_alive = yes has_variable = mwp_d21r_owner var:mwp_d21r_owner = this has_variable = mwp_d21r_clock has_variable = mwp_d21r_epoch
+ has_variable = mwp_generation has_variable = mwp_d21r_ready
+ var:mwp_d21r_ready = yes
+ has_variable = mwp_d21r_generation var:mwp_d21r_generation = var:mwp_generation
+ has_variable = mwp_d21r_day var:mwp_d21r_day = days_since_birth
+ has_variable = mwp_d21r_purchases var:mwp_d21r_purchases = mwp_native_cost_purchase_count_value
+ has_variable = mwp_d21r_receipt_epoch var:mwp_d21r_receipt_epoch = var:mwp_d21r_epoch
+ has_variable = mwp_d21r_stamp
+ var:mwp_d21r_clock >= var:mwp_d21r_stamp
+ var:mwp_d21r_clock <= { value = var:mwp_d21r_stamp add = 3 }
+ }  } }
+}
+mwp_d21h_begin = {
+ scope = character
+ saved_scopes = { mwp_d21r_input_owner mwp_d21r_input_generation mwp_d21r_input_day mwp_d21r_input_purchases mwp_d21r_input_clock mwp_d21r_input_epoch }
+ is_valid = { is_ai = no is_alive = yes has_variable = mwp_d21r_owner var:mwp_d21r_owner = this has_variable = mwp_d21r_clock has_variable = mwp_d21r_epoch
+has_variable = mwp_generation
+exists = scope:mwp_d21r_input_owner
+exists = scope:mwp_d21r_input_generation
+exists = scope:mwp_d21r_input_day
+exists = scope:mwp_d21r_input_purchases
+exists = scope:mwp_d21r_input_clock
+exists = scope:mwp_d21r_input_epoch
+ scope:mwp_d21r_input_owner = this
+ scope:mwp_d21r_input_generation = var:mwp_generation
+ scope:mwp_d21r_input_day = days_since_birth
+ scope:mwp_d21r_input_purchases = mwp_native_cost_purchase_count_value
+ scope:mwp_d21r_input_clock = var:mwp_d21r_clock
+ scope:mwp_d21r_input_epoch = var:mwp_d21r_epoch
+
+ trigger_if = { limit = {
+  has_variable = mwp_d21h_start has_variable = mwp_d21h_epoch
+  has_variable = mwp_d21h_generation has_variable = mwp_d21h_day
+ }
+ OR = {
+  NOT = { var:mwp_d21h_epoch = var:mwp_d21r_epoch }
+  NOT = { var:mwp_d21h_generation = var:mwp_generation }
+  NOT = { var:mwp_d21h_day = days_since_birth }
+  var:mwp_d21r_clock >= { value = var:mwp_d21h_start add = 10 }
+ }
+ }
+ trigger_else = { always = yes }
+ }
+ effect = { if = { limit = { is_ai = no is_alive = yes has_variable = mwp_d21r_owner var:mwp_d21r_owner = this has_variable = mwp_d21r_clock has_variable = mwp_d21r_epoch
+has_variable = mwp_generation
+exists = scope:mwp_d21r_input_owner
+exists = scope:mwp_d21r_input_generation
+exists = scope:mwp_d21r_input_day
+exists = scope:mwp_d21r_input_purchases
+exists = scope:mwp_d21r_input_clock
+exists = scope:mwp_d21r_input_epoch
+ scope:mwp_d21r_input_owner = this
+ scope:mwp_d21r_input_generation = var:mwp_generation
+ scope:mwp_d21r_input_day = days_since_birth
+ scope:mwp_d21r_input_purchases = mwp_native_cost_purchase_count_value
+ scope:mwp_d21r_input_clock = var:mwp_d21r_clock
+ scope:mwp_d21r_input_epoch = var:mwp_d21r_epoch
+
+ trigger_if = { limit = {
+  has_variable = mwp_d21h_start has_variable = mwp_d21h_epoch
+  has_variable = mwp_d21h_generation has_variable = mwp_d21h_day
+ }
+ OR = {
+  NOT = { var:mwp_d21h_epoch = var:mwp_d21r_epoch }
+  NOT = { var:mwp_d21h_generation = var:mwp_generation }
+  NOT = { var:mwp_d21h_day = days_since_birth }
+  var:mwp_d21r_clock >= { value = var:mwp_d21h_start add = 10 }
+ }
+ }
+ trigger_else = { always = yes }
+ } 
+ save_scope_as = mwp_d21h_player
+ remove_variable = mwp_d21h_ready
+ set_variable = { name = mwp_d21h_collecting value = yes }
+ if = { limit = { NOT = { has_variable = mwp_d21h_sequence } } set_variable = { name = mwp_d21h_sequence value = 0 } }
+ change_variable = { name = mwp_d21h_sequence add = 1 }
+ set_variable = { name = mwp_d21h_epoch value = var:mwp_d21r_epoch }
+ set_variable = { name = mwp_d21h_start value = var:mwp_d21r_clock }
+ set_variable = { name = mwp_d21h_generation value = var:mwp_generation }
+ set_variable = { name = mwp_d21h_day value = days_since_birth }
+ set_variable = { name = mwp_d21h_purchases value = mwp_native_cost_purchase_count_value }
+ set_variable = { name = mwp_d21h_expected value = 0 }
+ set_variable = { name = mwp_d21h_received value = 0 }
+ set_variable = { name = mwp_d21h_recruitment value = 0 }
+ set_variable = { name = mwp_d21h_siege_recruitment value = 0 }
+ clear_variable_list = mwp_d21h_houses
+ clear_variable_list = mwp_d21h_seen
+ every_powerful_family = {
+  save_scope_as = mwp_d21h_house
+  scope:mwp_d21h_player = {
+   if = { limit = { NOT = { any_in_list = { variable = mwp_d21h_houses this = scope:mwp_d21h_house } } }
+    add_to_variable_list = { name = mwp_d21h_houses target = scope:mwp_d21h_house }
+    change_variable = { name = mwp_d21h_expected add = 1 }
+   }
+  }
+ }
+ if = { limit = { var:mwp_d21h_expected = 0 }
+  set_variable = { name = mwp_d21h_ready value = yes }
+  remove_variable = mwp_d21h_collecting
+ }
+ } }
+}
+mwp_d21h_accept = {
+ scope = character
+ saved_scopes = { mwp_d21r_input_owner mwp_d21r_input_generation mwp_d21r_input_day mwp_d21r_input_purchases mwp_d21r_input_clock mwp_d21r_input_epoch mwp_d21h_input_sequence mwp_d21h_input_house mwp_d21h_input_level mwp_d21h_input_quartermaster mwp_d21h_input_siege }
+ is_valid = { is_ai = no is_alive = yes has_variable = mwp_d21r_owner var:mwp_d21r_owner = this has_variable = mwp_d21r_clock has_variable = mwp_d21r_epoch
+has_variable = mwp_generation
+exists = scope:mwp_d21r_input_owner
+exists = scope:mwp_d21r_input_generation
+exists = scope:mwp_d21r_input_day
+exists = scope:mwp_d21r_input_purchases
+exists = scope:mwp_d21r_input_clock
+exists = scope:mwp_d21r_input_epoch
+ scope:mwp_d21r_input_owner = this
+ scope:mwp_d21r_input_generation = var:mwp_generation
+ scope:mwp_d21r_input_day = days_since_birth
+ scope:mwp_d21r_input_purchases = mwp_native_cost_purchase_count_value
+ scope:mwp_d21r_input_clock = var:mwp_d21r_clock
+ scope:mwp_d21r_input_epoch = var:mwp_d21r_epoch
+is_ai = no is_alive = yes has_variable = mwp_d21r_owner var:mwp_d21r_owner = this has_variable = mwp_d21r_clock has_variable = mwp_d21r_epoch
+ trigger_if = { limit = {
+  has_variable = mwp_generation has_variable = mwp_d21h_epoch
+  has_variable = mwp_d21h_generation has_variable = mwp_d21h_day
+  has_variable = mwp_d21h_start
+ }
+ var:mwp_d21h_epoch = var:mwp_d21r_epoch
+ var:mwp_d21h_generation = var:mwp_generation
+ var:mwp_d21h_day = days_since_birth
+ var:mwp_d21r_clock >= var:mwp_d21h_start
+ var:mwp_d21r_clock <= { value = var:mwp_d21h_start add = 10 }
+ }
+ trigger_else = { always = no }
+exists = scope:mwp_d21h_input_sequence
+exists = scope:mwp_d21h_input_house
+exists = scope:mwp_d21h_input_level
+exists = scope:mwp_d21h_input_quartermaster
+exists = scope:mwp_d21h_input_siege
+ has_variable = mwp_d21h_collecting var:mwp_d21h_collecting = yes
+ scope:mwp_d21h_input_sequence = var:mwp_d21h_sequence
+ any_in_list = { variable = mwp_d21h_houses this = scope:mwp_d21h_input_house }
+ NOT = { any_in_list = { variable = mwp_d21h_seen this = scope:mwp_d21h_input_house } }
+ scope:mwp_d21h_input_house = { is_powerful_family = yes }
+ is_independent_ruler = yes
+ }
+ effect = { if = { limit = { is_ai = no is_alive = yes has_variable = mwp_d21r_owner var:mwp_d21r_owner = this has_variable = mwp_d21r_clock has_variable = mwp_d21r_epoch
+has_variable = mwp_generation
+exists = scope:mwp_d21r_input_owner
+exists = scope:mwp_d21r_input_generation
+exists = scope:mwp_d21r_input_day
+exists = scope:mwp_d21r_input_purchases
+exists = scope:mwp_d21r_input_clock
+exists = scope:mwp_d21r_input_epoch
+ scope:mwp_d21r_input_owner = this
+ scope:mwp_d21r_input_generation = var:mwp_generation
+ scope:mwp_d21r_input_day = days_since_birth
+ scope:mwp_d21r_input_purchases = mwp_native_cost_purchase_count_value
+ scope:mwp_d21r_input_clock = var:mwp_d21r_clock
+ scope:mwp_d21r_input_epoch = var:mwp_d21r_epoch
+is_ai = no is_alive = yes has_variable = mwp_d21r_owner var:mwp_d21r_owner = this has_variable = mwp_d21r_clock has_variable = mwp_d21r_epoch
+ trigger_if = { limit = {
+  has_variable = mwp_generation has_variable = mwp_d21h_epoch
+  has_variable = mwp_d21h_generation has_variable = mwp_d21h_day
+  has_variable = mwp_d21h_start
+ }
+ var:mwp_d21h_epoch = var:mwp_d21r_epoch
+ var:mwp_d21h_generation = var:mwp_generation
+ var:mwp_d21h_day = days_since_birth
+ var:mwp_d21r_clock >= var:mwp_d21h_start
+ var:mwp_d21r_clock <= { value = var:mwp_d21h_start add = 10 }
+ }
+ trigger_else = { always = no }
+exists = scope:mwp_d21h_input_sequence
+exists = scope:mwp_d21h_input_house
+exists = scope:mwp_d21h_input_level
+exists = scope:mwp_d21h_input_quartermaster
+exists = scope:mwp_d21h_input_siege
+ has_variable = mwp_d21h_collecting var:mwp_d21h_collecting = yes
+ scope:mwp_d21h_input_sequence = var:mwp_d21h_sequence
+ any_in_list = { variable = mwp_d21h_houses this = scope:mwp_d21h_input_house }
+ NOT = { any_in_list = { variable = mwp_d21h_seen this = scope:mwp_d21h_input_house } }
+ scope:mwp_d21h_input_house = { is_powerful_family = yes }
+ is_independent_ruler = yes
+ } 
+ add_to_variable_list = { name = mwp_d21h_seen target = scope:mwp_d21h_input_house }
+ change_variable = { name = mwp_d21h_received add = 1 }
+ if = { limit = { scope:mwp_d21h_input_quartermaster = yes }
+  if = { limit = { scope:mwp_d21h_input_level = 0 } change_variable = { name = mwp_d21h_recruitment add = -0.04 } }
+  else_if = { limit = { scope:mwp_d21h_input_level = 1 } change_variable = { name = mwp_d21h_recruitment add = -0.08 } }
+  else_if = { limit = { scope:mwp_d21h_input_level = 2 } change_variable = { name = mwp_d21h_recruitment add = -0.12 } }
+ }
+ if = { limit = { scope:mwp_d21h_input_siege = yes scope:mwp_d21h_input_level = 2 }
+  change_variable = { name = mwp_d21h_siege_recruitment add = -0.1 }
+ }
+ if = { limit = { var:mwp_d21h_received = var:mwp_d21h_expected }
+  set_variable = { name = mwp_d21h_ready value = yes }
+  remove_variable = mwp_d21h_collecting
+ }
+ } }
+}
+mwp_d21h_current = {
+ scope = character
+ saved_scopes = {  }
+ is_valid = { is_ai = no is_alive = yes has_variable = mwp_d21r_owner var:mwp_d21r_owner = this has_variable = mwp_d21r_clock has_variable = mwp_d21r_epoch
+ trigger_if = { limit = {
+  has_variable = mwp_generation has_variable = mwp_d21h_epoch
+  has_variable = mwp_d21h_generation has_variable = mwp_d21h_day
+  has_variable = mwp_d21h_start
+ }
+ var:mwp_d21h_epoch = var:mwp_d21r_epoch
+ var:mwp_d21h_generation = var:mwp_generation
+ var:mwp_d21h_day = days_since_birth
+ var:mwp_d21r_clock >= var:mwp_d21h_start
+ var:mwp_d21r_clock <= { value = var:mwp_d21h_start add = 10 }
+ }
+ trigger_else = { always = no }
+
+has_variable = mwp_d21h_ready var:mwp_d21h_ready = yes var:mwp_d21h_received = var:mwp_d21h_expected }
+ effect = { if = { limit = { is_ai = no is_alive = yes has_variable = mwp_d21r_owner var:mwp_d21r_owner = this has_variable = mwp_d21r_clock has_variable = mwp_d21r_epoch
+ trigger_if = { limit = {
+  has_variable = mwp_generation has_variable = mwp_d21h_epoch
+  has_variable = mwp_d21h_generation has_variable = mwp_d21h_day
+  has_variable = mwp_d21h_start
+ }
+ var:mwp_d21h_epoch = var:mwp_d21r_epoch
+ var:mwp_d21h_generation = var:mwp_generation
+ var:mwp_d21h_day = days_since_birth
+ var:mwp_d21r_clock >= var:mwp_d21h_start
+ var:mwp_d21r_clock <= { value = var:mwp_d21h_start add = 10 }
+ }
+ trigger_else = { always = no }
+
+has_variable = mwp_d21h_ready var:mwp_d21h_ready = yes var:mwp_d21h_received = var:mwp_d21h_expected }  } }
+}

@@ -1,0 +1,10 @@
+﻿window = { name = mwp_d20_migration size = { 1 1 } alwaystransparent = yes
+ visible = "[GetPlayer.IsValid]"
+ state = { name = mwp_d20_migration_poll trigger_on_create = yes duration = 0.25 alpha = 1
+  on_finish = "[PdxGuiWidget.TriggerAnimation(Select_CString(And(GetPlayer.IsValid,GetScriptedGui('mwp_d20_migrate_wars').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End)),'mwp_d20_migration_commit','mwp_d20_migration_idle'))]"
+ }
+ state = { name = mwp_d20_migration_commit duration = 0 alpha = 1 next = mwp_d20_migration_poll
+  on_start = "[GetScriptedGui('mwp_d20_migrate_wars').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+ }
+ state = { name = mwp_d20_migration_idle duration = 0 alpha = 1 next = mwp_d20_migration_poll }
+}

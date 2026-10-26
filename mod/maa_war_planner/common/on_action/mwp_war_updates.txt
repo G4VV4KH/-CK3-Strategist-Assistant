@@ -1,0 +1,33 @@
+﻿# Native CB hooks run before an ended war is destroyed. Queue an analysis;
+# the GUI bridge consumes it after the current action finishes. Only interested
+# player scopes are considered; no world-wide army scan runs in this hook.
+# A direct player war invalidates immediately. Prospective-rival-only changes
+# are included in the next monthly snapshot. Thousands of potential rivals
+# must not turn every AI war into another full scan between paid purchases.
+on_war_started = { on_actions = { mwp_relevant_war_changed } }
+on_war_won_attacker = { on_actions = { mwp_relevant_war_changed } }
+on_war_won_defender = { on_actions = { mwp_relevant_war_changed } }
+on_war_white_peace = { on_actions = { mwp_relevant_war_changed } }
+on_war_invalidated = { on_actions = { mwp_relevant_war_changed } }
+
+mwp_relevant_war_changed = {
+    effect = {
+        if = {
+            limit = { exists = scope:attacker exists = scope:defender exists = scope:war }
+            every_player = {
+                limit = {
+                    is_alive = yes
+                    is_ai = no
+                }
+                if = {
+                    limit = { OR = {
+                        this = scope:attacker
+                        this = scope:defender
+                        any_character_war = { this = scope:war }
+                    } }
+                    mwp_request_analysis_effect = yes
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,43 @@
+﻿# Readiness only: the unchanged batch builds/checks its ledger and revalidates every paid action.
+mwp_d24_recruitment_receipts_ready_trigger = {
+    mwp_script_price_supported_trigger = yes
+    OR = {
+        mwp_auto_budget_mode_value = 3
+        AND = {
+            mwp_d21_legacy_gold_budget_trigger = yes
+            trigger_if = {
+                limit = {
+                    has_variable = mwp_script_budget_ready
+                }
+                var:mwp_script_budget_ready = yes
+                OR = {
+                    AND = {
+                        exists = scope:mwp_input_cost_panel_open
+                        scope:mwp_input_cost_panel_open = yes
+                        mwp_native_cost_current_trigger = yes
+                        exists = scope:mwp_input_native_cost_sequence
+                        scope:mwp_input_native_cost_sequence = var:mwp_native_cost_sequence
+                        exists = scope:mwp_input_cost_max_maa
+                        scope:mwp_input_cost_max_maa = var:mwp_native_cost_max_maa
+                    }
+                    AND = {
+                        mwp_fallback_cost_current_trigger = yes
+                        exists = scope:mwp_input_fallback_cost_sequence
+                        scope:mwp_input_fallback_cost_sequence = var:mwp_fallback_cost_sequence
+                        exists = scope:mwp_input_cost_max_maa
+                        scope:mwp_input_cost_max_maa = var:mwp_fallback_cost_max_maa
+                    }
+                }
+            }
+            trigger_else = {
+                always = no
+            }
+        }
+        AND = {
+            NOT = {
+                mwp_d21_legacy_gold_budget_trigger = yes
+            }
+            mwp_d21_resource_current_trigger = yes
+        }
+    }
+}

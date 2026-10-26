@@ -1,0 +1,2462 @@
+﻿# MWP war pool, CK3 1.20.1.2. Lists and scores belong to the player.
+# Rivals/provinces store owner-tagged scan stamps for constant-time deduplication.
+# API evidence: generated effects.log every_ruler:1057, every_war_enemy:5385,
+# every_maa_regiment:4757, every_sub_realm_barony:5173; triggers.log
+# is_unit_type:9382, maa_current_troops_count:9388, fort_level:10727.
+# Installed examples: common/script_values/07_ep3_values.txt:4513;
+# common/scripted_effects/00_ep1_inspiration_effects_sean.txt:540.
+#
+# Coverage: every count+ ruler supplied by every_ruler, including vassals, with
+# native diplomatic-range and attack-hierarchy gates before CB queries, plus
+# current war opponents. No neighbor-only or top-N cap. Landless coverage
+# depends on the engine's ruler iterator and must be measured in a native test.
+# has_any_cb_on excludes CBs disabled for interface availability; factions and
+# scripted invasions without a direct active enemy are outside this prototype.
+# Both broad directional pools are retained. mwp_war_scoring_rivals is the
+# deduplicated union of shown+usable native war interactions and opposing active
+# primary war actors; the script cache adds opposing coalition participants.
+# This still is NOT selected CB/title CanSend; hook send-option coverage is pending.
+# No manual exclusion for breakable truces/alliances is added. All aggregates
+# and fort samples below use ONLY mwp_war_scoring_rivals.
+# Legacy personal-regiment/strength summaries retired: no runtime consumers.
+# Production collects native own owner/origin/title stats and coarse base enemy stats,
+# actual active-war coalitions and conservative possible enemy allied support.
+# DEV11 forts cover the scoring-rival realm union; capitals/borders are marked subsets.
+# Realm provinces are geographic opportunities, NOT confirmed CB war objectives.
+
+# Caller: player. Public refresh entry point.
+mwp_war_refresh_effect = {
+    save_scope_as = mwp_player
+    mwp_war_reset_effect = yes
+    mwp_read_analysis_strength_effect = {
+        OUT = mwp_scan_player_strength
+    }
+    every_war_enemy = {
+        limit = {
+            is_alive = yes
+            this != scope:mwp_player
+        }
+        save_scope_as = mwp_war_rival
+        mwp_war_record_active_effect = yes
+    }
+    every_character_war = {
+        if = {
+            limit = {
+                is_attacker = scope:mwp_player
+            }
+            primary_defender = {
+                save_scope_as = mwp_war_rival
+                mwp_war_record_scoring_union_effect = yes
+            }
+        }
+        else = {
+            primary_attacker = {
+                save_scope_as = mwp_war_rival
+                mwp_war_record_scoring_union_effect = yes
+            }
+        }
+    }
+    every_ruler = {
+        limit = {
+            is_alive = yes
+            this != scope:mwp_player
+        }
+        save_scope_as = mwp_war_rival
+        scope:mwp_player = {
+            change_variable = {
+                name = mwp_war_scanned_ruler_count
+                add = 1
+            }
+        }
+        if = {
+            limit = {
+                mwp_war_offensive_candidate_trigger = yes
+            }
+            mwp_scan_record_offensive_effect = yes
+        }
+        if = {
+            limit = {
+                mwp_war_defensive_candidate_trigger = yes
+            }
+            mwp_scan_record_defensive_effect = yes
+        }
+    }
+    mwp_d20_rank_wars_effect = yes
+    mwp_war_aggregate_effect = yes
+    set_variable = {
+        name = mwp_war_pool_schema
+        value = 2
+    }
+    if = {
+        limit = {
+            var:mwp_war_terrain_unknown_count = 0
+        }
+        set_variable = {
+            name = mwp_war_analysis_ready
+            value = yes
+        }
+    }
+    set_variable = {
+        name = mwp_war_likelihood_ready
+        value = yes
+    }
+}
+
+# Caller: player. Also used by the isolated fixture.
+mwp_war_reset_effect = {
+    if = {
+        limit = {
+            NOT = {
+                has_variable = mwp_war_scan_stamp
+            }
+        }
+        set_variable = {
+            name = mwp_war_scan_stamp
+            value = 0
+        }
+    }
+    change_variable = {
+        name = mwp_war_scan_stamp
+        add = 1
+    }
+    remove_variable = mwp_war_analysis_ready
+    clear_variable_list = mwp_war_rivals
+    clear_variable_list = mwp_war_scoring_rivals
+    clear_variable_list = mwp_war_offensive_rivals
+    clear_variable_list = mwp_war_defensive_rivals
+    clear_variable_list = mwp_war_offensive_valid_rivals
+    clear_variable_list = mwp_war_defensive_valid_rivals
+    clear_variable_list = mwp_war_active_rivals
+    clear_variable_list = mwp_war_fort_samples
+    remove_variable = mwp_war_rival_count
+    set_variable = {
+        name = mwp_war_scoring_rival_count
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_offensive_count
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_defensive_count
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_active_count
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_offensive_interaction_valid_count
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_defensive_interaction_valid_count
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_scanned_ruler_count
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_fort_sample_count
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_fort_total
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_fort_peak
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_fort_band0_count
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_fort_band1_count
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_fort_band2_count
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_fort_band3_count
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_fort_band4_count
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_fort_band5_count
+        value = 0
+    }
+    remove_variable = mwp_war_likelihood_ready
+    set_variable = {
+        name = mwp_war_likelihood_schema
+        value = 2
+    }
+    set_variable = {
+        name = mwp_war_fort_weight_sum
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_fort_band0_weight
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_fort_band1_weight
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_fort_band2_weight
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_fort_band3_weight
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_fort_band4_weight
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_fort_band5_weight
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_terrain_sample_count
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_terrain_weight_sum
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_terrain_unknown_count
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_region_root_count
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_region_barony_visits
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_region_capital_count
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_region_border_count
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_terrain_count_desert
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_terrain_count_desert_mountains
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_terrain_count_drylands
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_terrain_count_farmlands
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_terrain_count_floodplains
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_terrain_count_forest
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_terrain_count_hills
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_terrain_count_jungle
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_terrain_count_mountains
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_terrain_count_oasis
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_terrain_count_plains
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_terrain_count_steppe
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_terrain_count_taiga
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_terrain_count_terraced_hills
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_terrain_count_wetlands
+        value = 0
+    }
+    remove_variable = mwp_war_terrain_owner
+    remove_variable = mwp_war_terrain_stamp
+    set_variable = {
+        name = mwp_war_terrain_schema
+        value = 1
+    }
+    remove_variable = mwp_ec_fort_band0
+    remove_variable = mwp_ec_fort_band1
+    remove_variable = mwp_ec_fort_band2
+    remove_variable = mwp_ec_fort_band3
+    remove_variable = mwp_ec_fort_band4
+    remove_variable = mwp_ec_fort_band5
+    remove_variable = mwp_ec_fort_top1
+    remove_variable = mwp_ec_fort_top2
+    set_variable = {
+        name = mwp_ec_fort_band0_key
+        value = -1
+    }
+    set_variable = {
+        name = mwp_ec_fort_band1_key
+        value = -1
+    }
+    set_variable = {
+        name = mwp_ec_fort_band2_key
+        value = -1
+    }
+    set_variable = {
+        name = mwp_ec_fort_band3_key
+        value = -1
+    }
+    set_variable = {
+        name = mwp_ec_fort_band4_key
+        value = -1
+    }
+    set_variable = {
+        name = mwp_ec_fort_band5_key
+        value = -1
+    }
+    set_variable = {
+        name = mwp_ec_fort_top1_key
+        value = -1
+    }
+    set_variable = {
+        name = mwp_ec_fort_top2_key
+        value = -1
+    }
+}
+
+# Unread legacy broad union retired. Old-save list/count are cleared at reset;
+# old per-rival union receipts are ignored. Directional and scoring pools remain.
+
+
+# Caller: rival. Native-valid/active union used by all scoring and aggregates.
+mwp_war_record_scoring_union_effect = {
+    if = {
+    limit = {
+    NOT = { AND = { has_variable = mwp_war_scoring_owner var:mwp_war_scoring_owner = scope:mwp_player has_variable = mwp_war_scoring_stamp var:mwp_war_scoring_stamp = scope:mwp_player.var:mwp_war_scan_stamp } }
+}
+
+    set_variable = { name = mwp_war_scoring_owner value = scope:mwp_player }
+    set_variable = { name = mwp_war_scoring_stamp value = scope:mwp_player.var:mwp_war_scan_stamp }
+    scope:mwp_player = {
+    add_to_variable_list = { name = mwp_war_scoring_rivals target = scope:mwp_war_rival }
+    change_variable = { name = mwp_war_scoring_rival_count add = 1 }
+}
+
+}
+
+}
+
+mwp_war_record_active_effect = {
+    mwp_war_likelihood_prepare_rival_effect = yes
+    set_variable = {
+        name = mwp_war_likelihood_active
+        value = yes
+    }
+    set_variable = {
+        name = mwp_war_likelihood_weight
+        value = 16
+    }
+    scope:mwp_player = {
+        if = {
+            limit = {
+                NOT = {
+                    is_target_in_variable_list = {
+                        name = mwp_war_active_rivals
+                        target = scope:mwp_war_rival
+                    }
+                }
+            }
+            add_to_variable_list = {
+                name = mwp_war_active_rivals
+                target = scope:mwp_war_rival
+            }
+            change_variable = {
+                name = mwp_war_active_count
+                add = 1
+            }
+        }
+    }
+}
+
+mwp_war_record_offensive_effect = {
+    mwp_war_likelihood_prepare_rival_effect = yes
+    set_variable = {
+        name = mwp_war_offensive_available
+        value = 0
+    }
+    scope:mwp_player = {
+        if = {
+            limit = {
+                always = yes
+            }
+            add_to_variable_list = {
+                name = mwp_war_offensive_rivals
+                target = scope:mwp_war_rival
+            }
+            change_variable = {
+                name = mwp_war_offensive_count
+                add = 1
+            }
+            scope:mwp_war_rival = {
+                if = {
+                    limit = {
+                        mwp_war_offensive_interaction_valid_trigger = yes
+                    }
+                    set_variable = {
+                        name = mwp_war_offensive_available
+                        value = 1
+                    }
+                    scope:mwp_player = {
+                        change_variable = {
+                            name = mwp_war_offensive_interaction_valid_count
+                            add = 1
+                        }
+                        add_to_variable_list = {
+                            name = mwp_war_offensive_valid_rivals
+                            target = scope:mwp_war_rival
+                        }
+                    }
+                    mwp_war_record_scoring_union_effect = yes
+                }
+            }
+        }
+    }
+    mwp_war_likelihood_offensive_effect = yes
+}
+
+mwp_war_record_defensive_effect = {
+    mwp_war_likelihood_prepare_rival_effect = yes
+    set_variable = {
+        name = mwp_war_defensive_available
+        value = 0
+    }
+    scope:mwp_player = {
+        if = {
+            limit = {
+                always = yes
+            }
+            add_to_variable_list = {
+                name = mwp_war_defensive_rivals
+                target = scope:mwp_war_rival
+            }
+            change_variable = {
+                name = mwp_war_defensive_count
+                add = 1
+            }
+            scope:mwp_war_rival = {
+                if = {
+                    limit = {
+                        mwp_war_defensive_interaction_valid_trigger = yes
+                    }
+                    set_variable = {
+                        name = mwp_war_defensive_available
+                        value = 1
+                    }
+                    scope:mwp_player = {
+                        change_variable = {
+                            name = mwp_war_defensive_interaction_valid_count
+                            add = 1
+                        }
+                        add_to_variable_list = {
+                            name = mwp_war_defensive_valid_rivals
+                            target = scope:mwp_war_rival
+                        }
+                    }
+                    mwp_war_record_scoring_union_effect = yes
+                }
+            }
+        }
+    }
+    mwp_war_likelihood_defensive_effect = yes
+}
+
+# Caller: player. Each unique native-valid/active rival is evaluated once.
+mwp_war_aggregate_effect = {
+    if = {
+        limit = {
+            has_variable_list = mwp_war_scoring_rivals
+        }
+        every_in_list = {
+            variable = mwp_war_scoring_rivals
+            save_scope_as = mwp_war_rival
+            if = {
+                limit = {
+                    exists = capital_province
+                }
+                capital_province = {
+                    mwp_war_mark_region_capital_effect = yes
+                }
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        any_liege_or_above = {
+                            has_variable = mwp_war_scoring_owner
+                            var:mwp_war_scoring_owner = scope:mwp_player
+                            has_variable = mwp_war_scoring_stamp
+                            var:mwp_war_scoring_stamp = scope:mwp_player.var:mwp_war_scan_stamp
+                        }
+                    }
+                }
+                scope:mwp_player = {
+                    change_variable = {
+                        name = mwp_war_region_root_count
+                        add = 1
+                    }
+                }
+                every_sub_realm_county = {
+                    if = {
+                        limit = {
+                            NOT = {
+                                AND = {
+                                    exists = holder
+                                    holder = {
+                                        OR = {
+                                            this = scope:mwp_player
+                                            is_vassal_or_below_of = scope:mwp_player
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        save_scope_value_as = {
+                            name = mwp_war_region_weight
+                            value = 1
+                        }
+                        if = {
+                            limit = {
+                                exists = holder
+                            }
+                            holder = {
+                                mwp_war_region_holder_weight_effect = yes
+                            }
+                        }
+                        save_scope_value_as = {
+                            name = mwp_war_county_weight
+                            value = scope:mwp_war_region_weight
+                        }
+                        every_county_province = {
+                            scope:mwp_player = {
+                                change_variable = {
+                                    name = mwp_war_region_barony_visits
+                                    add = 1
+                                }
+                            }
+                            mwp_war_record_county_region_effect = yes
+                        }
+                    }
+                    else = {
+                        every_county_province = {
+                            scope:mwp_player = {
+                                change_variable = {
+                                    name = mwp_war_region_barony_visits
+                                    add = 1
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    every_sub_realm_county = {
+        every_county_province = {
+            every_neighboring_province = {
+                limit = {
+                    exists = county
+                    NOT = {
+                        mwp_war_province_in_player_subrealm_trigger = yes
+                    }
+                    county = {
+                        exists = holder
+                        holder = {
+                            OR = {
+                                AND = {
+                                    has_variable = mwp_war_scoring_owner
+                                    var:mwp_war_scoring_owner = scope:mwp_player
+                                    has_variable = mwp_war_scoring_stamp
+                                    var:mwp_war_scoring_stamp = scope:mwp_player.var:mwp_war_scan_stamp
+                                }
+                                any_liege_or_above = {
+                                    has_variable = mwp_war_scoring_owner
+                                    var:mwp_war_scoring_owner = scope:mwp_player
+                                    has_variable = mwp_war_scoring_stamp
+                                    var:mwp_war_scoring_stamp = scope:mwp_player.var:mwp_war_scan_stamp
+                                }
+                            }
+                        }
+                    }
+                }
+                mwp_war_mark_region_border_effect = yes
+            }
+        }
+    }
+    set_variable = {
+        name = mwp_war_terrain_owner
+        value = this
+    }
+    set_variable = {
+        name = mwp_war_terrain_stamp
+        value = var:mwp_war_scan_stamp
+    }
+}
+
+# Caller: regiment. Preserve native counts before switching to the player.
+
+
+# Caller: province. Deduplicate the same capital/border province across rivals.
+mwp_war_record_fort_effect = {
+    save_scope_value_as = {
+        name = mwp_war_fort_level
+        value = fort_level
+    }
+    if = {
+        limit = {
+            scope:mwp_war_fort_level > 0
+        }
+        save_scope_as = mwp_war_fort
+        scope:mwp_player = {
+            scope:mwp_war_fort = {
+                mwp_enemy_cache_consider_fort_effect = yes
+            }
+            scope:mwp_war_fort = {
+                mwp_war_likelihood_fort_effect = yes
+            }
+            change_variable = {
+                name = mwp_war_fort_sample_count
+                add = 1
+            }
+            change_variable = {
+                name = mwp_war_fort_weight_sum
+                add = scope:mwp_war_fort_likelihood_weight
+            }
+            change_variable = {
+                name = mwp_war_fort_total
+                add = scope:mwp_war_fort_level
+            }
+            if = {
+                limit = {
+                    scope:mwp_war_fort_level < 4
+                }
+                change_variable = {
+                    name = mwp_war_fort_band0_count
+                    add = 1
+                }
+                change_variable = {
+                    name = mwp_war_fort_band0_weight
+                    add = scope:mwp_war_fort_likelihood_weight
+                }
+            }
+            else_if = {
+                limit = {
+                    scope:mwp_war_fort_level < 6
+                }
+                change_variable = {
+                    name = mwp_war_fort_band1_count
+                    add = 1
+                }
+                change_variable = {
+                    name = mwp_war_fort_band1_weight
+                    add = scope:mwp_war_fort_likelihood_weight
+                }
+            }
+            else_if = {
+                limit = {
+                    scope:mwp_war_fort_level < 11
+                }
+                change_variable = {
+                    name = mwp_war_fort_band2_count
+                    add = 1
+                }
+                change_variable = {
+                    name = mwp_war_fort_band2_weight
+                    add = scope:mwp_war_fort_likelihood_weight
+                }
+            }
+            else_if = {
+                limit = {
+                    scope:mwp_war_fort_level < 16
+                }
+                change_variable = {
+                    name = mwp_war_fort_band3_count
+                    add = 1
+                }
+                change_variable = {
+                    name = mwp_war_fort_band3_weight
+                    add = scope:mwp_war_fort_likelihood_weight
+                }
+            }
+            else_if = {
+                limit = {
+                    scope:mwp_war_fort_level < 31
+                }
+                change_variable = {
+                    name = mwp_war_fort_band4_count
+                    add = 1
+                }
+                change_variable = {
+                    name = mwp_war_fort_band4_weight
+                    add = scope:mwp_war_fort_likelihood_weight
+                }
+            }
+            else = {
+                change_variable = {
+                    name = mwp_war_fort_band5_count
+                    add = 1
+                }
+                change_variable = {
+                    name = mwp_war_fort_band5_weight
+                    add = scope:mwp_war_fort_likelihood_weight
+                }
+            }
+            if = {
+                limit = {
+                    var:mwp_war_fort_peak < scope:mwp_war_fort_level
+                }
+                set_variable = {
+                    name = mwp_war_fort_peak
+                    value = scope:mwp_war_fort_level
+                }
+            }
+        }
+    }
+}
+
+
+# DEV10 heuristic priorities. Never a probability or exact CB/title value.
+mwp_war_likelihood_prepare_rival_effect = {
+ if = { limit = { NOT = { AND = { has_variable = mwp_war_likelihood_owner
+var:mwp_war_likelihood_owner = scope:mwp_player
+has_variable = mwp_war_likelihood_stamp
+var:mwp_war_likelihood_stamp = scope:mwp_player.var:mwp_war_scan_stamp } } }
+    remove_variable = mwp_war_likelihood_active
+  set_variable = { name = mwp_war_likelihood_owner value = scope:mwp_player }
+  set_variable = { name = mwp_war_likelihood_stamp value = scope:mwp_player.var:mwp_war_scan_stamp }
+  set_variable = { name = mwp_war_likelihood_weight value = 1 }
+ }
+}
+mwp_war_likelihood_offensive_effect = {
+    scope:mwp_player = {
+        mwp_read_analysis_strength_effect = {
+            OUT = mwp_lh_attacker_strength
+        }
+    }
+    scope:mwp_war_rival = {
+        mwp_read_analysis_strength_effect = {
+            OUT = mwp_lh_defender_strength
+        }
+    }
+    set_variable = {
+        name = mwp_war_offensive_strength_ratio
+        value = {
+            value = scope:mwp_lh_attacker_strength
+            divide = {
+                value = scope:mwp_lh_defender_strength
+                min = 1
+            }
+        }
+    }
+    set_variable = {
+        name = mwp_war_offensive_priority_score
+        value = {
+            value = scope:mwp_lh_attacker_strength
+            multiply = 1000
+            divide = {
+                value = scope:mwp_lh_attacker_strength
+                add = scope:mwp_lh_defender_strength
+                min = 1
+            }
+            round = yes
+        }
+    }
+    set_variable = {
+        name = mwp_war_offensive_strength_advantage
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_offensive_hostile_or_bold
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_offensive_busy_or_poor
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_offensive_restrained
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_offensive_valuable_cb
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_offensive_cb_checked
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_offensive_cb_value
+        value = 0
+    }
+    if = {
+        limit = {
+            var:mwp_war_offensive_strength_ratio >= 2
+        }
+        set_variable = {
+            name = mwp_war_offensive_strength_advantage
+            value = 2
+        }
+    }
+    else_if = {
+        limit = {
+            var:mwp_war_offensive_strength_ratio >= 1.25
+        }
+        set_variable = {
+            name = mwp_war_offensive_strength_advantage
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            var:mwp_war_offensive_strength_ratio < 0.75
+        }
+        set_variable = {
+            name = mwp_war_offensive_strength_advantage
+            value = -1
+        }
+    }
+    if = {
+        limit = {
+            var:mwp_war_offensive_available = 1
+        }
+        change_variable = {
+            name = mwp_war_offensive_priority_score
+            add = 300
+        }
+    }
+    if = {
+        limit = {
+            scope:mwp_player = {
+                OR = {
+                    has_truce = scope:mwp_war_rival
+                    is_allied_to = scope:mwp_war_rival
+                }
+            }
+        }
+        set_variable = {
+            name = mwp_war_offensive_restrained
+            value = 1
+        }
+        change_variable = {
+            name = mwp_war_offensive_priority_score
+            add = -500
+        }
+    }
+    if = {
+        limit = {
+            scope:mwp_player = {
+                OR = {
+                    is_at_war = yes
+                    gold < 0
+                }
+            }
+        }
+        set_variable = {
+            name = mwp_war_offensive_busy_or_poor
+            value = 1
+        }
+        change_variable = {
+            name = mwp_war_offensive_priority_score
+            add = -100
+        }
+    }
+    if = {
+        limit = {
+            var:mwp_war_offensive_available = 1
+            var:mwp_war_offensive_restrained = 0
+        }
+        set_variable = {
+            name = mwp_war_offensive_cb_checked
+            value = 1
+        }
+        if = {
+            limit = {
+                scope:mwp_player = {
+                    OR = {
+                        has_cb_on = {
+                            target = scope:mwp_war_rival
+                            casus_belli = tribal_subjugation_cb
+                        }
+                        has_cb_on = {
+                            target = scope:mwp_war_rival
+                            casus_belli = vassalization_cb
+                        }
+                    }
+                }
+            }
+            set_variable = {
+                name = mwp_war_offensive_cb_value
+                value = 300
+            }
+        }
+        else_if = {
+            limit = {
+                scope:mwp_player = {
+                    OR = {
+                        has_cb_on = {
+                            target = scope:mwp_war_rival
+                            casus_belli = invasion_war
+                        }
+                        has_cb_on = {
+                            target = scope:mwp_war_rival
+                            casus_belli = clan_invasion_war
+                        }
+                        has_cb_on = {
+                            target = scope:mwp_war_rival
+                            casus_belli = major_religious_war
+                        }
+                    }
+                }
+            }
+            set_variable = {
+                name = mwp_war_offensive_cb_value
+                value = 200
+            }
+        }
+        else_if = {
+            limit = {
+                scope:mwp_player = {
+                    OR = {
+                        has_cb_on = {
+                            target = scope:mwp_war_rival
+                            casus_belli = religious_war
+                        }
+                        has_cb_on = {
+                            target = scope:mwp_war_rival
+                            casus_belli = duchy_conquest_cb
+                        }
+                    }
+                }
+            }
+            set_variable = {
+                name = mwp_war_offensive_cb_value
+                value = 80
+            }
+        }
+        if = {
+            limit = {
+                var:mwp_war_offensive_cb_value > 0
+            }
+            set_variable = {
+                name = mwp_war_offensive_valuable_cb
+                value = 1
+            }
+            change_variable = {
+                name = mwp_war_offensive_priority_score
+                add = var:mwp_war_offensive_cb_value
+            }
+        }
+    }
+    set_variable = {
+        name = mwp_war_offensive_sort_key
+        value = {
+            value = var:mwp_war_offensive_priority_score
+            multiply = 100000
+            subtract = scope:mwp_player.var:mwp_war_scanned_ruler_count
+        }
+    }
+    set_variable = {
+        name = mwp_war_offensive_likelihood
+        value = 1
+    }
+}
+mwp_war_likelihood_defensive_effect = {
+    scope:mwp_war_rival = {
+        mwp_read_analysis_strength_effect = {
+            OUT = mwp_lh_attacker_strength
+        }
+    }
+    scope:mwp_player = {
+        mwp_read_analysis_strength_effect = {
+            OUT = mwp_lh_defender_strength
+        }
+    }
+    set_variable = {
+        name = mwp_war_defensive_strength_ratio
+        value = {
+            value = scope:mwp_lh_attacker_strength
+            divide = {
+                value = scope:mwp_lh_defender_strength
+                min = 1
+            }
+        }
+    }
+    set_variable = {
+        name = mwp_war_defensive_priority_score
+        value = {
+            value = scope:mwp_lh_attacker_strength
+            multiply = 1000
+            divide = {
+                value = scope:mwp_lh_attacker_strength
+                add = scope:mwp_lh_defender_strength
+                min = 1
+            }
+            round = yes
+        }
+    }
+    set_variable = {
+        name = mwp_war_defensive_strength_advantage
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_defensive_hostile_or_bold
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_defensive_busy_or_poor
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_defensive_restrained
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_defensive_valuable_cb
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_defensive_cb_checked
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_defensive_cb_value
+        value = 0
+    }
+    if = {
+        limit = {
+            var:mwp_war_defensive_strength_ratio >= 2
+        }
+        set_variable = {
+            name = mwp_war_defensive_strength_advantage
+            value = 2
+        }
+    }
+    else_if = {
+        limit = {
+            var:mwp_war_defensive_strength_ratio >= 1.25
+        }
+        set_variable = {
+            name = mwp_war_defensive_strength_advantage
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            var:mwp_war_defensive_strength_ratio < 0.75
+        }
+        set_variable = {
+            name = mwp_war_defensive_strength_advantage
+            value = -1
+        }
+    }
+    if = {
+        limit = {
+            var:mwp_war_defensive_available = 1
+        }
+        change_variable = {
+            name = mwp_war_defensive_priority_score
+            add = 300
+        }
+    }
+    if = {
+        limit = {
+            scope:mwp_war_rival = {
+                OR = {
+                    has_truce = scope:mwp_player
+                    is_allied_to = scope:mwp_player
+                }
+            }
+        }
+        set_variable = {
+            name = mwp_war_defensive_restrained
+            value = 1
+        }
+        change_variable = {
+            name = mwp_war_defensive_priority_score
+            add = -500
+        }
+    }
+    if = {
+        limit = {
+            scope:mwp_war_rival = {
+                OR = {
+                    is_at_war = yes
+                    gold < 0
+                }
+            }
+        }
+        set_variable = {
+            name = mwp_war_defensive_busy_or_poor
+            value = 1
+        }
+        change_variable = {
+            name = mwp_war_defensive_priority_score
+            add = -100
+        }
+    }
+    if = {
+        limit = {
+            OR = {
+                ai_boldness >= 50
+                opinion = {
+                    target = scope:mwp_player
+                    value <= -50
+                }
+            }
+        }
+        set_variable = {
+            name = mwp_war_defensive_hostile_or_bold
+            value = 1
+        }
+        change_variable = {
+            name = mwp_war_defensive_priority_score
+            add = 100
+        }
+    }
+    if = {
+        limit = {
+            var:mwp_war_defensive_available = 1
+            var:mwp_war_defensive_restrained = 0
+        }
+        set_variable = {
+            name = mwp_war_defensive_cb_checked
+            value = 1
+        }
+        if = {
+            limit = {
+                scope:mwp_war_rival = {
+                    OR = {
+                        has_cb_on = {
+                            target = scope:mwp_player
+                            casus_belli = tribal_subjugation_cb
+                        }
+                        has_cb_on = {
+                            target = scope:mwp_player
+                            casus_belli = vassalization_cb
+                        }
+                    }
+                }
+            }
+            set_variable = {
+                name = mwp_war_defensive_cb_value
+                value = 300
+            }
+        }
+        else_if = {
+            limit = {
+                scope:mwp_war_rival = {
+                    OR = {
+                        has_cb_on = {
+                            target = scope:mwp_player
+                            casus_belli = invasion_war
+                        }
+                        has_cb_on = {
+                            target = scope:mwp_player
+                            casus_belli = clan_invasion_war
+                        }
+                        has_cb_on = {
+                            target = scope:mwp_player
+                            casus_belli = major_religious_war
+                        }
+                    }
+                }
+            }
+            set_variable = {
+                name = mwp_war_defensive_cb_value
+                value = 200
+            }
+        }
+        else_if = {
+            limit = {
+                scope:mwp_war_rival = {
+                    OR = {
+                        has_cb_on = {
+                            target = scope:mwp_player
+                            casus_belli = religious_war
+                        }
+                        has_cb_on = {
+                            target = scope:mwp_player
+                            casus_belli = duchy_conquest_cb
+                        }
+                    }
+                }
+            }
+            set_variable = {
+                name = mwp_war_defensive_cb_value
+                value = 80
+            }
+        }
+        if = {
+            limit = {
+                var:mwp_war_defensive_cb_value > 0
+            }
+            set_variable = {
+                name = mwp_war_defensive_valuable_cb
+                value = 1
+            }
+            change_variable = {
+                name = mwp_war_defensive_priority_score
+                add = var:mwp_war_defensive_cb_value
+            }
+        }
+    }
+    set_variable = {
+        name = mwp_war_defensive_sort_key
+        value = {
+            value = var:mwp_war_defensive_priority_score
+            multiply = 100000
+            subtract = scope:mwp_player.var:mwp_war_scanned_ruler_count
+        }
+    }
+    set_variable = {
+        name = mwp_war_defensive_likelihood
+        value = 1
+    }
+}
+mwp_war_likelihood_fort_effect = {
+    save_scope_value_as = {
+        name = mwp_war_fort_likelihood_weight
+        value = var:mwp_war_region_weight
+    }
+}
+
+# DEV11: geographic coverage, not selected CB objectives or seasonal weather.
+mwp_war_region_holder_weight_effect = {
+ if = { limit = { NOT = { AND = { has_variable = mwp_war_region_owner
+var:mwp_war_region_owner = scope:mwp_player
+has_variable = mwp_war_region_stamp
+var:mwp_war_region_stamp = scope:mwp_player.var:mwp_war_scan_stamp } } }
+  set_variable = { name = mwp_war_region_owner value = scope:mwp_player }
+  set_variable = { name = mwp_war_region_stamp value = scope:mwp_player.var:mwp_war_scan_stamp }
+  set_variable = { name = mwp_war_region_weight value = 1 }
+  if = { limit = { OR = { AND = { has_variable = mwp_war_likelihood_owner
+var:mwp_war_likelihood_owner = scope:mwp_player
+has_variable = mwp_war_likelihood_stamp
+var:mwp_war_likelihood_stamp = scope:mwp_player.var:mwp_war_scan_stamp var:mwp_war_likelihood_weight >= 16 } any_liege_or_above = { has_variable = mwp_war_likelihood_owner
+var:mwp_war_likelihood_owner = scope:mwp_player
+has_variable = mwp_war_likelihood_stamp
+var:mwp_war_likelihood_stamp = scope:mwp_player.var:mwp_war_scan_stamp var:mwp_war_likelihood_weight >= 16 } } }
+   set_variable = { name = mwp_war_region_weight value = 16 }
+  }
+  else_if = { limit = { OR = { AND = { has_variable = mwp_war_likelihood_owner
+var:mwp_war_likelihood_owner = scope:mwp_player
+has_variable = mwp_war_likelihood_stamp
+var:mwp_war_likelihood_stamp = scope:mwp_player.var:mwp_war_scan_stamp var:mwp_war_likelihood_weight >= 4 } any_liege_or_above = { has_variable = mwp_war_likelihood_owner
+var:mwp_war_likelihood_owner = scope:mwp_player
+has_variable = mwp_war_likelihood_stamp
+var:mwp_war_likelihood_stamp = scope:mwp_player.var:mwp_war_scan_stamp var:mwp_war_likelihood_weight >= 4 } } }
+   set_variable = { name = mwp_war_region_weight value = 4 }
+  }
+ }
+ save_scope_value_as = { name = mwp_war_region_weight value = var:mwp_war_region_weight }
+}
+mwp_war_region_weight_effect = {
+ save_scope_value_as = { name = mwp_war_region_weight value = 1 }
+ if = { limit = { exists = county county = { exists = holder } }
+  county = { holder = { mwp_war_region_holder_weight_effect = yes } }
+ }
+ set_variable = { name = mwp_war_region_weight value = scope:mwp_war_region_weight }
+}
+mwp_war_region_initialize_effect = {
+    set_variable = {
+        name = mwp_war_region_owner
+        value = scope:mwp_player
+    }
+    set_variable = {
+        name = mwp_war_region_stamp
+        value = scope:mwp_player.var:mwp_war_scan_stamp
+    }
+    remove_variable = mwp_war_region_capital
+    remove_variable = mwp_war_region_border
+}
+mwp_war_region_prepare_effect = {
+    if = {
+        limit = {
+            NOT = {
+                AND = {
+                    has_variable = mwp_war_region_owner
+                    var:mwp_war_region_owner = scope:mwp_player
+                    has_variable = mwp_war_region_stamp
+                    var:mwp_war_region_stamp = scope:mwp_player.var:mwp_war_scan_stamp
+                }
+            }
+        }
+        mwp_war_region_initialize_effect = yes
+        mwp_war_region_weight_effect = yes
+        mwp_war_record_prepared_region_effect = yes
+    }
+    else_if = {
+        limit = {
+            NOT = {
+                has_variable = mwp_war_region_recorded
+            }
+        }
+        mwp_war_record_prepared_region_effect = yes
+    }
+}
+mwp_war_record_prepared_region_effect = {
+    set_variable = {
+        name = mwp_war_region_recorded
+        value = yes
+    }
+    save_scope_value_as = {
+        name = mwp_war_region_weight
+        value = var:mwp_war_region_weight
+    }
+    switch = {
+        trigger = terrain
+        desert = {
+            scope:mwp_player = {
+                change_variable = {
+                    name = mwp_war_terrain_sample_count
+                    add = 1
+                }
+                change_variable = {
+                    name = mwp_war_terrain_weight_sum
+                    add = scope:mwp_war_region_weight
+                }
+                change_variable = {
+                    name = mwp_war_terrain_count_desert
+                    add = scope:mwp_war_region_weight
+                }
+            }
+        }
+        desert_mountains = {
+            scope:mwp_player = {
+                change_variable = {
+                    name = mwp_war_terrain_sample_count
+                    add = 1
+                }
+                change_variable = {
+                    name = mwp_war_terrain_weight_sum
+                    add = scope:mwp_war_region_weight
+                }
+                change_variable = {
+                    name = mwp_war_terrain_count_desert_mountains
+                    add = scope:mwp_war_region_weight
+                }
+            }
+        }
+        drylands = {
+            scope:mwp_player = {
+                change_variable = {
+                    name = mwp_war_terrain_sample_count
+                    add = 1
+                }
+                change_variable = {
+                    name = mwp_war_terrain_weight_sum
+                    add = scope:mwp_war_region_weight
+                }
+                change_variable = {
+                    name = mwp_war_terrain_count_drylands
+                    add = scope:mwp_war_region_weight
+                }
+            }
+        }
+        farmlands = {
+            scope:mwp_player = {
+                change_variable = {
+                    name = mwp_war_terrain_sample_count
+                    add = 1
+                }
+                change_variable = {
+                    name = mwp_war_terrain_weight_sum
+                    add = scope:mwp_war_region_weight
+                }
+                change_variable = {
+                    name = mwp_war_terrain_count_farmlands
+                    add = scope:mwp_war_region_weight
+                }
+            }
+        }
+        floodplains = {
+            scope:mwp_player = {
+                change_variable = {
+                    name = mwp_war_terrain_sample_count
+                    add = 1
+                }
+                change_variable = {
+                    name = mwp_war_terrain_weight_sum
+                    add = scope:mwp_war_region_weight
+                }
+                change_variable = {
+                    name = mwp_war_terrain_count_floodplains
+                    add = scope:mwp_war_region_weight
+                }
+            }
+        }
+        forest = {
+            scope:mwp_player = {
+                change_variable = {
+                    name = mwp_war_terrain_sample_count
+                    add = 1
+                }
+                change_variable = {
+                    name = mwp_war_terrain_weight_sum
+                    add = scope:mwp_war_region_weight
+                }
+                change_variable = {
+                    name = mwp_war_terrain_count_forest
+                    add = scope:mwp_war_region_weight
+                }
+            }
+        }
+        hills = {
+            scope:mwp_player = {
+                change_variable = {
+                    name = mwp_war_terrain_sample_count
+                    add = 1
+                }
+                change_variable = {
+                    name = mwp_war_terrain_weight_sum
+                    add = scope:mwp_war_region_weight
+                }
+                change_variable = {
+                    name = mwp_war_terrain_count_hills
+                    add = scope:mwp_war_region_weight
+                }
+            }
+        }
+        jungle = {
+            scope:mwp_player = {
+                change_variable = {
+                    name = mwp_war_terrain_sample_count
+                    add = 1
+                }
+                change_variable = {
+                    name = mwp_war_terrain_weight_sum
+                    add = scope:mwp_war_region_weight
+                }
+                change_variable = {
+                    name = mwp_war_terrain_count_jungle
+                    add = scope:mwp_war_region_weight
+                }
+            }
+        }
+        mountains = {
+            scope:mwp_player = {
+                change_variable = {
+                    name = mwp_war_terrain_sample_count
+                    add = 1
+                }
+                change_variable = {
+                    name = mwp_war_terrain_weight_sum
+                    add = scope:mwp_war_region_weight
+                }
+                change_variable = {
+                    name = mwp_war_terrain_count_mountains
+                    add = scope:mwp_war_region_weight
+                }
+            }
+        }
+        oasis = {
+            scope:mwp_player = {
+                change_variable = {
+                    name = mwp_war_terrain_sample_count
+                    add = 1
+                }
+                change_variable = {
+                    name = mwp_war_terrain_weight_sum
+                    add = scope:mwp_war_region_weight
+                }
+                change_variable = {
+                    name = mwp_war_terrain_count_oasis
+                    add = scope:mwp_war_region_weight
+                }
+            }
+        }
+        plains = {
+            scope:mwp_player = {
+                change_variable = {
+                    name = mwp_war_terrain_sample_count
+                    add = 1
+                }
+                change_variable = {
+                    name = mwp_war_terrain_weight_sum
+                    add = scope:mwp_war_region_weight
+                }
+                change_variable = {
+                    name = mwp_war_terrain_count_plains
+                    add = scope:mwp_war_region_weight
+                }
+            }
+        }
+        steppe = {
+            scope:mwp_player = {
+                change_variable = {
+                    name = mwp_war_terrain_sample_count
+                    add = 1
+                }
+                change_variable = {
+                    name = mwp_war_terrain_weight_sum
+                    add = scope:mwp_war_region_weight
+                }
+                change_variable = {
+                    name = mwp_war_terrain_count_steppe
+                    add = scope:mwp_war_region_weight
+                }
+            }
+        }
+        taiga = {
+            scope:mwp_player = {
+                change_variable = {
+                    name = mwp_war_terrain_sample_count
+                    add = 1
+                }
+                change_variable = {
+                    name = mwp_war_terrain_weight_sum
+                    add = scope:mwp_war_region_weight
+                }
+                change_variable = {
+                    name = mwp_war_terrain_count_taiga
+                    add = scope:mwp_war_region_weight
+                }
+            }
+        }
+        terraced_hills = {
+            scope:mwp_player = {
+                change_variable = {
+                    name = mwp_war_terrain_sample_count
+                    add = 1
+                }
+                change_variable = {
+                    name = mwp_war_terrain_weight_sum
+                    add = scope:mwp_war_region_weight
+                }
+                change_variable = {
+                    name = mwp_war_terrain_count_terraced_hills
+                    add = scope:mwp_war_region_weight
+                }
+            }
+        }
+        wetlands = {
+            scope:mwp_player = {
+                change_variable = {
+                    name = mwp_war_terrain_sample_count
+                    add = 1
+                }
+                change_variable = {
+                    name = mwp_war_terrain_weight_sum
+                    add = scope:mwp_war_region_weight
+                }
+                change_variable = {
+                    name = mwp_war_terrain_count_wetlands
+                    add = scope:mwp_war_region_weight
+                }
+            }
+        }
+        fallback = {
+            scope:mwp_player = {
+                change_variable = {
+                    name = mwp_war_terrain_unknown_count
+                    add = 1
+                }
+            }
+        }
+    }
+    mwp_war_record_fort_effect = yes
+}
+mwp_war_record_region_effect = {
+    if = {
+        limit = {
+            exists = county
+            NOT = {
+                OR = {
+                    terrain = sea
+                    terrain = coastal_sea
+                }
+            }
+            NOT = {
+                mwp_war_province_in_player_subrealm_trigger = yes
+            }
+        }
+        mwp_war_region_prepare_effect = yes
+    }
+}
+# Only the county traversal calls this after checking its holder once. County
+# geography still includes unheld/unbuilt slots; water/absent county stays out.
+mwp_war_record_county_region_effect = {
+    if = {
+        limit = {
+            exists = county
+            NOT = {
+                OR = {
+                    terrain = sea
+                    terrain = coastal_sea
+                }
+            }
+        }
+        if = {
+            limit = {
+                NOT = {
+                    AND = {
+                        has_variable = mwp_war_region_owner
+                        var:mwp_war_region_owner = scope:mwp_player
+                        has_variable = mwp_war_region_stamp
+                        var:mwp_war_region_stamp = scope:mwp_player.var:mwp_war_scan_stamp
+                    }
+                }
+            }
+            mwp_war_region_initialize_effect = yes
+            set_variable = {
+                name = mwp_war_region_weight
+                value = scope:mwp_war_county_weight
+            }
+            mwp_war_record_prepared_region_effect = yes
+        }
+        else_if = {
+            limit = {
+                NOT = {
+                    has_variable = mwp_war_region_recorded
+                }
+            }
+            mwp_war_record_prepared_region_effect = yes
+        }
+    }
+}
+mwp_war_mark_region_capital_effect = {
+    if = {
+        limit = {
+            exists = county
+            NOT = {
+                OR = {
+                    terrain = sea
+                    terrain = coastal_sea
+                }
+            }
+            NOT = {
+                mwp_war_province_in_player_subrealm_trigger = yes
+            }
+        }
+        mwp_war_region_prepare_effect = yes
+        if = {
+            limit = {
+                NOT = {
+                    has_variable = mwp_war_region_capital
+                }
+            }
+            set_variable = {
+                name = mwp_war_region_capital
+                value = yes
+            }
+            scope:mwp_player = {
+                change_variable = {
+                    name = mwp_war_region_capital_count
+                    add = 1
+                }
+            }
+        }
+    }
+}
+mwp_war_mark_region_border_effect = {
+    if = {
+        limit = {
+            exists = county
+            NOT = {
+                OR = {
+                    terrain = sea
+                    terrain = coastal_sea
+                }
+            }
+            NOT = {
+                mwp_war_province_in_player_subrealm_trigger = yes
+            }
+        }
+        mwp_war_region_prepare_effect = yes
+        if = {
+            limit = {
+                NOT = {
+                    has_variable = mwp_war_region_border
+                }
+            }
+            set_variable = {
+                name = mwp_war_region_border
+                value = yes
+            }
+            scope:mwp_player = {
+                change_variable = {
+                    name = mwp_war_region_border_count
+                    add = 1
+                }
+            }
+        }
+    }
+}
+
+# DEV11: exact native scalar; only reused for this owner/generation/world scan.
+mwp_read_analysis_strength_effect = {
+    if = {
+        limit = {
+            exists = scope:mwp_player
+            scope:mwp_player = {
+                has_variable = mwp_generation
+                has_variable = mwp_war_scan_stamp
+            }
+        }
+        if = {
+            limit = {
+                NOT = { AND = {
+                    has_variable = mwp_strength_snapshot_owner
+                    var:mwp_strength_snapshot_owner = scope:mwp_player
+                    has_variable = mwp_strength_snapshot_generation
+                    var:mwp_strength_snapshot_generation = scope:mwp_player.var:mwp_generation
+                    has_variable = mwp_strength_snapshot_scan_stamp
+                    var:mwp_strength_snapshot_scan_stamp = scope:mwp_player.var:mwp_war_scan_stamp
+                    has_variable = mwp_strength_snapshot_value
+                } }
+            }
+            set_variable = { name = mwp_strength_snapshot_value value = current_military_strength }
+            set_variable = { name = mwp_strength_snapshot_owner value = scope:mwp_player }
+            set_variable = { name = mwp_strength_snapshot_generation value = scope:mwp_player.var:mwp_generation }
+            set_variable = { name = mwp_strength_snapshot_scan_stamp value = scope:mwp_player.var:mwp_war_scan_stamp }
+        }
+        save_scope_value_as = { name = $OUT$ value = var:mwp_strength_snapshot_value }
+    }
+    else = {
+        # No valid analysis identity: retain the native read, never reuse scratch.
+        save_scope_value_as = { name = $OUT$ value = current_military_strength }
+    }
+}
+
+# DEV13 private synchronous refresh descendants; public standalone helpers above remain unchanged.
+mwp_scan_record_offensive_effect = {
+    mwp_war_likelihood_prepare_rival_effect = yes
+    set_variable = {
+        name = mwp_war_offensive_available
+        value = 0
+    }
+    scope:mwp_player = {
+        if = {
+            limit = {
+                always = yes
+            }
+            add_to_variable_list = {
+                name = mwp_war_offensive_rivals
+                target = scope:mwp_war_rival
+            }
+            change_variable = {
+                name = mwp_war_offensive_count
+                add = 1
+            }
+            scope:mwp_war_rival = {
+                if = {
+                    limit = {
+                        mwp_war_offensive_interaction_valid_trigger = yes
+                    }
+                    set_variable = {
+                        name = mwp_war_offensive_available
+                        value = 1
+                    }
+                    scope:mwp_player = {
+                        change_variable = {
+                            name = mwp_war_offensive_interaction_valid_count
+                            add = 1
+                        }
+                        add_to_variable_list = {
+                            name = mwp_war_offensive_valid_rivals
+                            target = scope:mwp_war_rival
+                        }
+                    }
+                    mwp_war_record_scoring_union_effect = yes
+                }
+            }
+        }
+    }
+    mwp_scan_likelihood_offensive_effect = yes
+}
+
+mwp_scan_likelihood_offensive_effect = {
+    save_scope_value_as = {
+        name = mwp_lh_attacker_strength
+        value = scope:mwp_scan_player_strength
+    }
+    scope:mwp_war_rival = {
+        mwp_read_analysis_strength_effect = {
+            OUT = mwp_lh_defender_strength
+        }
+    }
+    set_variable = {
+        name = mwp_war_offensive_strength_ratio
+        value = {
+            value = scope:mwp_lh_attacker_strength
+            divide = {
+                value = scope:mwp_lh_defender_strength
+                min = 1
+            }
+        }
+    }
+    set_variable = {
+        name = mwp_war_offensive_priority_score
+        value = {
+            value = scope:mwp_lh_attacker_strength
+            multiply = 1000
+            divide = {
+                value = scope:mwp_lh_attacker_strength
+                add = scope:mwp_lh_defender_strength
+                min = 1
+            }
+            round = yes
+        }
+    }
+    set_variable = {
+        name = mwp_war_offensive_strength_advantage
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_offensive_hostile_or_bold
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_offensive_busy_or_poor
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_offensive_restrained
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_offensive_valuable_cb
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_offensive_cb_checked
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_offensive_cb_value
+        value = 0
+    }
+    if = {
+        limit = {
+            var:mwp_war_offensive_strength_ratio >= 2
+        }
+        set_variable = {
+            name = mwp_war_offensive_strength_advantage
+            value = 2
+        }
+    }
+    else_if = {
+        limit = {
+            var:mwp_war_offensive_strength_ratio >= 1.25
+        }
+        set_variable = {
+            name = mwp_war_offensive_strength_advantage
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            var:mwp_war_offensive_strength_ratio < 0.75
+        }
+        set_variable = {
+            name = mwp_war_offensive_strength_advantage
+            value = -1
+        }
+    }
+    if = {
+        limit = {
+            var:mwp_war_offensive_available = 1
+        }
+        change_variable = {
+            name = mwp_war_offensive_priority_score
+            add = 300
+        }
+    }
+    if = {
+        limit = {
+            scope:mwp_player = {
+                OR = {
+                    has_truce = scope:mwp_war_rival
+                    is_allied_to = scope:mwp_war_rival
+                }
+            }
+        }
+        set_variable = {
+            name = mwp_war_offensive_restrained
+            value = 1
+        }
+        change_variable = {
+            name = mwp_war_offensive_priority_score
+            add = -500
+        }
+    }
+    if = {
+        limit = {
+            scope:mwp_player = {
+                OR = {
+                    is_at_war = yes
+                    gold < 0
+                }
+            }
+        }
+        set_variable = {
+            name = mwp_war_offensive_busy_or_poor
+            value = 1
+        }
+        change_variable = {
+            name = mwp_war_offensive_priority_score
+            add = -100
+        }
+    }
+    if = {
+        limit = {
+            var:mwp_war_offensive_available = 1
+            var:mwp_war_offensive_restrained = 0
+        }
+        set_variable = {
+            name = mwp_war_offensive_cb_checked
+            value = 1
+        }
+        if = {
+            limit = {
+                scope:mwp_player = {
+                    OR = {
+                        has_cb_on = {
+                            target = scope:mwp_war_rival
+                            casus_belli = tribal_subjugation_cb
+                        }
+                        has_cb_on = {
+                            target = scope:mwp_war_rival
+                            casus_belli = vassalization_cb
+                        }
+                    }
+                }
+            }
+            set_variable = {
+                name = mwp_war_offensive_cb_value
+                value = 300
+            }
+        }
+        else_if = {
+            limit = {
+                scope:mwp_player = {
+                    OR = {
+                        has_cb_on = {
+                            target = scope:mwp_war_rival
+                            casus_belli = invasion_war
+                        }
+                        has_cb_on = {
+                            target = scope:mwp_war_rival
+                            casus_belli = clan_invasion_war
+                        }
+                        has_cb_on = {
+                            target = scope:mwp_war_rival
+                            casus_belli = major_religious_war
+                        }
+                    }
+                }
+            }
+            set_variable = {
+                name = mwp_war_offensive_cb_value
+                value = 200
+            }
+        }
+        else_if = {
+            limit = {
+                scope:mwp_player = {
+                    OR = {
+                        has_cb_on = {
+                            target = scope:mwp_war_rival
+                            casus_belli = religious_war
+                        }
+                        has_cb_on = {
+                            target = scope:mwp_war_rival
+                            casus_belli = duchy_conquest_cb
+                        }
+                    }
+                }
+            }
+            set_variable = {
+                name = mwp_war_offensive_cb_value
+                value = 80
+            }
+        }
+        if = {
+            limit = {
+                var:mwp_war_offensive_cb_value > 0
+            }
+            set_variable = {
+                name = mwp_war_offensive_valuable_cb
+                value = 1
+            }
+            change_variable = {
+                name = mwp_war_offensive_priority_score
+                add = var:mwp_war_offensive_cb_value
+            }
+        }
+    }
+    set_variable = {
+        name = mwp_war_offensive_sort_key
+        value = {
+            value = var:mwp_war_offensive_priority_score
+            multiply = 100000
+            subtract = scope:mwp_player.var:mwp_war_scanned_ruler_count
+        }
+    }
+    set_variable = {
+        name = mwp_war_offensive_likelihood
+        value = 1
+    }
+}
+
+mwp_scan_record_defensive_effect = {
+    mwp_war_likelihood_prepare_rival_effect = yes
+    set_variable = {
+        name = mwp_war_defensive_available
+        value = 0
+    }
+    scope:mwp_player = {
+        if = {
+            limit = {
+                always = yes
+            }
+            add_to_variable_list = {
+                name = mwp_war_defensive_rivals
+                target = scope:mwp_war_rival
+            }
+            change_variable = {
+                name = mwp_war_defensive_count
+                add = 1
+            }
+            scope:mwp_war_rival = {
+                if = {
+                    limit = {
+                        mwp_war_defensive_interaction_valid_trigger = yes
+                    }
+                    set_variable = {
+                        name = mwp_war_defensive_available
+                        value = 1
+                    }
+                    scope:mwp_player = {
+                        change_variable = {
+                            name = mwp_war_defensive_interaction_valid_count
+                            add = 1
+                        }
+                        add_to_variable_list = {
+                            name = mwp_war_defensive_valid_rivals
+                            target = scope:mwp_war_rival
+                        }
+                    }
+                    mwp_war_record_scoring_union_effect = yes
+                }
+            }
+        }
+    }
+    mwp_scan_likelihood_defensive_effect = yes
+}
+
+mwp_scan_likelihood_defensive_effect = {
+    scope:mwp_war_rival = {
+        mwp_read_analysis_strength_effect = {
+            OUT = mwp_lh_attacker_strength
+        }
+    }
+    save_scope_value_as = {
+        name = mwp_lh_defender_strength
+        value = scope:mwp_scan_player_strength
+    }
+    set_variable = {
+        name = mwp_war_defensive_strength_ratio
+        value = {
+            value = scope:mwp_lh_attacker_strength
+            divide = {
+                value = scope:mwp_lh_defender_strength
+                min = 1
+            }
+        }
+    }
+    set_variable = {
+        name = mwp_war_defensive_priority_score
+        value = {
+            value = scope:mwp_lh_attacker_strength
+            multiply = 1000
+            divide = {
+                value = scope:mwp_lh_attacker_strength
+                add = scope:mwp_lh_defender_strength
+                min = 1
+            }
+            round = yes
+        }
+    }
+    set_variable = {
+        name = mwp_war_defensive_strength_advantage
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_defensive_hostile_or_bold
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_defensive_busy_or_poor
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_defensive_restrained
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_defensive_valuable_cb
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_defensive_cb_checked
+        value = 0
+    }
+    set_variable = {
+        name = mwp_war_defensive_cb_value
+        value = 0
+    }
+    if = {
+        limit = {
+            var:mwp_war_defensive_strength_ratio >= 2
+        }
+        set_variable = {
+            name = mwp_war_defensive_strength_advantage
+            value = 2
+        }
+    }
+    else_if = {
+        limit = {
+            var:mwp_war_defensive_strength_ratio >= 1.25
+        }
+        set_variable = {
+            name = mwp_war_defensive_strength_advantage
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            var:mwp_war_defensive_strength_ratio < 0.75
+        }
+        set_variable = {
+            name = mwp_war_defensive_strength_advantage
+            value = -1
+        }
+    }
+    if = {
+        limit = {
+            var:mwp_war_defensive_available = 1
+        }
+        change_variable = {
+            name = mwp_war_defensive_priority_score
+            add = 300
+        }
+    }
+    if = {
+        limit = {
+            scope:mwp_war_rival = {
+                OR = {
+                    has_truce = scope:mwp_player
+                    is_allied_to = scope:mwp_player
+                }
+            }
+        }
+        set_variable = {
+            name = mwp_war_defensive_restrained
+            value = 1
+        }
+        change_variable = {
+            name = mwp_war_defensive_priority_score
+            add = -500
+        }
+    }
+    if = {
+        limit = {
+            scope:mwp_war_rival = {
+                OR = {
+                    is_at_war = yes
+                    gold < 0
+                }
+            }
+        }
+        set_variable = {
+            name = mwp_war_defensive_busy_or_poor
+            value = 1
+        }
+        change_variable = {
+            name = mwp_war_defensive_priority_score
+            add = -100
+        }
+    }
+    if = {
+        limit = {
+            OR = {
+                ai_boldness >= 50
+                opinion = {
+                    target = scope:mwp_player
+                    value <= -50
+                }
+            }
+        }
+        set_variable = {
+            name = mwp_war_defensive_hostile_or_bold
+            value = 1
+        }
+        change_variable = {
+            name = mwp_war_defensive_priority_score
+            add = 100
+        }
+    }
+    if = {
+        limit = {
+            var:mwp_war_defensive_available = 1
+            var:mwp_war_defensive_restrained = 0
+        }
+        set_variable = {
+            name = mwp_war_defensive_cb_checked
+            value = 1
+        }
+        if = {
+            limit = {
+                scope:mwp_war_rival = {
+                    OR = {
+                        has_cb_on = {
+                            target = scope:mwp_player
+                            casus_belli = tribal_subjugation_cb
+                        }
+                        has_cb_on = {
+                            target = scope:mwp_player
+                            casus_belli = vassalization_cb
+                        }
+                    }
+                }
+            }
+            set_variable = {
+                name = mwp_war_defensive_cb_value
+                value = 300
+            }
+        }
+        else_if = {
+            limit = {
+                scope:mwp_war_rival = {
+                    OR = {
+                        has_cb_on = {
+                            target = scope:mwp_player
+                            casus_belli = invasion_war
+                        }
+                        has_cb_on = {
+                            target = scope:mwp_player
+                            casus_belli = clan_invasion_war
+                        }
+                        has_cb_on = {
+                            target = scope:mwp_player
+                            casus_belli = major_religious_war
+                        }
+                    }
+                }
+            }
+            set_variable = {
+                name = mwp_war_defensive_cb_value
+                value = 200
+            }
+        }
+        else_if = {
+            limit = {
+                scope:mwp_war_rival = {
+                    OR = {
+                        has_cb_on = {
+                            target = scope:mwp_player
+                            casus_belli = religious_war
+                        }
+                        has_cb_on = {
+                            target = scope:mwp_player
+                            casus_belli = duchy_conquest_cb
+                        }
+                    }
+                }
+            }
+            set_variable = {
+                name = mwp_war_defensive_cb_value
+                value = 80
+            }
+        }
+        if = {
+            limit = {
+                var:mwp_war_defensive_cb_value > 0
+            }
+            set_variable = {
+                name = mwp_war_defensive_valuable_cb
+                value = 1
+            }
+            change_variable = {
+                name = mwp_war_defensive_priority_score
+                add = var:mwp_war_defensive_cb_value
+            }
+        }
+    }
+    set_variable = {
+        name = mwp_war_defensive_sort_key
+        value = {
+            value = var:mwp_war_defensive_priority_score
+            multiply = 100000
+            subtract = scope:mwp_player.var:mwp_war_scanned_ruler_count
+        }
+    }
+    set_variable = {
+        name = mwp_war_defensive_likelihood
+        value = 1
+    }
+}
+
+mwp_d20_rank_wars_effect = {
+ save_scope_as = mwp_player
+ set_variable = { name = mwp_war_offensive_rank_cursor value = 0 }
+ set_variable = { name = mwp_war_offensive_high_count value = { value = var:mwp_war_offensive_count multiply = 0.1 ceiling = yes } }
+ set_variable = { name = mwp_war_offensive_through_medium_count value = { value = var:mwp_war_offensive_count multiply = 0.4 ceiling = yes } }
+ set_variable = { name = mwp_war_offensive_medium_count value = { value = var:mwp_war_offensive_through_medium_count subtract = var:mwp_war_offensive_high_count } }
+ set_variable = { name = mwp_war_offensive_low_count value = { value = var:mwp_war_offensive_count subtract = var:mwp_war_offensive_through_medium_count } }
+ clear_variable_list = mwp_info_offensive_sorted
+ clear_variable_list = mwp_info_offensive_valid_sorted
+ clear_variable_list = mwp_info_offensive_high_sorted
+ clear_variable_list = mwp_info_offensive_high_valid_sorted
+ clear_variable_list = mwp_info_offensive_medium_sorted
+ clear_variable_list = mwp_info_offensive_medium_valid_sorted
+ clear_variable_list = mwp_info_offensive_low_sorted
+ clear_variable_list = mwp_info_offensive_low_valid_sorted
+ if = { limit = { has_variable_list = mwp_war_offensive_rivals }
+  ordered_in_list = { variable = mwp_war_offensive_rivals order_by = var:mwp_war_offensive_sort_key
+   max = var:mwp_war_offensive_count check_range_bounds = no
+   save_scope_as = mwp_war_rival
+   scope:mwp_player = { change_variable = { name = mwp_war_offensive_rank_cursor add = 1 }
+    add_to_variable_list = { name = mwp_info_offensive_sorted target = scope:mwp_war_rival }
+   }
+   set_variable = { name = mwp_war_offensive_rank value = scope:mwp_player.var:mwp_war_offensive_rank_cursor }
+   set_variable = { name = mwp_war_offensive_band_rank value = var:mwp_war_offensive_rank }
+   set_variable = { name = mwp_war_offensive_likelihood value = 1 }
+   if = { limit = { var:mwp_war_offensive_rank <= scope:mwp_player.var:mwp_war_offensive_high_count }
+    set_variable = { name = mwp_war_offensive_likelihood value = 3 }
+   }
+   else_if = { limit = { var:mwp_war_offensive_rank <= scope:mwp_player.var:mwp_war_offensive_through_medium_count }
+    set_variable = { name = mwp_war_offensive_likelihood value = 2 }
+    change_variable = { name = mwp_war_offensive_band_rank subtract = scope:mwp_player.var:mwp_war_offensive_high_count }
+   }
+   else = { change_variable = { name = mwp_war_offensive_band_rank subtract = scope:mwp_player.var:mwp_war_offensive_through_medium_count } }
+   if = { limit = { var:mwp_war_offensive_likelihood = 3 } set_variable = { name = mwp_war_likelihood_weight value = 16 } }
+   else_if = { limit = { var:mwp_war_offensive_likelihood = 2 var:mwp_war_likelihood_weight < 4 } set_variable = { name = mwp_war_likelihood_weight value = 4 } }
+   if = { limit = { var:mwp_war_offensive_likelihood = 3 }
+    scope:mwp_player = { add_to_variable_list = { name = mwp_info_offensive_high_sorted target = scope:mwp_war_rival } }
+    if = { limit = { var:mwp_war_offensive_available = 1 }
+     scope:mwp_player = { add_to_variable_list = { name = mwp_info_offensive_high_valid_sorted target = scope:mwp_war_rival } }
+    }
+   }
+   else_if = { limit = { var:mwp_war_offensive_likelihood = 2 }
+    scope:mwp_player = { add_to_variable_list = { name = mwp_info_offensive_medium_sorted target = scope:mwp_war_rival } }
+    if = { limit = { var:mwp_war_offensive_available = 1 }
+     scope:mwp_player = { add_to_variable_list = { name = mwp_info_offensive_medium_valid_sorted target = scope:mwp_war_rival } }
+    }
+   }
+   else_if = { limit = { var:mwp_war_offensive_likelihood = 1 }
+    scope:mwp_player = { add_to_variable_list = { name = mwp_info_offensive_low_sorted target = scope:mwp_war_rival } }
+    if = { limit = { var:mwp_war_offensive_available = 1 }
+     scope:mwp_player = { add_to_variable_list = { name = mwp_info_offensive_low_valid_sorted target = scope:mwp_war_rival } }
+    }
+   }
+   if = { limit = { var:mwp_war_offensive_available = 1 }
+    scope:mwp_player = { add_to_variable_list = { name = mwp_info_offensive_valid_sorted target = scope:mwp_war_rival } }
+   }
+  }
+ }
+ set_variable = { name = mwp_war_defensive_rank_cursor value = 0 }
+ set_variable = { name = mwp_war_defensive_high_count value = { value = var:mwp_war_defensive_count multiply = 0.1 ceiling = yes } }
+ set_variable = { name = mwp_war_defensive_through_medium_count value = { value = var:mwp_war_defensive_count multiply = 0.4 ceiling = yes } }
+ set_variable = { name = mwp_war_defensive_medium_count value = { value = var:mwp_war_defensive_through_medium_count subtract = var:mwp_war_defensive_high_count } }
+ set_variable = { name = mwp_war_defensive_low_count value = { value = var:mwp_war_defensive_count subtract = var:mwp_war_defensive_through_medium_count } }
+ clear_variable_list = mwp_info_defensive_sorted
+ clear_variable_list = mwp_info_defensive_valid_sorted
+ clear_variable_list = mwp_info_defensive_high_sorted
+ clear_variable_list = mwp_info_defensive_high_valid_sorted
+ clear_variable_list = mwp_info_defensive_medium_sorted
+ clear_variable_list = mwp_info_defensive_medium_valid_sorted
+ clear_variable_list = mwp_info_defensive_low_sorted
+ clear_variable_list = mwp_info_defensive_low_valid_sorted
+ if = { limit = { has_variable_list = mwp_war_defensive_rivals }
+  ordered_in_list = { variable = mwp_war_defensive_rivals order_by = var:mwp_war_defensive_sort_key
+   max = var:mwp_war_defensive_count check_range_bounds = no
+   save_scope_as = mwp_war_rival
+   scope:mwp_player = { change_variable = { name = mwp_war_defensive_rank_cursor add = 1 }
+    add_to_variable_list = { name = mwp_info_defensive_sorted target = scope:mwp_war_rival }
+   }
+   set_variable = { name = mwp_war_defensive_rank value = scope:mwp_player.var:mwp_war_defensive_rank_cursor }
+   set_variable = { name = mwp_war_defensive_band_rank value = var:mwp_war_defensive_rank }
+   set_variable = { name = mwp_war_defensive_likelihood value = 1 }
+   if = { limit = { var:mwp_war_defensive_rank <= scope:mwp_player.var:mwp_war_defensive_high_count }
+    set_variable = { name = mwp_war_defensive_likelihood value = 3 }
+   }
+   else_if = { limit = { var:mwp_war_defensive_rank <= scope:mwp_player.var:mwp_war_defensive_through_medium_count }
+    set_variable = { name = mwp_war_defensive_likelihood value = 2 }
+    change_variable = { name = mwp_war_defensive_band_rank subtract = scope:mwp_player.var:mwp_war_defensive_high_count }
+   }
+   else = { change_variable = { name = mwp_war_defensive_band_rank subtract = scope:mwp_player.var:mwp_war_defensive_through_medium_count } }
+   if = { limit = { var:mwp_war_defensive_likelihood = 3 } set_variable = { name = mwp_war_likelihood_weight value = 16 } }
+   else_if = { limit = { var:mwp_war_defensive_likelihood = 2 var:mwp_war_likelihood_weight < 4 } set_variable = { name = mwp_war_likelihood_weight value = 4 } }
+   if = { limit = { var:mwp_war_defensive_likelihood = 3 }
+    scope:mwp_player = { add_to_variable_list = { name = mwp_info_defensive_high_sorted target = scope:mwp_war_rival } }
+    if = { limit = { var:mwp_war_defensive_available = 1 }
+     scope:mwp_player = { add_to_variable_list = { name = mwp_info_defensive_high_valid_sorted target = scope:mwp_war_rival } }
+    }
+   }
+   else_if = { limit = { var:mwp_war_defensive_likelihood = 2 }
+    scope:mwp_player = { add_to_variable_list = { name = mwp_info_defensive_medium_sorted target = scope:mwp_war_rival } }
+    if = { limit = { var:mwp_war_defensive_available = 1 }
+     scope:mwp_player = { add_to_variable_list = { name = mwp_info_defensive_medium_valid_sorted target = scope:mwp_war_rival } }
+    }
+   }
+   else_if = { limit = { var:mwp_war_defensive_likelihood = 1 }
+    scope:mwp_player = { add_to_variable_list = { name = mwp_info_defensive_low_sorted target = scope:mwp_war_rival } }
+    if = { limit = { var:mwp_war_defensive_available = 1 }
+     scope:mwp_player = { add_to_variable_list = { name = mwp_info_defensive_low_valid_sorted target = scope:mwp_war_rival } }
+    }
+   }
+   if = { limit = { var:mwp_war_defensive_available = 1 }
+    scope:mwp_player = { add_to_variable_list = { name = mwp_info_defensive_valid_sorted target = scope:mwp_war_rival } }
+   }
+  }
+ }
+}
