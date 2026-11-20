@@ -93,6 +93,7 @@ var:mwp_script_candidate_id = 102
 var:mwp_script_candidate_id = 103
 var:mwp_script_candidate_id = 104
 var:mwp_script_candidate_id = 105
+var:mwp_script_candidate_id = 112
 var:mwp_script_candidate_id = 106
 var:mwp_script_candidate_id = 107
 var:mwp_script_candidate_id = 108
@@ -197,6 +198,7 @@ var:mwp_script_selected_id = 102
 var:mwp_script_selected_id = 103
 var:mwp_script_selected_id = 104
 var:mwp_script_selected_id = 105
+var:mwp_script_selected_id = 112
 var:mwp_script_selected_id = 106
 var:mwp_script_selected_id = 107
 var:mwp_script_selected_id = 108
@@ -10238,6 +10240,109 @@ trigger_if = { limit = { has_variable = mwp_d21j_105_2_station }
  var:mwp_d21j_105_2_regiment = { exists = regiment_station regiment_station = prev.var:mwp_d21j_105_2_station }
 }
 trigger_else = { var:mwp_d21j_105_2_regiment = { NOT = { exists = regiment_station } } }
+
+}
+trigger_else = { always = no }
+
+}
+mwp_d21_reject_holder_112_1_trigger = {
+trigger_if = {
+limit = {
+has_variable = mwp_d21j_112_1_owner
+has_variable = mwp_d21j_112_1_sequence
+has_variable = mwp_d21j_112_1_price
+has_variable = mwp_d21j_112_1_upkeep
+has_variable = mwp_d21j_112_1_currency
+has_variable = mwp_d21j_112_1_upkeep_currency
+has_variable = mwp_d21j_112_1_route
+has_variable = mwp_d21j_112_1_nomad_mode
+has_variable = mwp_d21j_112_1_subject_source
+has_variable = mwp_d21j_112_1_herd
+
+}
+var:mwp_d21j_112_1_owner = root
+var:mwp_d21j_112_1_sequence = root.var:mwp_d21j_sequence
+var:mwp_d21j_112_1_price = root.var:mwp_script_candidate_price
+var:mwp_d21j_112_1_upkeep = root.var:mwp_script_candidate_upkeep
+var:mwp_d21j_112_1_currency = root.var:mwp_script_candidate_currency
+var:mwp_d21j_112_1_upkeep_currency = root.var:mwp_script_candidate_upkeep_currency
+var:mwp_d21j_112_1_route = root.var:mwp_script_candidate_route
+root = {
+ trigger_if = { limit = { has_variable = mwp_script_candidate_nomad_mode }
+  var:mwp_script_candidate_nomad_mode = prev.var:mwp_d21j_112_1_nomad_mode
+ }
+ trigger_else = { prev = { var:mwp_d21j_112_1_nomad_mode = 0 } }
+}
+root = {
+ trigger_if = { limit = { has_variable = mwp_script_candidate_subject_source }
+  var:mwp_script_candidate_subject_source = prev.var:mwp_d21j_112_1_subject_source
+ }
+ trigger_else = { prev = { var:mwp_d21j_112_1_subject_source = 0 } }
+}
+root = {
+ trigger_if = { limit = { has_variable = mwp_script_candidate_herd }
+  var:mwp_script_candidate_herd = prev.var:mwp_d21j_112_1_herd
+ }
+ trigger_else = { prev = { var:mwp_d21j_112_1_herd = 0 } }
+}
+
+}
+trigger_else = { always = no }
+
+}
+mwp_d21_reject_holder_112_2_trigger = {
+trigger_if = {
+limit = {
+has_variable = mwp_d21j_112_2_owner
+has_variable = mwp_d21j_112_2_sequence
+has_variable = mwp_d21j_112_2_price
+has_variable = mwp_d21j_112_2_upkeep
+has_variable = mwp_d21j_112_2_currency
+has_variable = mwp_d21j_112_2_upkeep_currency
+has_variable = mwp_d21j_112_2_route
+has_variable = mwp_d21j_112_2_regiment
+has_variable = mwp_d21j_112_2_size
+has_variable = mwp_d21j_112_2_max
+has_variable = mwp_d21j_112_2_current
+has_variable = mwp_d21j_112_2_nomad_mode
+has_variable = mwp_d21j_112_2_subject_source
+has_variable = mwp_d21j_112_2_herd
+
+}
+var:mwp_d21j_112_2_owner = root
+var:mwp_d21j_112_2_sequence = root.var:mwp_d21j_sequence
+var:mwp_d21j_112_2_price = root.var:mwp_script_candidate_price
+var:mwp_d21j_112_2_upkeep = root.var:mwp_script_candidate_upkeep
+var:mwp_d21j_112_2_currency = root.var:mwp_script_candidate_currency
+var:mwp_d21j_112_2_upkeep_currency = root.var:mwp_script_candidate_upkeep_currency
+var:mwp_d21j_112_2_route = root.var:mwp_script_candidate_route
+root = {
+ trigger_if = { limit = { has_variable = mwp_script_candidate_nomad_mode }
+  var:mwp_script_candidate_nomad_mode = prev.var:mwp_d21j_112_2_nomad_mode
+ }
+ trigger_else = { prev = { var:mwp_d21j_112_2_nomad_mode = 0 } }
+}
+root = {
+ trigger_if = { limit = { has_variable = mwp_script_candidate_subject_source }
+  var:mwp_script_candidate_subject_source = prev.var:mwp_d21j_112_2_subject_source
+ }
+ trigger_else = { prev = { var:mwp_d21j_112_2_subject_source = 0 } }
+}
+root = {
+ trigger_if = { limit = { has_variable = mwp_script_candidate_herd }
+  var:mwp_script_candidate_herd = prev.var:mwp_d21j_112_2_herd
+ }
+ trigger_else = { prev = { var:mwp_d21j_112_2_herd = 0 } }
+}
+exists = var:mwp_d21j_112_2_regiment
+var:mwp_d21j_112_2_regiment = root.var:mwp_script_candidate_regiment
+var:mwp_d21j_112_2_regiment = {
+ maa_size = prev.var:mwp_d21j_112_2_size maa_max_troops_count = prev.var:mwp_d21j_112_2_max maa_current_troops_count = prev.var:mwp_d21j_112_2_current
+}
+trigger_if = { limit = { has_variable = mwp_d21j_112_2_station }
+ var:mwp_d21j_112_2_regiment = { exists = regiment_station regiment_station = prev.var:mwp_d21j_112_2_station }
+}
+trigger_else = { var:mwp_d21j_112_2_regiment = { NOT = { exists = regiment_station } } }
 
 }
 trigger_else = { always = no }

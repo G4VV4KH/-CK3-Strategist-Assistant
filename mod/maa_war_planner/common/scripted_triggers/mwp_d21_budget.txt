@@ -19,7 +19,7 @@ mwp_d21_legacy_gold_budget_trigger = {
 }
 mwp_d21_budget_ledger_identity_trigger = {
  trigger_if = { limit = {
-  has_variable = mwp_d21b_ready has_variable = mwp_d21b_owner
+  has_variable = mwp_raised_policy_ledger has_variable = mwp_d21b_ready has_variable = mwp_d21b_owner
   has_variable = mwp_d21b_generation has_variable = mwp_generation
   has_variable = mwp_d21b_day has_variable = mwp_d21b_mode
   has_variable = mwp_d21b_epoch has_variable = mwp_d21r_epoch

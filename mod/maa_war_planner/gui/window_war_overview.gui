@@ -2830,8 +2830,10 @@ types WarOverView
 				name = "change_beneficiary"
 				alwaystransparent = no
 
+				onclick = "[OpenCharacterInteraction( 'select_ghw_beneficiary_interaction', GetPlayer )]"
+
 				button_replace = {
-					onclick = "[OpenCharacterInteraction( 'select_ghw_beneficiary_interaction', GetPlayer )]"
+					alwaystransparent = yes
 					parentanchor = center
 				}
 

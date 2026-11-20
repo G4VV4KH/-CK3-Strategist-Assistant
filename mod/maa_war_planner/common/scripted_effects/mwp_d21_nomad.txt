@@ -10174,6 +10174,112 @@ mwp_d21_nomad_candidate_105_effect = {
         }
     }
 }
+mwp_d21_nomad_candidate_112_effect = {
+    set_variable = {
+        name = mwp_script_candidate_nomad_mode
+        value = 0
+    }
+    set_variable = {
+        name = mwp_script_candidate_herd
+        value = 0
+    }
+    set_variable = {
+        name = mwp_script_candidate_subject_source
+        value = 0
+    }
+    if = {
+        limit = {
+            var:mwp_script_candidate_route = 1
+        }
+        set_variable = {
+            name = mwp_script_candidate_price
+            value = mwp_script_price_112
+        }
+    }
+    else = {
+        set_variable = {
+            name = mwp_script_candidate_price
+            value = mwp_d21_title_price_112
+        }
+    }
+    if = {
+        limit = {
+            var:mwp_script_candidate_route = 1
+        }
+        if = {
+            limit = {
+                NOT = {
+                    has_access_to_maa = condottieri
+                }
+                mwp_d21_type_subject_access_112_trigger = yes
+            }
+            set_variable = {
+                name = mwp_script_candidate_subject_source
+                value = 1
+            }
+            set_variable = {
+                name = mwp_script_candidate_price
+                value = mwp_d21_subject_price_112
+            }
+        }
+        else_if = {
+            limit = {
+                government_allows = subject_men_at_arms
+                NOT = {
+                    has_access_to_maa = condottieri
+                }
+            }
+            set_variable = {
+                name = mwp_script_candidate_action
+                value = 0
+            }
+        }
+        if = {
+            limit = {
+                government_has_flag = government_is_nomadic
+                var:mwp_script_candidate_action > 0
+            }
+            if = {
+                limit = {
+                    OR = {
+                        var:mwp_script_candidate_action = 2
+                        var:mwp_script_candidate_subject_source = 0
+                    }
+                }
+                if = {
+                    limit = {
+                        mwp_d21_nomad_unraised_trigger = yes
+                        domicile = {
+                            herd >= 50.0
+                            horde >= 50.0
+                        }
+                    }
+                    set_variable = {
+                        name = mwp_script_candidate_nomad_mode
+                        value = 1
+                    }
+                    set_variable = {
+                        name = mwp_script_candidate_herd
+                        value = 50.0
+                    }
+                    set_variable = {
+                        name = mwp_script_candidate_price
+                        value = mwp_d21_candidate_conversion_price_112
+                    }
+                }
+                else_if = {
+                    limit = {
+                        var:mwp_script_candidate_action = 2
+                    }
+                    set_variable = {
+                        name = mwp_script_candidate_action
+                        value = 0
+                    }
+                }
+            }
+        }
+    }
+}
 mwp_d21_nomad_candidate_106_effect = {
     set_variable = {
         name = mwp_script_candidate_nomad_mode

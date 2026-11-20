@@ -1,0 +1,59 @@
+﻿mwp_fbr_applicable = {
+    has_variable = mwp_fast_calendar has_variable = mwp_auto_recruit_enabled
+    mwp_d21_legacy_gold_budget_trigger = yes
+    OR = { mwp_auto_budget_mode_value = 2 mwp_auto_budget_mode_value = 4 mwp_auto_budget_mode_value = 5 }
+    is_ai = no is_alive = yes
+}
+mwp_fbr_live = {
+    trigger_if = { limit = { mwp_fbr_applicable = yes
+        has_variable = mwp_generation exists = scope:mwp_script_input_owner exists = scope:mwp_script_input_generation
+        exists = scope:mwp_script_input_singleplayer exists = scope:mwp_input_current_balance
+        exists = scope:mwp_input_cost_max_maa exists = scope:mwp_fbr_gross exists = scope:mwp_fbr_raw exists = scope:mwp_fbr_net exists = scope:mwp_fbr_day exists = scope:mwp_fbr_count exists = scope:mwp_fbr_strength exists = scope:mwp_fbr_levies }
+        scope:mwp_script_input_owner = this scope:mwp_script_input_singleplayer = yes
+        scope:mwp_script_input_generation = var:mwp_generation
+        scope:mwp_fbr_day = days_since_birth scope:mwp_fbr_count = mwp_native_cost_purchase_count_value
+        
+        scope:mwp_fbr_levies >= 0
+        # A raised army may already be paying levy/naval costs. Replacing those
+        # correctly requires the detailed expense rows collected by the normal driver.
+        NOT = { any_army = { army_owner = root } }
+        scope:mwp_fbr_strength = max_military_strength scope:mwp_fbr_gross >= 0 scope:mwp_fbr_raw <= 0
+        scope:mwp_input_cost_max_maa = mwp_cost_cache_actual_capacity_value
+        monthly_character_expenses >= 0 monthly_character_men_at_arms_expense_gold >= 0
+    }
+    trigger_else = { always = no }
+}
+
+mwp_raised_policy_quote_current = {
+    trigger_if = { limit = {
+        has_variable = mwp_raised_policy_quote has_variable = mwp_d19_net_ready
+        has_variable = mwp_d19_net_owner has_variable = mwp_d19_net_generation has_variable = mwp_generation
+        has_variable = mwp_d19_net_day has_variable = mwp_d19_net_purchase_count has_variable = mwp_d19_net_mode
+    }
+        var:mwp_raised_policy_quote = 1 var:mwp_d19_net_ready = yes var:mwp_d19_net_owner = this
+        var:mwp_d19_net_generation = var:mwp_generation var:mwp_d19_net_day = days_since_birth
+        var:mwp_d19_net_purchase_count = mwp_native_cost_purchase_count_value
+        var:mwp_d19_net_mode = mwp_auto_budget_mode_value mwp_auto_budget_mode_value != 3
+    }
+    trigger_else = { always = no }
+}
+
+mwp_raised_native_current = {
+    trigger_if = { limit = { has_variable = mwp_rp_seen_owner exists = var:mwp_rp_seen_government
+        has_variable = mwp_n16c_owner has_variable = mwp_generation has_variable = mwp_n16c_generation
+        has_variable = mwp_n16c_day has_variable = mwp_n16c_purchase_count has_variable = mwp_n16c_max_strength
+        has_variable = mwp_n16c_max_maa has_variable = mwp_rp_seen_maa has_variable = mwp_rp_seen_army_factor }
+        var:mwp_rp_seen_owner = this var:mwp_n16c_owner = this government_type = var:mwp_rp_seen_government
+        var:mwp_n16c_generation = var:mwp_generation var:mwp_n16c_day = days_since_birth
+        var:mwp_n16c_purchase_count = mwp_native_cost_purchase_count_value
+        var:mwp_n16c_max_strength = max_military_strength var:mwp_n16c_max_maa = mwp_cost_cache_actual_capacity_value
+        var:mwp_rp_seen_maa = monthly_character_men_at_arms_expense_gold
+        var:mwp_rp_seen_army_factor = mwp_d18_army_raw_value
+        var:mwp_rp_seen_levy_factor = "this.modifier_value(levy_maintenance)"
+        trigger_if = { limit = { exists = scope:mwp_fbr_levies } scope:mwp_fbr_levies = var:mwp_rp_seen_levies }
+        trigger_else_if = { limit = { mwp_fallback_cost_current_trigger = yes } var:mwp_fallback_cost_levies = var:mwp_rp_seen_levies }
+        trigger_else_if = { limit = { mwp_d21_resource_current_trigger = yes } var:mwp_d21r_max_levies = var:mwp_rp_seen_levies }
+        trigger_else = { always = no }
+    }
+    trigger_else = { always = no }
+}

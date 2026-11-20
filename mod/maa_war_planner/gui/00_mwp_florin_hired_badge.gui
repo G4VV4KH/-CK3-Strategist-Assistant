@@ -1,0 +1,36 @@
+﻿types MwpFlorinHiredBadge {
+type mwp_florin_hired_badge = widget {
+ name = "mwp_recommendation"
+ size = { 62 24 }
+ block "mwp_rank_input" { datacontext = "[GetPlayer.MakeScope.GetVariable(Select_CString(And(GetPlayer.IsValid,And(GetPlayer.MakeScope.GetVariable('mwp_scores_owner').IsSet,And(ObjectsEqual(GetPlayer,GetPlayer.MakeScope.GetVariable('mwp_scores_owner').GetCharacter),And(GetPlayer.MakeScope.GetVariable('mwp_scores_generation').IsSet,EqualTo_CFixedPoint(GetPlayer.MakeScope.GetVariable('mwp_scores_generation').GetValueWithDefault('(CFixedPoint)-1'),GetPlayer.MakeScope.GetVariable('mwp_generation').GetValueWithDefault('(CFixedPoint)-2')))))),Concatenate('mwp_rank_',IntToString(FixedPointToInt(Regiment.MakeScope.ScriptValue('mwp_florin_hired_type_id')))),'mwp_rank_unavailable'))]" }
+ tooltip = "[SelectLocalization(And(And(GetPlayer.IsValid,And(GetPlayer.MakeScope.GetVariable('mwp_scores_owner').IsSet,And(ObjectsEqual(GetPlayer,GetPlayer.MakeScope.GetVariable('mwp_scores_owner').GetCharacter),And(GetPlayer.MakeScope.GetVariable('mwp_scores_generation').IsSet,EqualTo_CFixedPoint(GetPlayer.MakeScope.GetVariable('mwp_scores_generation').GetValueWithDefault('(CFixedPoint)-1'),GetPlayer.MakeScope.GetVariable('mwp_generation').GetValueWithDefault('(CFixedPoint)-2')))))),And(Scope.IsSet,Or(EqualTo_CFixedPoint(Scope.GetValueWithDefault('(CFixedPoint)99'),'(CFixedPoint)1'),Or(EqualTo_CFixedPoint(Scope.GetValueWithDefault('(CFixedPoint)99'),'(CFixedPoint)0'),EqualTo_CFixedPoint(Scope.GetValueWithDefault('(CFixedPoint)99'),'(CFixedPoint)-1'))))),Concatenate('mwp_rank_details_',IntToString(FixedPointToInt(Regiment.MakeScope.ScriptValue('mwp_florin_hired_type_id')))),'mwp_rank_unknown_tooltip')]"
+ icon_flat_standard_green = {
+  name = "mwp_rank_green"
+  size = { 20 20 } position = { 0 2 }
+  texture = "gfx/interface/icons/flat_icons/arrow_up.dds" 
+  visible = "[And(And(GetPlayer.IsValid,And(GetPlayer.MakeScope.GetVariable('mwp_scores_owner').IsSet,And(ObjectsEqual(GetPlayer,GetPlayer.MakeScope.GetVariable('mwp_scores_owner').GetCharacter),And(GetPlayer.MakeScope.GetVariable('mwp_scores_generation').IsSet,EqualTo_CFixedPoint(GetPlayer.MakeScope.GetVariable('mwp_scores_generation').GetValueWithDefault('(CFixedPoint)-1'),GetPlayer.MakeScope.GetVariable('mwp_generation').GetValueWithDefault('(CFixedPoint)-2')))))),And(Scope.IsSet,EqualTo_CFixedPoint(Scope.GetValueWithDefault('(CFixedPoint)99'),'(CFixedPoint)1')))]"
+ }
+ icon_flat_standard_red = {
+  name = "mwp_rank_red"
+  size = { 20 20 } position = { 0 2 }
+  texture = "gfx/interface/icons/flat_icons/arrow_up.dds" mirror = vertical
+  visible = "[And(And(GetPlayer.IsValid,And(GetPlayer.MakeScope.GetVariable('mwp_scores_owner').IsSet,And(ObjectsEqual(GetPlayer,GetPlayer.MakeScope.GetVariable('mwp_scores_owner').GetCharacter),And(GetPlayer.MakeScope.GetVariable('mwp_scores_generation').IsSet,EqualTo_CFixedPoint(GetPlayer.MakeScope.GetVariable('mwp_scores_generation').GetValueWithDefault('(CFixedPoint)-1'),GetPlayer.MakeScope.GetVariable('mwp_generation').GetValueWithDefault('(CFixedPoint)-2')))))),And(Scope.IsSet,EqualTo_CFixedPoint(Scope.GetValueWithDefault('(CFixedPoint)99'),'(CFixedPoint)-1')))]"
+ }
+ icon_flat_standard_gold = {
+  name = "mwp_rank_gold"
+  size = { 12 12 } position = { 4 6 }
+  texture = "gfx/interface/icons/flat_icons/circle.dds" 
+  visible = "[And(And(GetPlayer.IsValid,And(GetPlayer.MakeScope.GetVariable('mwp_scores_owner').IsSet,And(ObjectsEqual(GetPlayer,GetPlayer.MakeScope.GetVariable('mwp_scores_owner').GetCharacter),And(GetPlayer.MakeScope.GetVariable('mwp_scores_generation').IsSet,EqualTo_CFixedPoint(GetPlayer.MakeScope.GetVariable('mwp_scores_generation').GetValueWithDefault('(CFixedPoint)-1'),GetPlayer.MakeScope.GetVariable('mwp_generation').GetValueWithDefault('(CFixedPoint)-2')))))),And(Scope.IsSet,EqualTo_CFixedPoint(Scope.GetValueWithDefault('(CFixedPoint)99'),'(CFixedPoint)0')))]"
+ }
+ text_single = { name = "mwp_rank_unknown" raw_text = "?" size = { 20 24 } using = Color_Grey
+  visible = "[Not(And(And(GetPlayer.IsValid,And(GetPlayer.MakeScope.GetVariable('mwp_scores_owner').IsSet,And(ObjectsEqual(GetPlayer,GetPlayer.MakeScope.GetVariable('mwp_scores_owner').GetCharacter),And(GetPlayer.MakeScope.GetVariable('mwp_scores_generation').IsSet,EqualTo_CFixedPoint(GetPlayer.MakeScope.GetVariable('mwp_scores_generation').GetValueWithDefault('(CFixedPoint)-1'),GetPlayer.MakeScope.GetVariable('mwp_generation').GetValueWithDefault('(CFixedPoint)-2')))))),And(Scope.IsSet,Or(EqualTo_CFixedPoint(Scope.GetValueWithDefault('(CFixedPoint)99'),'(CFixedPoint)1'),Or(EqualTo_CFixedPoint(Scope.GetValueWithDefault('(CFixedPoint)99'),'(CFixedPoint)0'),EqualTo_CFixedPoint(Scope.GetValueWithDefault('(CFixedPoint)99'),'(CFixedPoint)-1'))))))]" tooltip = "mwp_rank_unknown_tooltip"
+ }
+ widget = { name = "mwp_priority_container" size = { 38 24 } position = { 23 0 } visible = "[And(And(GetPlayer.IsValid,And(GetPlayer.MakeScope.GetVariable('mwp_scores_owner').IsSet,And(ObjectsEqual(GetPlayer,GetPlayer.MakeScope.GetVariable('mwp_scores_owner').GetCharacter),And(GetPlayer.MakeScope.GetVariable('mwp_scores_generation').IsSet,EqualTo_CFixedPoint(GetPlayer.MakeScope.GetVariable('mwp_scores_generation').GetValueWithDefault('(CFixedPoint)-1'),GetPlayer.MakeScope.GetVariable('mwp_generation').GetValueWithDefault('(CFixedPoint)-2')))))),And(Scope.IsSet,Or(EqualTo_CFixedPoint(Scope.GetValueWithDefault('(CFixedPoint)99'),'(CFixedPoint)1'),Or(EqualTo_CFixedPoint(Scope.GetValueWithDefault('(CFixedPoint)99'),'(CFixedPoint)0'),EqualTo_CFixedPoint(Scope.GetValueWithDefault('(CFixedPoint)99'),'(CFixedPoint)-1')))))]"
+  text_single = { name = "mwp_priority_number" datacontext = "[GetPlayer.MakeScope.GetVariable(Select_CString(And(GetPlayer.IsValid,And(GetPlayer.MakeScope.GetVariable('mwp_scores_owner').IsSet,And(ObjectsEqual(GetPlayer,GetPlayer.MakeScope.GetVariable('mwp_scores_owner').GetCharacter),And(GetPlayer.MakeScope.GetVariable('mwp_scores_generation').IsSet,EqualTo_CFixedPoint(GetPlayer.MakeScope.GetVariable('mwp_scores_generation').GetValueWithDefault('(CFixedPoint)-1'),GetPlayer.MakeScope.GetVariable('mwp_generation').GetValueWithDefault('(CFixedPoint)-2')))))),Concatenate('mwp_priority_',IntToString(FixedPointToInt(Regiment.MakeScope.ScriptValue('mwp_florin_hired_type_id')))),'mwp_rank_unavailable'))]"
+   text = "[Scope.GetValue|0]" size = { 38 24 } max_width = 38 align = left|nobaseline
+   visible = "[And(Scope.IsSet,GreaterThan_CFixedPoint(Scope.GetValueWithDefault('(CFixedPoint)0'),'(CFixedPoint)0'))]"
+   tooltip = "mwp_dev10_priority_tooltip"
+  }
+ }
+}
+}

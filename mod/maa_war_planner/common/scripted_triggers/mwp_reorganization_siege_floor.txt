@@ -1,0 +1,64 @@
+﻿# Regiment scope. Categories match the recruitment catalog shipped with this build.
+mwp_reorganization_siege_type_trigger = {
+    OR = {
+        is_maa_type = onager
+        is_maa_type = mangonel
+        is_maa_type = trebuchet
+        is_maa_type = bombard
+        is_maa_type = torch_bearers
+        is_maa_type = ballista
+        is_maa_type = cloud_ladder
+        is_maa_type = siege_tower
+        is_maa_type = cannon
+    }
+}
+
+# The paid replacement happens on a later pass and may change with the ranks.
+# Count real owned regiments here, including raised reserves. One size-12
+# regiment is still one identity. Additional levels cannot replace a disbanded unit.
+mwp_reorganization_keeps_siege_trigger = {
+    trigger_if = {
+        limit = { mwp_reorganization_siege_type_trigger = yes }
+        regiment_owner = {
+            any_maa_regiment = {
+                count >= 2
+                is_regular_maa_regiment = yes
+                is_personal_maa_regiment = yes
+                is_title_maa_regiment = no
+                regiment_owner = scope:mwp_script_player
+                maa_size > 0
+                maa_max_troops_count > 0
+                mwp_reorganization_siege_type_trigger = yes
+            }
+        }
+    }
+    trigger_else = { always = yes }
+}
+
+# Following a real dismissal, the own-army refresh can reverse the ranks before
+# payment. Reserve just this personal slot against buying back its previous
+# siege type. A new day, opponent epoch, filled slot or missing siege releases it.
+mwp_reorganization_same_siege_pending = {
+    has_variable = mwp_reorganization_retired_type
+    var:mwp_reorganization_retired_type = $TYPE$
+    has_variable = mwp_reorganization_enabled
+    var:mwp_reorganization_enabled = yes
+    exists = var:mwp_reorganization_pending_owner
+    var:mwp_reorganization_pending_owner = this
+    has_variable = mwp_reorganization_pending_epoch
+    has_variable = mwp_enemy_cache_epoch
+    var:mwp_reorganization_pending_epoch = var:mwp_enemy_cache_epoch
+    has_variable = mwp_reorganization_retired_day
+    days_since_birth = var:mwp_reorganization_retired_day
+    has_variable = mwp_reorganization_expected_count
+    maa_regiments_count = var:mwp_reorganization_expected_count
+    any_maa_regiment = {
+        is_regular_maa_regiment = yes
+        is_personal_maa_regiment = yes
+        is_title_maa_regiment = no
+        regiment_owner = root
+        maa_size > 0
+        maa_max_troops_count > 0
+        mwp_reorganization_siege_type_trigger = yes
+    }
+}

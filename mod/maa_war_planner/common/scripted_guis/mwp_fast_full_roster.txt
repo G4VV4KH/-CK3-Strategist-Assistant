@@ -1,0 +1,52 @@
+﻿mwp_fc_sync = { scope = character saved_scopes = { mwp_fc_owner  }
+ is_valid = { exists = scope:mwp_fc_owner scope:mwp_fc_owner = this trigger_if = { limit = { mwp_fc_can_probe = yes } OR = { mwp_fc_members_current = no AND = { has_variable = mwp_fc_full NOT = { has_variable = mwp_fc_reported } } } }
+ trigger_else = { has_variable = mwp_fc_count } }
+ effect = { if = { limit = { exists = scope:mwp_fc_owner scope:mwp_fc_owner = this trigger_if = { limit = { mwp_fc_can_probe = yes } OR = { mwp_fc_members_current = no AND = { has_variable = mwp_fc_full NOT = { has_variable = mwp_fc_reported } } } }
+ trigger_else = { has_variable = mwp_fc_count } }
+ if = { limit = { has_variable = mwp_fc_reported }
+  if = { limit = { has_variable = mwp_auto_status var:mwp_auto_status = 12 }
+   set_variable = { name = mwp_auto_status value = 0 }
+  }
+  remove_variable = mwp_fc_reported
+ }
+ remove_variable = mwp_fc_full
+ remove_variable = mwp_fc_count
+ clear_variable_list = mwp_fc_members
+ clear_variable_list = mwp_fc_verified
+ if = { limit = { mwp_fc_can_probe = yes }
+  set_variable = { name = mwp_fc_count value = maa_regiments_count }
+  save_scope_as = mwp_fc_player
+  every_maa_regiment = { save_scope_as = mwp_fc_reg
+   scope:mwp_fc_player = { add_to_variable_list = { name = mwp_fc_members target = scope:mwp_fc_reg } } }
+ } } } }
+mwp_fc_record = { scope = character saved_scopes = { mwp_fc_owner mwp_fc_unit mwp_fc_size mwp_fc_max }
+ is_valid = { exists = scope:mwp_fc_owner scope:mwp_fc_owner = this exists = scope:mwp_fc_unit NOT = { is_target_in_variable_list = { name = mwp_fc_verified target = scope:mwp_fc_unit } } }
+ effect = { if = { limit = { exists = scope:mwp_fc_owner scope:mwp_fc_owner = this mwp_fc_can_probe = yes mwp_fc_members_current = yes
+ exists = scope:mwp_fc_unit exists = scope:mwp_fc_size exists = scope:mwp_fc_max
+ is_target_in_variable_list = { name = mwp_fc_members target = scope:mwp_fc_unit }
+ scope:mwp_fc_unit = { regiment_owner = root maa_size = scope:mwp_fc_size } scope:mwp_fc_max > 0 scope:mwp_fc_max = scope:mwp_fc_size NOT = { is_target_in_variable_list = { name = mwp_fc_verified target = scope:mwp_fc_unit } } }
+ add_to_variable_list = { name = mwp_fc_verified target = scope:mwp_fc_unit }
+ if = { limit = { mwp_fc_all_verified = yes }
+  set_variable = mwp_fc_full
+  set_variable = mwp_fc_reported
+  set_variable = { name = mwp_auto_status value = 12 }
+  remove_variable = mwp_n16c_collecting remove_variable = mwp_native_cost_ready
+  remove_variable = mwp_d16t_collecting remove_variable = mwp_fallback_cost_ready
+  remove_variable = mwp_script_budget_ready
+  if = { limit = { has_variable = mwp_n16c_sequence } change_variable = { name = mwp_n16c_sequence add = 1 } }
+  if = { limit = { has_variable = mwp_d16t_sequence } change_variable = { name = mwp_d16t_sequence add = 1 } }
+ } } } }
+mwp_fc_release = { scope = character saved_scopes = { mwp_fc_owner mwp_fc_unit mwp_fc_size mwp_fc_max }
+ is_valid = { exists = scope:mwp_fc_owner scope:mwp_fc_owner = this exists = scope:mwp_fc_unit is_target_in_variable_list = { name = mwp_fc_verified target = scope:mwp_fc_unit } }
+ effect = { if = { limit = { exists = scope:mwp_fc_owner scope:mwp_fc_owner = this mwp_fc_can_probe = yes mwp_fc_members_current = yes
+ exists = scope:mwp_fc_unit exists = scope:mwp_fc_size exists = scope:mwp_fc_max
+ is_target_in_variable_list = { name = mwp_fc_members target = scope:mwp_fc_unit }
+ scope:mwp_fc_unit = { regiment_owner = root maa_size = scope:mwp_fc_size } OR = { scope:mwp_fc_max <= 0 NOT = { scope:mwp_fc_max = scope:mwp_fc_size } } is_target_in_variable_list = { name = mwp_fc_verified target = scope:mwp_fc_unit } }
+ remove_list_variable = { name = mwp_fc_verified target = scope:mwp_fc_unit }
+ if = { limit = { has_variable = mwp_fc_reported }
+  if = { limit = { has_variable = mwp_auto_status var:mwp_auto_status = 12 }
+   set_variable = { name = mwp_auto_status value = 0 }
+  }
+  remove_variable = mwp_fc_reported
+ }
+ remove_variable = mwp_fc_full } } }

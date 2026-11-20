@@ -26,6 +26,9 @@ mwp_bootstrap_effect = {
 			set_variable = { name = mwp_cycle_token value = 0 }
 		}
 		change_variable = { name = mwp_cycle_token add = 1 }
+		set_variable = { name = mwp_florin_catalog value = 1 }
+		clear_variable_list = mwp_florin_workers
+		remove_variable = mwp_fast_calendar
 		mwp_auto_session_reset_effect = yes
 		mwp_request_analysis_effect = yes
 		mwp_schedule_cycle_effect = yes
@@ -44,6 +47,9 @@ mwp_invalidate_pending_effect = {
 # Every recommendation revision invalidates paid authorization. Enemy snapshot
 # identity is independent and is never a substitute for a fresh native quote.
 mwp_queue_analysis_effect = {
+ if = { limit = { has_variable = mwp_fa_live NOT = { has_variable = mwp_fp_step } } mwp_fa_discard_effect = yes }
+ if = { limit = { has_variable = mwp_fp_step } mwp_fp_cancel_effect = yes }
+ if = { limit = { has_variable = mwp_fw_stage } mwp_fw_discard_effect = yes }
 	mwp_initialize_effect = yes
 	change_variable = { name = mwp_generation add = 1 }
 	remove_variable = mwp_scores_generation
@@ -55,6 +61,7 @@ mwp_queue_analysis_effect = {
 # Force, session/player changes and world refreshes always rebuild the cache.
 # Its monotonic epoch is advanced only by the completed cache builder.
 mwp_request_analysis_effect = {
+	remove_variable = mwp_fast_world_due
 	remove_variable = mwp_enemy_cache_ready
 	mwp_queue_analysis_effect = yes
 }
@@ -72,11 +79,21 @@ mwp_request_own_analysis_effect = {
 # Periodic work coalesces with a current request/collector. In large campaigns
 # the live scan can outlast 30 game days; restarting it each month starves
 # publication. The next ordinary cycle checks again after this one completes.
+# A completed military snapshot remains readable while the calendar runs at
+# maximum speed. A personal war or manual refresh still requests a full scan.
+# Pausing or decreasing the speed immediately consumes a due advisory refresh.
 mwp_periodic_analysis_effect = {
-	if = {
-		limit = { NOT = { mwp_analysis_current_work_trigger = yes } }
-		mwp_request_analysis_effect = yes
-	}
+ if = {
+  limit = { NOT = { mwp_analysis_current_work_trigger = yes } }
+  if = {
+   limit = { has_variable = mwp_fast_calendar mwp_enemy_cache_current_trigger = yes }
+   if = {
+    limit = { days_since_birth >= mwp_regular_world_expiry_day }
+    set_variable = mwp_fast_world_due
+   }
+  }
+  else = { mwp_request_analysis_effect = yes }
+ }
 }
 
 # Enabling automation is a preference change, not an army/world change. Reuse
@@ -107,7 +124,26 @@ mwp_enable_auto_effect = {
 }
 
 mwp_disable_auto_effect = {
+ if = { limit = { has_variable = mwp_fa_live } mwp_request_own_analysis_effect = yes }
 	remove_variable = mwp_auto_recruit_enabled
 	mwp_invalidate_pending_effect = yes
 	set_variable = { name = mwp_auto_status value = 0 }
+}
+
+mwp_id_park_finance_effect = {
+ remove_variable = mwp_gold_floor_owner
+ clear_variable_list = mwp_id_finance_rows
+ remove_variable = mwp_id_finance_awake
+ remove_variable = mwp_n16c_collecting
+ remove_variable = mwp_native_cost_ready
+ remove_variable = mwp_d16t_collecting
+ remove_variable = mwp_fallback_cost_ready
+ remove_variable = mwp_script_budget_ready
+ if = { limit = { has_variable = mwp_n16c_sequence } change_variable = { name = mwp_n16c_sequence add = 1 } }
+ if = { limit = { has_variable = mwp_d16t_sequence } change_variable = { name = mwp_d16t_sequence add = 1 } }
+}
+
+mwp_id_park_live_effect = {
+ clear_variable_list = mwp_id_live_rows
+ remove_variable = mwp_id_live_awake
 }

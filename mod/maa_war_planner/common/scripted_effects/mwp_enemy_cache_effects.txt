@@ -4284,6 +4284,110 @@ mwp_enemy_cache_dispatch_regiment_effect = {
                     }
                 }
             }
+            else_if = {
+                limit = {
+                    is_maa_type = condottieri
+                }
+                scope:mwp_player = {
+                    change_variable = {
+                        name = mwp_ec_tmp_maa
+                        add = scope:mwp_ec_troops
+                    }
+                    change_variable = {
+                        name = mwp_enemy_cache_b$BAND$_maa
+                        add = {
+                            value = scope:mwp_ec_troops
+                            multiply = var:mwp_ec_likelihood_weight
+                        }
+                    }
+                    change_variable = {
+                        name = mwp_ec_tmp_qty_heavy_cavalry
+                        add = scope:mwp_ec_chunks
+                    }
+                    change_variable = {
+                        name = mwp_enemy_cache_b$BAND$_qty_heavy_cavalry
+                        add = {
+                            value = scope:mwp_ec_chunks
+                            multiply = var:mwp_ec_likelihood_weight
+                        }
+                    }
+                    change_variable = {
+                        name = mwp_enemy_cache_b$BAND$_chunks_112
+                        add = {
+                            value = scope:mwp_ec_chunks
+                            multiply = var:mwp_ec_likelihood_weight
+                        }
+                    }
+                    change_variable = {
+                        name = mwp_ec_tmp_damage_heavy_cavalry
+                        add = {
+                            value = scope:mwp_ec_troops
+                            multiply = 100
+                            divide = 1000
+                        }
+                    }
+                    change_variable = {
+                        name = mwp_enemy_cache_b$BAND$_damage_heavy_cavalry
+                        add = {
+                            value = scope:mwp_ec_troops
+                            multiply = 100
+                            divide = 1000
+                            multiply = var:mwp_ec_likelihood_weight
+                        }
+                    }
+                    change_variable = {
+                        name = mwp_ec_tmp_toughness
+                        add = {
+                            value = scope:mwp_ec_troops
+                            multiply = 45
+                            divide = 1000
+                        }
+                    }
+                    change_variable = {
+                        name = mwp_enemy_cache_b$BAND$_toughness
+                        add = {
+                            value = scope:mwp_ec_troops
+                            multiply = 45
+                            divide = 1000
+                            multiply = var:mwp_ec_likelihood_weight
+                        }
+                    }
+                    change_variable = {
+                        name = mwp_ec_tmp_pursuit
+                        add = {
+                            value = scope:mwp_ec_troops
+                            multiply = 20
+                            divide = 1000
+                        }
+                    }
+                    change_variable = {
+                        name = mwp_enemy_cache_b$BAND$_pursuit
+                        add = {
+                            value = scope:mwp_ec_troops
+                            multiply = 20
+                            divide = 1000
+                            multiply = var:mwp_ec_likelihood_weight
+                        }
+                    }
+                    change_variable = {
+                        name = mwp_ec_tmp_screen
+                        add = {
+                            value = scope:mwp_ec_troops
+                            multiply = 10
+                            divide = 1000
+                        }
+                    }
+                    change_variable = {
+                        name = mwp_enemy_cache_b$BAND$_screen
+                        add = {
+                            value = scope:mwp_ec_troops
+                            multiply = 10
+                            divide = 1000
+                            multiply = var:mwp_ec_likelihood_weight
+                        }
+                    }
+                }
+            }
             else = {
                 scope:mwp_player = {
                     change_variable = {
@@ -11856,6 +11960,10 @@ mwp_enemy_cache_build_effect = {
         value = 0
     }
     set_variable = {
+        name = mwp_enemy_cache_b1_chunks_112
+        value = 0
+    }
+    set_variable = {
         name = mwp_enemy_cache_b1_chunks_106
         value = 0
     }
@@ -12461,6 +12569,10 @@ mwp_enemy_cache_build_effect = {
     }
     set_variable = {
         name = mwp_enemy_cache_b2_chunks_105
+        value = 0
+    }
+    set_variable = {
+        name = mwp_enemy_cache_b2_chunks_112
         value = 0
     }
     set_variable = {
@@ -13072,6 +13184,10 @@ mwp_enemy_cache_build_effect = {
         value = 0
     }
     set_variable = {
+        name = mwp_enemy_cache_b3_chunks_112
+        value = 0
+    }
+    set_variable = {
         name = mwp_enemy_cache_b3_chunks_106
         value = 0
     }
@@ -13677,6 +13793,10 @@ mwp_enemy_cache_build_effect = {
     }
     set_variable = {
         name = mwp_enemy_cache_b4_chunks_105
+        value = 0
+    }
+    set_variable = {
+        name = mwp_enemy_cache_b4_chunks_112
         value = 0
     }
     set_variable = {
@@ -14288,6 +14408,10 @@ mwp_enemy_cache_build_effect = {
         value = 0
     }
     set_variable = {
+        name = mwp_enemy_cache_b5_chunks_112
+        value = 0
+    }
+    set_variable = {
         name = mwp_enemy_cache_b5_chunks_106
         value = 0
     }
@@ -14893,6 +15017,10 @@ mwp_enemy_cache_build_effect = {
     }
     set_variable = {
         name = mwp_enemy_cache_b6_chunks_105
+        value = 0
+    }
+    set_variable = {
+        name = mwp_enemy_cache_b6_chunks_112
         value = 0
     }
     set_variable = {
@@ -15504,6 +15632,10 @@ mwp_enemy_cache_build_effect = {
         value = 0
     }
     set_variable = {
+        name = mwp_enemy_cache_b7_chunks_112
+        value = 0
+    }
+    set_variable = {
         name = mwp_enemy_cache_b7_chunks_106
         value = 0
     }
@@ -16090,6 +16222,17 @@ mwp_enemy_cache_build_effect = {
                         scope:mwp_player = {
                             change_variable = {
                                 name = mwp_enemy_cache_b7_chunks_105
+                                add = scope:mwp_ec_chunks
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = condottieri
+                        }
+                        scope:mwp_player = {
+                            change_variable = {
+                                name = mwp_enemy_cache_b7_chunks_112
                                 add = scope:mwp_ec_chunks
                             }
                         }
@@ -17726,6 +17869,13 @@ mwp_enemy_cache_build_effect = {
             }
         }
         set_variable = {
+            name = mwp_enemy_cache_b1_chunks_112
+            value = {
+                value = var:mwp_enemy_cache_b1_chunks_112
+                divide = var:mwp_enemy_cache_b1_weight
+            }
+        }
+        set_variable = {
             name = mwp_enemy_cache_b1_chunks_106
             value = {
                 value = var:mwp_enemy_cache_b1_chunks_106
@@ -18784,6 +18934,13 @@ mwp_enemy_cache_build_effect = {
             name = mwp_enemy_cache_b2_chunks_105
             value = {
                 value = var:mwp_enemy_cache_b2_chunks_105
+                divide = var:mwp_enemy_cache_b2_weight
+            }
+        }
+        set_variable = {
+            name = mwp_enemy_cache_b2_chunks_112
+            value = {
+                value = var:mwp_enemy_cache_b2_chunks_112
                 divide = var:mwp_enemy_cache_b2_weight
             }
         }
@@ -19850,6 +20007,13 @@ mwp_enemy_cache_build_effect = {
             }
         }
         set_variable = {
+            name = mwp_enemy_cache_b3_chunks_112
+            value = {
+                value = var:mwp_enemy_cache_b3_chunks_112
+                divide = var:mwp_enemy_cache_b3_weight
+            }
+        }
+        set_variable = {
             name = mwp_enemy_cache_b3_chunks_106
             value = {
                 value = var:mwp_enemy_cache_b3_chunks_106
@@ -20908,6 +21072,13 @@ mwp_enemy_cache_build_effect = {
             name = mwp_enemy_cache_b4_chunks_105
             value = {
                 value = var:mwp_enemy_cache_b4_chunks_105
+                divide = var:mwp_enemy_cache_b4_weight
+            }
+        }
+        set_variable = {
+            name = mwp_enemy_cache_b4_chunks_112
+            value = {
+                value = var:mwp_enemy_cache_b4_chunks_112
                 divide = var:mwp_enemy_cache_b4_weight
             }
         }
@@ -21974,6 +22145,13 @@ mwp_enemy_cache_build_effect = {
             }
         }
         set_variable = {
+            name = mwp_enemy_cache_b5_chunks_112
+            value = {
+                value = var:mwp_enemy_cache_b5_chunks_112
+                divide = var:mwp_enemy_cache_b5_weight
+            }
+        }
+        set_variable = {
             name = mwp_enemy_cache_b5_chunks_106
             value = {
                 value = var:mwp_enemy_cache_b5_chunks_106
@@ -23036,6 +23214,13 @@ mwp_enemy_cache_build_effect = {
             }
         }
         set_variable = {
+            name = mwp_enemy_cache_b6_chunks_112
+            value = {
+                value = var:mwp_enemy_cache_b6_chunks_112
+                divide = var:mwp_enemy_cache_b6_weight
+            }
+        }
+        set_variable = {
             name = mwp_enemy_cache_b6_chunks_106
             value = {
                 value = var:mwp_enemy_cache_b6_chunks_106
@@ -23590,6 +23775,13 @@ mwp_d16_resolve_enemy_chunks_effect = {
     else_if = {
     limit = {
     is_maa_type = tiefutu
+}
+
+    save_scope_value_as = { name = mwp_d16_base_stack value = 50 }
+}
+    else_if = {
+    limit = {
+    is_maa_type = condottieri
 }
 
     save_scope_value_as = { name = mwp_d16_base_stack value = 50 }

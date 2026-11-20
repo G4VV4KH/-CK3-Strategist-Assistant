@@ -1,0 +1,43 @@
+﻿mwp_id_wake_finance = { scope = character saved_scopes = { mwp_id_actor }
+ is_valid = { is_ai = no is_alive = yes exists = scope:mwp_id_actor scope:mwp_id_actor = this NOT = { has_variable = mwp_id_finance_awake } }
+ effect = { if = { limit = { is_ai = no is_alive = yes exists = scope:mwp_id_actor scope:mwp_id_actor = this NOT = { has_variable = mwp_id_finance_awake } } set_variable = mwp_id_finance_awake
+ add_to_variable_list = { name = mwp_id_finance_rows target = this } } }
+}
+
+mwp_id_park_finance = { scope = character saved_scopes = { mwp_id_actor }
+ is_valid = { is_ai = no is_alive = yes exists = scope:mwp_id_actor scope:mwp_id_actor = this has_variable = mwp_id_finance_awake NOT = { has_variable = mwp_auto_recruit_enabled } NOT = { has_variable = mwp_batch_active } NOT = { has_variable = mwp_fa_live } NOT = { has_variable = mwp_d19_tx_active } NOT = { has_variable = mwp_d21p_pending } }
+ effect = { if = { limit = { is_ai = no is_alive = yes exists = scope:mwp_id_actor scope:mwp_id_actor = this has_variable = mwp_id_finance_awake NOT = { has_variable = mwp_auto_recruit_enabled } NOT = { has_variable = mwp_batch_active } NOT = { has_variable = mwp_fa_live } NOT = { has_variable = mwp_d19_tx_active } NOT = { has_variable = mwp_d21p_pending } } mwp_id_park_finance_effect = yes } }
+}
+
+mwp_id_wake_live = { scope = character saved_scopes = { mwp_id_actor }
+ is_valid = { is_ai = no is_alive = yes exists = scope:mwp_id_actor scope:mwp_id_actor = this NOT = { has_variable = mwp_id_live_awake } }
+ effect = { if = { limit = { is_ai = no is_alive = yes exists = scope:mwp_id_actor scope:mwp_id_actor = this NOT = { has_variable = mwp_id_live_awake } } set_variable = mwp_id_live_awake
+ add_to_variable_list = { name = mwp_id_live_rows target = this } } }
+}
+
+mwp_id_park_live = { scope = character saved_scopes = { mwp_id_actor }
+ is_valid = { is_ai = no is_alive = yes exists = scope:mwp_id_actor scope:mwp_id_actor = this has_variable = mwp_id_live_awake NOT = { has_variable = mwp_auto_recruit_enabled } NOT = { has_variable = mwp_batch_active } NOT = { has_variable = mwp_fa_live } NOT = { has_variable = mwp_d19_tx_active } NOT = { has_variable = mwp_d21p_pending } NOT = { has_variable = mwp_fw_stage } NOT = { has_variable = mwp_fp_step } NOT = { trigger_if = { limit = { has_variable = mwp_scoring_active has_variable = mwp_scoring_owner has_variable = mwp_scoring_generation has_variable = mwp_generation } var:mwp_scoring_owner = this var:mwp_scoring_generation = var:mwp_generation } trigger_else = { always = no } } }
+ effect = { if = { limit = { is_ai = no is_alive = yes exists = scope:mwp_id_actor scope:mwp_id_actor = this has_variable = mwp_id_live_awake NOT = { has_variable = mwp_auto_recruit_enabled } NOT = { has_variable = mwp_batch_active } NOT = { has_variable = mwp_fa_live } NOT = { has_variable = mwp_d19_tx_active } NOT = { has_variable = mwp_d21p_pending } NOT = { has_variable = mwp_fw_stage } NOT = { has_variable = mwp_fp_step } NOT = { trigger_if = { limit = { has_variable = mwp_scoring_active has_variable = mwp_scoring_owner has_variable = mwp_scoring_generation has_variable = mwp_generation } var:mwp_scoring_owner = this var:mwp_scoring_generation = var:mwp_generation } trigger_else = { always = no } } } mwp_id_park_live_effect = yes } }
+}
+
+mwp_fast_calendar_enter = {
+ scope = character saved_scopes = { mwp_id_actor }
+ is_valid = { is_ai = no is_alive = yes exists = scope:mwp_id_actor scope:mwp_id_actor = this NOT = { has_variable = mwp_fast_calendar } }
+ effect = { if = { limit = { is_ai = no is_alive = yes exists = scope:mwp_id_actor scope:mwp_id_actor = this NOT = { has_variable = mwp_fast_calendar } } set_variable = mwp_fast_calendar } }
+}
+
+mwp_fast_calendar_leave = {
+ scope = character saved_scopes = { mwp_id_actor }
+ is_valid = { is_ai = no is_alive = yes exists = scope:mwp_id_actor scope:mwp_id_actor = this has_variable = mwp_fast_calendar }
+ effect = { if = { limit = { is_ai = no is_alive = yes exists = scope:mwp_id_actor scope:mwp_id_actor = this has_variable = mwp_fast_calendar } remove_variable = mwp_fast_calendar
+  if = {
+   limit = {
+    OR = {
+     has_variable = mwp_fast_world_due
+     AND = { has_variable = mwp_enemy_cache_day days_since_birth >= mwp_regular_world_expiry_day }
+    }
+    NOT = { mwp_analysis_current_work_trigger = yes }
+   }
+   mwp_request_analysis_effect = yes
+  } } }
+}

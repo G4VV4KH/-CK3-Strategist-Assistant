@@ -5067,6 +5067,54 @@ change_variable = { name = mwp_d21b_full_maa_5 add = { value = var:mwp_d21b_type
 }
 else_if = {
 limit = {
+is_maa_type = condottieri
+}
+scope:mwp_d21b_player = {
+set_variable = { name = mwp_d21b_type_currency value = mwp_d21_upkeep_currency_112 }
+set_variable = { name = mwp_d21b_type_bound value = mwp_d21_upkeep_bound_112 }
+if = {
+limit = {
+scope:mwp_d21b_is_title = 1 government_allows = replace_gold_cost_by_treasury
+}
+set_variable = { name = mwp_d21b_type_currency value = 4 }
+
+}
+if = {
+limit = {
+var:mwp_d21b_type_currency = 1
+}
+change_variable = { name = mwp_d21b_full_maa_1 add = { value = var:mwp_d21b_type_bound multiply = scope:mwp_d21b_size } }
+}
+if = {
+limit = {
+var:mwp_d21b_type_currency = 2
+}
+change_variable = { name = mwp_d21b_full_maa_2 add = { value = var:mwp_d21b_type_bound multiply = scope:mwp_d21b_size } }
+}
+if = {
+limit = {
+var:mwp_d21b_type_currency = 3
+}
+change_variable = { name = mwp_d21b_full_maa_3 add = { value = var:mwp_d21b_type_bound multiply = scope:mwp_d21b_size } }
+}
+if = {
+limit = {
+var:mwp_d21b_type_currency = 4
+}
+change_variable = { name = mwp_d21b_full_maa_4 add = { value = var:mwp_d21b_type_bound multiply = scope:mwp_d21b_size } }
+}
+if = {
+limit = {
+var:mwp_d21b_type_currency = 5
+}
+change_variable = { name = mwp_d21b_full_maa_5 add = { value = var:mwp_d21b_type_bound multiply = scope:mwp_d21b_size } }
+}
+
+}
+
+}
+else_if = {
+limit = {
 is_maa_type = burenjia
 }
 scope:mwp_d21b_player = {
@@ -10409,6 +10457,54 @@ change_variable = { name = mwp_d21b_full_maa_5 add = { value = var:mwp_d21b_type
 }
 else_if = {
 limit = {
+is_maa_type = condottieri
+}
+scope:mwp_d21b_player = {
+set_variable = { name = mwp_d21b_type_currency value = mwp_d21_upkeep_currency_112 }
+set_variable = { name = mwp_d21b_type_bound value = mwp_d21_upkeep_bound_112 }
+if = {
+limit = {
+scope:mwp_d21b_is_title = 1 government_allows = replace_gold_cost_by_treasury
+}
+set_variable = { name = mwp_d21b_type_currency value = 4 }
+
+}
+if = {
+limit = {
+var:mwp_d21b_type_currency = 1
+}
+change_variable = { name = mwp_d21b_full_maa_1 add = { value = var:mwp_d21b_type_bound multiply = scope:mwp_d21b_size } }
+}
+if = {
+limit = {
+var:mwp_d21b_type_currency = 2
+}
+change_variable = { name = mwp_d21b_full_maa_2 add = { value = var:mwp_d21b_type_bound multiply = scope:mwp_d21b_size } }
+}
+if = {
+limit = {
+var:mwp_d21b_type_currency = 3
+}
+change_variable = { name = mwp_d21b_full_maa_3 add = { value = var:mwp_d21b_type_bound multiply = scope:mwp_d21b_size } }
+}
+if = {
+limit = {
+var:mwp_d21b_type_currency = 4
+}
+change_variable = { name = mwp_d21b_full_maa_4 add = { value = var:mwp_d21b_type_bound multiply = scope:mwp_d21b_size } }
+}
+if = {
+limit = {
+var:mwp_d21b_type_currency = 5
+}
+change_variable = { name = mwp_d21b_full_maa_5 add = { value = var:mwp_d21b_type_bound multiply = scope:mwp_d21b_size } }
+}
+
+}
+
+}
+else_if = {
+limit = {
 is_maa_type = burenjia
 }
 scope:mwp_d21b_player = {
@@ -10738,14 +10834,56 @@ set_variable = { name = mwp_d21b_balance_5 value = var:mwp_d21r_barter_balance }
 set_variable = { name = mwp_d21b_current_maa_5 value = 0 }
 set_variable = { name = mwp_d21b_income_5 value = { value = var:mwp_d21r_barter_income min = var:mwp_d21r_barter_balance } }
 set_variable = { name = mwp_d21b_levies_1 value = { value = var:mwp_d21r_max_levies multiply = mwp_script_levy_per_soldier_bound } }
-if = {
-limit = {
-government_allows = regiments_use_barter_goods_as_gold
-}
-set_variable = { name = mwp_d21b_levies_5 value = var:mwp_d21b_levies_1 }
 
+if = { limit = { has_variable = mwp_rp_seen_owner var:mwp_rp_seen_owner = this
+                 exists = var:mwp_rp_seen_government government_type = var:mwp_rp_seen_government }
+    if = { limit = { var:mwp_rp_seen_pay_treasury = yes }
+        set_variable = { name = mwp_d21b_levies_4 value = var:mwp_d21b_levies_1 }
+        set_variable = { name = mwp_d21b_levies_1 value = 0 }
+    }
+    else_if = { limit = { var:mwp_rp_seen_pay_barter = yes }
+        set_variable = { name = mwp_d21b_levies_5 value = var:mwp_d21b_levies_1 }
+        set_variable = { name = mwp_d21b_levies_1 value = 0 }
+    }
 }
-set_variable = { name = mwp_d21b_headroom_1 value = { value = var:mwp_d21b_income_1 multiply = mwp_auto_income_fraction_value subtract = var:mwp_d21b_full_maa_1 subtract = 0.01 } }
+else_if = { limit = { government_allows = regiments_use_barter_goods_as_gold }
+    set_variable = { name = mwp_d21b_levies_5 value = var:mwp_d21b_levies_1 }
+}
+else_if = { limit = { government_allows = replace_gold_cost_by_treasury }
+    set_variable = { name = mwp_d21b_levies_4 value = var:mwp_d21b_levies_1 }
+}
+# If levies are already in the gold expense ledger, credit the classified
+# military expense rather than only the standing MAA. Compare both receipts.
+if = { limit = { mwp_fallback_cost_current_trigger = yes
+      var:mwp_fallback_cost_max_maa = mwp_cost_cache_actual_capacity_value
+      var:mwp_fallback_cost_levies = var:mwp_d21r_max_levies
+      var:mwp_fallback_cost_expenses = mwp_raised_resource_gold_expenses
+      var:mwp_fallback_cost_current_military >= 0 }
+    set_variable = { name = mwp_d21b_current_maa_1 value = var:mwp_fallback_cost_current_military }
+}
+if = { limit = { mwp_raised_native_current = yes }
+    set_variable = { name = mwp_d21b_current_maa_1 value = var:mwp_rp_seen_current_1 }
+    set_variable = { name = mwp_d21b_full_maa_1 value = { value = var:mwp_d21b_full_maa_1
+        min = { value = var:mwp_rp_seen_raised_1 subtract = var:mwp_d21b_levies_1 } } }
+    set_variable = { name = mwp_d21b_full_maa_2 value = { value = var:mwp_d21b_full_maa_2
+        min = { value = var:mwp_rp_seen_raised_2 subtract = var:mwp_d21b_levies_2 } } }
+    set_variable = { name = mwp_d21b_full_maa_3 value = { value = var:mwp_d21b_full_maa_3
+        min = { value = var:mwp_rp_seen_raised_3 subtract = var:mwp_d21b_levies_3 } } }
+    set_variable = { name = mwp_d21b_current_maa_4 value = var:mwp_rp_seen_current_4 }
+    set_variable = { name = mwp_d21b_full_maa_4 value = { value = var:mwp_d21b_full_maa_4
+        min = { value = var:mwp_rp_seen_raised_4 subtract = var:mwp_d21b_levies_4 } } }
+    set_variable = { name = mwp_d21b_current_maa_5 value = var:mwp_rp_seen_current_5 }
+    set_variable = { name = mwp_d21b_full_maa_5 value = { value = var:mwp_d21b_full_maa_5
+        min = { value = var:mwp_rp_seen_raised_5 subtract = var:mwp_d21b_levies_5 } } }
+}
+set_variable = { name = mwp_d21b_full_maa_1 value = { value = var:mwp_d21b_full_maa_1
+    min = { value = var:mwp_d21b_current_maa_1 subtract = var:mwp_d21b_levies_1 } } }
+set_variable = { name = mwp_d21b_full_maa_4 value = { value = var:mwp_d21b_full_maa_4
+    min = { value = var:mwp_d21b_current_maa_4 subtract = var:mwp_d21b_levies_4 } } }
+set_variable = { name = mwp_d21b_full_maa_5 value = { value = var:mwp_d21b_full_maa_5
+    min = { value = var:mwp_d21b_current_maa_5 subtract = var:mwp_d21b_levies_5 } } }
+
+set_variable = { name = mwp_d21b_headroom_1 value = { value = var:mwp_d21b_income_1 multiply = mwp_auto_income_fraction_value subtract = var:mwp_d21b_full_maa_1 subtract = var:mwp_d21b_levies_1 } }
 if = {
 limit = {
 mwp_auto_budget_mode_value = 1
@@ -10753,8 +10891,10 @@ mwp_auto_budget_mode_value = 1
 set_variable = { name = mwp_d21b_headroom_1 value = { value = var:mwp_d21b_balance_1 add = var:mwp_d21b_current_maa_1 subtract = var:mwp_d21b_full_maa_1 subtract = var:mwp_d21b_levies_1 subtract = 0.01 } }
 
 }
-set_variable = { name = mwp_d21b_headroom_1 value = { value = var:mwp_d21b_headroom_1 max = { value = var:mwp_d21b_balance_1 subtract = 0.01 } } }
-set_variable = { name = mwp_d21b_headroom_2 value = { value = var:mwp_d21b_income_2 multiply = mwp_auto_income_fraction_value subtract = var:mwp_d21b_full_maa_2 subtract = 0.01 } }
+set_variable = { name = mwp_d21b_headroom_1 value = { value = var:mwp_d21b_headroom_1 max = { value = var:mwp_d21b_balance_1 subtract = 0.01 }
+    max = { value = var:mwp_d21b_balance_1 add = var:mwp_d21b_current_maa_1
+            subtract = var:mwp_d21b_full_maa_1 subtract = var:mwp_d21b_levies_1 subtract = 0.01 } } }
+set_variable = { name = mwp_d21b_headroom_2 value = { value = var:mwp_d21b_income_2 multiply = mwp_auto_income_fraction_value subtract = var:mwp_d21b_full_maa_2 subtract = var:mwp_d21b_levies_2 } }
 if = {
 limit = {
 mwp_auto_budget_mode_value = 1
@@ -10762,8 +10902,10 @@ mwp_auto_budget_mode_value = 1
 set_variable = { name = mwp_d21b_headroom_2 value = { value = var:mwp_d21b_balance_2 add = var:mwp_d21b_current_maa_2 subtract = var:mwp_d21b_full_maa_2 subtract = var:mwp_d21b_levies_2 subtract = 0.01 } }
 
 }
-set_variable = { name = mwp_d21b_headroom_2 value = { value = var:mwp_d21b_headroom_2 max = { value = var:mwp_d21b_balance_2 subtract = 0.01 } } }
-set_variable = { name = mwp_d21b_headroom_3 value = { value = var:mwp_d21b_income_3 multiply = mwp_auto_income_fraction_value subtract = var:mwp_d21b_full_maa_3 subtract = 0.01 } }
+set_variable = { name = mwp_d21b_headroom_2 value = { value = var:mwp_d21b_headroom_2 max = { value = var:mwp_d21b_balance_2 subtract = 0.01 }
+    max = { value = var:mwp_d21b_balance_2 add = var:mwp_d21b_current_maa_2
+            subtract = var:mwp_d21b_full_maa_2 subtract = var:mwp_d21b_levies_2 subtract = 0.01 } } }
+set_variable = { name = mwp_d21b_headroom_3 value = { value = var:mwp_d21b_income_3 multiply = mwp_auto_income_fraction_value subtract = var:mwp_d21b_full_maa_3 subtract = var:mwp_d21b_levies_3 } }
 if = {
 limit = {
 mwp_auto_budget_mode_value = 1
@@ -10771,8 +10913,10 @@ mwp_auto_budget_mode_value = 1
 set_variable = { name = mwp_d21b_headroom_3 value = { value = var:mwp_d21b_balance_3 add = var:mwp_d21b_current_maa_3 subtract = var:mwp_d21b_full_maa_3 subtract = var:mwp_d21b_levies_3 subtract = 0.01 } }
 
 }
-set_variable = { name = mwp_d21b_headroom_3 value = { value = var:mwp_d21b_headroom_3 max = { value = var:mwp_d21b_balance_3 subtract = 0.01 } } }
-set_variable = { name = mwp_d21b_headroom_4 value = { value = var:mwp_d21b_income_4 multiply = mwp_auto_income_fraction_value subtract = var:mwp_d21b_full_maa_4 subtract = 0.01 } }
+set_variable = { name = mwp_d21b_headroom_3 value = { value = var:mwp_d21b_headroom_3 max = { value = var:mwp_d21b_balance_3 subtract = 0.01 }
+    max = { value = var:mwp_d21b_balance_3 add = var:mwp_d21b_current_maa_3
+            subtract = var:mwp_d21b_full_maa_3 subtract = var:mwp_d21b_levies_3 subtract = 0.01 } } }
+set_variable = { name = mwp_d21b_headroom_4 value = { value = var:mwp_d21b_income_4 multiply = mwp_auto_income_fraction_value subtract = var:mwp_d21b_full_maa_4 subtract = var:mwp_d21b_levies_4 } }
 if = {
 limit = {
 mwp_auto_budget_mode_value = 1
@@ -10780,8 +10924,10 @@ mwp_auto_budget_mode_value = 1
 set_variable = { name = mwp_d21b_headroom_4 value = { value = var:mwp_d21b_balance_4 add = var:mwp_d21b_current_maa_4 subtract = var:mwp_d21b_full_maa_4 subtract = var:mwp_d21b_levies_4 subtract = 0.01 } }
 
 }
-set_variable = { name = mwp_d21b_headroom_4 value = { value = var:mwp_d21b_headroom_4 max = { value = var:mwp_d21b_balance_4 subtract = 0.01 } } }
-set_variable = { name = mwp_d21b_headroom_5 value = { value = var:mwp_d21b_income_5 multiply = mwp_auto_income_fraction_value subtract = var:mwp_d21b_full_maa_5 subtract = 0.01 } }
+set_variable = { name = mwp_d21b_headroom_4 value = { value = var:mwp_d21b_headroom_4 max = { value = var:mwp_d21b_balance_4 subtract = 0.01 }
+    max = { value = var:mwp_d21b_balance_4 add = var:mwp_d21b_current_maa_4
+            subtract = var:mwp_d21b_full_maa_4 subtract = var:mwp_d21b_levies_4 subtract = 0.01 } } }
+set_variable = { name = mwp_d21b_headroom_5 value = { value = var:mwp_d21b_income_5 multiply = mwp_auto_income_fraction_value subtract = var:mwp_d21b_full_maa_5 subtract = var:mwp_d21b_levies_5 } }
 if = {
 limit = {
 mwp_auto_budget_mode_value = 1
@@ -10789,7 +10935,9 @@ mwp_auto_budget_mode_value = 1
 set_variable = { name = mwp_d21b_headroom_5 value = { value = var:mwp_d21b_balance_5 add = var:mwp_d21b_current_maa_5 subtract = var:mwp_d21b_full_maa_5 subtract = var:mwp_d21b_levies_5 subtract = 0.01 } }
 
 }
-set_variable = { name = mwp_d21b_headroom_5 value = { value = var:mwp_d21b_headroom_5 max = { value = var:mwp_d21b_balance_5 subtract = 0.01 } } }
+set_variable = { name = mwp_d21b_headroom_5 value = { value = var:mwp_d21b_headroom_5 max = { value = var:mwp_d21b_balance_5 subtract = 0.01 }
+    max = { value = var:mwp_d21b_balance_5 add = var:mwp_d21b_current_maa_5
+            subtract = var:mwp_d21b_full_maa_5 subtract = var:mwp_d21b_levies_5 subtract = 0.01 } } }
 set_variable = { name = mwp_d21b_owner value = this }
 set_variable = { name = mwp_d21b_generation value = var:mwp_generation }
 set_variable = { name = mwp_d21b_day value = days_since_birth }
@@ -10798,6 +10946,8 @@ set_variable = { name = mwp_d21b_epoch value = var:mwp_d21r_epoch }
 set_variable = { name = mwp_d21b_stamp value = var:mwp_d21r_clock }
 set_variable = { name = mwp_d21b_counter value = mwp_native_cost_purchase_count_value }
 set_variable = { name = mwp_d21b_initial_prestige_maa value = monthly_character_men_at_arms_expense_prestige }
+
+set_variable = { name = mwp_raised_policy_ledger value = 1 }
 set_variable = { name = mwp_d21b_ready value = yes }
 
 }

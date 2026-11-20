@@ -3,6 +3,7 @@ mwp_d24_recruitment_receipts_ready_trigger = {
     mwp_script_price_supported_trigger = yes
     OR = {
         mwp_auto_budget_mode_value = 3
+        mwp_fbr_live = yes
         AND = {
             mwp_d21_legacy_gold_budget_trigger = yes
             trigger_if = {

@@ -40,10 +40,130 @@
             name = mwp_script_selected_score
             value = -1
         }
+        save_scope_value_as = { name = mwp_pr_active value = no }
+        save_scope_value_as = { name = mwp_pr_last value = 0 }
+        if = { limit = { has_variable = mwp_fast_calendar has_variable = mwp_auto_recruit_enabled
+                        mwp_d21_legacy_gold_budget_trigger = yes is_ai = no is_at_war = no
+                        NOT = { has_variable = mwp_reorganization_enabled }
+                        NOT = { government_allows = subject_men_at_arms }
+                        NOT = { government_has_flag = government_is_nomadic }
+                        NOT = { has_variable = mwp_d19_reject_active }
+                        NOT = { has_variable = mwp_d21j_context } }
+            save_scope_value_as = { name = mwp_pr_active value = yes }
+            if = { limit = { has_variable = mwp_assessed_111 var:mwp_assessed_score_111 > 0 } save_scope_value_as = { name = mwp_pr_last value = 111 } }
+            else_if = { limit = { has_variable = mwp_assessed_110 var:mwp_assessed_score_110 > 0 } save_scope_value_as = { name = mwp_pr_last value = 110 } }
+            else_if = { limit = { has_variable = mwp_assessed_109 var:mwp_assessed_score_109 > 0 } save_scope_value_as = { name = mwp_pr_last value = 109 } }
+            else_if = { limit = { has_variable = mwp_assessed_108 var:mwp_assessed_score_108 > 0 } save_scope_value_as = { name = mwp_pr_last value = 108 } }
+            else_if = { limit = { has_variable = mwp_assessed_107 var:mwp_assessed_score_107 > 0 } save_scope_value_as = { name = mwp_pr_last value = 107 } }
+            else_if = { limit = { has_variable = mwp_assessed_106 var:mwp_assessed_score_106 > 0 } save_scope_value_as = { name = mwp_pr_last value = 106 } }
+            else_if = { limit = { has_variable = mwp_assessed_112 var:mwp_assessed_score_112 > 0 } save_scope_value_as = { name = mwp_pr_last value = 112 } }
+            else_if = { limit = { has_variable = mwp_assessed_105 var:mwp_assessed_score_105 > 0 } save_scope_value_as = { name = mwp_pr_last value = 105 } }
+            else_if = { limit = { has_variable = mwp_assessed_104 var:mwp_assessed_score_104 > 0 } save_scope_value_as = { name = mwp_pr_last value = 104 } }
+            else_if = { limit = { has_variable = mwp_assessed_103 var:mwp_assessed_score_103 > 0 } save_scope_value_as = { name = mwp_pr_last value = 103 } }
+            else_if = { limit = { has_variable = mwp_assessed_102 var:mwp_assessed_score_102 > 0 } save_scope_value_as = { name = mwp_pr_last value = 102 } }
+            else_if = { limit = { has_variable = mwp_assessed_101 var:mwp_assessed_score_101 > 0 } save_scope_value_as = { name = mwp_pr_last value = 101 } }
+            else_if = { limit = { has_variable = mwp_assessed_100 var:mwp_assessed_score_100 > 0 } save_scope_value_as = { name = mwp_pr_last value = 100 } }
+            else_if = { limit = { has_variable = mwp_assessed_99 var:mwp_assessed_score_99 > 0 } save_scope_value_as = { name = mwp_pr_last value = 99 } }
+            else_if = { limit = { has_variable = mwp_assessed_98 var:mwp_assessed_score_98 > 0 } save_scope_value_as = { name = mwp_pr_last value = 98 } }
+            else_if = { limit = { has_variable = mwp_assessed_96 var:mwp_assessed_score_96 > 0 } save_scope_value_as = { name = mwp_pr_last value = 96 } }
+            else_if = { limit = { has_variable = mwp_assessed_95 var:mwp_assessed_score_95 > 0 } save_scope_value_as = { name = mwp_pr_last value = 95 } }
+            else_if = { limit = { has_variable = mwp_assessed_87 var:mwp_assessed_score_87 > 0 } save_scope_value_as = { name = mwp_pr_last value = 87 } }
+            else_if = { limit = { has_variable = mwp_assessed_81 var:mwp_assessed_score_81 > 0 } save_scope_value_as = { name = mwp_pr_last value = 81 } }
+            else_if = { limit = { has_variable = mwp_assessed_80 var:mwp_assessed_score_80 > 0 } save_scope_value_as = { name = mwp_pr_last value = 80 } }
+            else_if = { limit = { has_variable = mwp_assessed_79 var:mwp_assessed_score_79 > 0 } save_scope_value_as = { name = mwp_pr_last value = 79 } }
+            else_if = { limit = { has_variable = mwp_assessed_78 var:mwp_assessed_score_78 > 0 } save_scope_value_as = { name = mwp_pr_last value = 78 } }
+            else_if = { limit = { has_variable = mwp_assessed_77 var:mwp_assessed_score_77 > 0 } save_scope_value_as = { name = mwp_pr_last value = 77 } }
+            else_if = { limit = { has_variable = mwp_assessed_76 var:mwp_assessed_score_76 > 0 } save_scope_value_as = { name = mwp_pr_last value = 76 } }
+            else_if = { limit = { has_variable = mwp_assessed_75 var:mwp_assessed_score_75 > 0 } save_scope_value_as = { name = mwp_pr_last value = 75 } }
+            else_if = { limit = { has_variable = mwp_assessed_73 var:mwp_assessed_score_73 > 0 } save_scope_value_as = { name = mwp_pr_last value = 73 } }
+            else_if = { limit = { has_variable = mwp_assessed_72 var:mwp_assessed_score_72 > 0 } save_scope_value_as = { name = mwp_pr_last value = 72 } }
+            else_if = { limit = { has_variable = mwp_assessed_71 var:mwp_assessed_score_71 > 0 } save_scope_value_as = { name = mwp_pr_last value = 71 } }
+            else_if = { limit = { has_variable = mwp_assessed_70 var:mwp_assessed_score_70 > 0 } save_scope_value_as = { name = mwp_pr_last value = 70 } }
+            else_if = { limit = { has_variable = mwp_assessed_69 var:mwp_assessed_score_69 > 0 } save_scope_value_as = { name = mwp_pr_last value = 69 } }
+            else_if = { limit = { has_variable = mwp_assessed_68 var:mwp_assessed_score_68 > 0 } save_scope_value_as = { name = mwp_pr_last value = 68 } }
+            else_if = { limit = { has_variable = mwp_assessed_67 var:mwp_assessed_score_67 > 0 } save_scope_value_as = { name = mwp_pr_last value = 67 } }
+            else_if = { limit = { has_variable = mwp_assessed_66 var:mwp_assessed_score_66 > 0 } save_scope_value_as = { name = mwp_pr_last value = 66 } }
+            else_if = { limit = { has_variable = mwp_assessed_65 var:mwp_assessed_score_65 > 0 } save_scope_value_as = { name = mwp_pr_last value = 65 } }
+            else_if = { limit = { has_variable = mwp_assessed_64 var:mwp_assessed_score_64 > 0 } save_scope_value_as = { name = mwp_pr_last value = 64 } }
+            else_if = { limit = { has_variable = mwp_assessed_63 var:mwp_assessed_score_63 > 0 } save_scope_value_as = { name = mwp_pr_last value = 63 } }
+            else_if = { limit = { has_variable = mwp_assessed_62 var:mwp_assessed_score_62 > 0 } save_scope_value_as = { name = mwp_pr_last value = 62 } }
+            else_if = { limit = { has_variable = mwp_assessed_61 var:mwp_assessed_score_61 > 0 } save_scope_value_as = { name = mwp_pr_last value = 61 } }
+            else_if = { limit = { has_variable = mwp_assessed_60 var:mwp_assessed_score_60 > 0 } save_scope_value_as = { name = mwp_pr_last value = 60 } }
+            else_if = { limit = { has_variable = mwp_assessed_59 var:mwp_assessed_score_59 > 0 } save_scope_value_as = { name = mwp_pr_last value = 59 } }
+            else_if = { limit = { has_variable = mwp_assessed_58 var:mwp_assessed_score_58 > 0 } save_scope_value_as = { name = mwp_pr_last value = 58 } }
+            else_if = { limit = { has_variable = mwp_assessed_56 var:mwp_assessed_score_56 > 0 } save_scope_value_as = { name = mwp_pr_last value = 56 } }
+            else_if = { limit = { has_variable = mwp_assessed_55 var:mwp_assessed_score_55 > 0 } save_scope_value_as = { name = mwp_pr_last value = 55 } }
+            else_if = { limit = { has_variable = mwp_assessed_54 var:mwp_assessed_score_54 > 0 } save_scope_value_as = { name = mwp_pr_last value = 54 } }
+            else_if = { limit = { has_variable = mwp_assessed_53 var:mwp_assessed_score_53 > 0 } save_scope_value_as = { name = mwp_pr_last value = 53 } }
+            else_if = { limit = { has_variable = mwp_assessed_52 var:mwp_assessed_score_52 > 0 } save_scope_value_as = { name = mwp_pr_last value = 52 } }
+            else_if = { limit = { has_variable = mwp_assessed_51 var:mwp_assessed_score_51 > 0 } save_scope_value_as = { name = mwp_pr_last value = 51 } }
+            else_if = { limit = { has_variable = mwp_assessed_50 var:mwp_assessed_score_50 > 0 } save_scope_value_as = { name = mwp_pr_last value = 50 } }
+            else_if = { limit = { has_variable = mwp_assessed_49 var:mwp_assessed_score_49 > 0 } save_scope_value_as = { name = mwp_pr_last value = 49 } }
+            else_if = { limit = { has_variable = mwp_assessed_48 var:mwp_assessed_score_48 > 0 } save_scope_value_as = { name = mwp_pr_last value = 48 } }
+            else_if = { limit = { has_variable = mwp_assessed_47 var:mwp_assessed_score_47 > 0 } save_scope_value_as = { name = mwp_pr_last value = 47 } }
+            else_if = { limit = { has_variable = mwp_assessed_46 var:mwp_assessed_score_46 > 0 } save_scope_value_as = { name = mwp_pr_last value = 46 } }
+            else_if = { limit = { has_variable = mwp_assessed_45 var:mwp_assessed_score_45 > 0 } save_scope_value_as = { name = mwp_pr_last value = 45 } }
+            else_if = { limit = { has_variable = mwp_assessed_97 var:mwp_assessed_score_97 > 0 } save_scope_value_as = { name = mwp_pr_last value = 97 } }
+            else_if = { limit = { has_variable = mwp_assessed_94 var:mwp_assessed_score_94 > 0 } save_scope_value_as = { name = mwp_pr_last value = 94 } }
+            else_if = { limit = { has_variable = mwp_assessed_93 var:mwp_assessed_score_93 > 0 } save_scope_value_as = { name = mwp_pr_last value = 93 } }
+            else_if = { limit = { has_variable = mwp_assessed_92 var:mwp_assessed_score_92 > 0 } save_scope_value_as = { name = mwp_pr_last value = 92 } }
+            else_if = { limit = { has_variable = mwp_assessed_91 var:mwp_assessed_score_91 > 0 } save_scope_value_as = { name = mwp_pr_last value = 91 } }
+            else_if = { limit = { has_variable = mwp_assessed_90 var:mwp_assessed_score_90 > 0 } save_scope_value_as = { name = mwp_pr_last value = 90 } }
+            else_if = { limit = { has_variable = mwp_assessed_89 var:mwp_assessed_score_89 > 0 } save_scope_value_as = { name = mwp_pr_last value = 89 } }
+            else_if = { limit = { has_variable = mwp_assessed_88 var:mwp_assessed_score_88 > 0 } save_scope_value_as = { name = mwp_pr_last value = 88 } }
+            else_if = { limit = { has_variable = mwp_assessed_44 var:mwp_assessed_score_44 > 0 } save_scope_value_as = { name = mwp_pr_last value = 44 } }
+            else_if = { limit = { has_variable = mwp_assessed_41 var:mwp_assessed_score_41 > 0 } save_scope_value_as = { name = mwp_pr_last value = 41 } }
+            else_if = { limit = { has_variable = mwp_assessed_40 var:mwp_assessed_score_40 > 0 } save_scope_value_as = { name = mwp_pr_last value = 40 } }
+            else_if = { limit = { has_variable = mwp_assessed_39 var:mwp_assessed_score_39 > 0 } save_scope_value_as = { name = mwp_pr_last value = 39 } }
+            else_if = { limit = { has_variable = mwp_assessed_38 var:mwp_assessed_score_38 > 0 } save_scope_value_as = { name = mwp_pr_last value = 38 } }
+            else_if = { limit = { has_variable = mwp_assessed_37 var:mwp_assessed_score_37 > 0 } save_scope_value_as = { name = mwp_pr_last value = 37 } }
+            else_if = { limit = { has_variable = mwp_assessed_36 var:mwp_assessed_score_36 > 0 } save_scope_value_as = { name = mwp_pr_last value = 36 } }
+            else_if = { limit = { has_variable = mwp_assessed_35 var:mwp_assessed_score_35 > 0 } save_scope_value_as = { name = mwp_pr_last value = 35 } }
+            else_if = { limit = { has_variable = mwp_assessed_34 var:mwp_assessed_score_34 > 0 } save_scope_value_as = { name = mwp_pr_last value = 34 } }
+            else_if = { limit = { has_variable = mwp_assessed_33 var:mwp_assessed_score_33 > 0 } save_scope_value_as = { name = mwp_pr_last value = 33 } }
+            else_if = { limit = { has_variable = mwp_assessed_32 var:mwp_assessed_score_32 > 0 } save_scope_value_as = { name = mwp_pr_last value = 32 } }
+            else_if = { limit = { has_variable = mwp_assessed_31 var:mwp_assessed_score_31 > 0 } save_scope_value_as = { name = mwp_pr_last value = 31 } }
+            else_if = { limit = { has_variable = mwp_assessed_30 var:mwp_assessed_score_30 > 0 } save_scope_value_as = { name = mwp_pr_last value = 30 } }
+            else_if = { limit = { has_variable = mwp_assessed_29 var:mwp_assessed_score_29 > 0 } save_scope_value_as = { name = mwp_pr_last value = 29 } }
+            else_if = { limit = { has_variable = mwp_assessed_28 var:mwp_assessed_score_28 > 0 } save_scope_value_as = { name = mwp_pr_last value = 28 } }
+            else_if = { limit = { has_variable = mwp_assessed_27 var:mwp_assessed_score_27 > 0 } save_scope_value_as = { name = mwp_pr_last value = 27 } }
+            else_if = { limit = { has_variable = mwp_assessed_26 var:mwp_assessed_score_26 > 0 } save_scope_value_as = { name = mwp_pr_last value = 26 } }
+            else_if = { limit = { has_variable = mwp_assessed_25 var:mwp_assessed_score_25 > 0 } save_scope_value_as = { name = mwp_pr_last value = 25 } }
+            else_if = { limit = { has_variable = mwp_assessed_24 var:mwp_assessed_score_24 > 0 } save_scope_value_as = { name = mwp_pr_last value = 24 } }
+            else_if = { limit = { has_variable = mwp_assessed_23 var:mwp_assessed_score_23 > 0 } save_scope_value_as = { name = mwp_pr_last value = 23 } }
+            else_if = { limit = { has_variable = mwp_assessed_22 var:mwp_assessed_score_22 > 0 } save_scope_value_as = { name = mwp_pr_last value = 22 } }
+            else_if = { limit = { has_variable = mwp_assessed_21 var:mwp_assessed_score_21 > 0 } save_scope_value_as = { name = mwp_pr_last value = 21 } }
+            else_if = { limit = { has_variable = mwp_assessed_20 var:mwp_assessed_score_20 > 0 } save_scope_value_as = { name = mwp_pr_last value = 20 } }
+            else_if = { limit = { has_variable = mwp_assessed_19 var:mwp_assessed_score_19 > 0 } save_scope_value_as = { name = mwp_pr_last value = 19 } }
+            else_if = { limit = { has_variable = mwp_assessed_18 var:mwp_assessed_score_18 > 0 } save_scope_value_as = { name = mwp_pr_last value = 18 } }
+            else_if = { limit = { has_variable = mwp_assessed_17 var:mwp_assessed_score_17 > 0 } save_scope_value_as = { name = mwp_pr_last value = 17 } }
+            else_if = { limit = { has_variable = mwp_assessed_16 var:mwp_assessed_score_16 > 0 } save_scope_value_as = { name = mwp_pr_last value = 16 } }
+            else_if = { limit = { has_variable = mwp_assessed_15 var:mwp_assessed_score_15 > 0 } save_scope_value_as = { name = mwp_pr_last value = 15 } }
+            else_if = { limit = { has_variable = mwp_assessed_14 var:mwp_assessed_score_14 > 0 } save_scope_value_as = { name = mwp_pr_last value = 14 } }
+            else_if = { limit = { has_variable = mwp_assessed_13 var:mwp_assessed_score_13 > 0 } save_scope_value_as = { name = mwp_pr_last value = 13 } }
+            else_if = { limit = { has_variable = mwp_assessed_12 var:mwp_assessed_score_12 > 0 } save_scope_value_as = { name = mwp_pr_last value = 12 } }
+            else_if = { limit = { has_variable = mwp_assessed_11 var:mwp_assessed_score_11 > 0 } save_scope_value_as = { name = mwp_pr_last value = 11 } }
+            else_if = { limit = { has_variable = mwp_assessed_10 var:mwp_assessed_score_10 > 0 } save_scope_value_as = { name = mwp_pr_last value = 10 } }
+            else_if = { limit = { has_variable = mwp_assessed_9 var:mwp_assessed_score_9 > 0 } save_scope_value_as = { name = mwp_pr_last value = 9 } }
+            else_if = { limit = { has_variable = mwp_assessed_8 var:mwp_assessed_score_8 > 0 } save_scope_value_as = { name = mwp_pr_last value = 8 } }
+            else_if = { limit = { has_variable = mwp_assessed_7 var:mwp_assessed_score_7 > 0 } save_scope_value_as = { name = mwp_pr_last value = 7 } }
+            else_if = { limit = { has_variable = mwp_assessed_6 var:mwp_assessed_score_6 > 0 } save_scope_value_as = { name = mwp_pr_last value = 6 } }
+            else_if = { limit = { has_variable = mwp_assessed_5 var:mwp_assessed_score_5 > 0 } save_scope_value_as = { name = mwp_pr_last value = 5 } }
+            else_if = { limit = { has_variable = mwp_assessed_4 var:mwp_assessed_score_4 > 0 } save_scope_value_as = { name = mwp_pr_last value = 4 } }
+            else_if = { limit = { has_variable = mwp_assessed_3 var:mwp_assessed_score_3 > 0 } save_scope_value_as = { name = mwp_pr_last value = 3 } }
+            else_if = { limit = { has_variable = mwp_assessed_2 var:mwp_assessed_score_2 > 0 } save_scope_value_as = { name = mwp_pr_last value = 2 } }
+            else_if = { limit = { has_variable = mwp_assessed_1 var:mwp_assessed_score_1 > 0 } save_scope_value_as = { name = mwp_pr_last value = 1 } }
+        }
         if = {
             limit = {
                 has_variable = mwp_assessed_1
                 var:mwp_assessed_score_1 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 1
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_1 }
+                    var:mwp_priority_1 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -245,6 +365,12 @@
             limit = {
                 has_variable = mwp_assessed_2
                 var:mwp_assessed_score_2 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 2
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_2 }
+                    var:mwp_priority_2 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -446,6 +572,12 @@
             limit = {
                 has_variable = mwp_assessed_3
                 var:mwp_assessed_score_3 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 3
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_3 }
+                    var:mwp_priority_3 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -647,6 +779,12 @@
             limit = {
                 has_variable = mwp_assessed_4
                 var:mwp_assessed_score_4 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 4
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_4 }
+                    var:mwp_priority_4 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -848,6 +986,12 @@
             limit = {
                 has_variable = mwp_assessed_5
                 var:mwp_assessed_score_5 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 5
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_5 }
+                    var:mwp_priority_5 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -1049,6 +1193,12 @@
             limit = {
                 has_variable = mwp_assessed_6
                 var:mwp_assessed_score_6 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 6
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_6 }
+                    var:mwp_priority_6 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -1250,6 +1400,12 @@
             limit = {
                 has_variable = mwp_assessed_7
                 var:mwp_assessed_score_7 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 7
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_7 }
+                    var:mwp_priority_7 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -1451,6 +1607,12 @@
             limit = {
                 has_variable = mwp_assessed_8
                 var:mwp_assessed_score_8 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 8
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_8 }
+                    var:mwp_priority_8 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -1652,6 +1814,12 @@
             limit = {
                 has_variable = mwp_assessed_9
                 var:mwp_assessed_score_9 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 9
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_9 }
+                    var:mwp_priority_9 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -1853,6 +2021,12 @@
             limit = {
                 has_variable = mwp_assessed_10
                 var:mwp_assessed_score_10 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 10
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_10 }
+                    var:mwp_priority_10 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -2054,6 +2228,12 @@
             limit = {
                 has_variable = mwp_assessed_11
                 var:mwp_assessed_score_11 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 11
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_11 }
+                    var:mwp_priority_11 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -2255,6 +2435,12 @@
             limit = {
                 has_variable = mwp_assessed_12
                 var:mwp_assessed_score_12 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 12
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_12 }
+                    var:mwp_priority_12 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -2456,6 +2642,12 @@
             limit = {
                 has_variable = mwp_assessed_13
                 var:mwp_assessed_score_13 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 13
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_13 }
+                    var:mwp_priority_13 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -2657,6 +2849,12 @@
             limit = {
                 has_variable = mwp_assessed_14
                 var:mwp_assessed_score_14 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 14
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_14 }
+                    var:mwp_priority_14 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -2858,6 +3056,12 @@
             limit = {
                 has_variable = mwp_assessed_15
                 var:mwp_assessed_score_15 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 15
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_15 }
+                    var:mwp_priority_15 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -3059,6 +3263,12 @@
             limit = {
                 has_variable = mwp_assessed_16
                 var:mwp_assessed_score_16 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 16
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_16 }
+                    var:mwp_priority_16 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -3260,6 +3470,12 @@
             limit = {
                 has_variable = mwp_assessed_17
                 var:mwp_assessed_score_17 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 17
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_17 }
+                    var:mwp_priority_17 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -3461,6 +3677,12 @@
             limit = {
                 has_variable = mwp_assessed_18
                 var:mwp_assessed_score_18 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 18
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_18 }
+                    var:mwp_priority_18 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -3662,6 +3884,12 @@
             limit = {
                 has_variable = mwp_assessed_19
                 var:mwp_assessed_score_19 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 19
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_19 }
+                    var:mwp_priority_19 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -3863,6 +4091,12 @@
             limit = {
                 has_variable = mwp_assessed_20
                 var:mwp_assessed_score_20 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 20
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_20 }
+                    var:mwp_priority_20 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -4064,6 +4298,12 @@
             limit = {
                 has_variable = mwp_assessed_21
                 var:mwp_assessed_score_21 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 21
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_21 }
+                    var:mwp_priority_21 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -4265,6 +4505,12 @@
             limit = {
                 has_variable = mwp_assessed_22
                 var:mwp_assessed_score_22 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 22
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_22 }
+                    var:mwp_priority_22 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -4466,6 +4712,12 @@
             limit = {
                 has_variable = mwp_assessed_23
                 var:mwp_assessed_score_23 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 23
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_23 }
+                    var:mwp_priority_23 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -4667,6 +4919,12 @@
             limit = {
                 has_variable = mwp_assessed_24
                 var:mwp_assessed_score_24 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 24
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_24 }
+                    var:mwp_priority_24 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -4868,6 +5126,12 @@
             limit = {
                 has_variable = mwp_assessed_25
                 var:mwp_assessed_score_25 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 25
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_25 }
+                    var:mwp_priority_25 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -5069,6 +5333,12 @@
             limit = {
                 has_variable = mwp_assessed_26
                 var:mwp_assessed_score_26 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 26
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_26 }
+                    var:mwp_priority_26 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -5270,6 +5540,12 @@
             limit = {
                 has_variable = mwp_assessed_27
                 var:mwp_assessed_score_27 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 27
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_27 }
+                    var:mwp_priority_27 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -5471,6 +5747,12 @@
             limit = {
                 has_variable = mwp_assessed_28
                 var:mwp_assessed_score_28 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 28
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_28 }
+                    var:mwp_priority_28 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -5672,6 +5954,12 @@
             limit = {
                 has_variable = mwp_assessed_29
                 var:mwp_assessed_score_29 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 29
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_29 }
+                    var:mwp_priority_29 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -5873,6 +6161,12 @@
             limit = {
                 has_variable = mwp_assessed_30
                 var:mwp_assessed_score_30 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 30
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_30 }
+                    var:mwp_priority_30 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -6074,6 +6368,12 @@
             limit = {
                 has_variable = mwp_assessed_31
                 var:mwp_assessed_score_31 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 31
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_31 }
+                    var:mwp_priority_31 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -6275,6 +6575,12 @@
             limit = {
                 has_variable = mwp_assessed_32
                 var:mwp_assessed_score_32 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 32
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_32 }
+                    var:mwp_priority_32 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -6476,6 +6782,12 @@
             limit = {
                 has_variable = mwp_assessed_33
                 var:mwp_assessed_score_33 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 33
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_33 }
+                    var:mwp_priority_33 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -6677,6 +6989,12 @@
             limit = {
                 has_variable = mwp_assessed_34
                 var:mwp_assessed_score_34 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 34
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_34 }
+                    var:mwp_priority_34 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -6878,6 +7196,12 @@
             limit = {
                 has_variable = mwp_assessed_35
                 var:mwp_assessed_score_35 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 35
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_35 }
+                    var:mwp_priority_35 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -7079,6 +7403,12 @@
             limit = {
                 has_variable = mwp_assessed_36
                 var:mwp_assessed_score_36 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 36
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_36 }
+                    var:mwp_priority_36 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -7280,6 +7610,12 @@
             limit = {
                 has_variable = mwp_assessed_37
                 var:mwp_assessed_score_37 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 37
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_37 }
+                    var:mwp_priority_37 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -7481,6 +7817,12 @@
             limit = {
                 has_variable = mwp_assessed_38
                 var:mwp_assessed_score_38 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 38
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_38 }
+                    var:mwp_priority_38 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -7682,6 +8024,12 @@
             limit = {
                 has_variable = mwp_assessed_39
                 var:mwp_assessed_score_39 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 39
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_39 }
+                    var:mwp_priority_39 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -7883,6 +8231,12 @@
             limit = {
                 has_variable = mwp_assessed_40
                 var:mwp_assessed_score_40 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 40
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_40 }
+                    var:mwp_priority_40 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -8084,6 +8438,12 @@
             limit = {
                 has_variable = mwp_assessed_41
                 var:mwp_assessed_score_41 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 41
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_41 }
+                    var:mwp_priority_41 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -8285,6 +8645,12 @@
             limit = {
                 has_variable = mwp_assessed_44
                 var:mwp_assessed_score_44 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 44
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_44 }
+                    var:mwp_priority_44 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -8486,6 +8852,12 @@
             limit = {
                 has_variable = mwp_assessed_88
                 var:mwp_assessed_score_88 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 88
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_88 }
+                    var:mwp_priority_88 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -8687,6 +9059,12 @@
             limit = {
                 has_variable = mwp_assessed_89
                 var:mwp_assessed_score_89 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 89
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_89 }
+                    var:mwp_priority_89 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -8888,6 +9266,12 @@
             limit = {
                 has_variable = mwp_assessed_90
                 var:mwp_assessed_score_90 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 90
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_90 }
+                    var:mwp_priority_90 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -9089,6 +9473,12 @@
             limit = {
                 has_variable = mwp_assessed_91
                 var:mwp_assessed_score_91 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 91
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_91 }
+                    var:mwp_priority_91 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -9290,6 +9680,12 @@
             limit = {
                 has_variable = mwp_assessed_92
                 var:mwp_assessed_score_92 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 92
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_92 }
+                    var:mwp_priority_92 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -9491,6 +9887,12 @@
             limit = {
                 has_variable = mwp_assessed_93
                 var:mwp_assessed_score_93 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 93
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_93 }
+                    var:mwp_priority_93 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -9692,6 +10094,12 @@
             limit = {
                 has_variable = mwp_assessed_94
                 var:mwp_assessed_score_94 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 94
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_94 }
+                    var:mwp_priority_94 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -9893,6 +10301,12 @@
             limit = {
                 has_variable = mwp_assessed_97
                 var:mwp_assessed_score_97 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 97
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_97 }
+                    var:mwp_priority_97 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -10094,6 +10508,12 @@
             limit = {
                 has_variable = mwp_assessed_45
                 var:mwp_assessed_score_45 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 45
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_45 }
+                    var:mwp_priority_45 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -10295,6 +10715,12 @@
             limit = {
                 has_variable = mwp_assessed_46
                 var:mwp_assessed_score_46 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 46
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_46 }
+                    var:mwp_priority_46 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -10496,6 +10922,12 @@
             limit = {
                 has_variable = mwp_assessed_47
                 var:mwp_assessed_score_47 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 47
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_47 }
+                    var:mwp_priority_47 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -10697,6 +11129,12 @@
             limit = {
                 has_variable = mwp_assessed_48
                 var:mwp_assessed_score_48 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 48
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_48 }
+                    var:mwp_priority_48 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -10898,6 +11336,12 @@
             limit = {
                 has_variable = mwp_assessed_49
                 var:mwp_assessed_score_49 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 49
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_49 }
+                    var:mwp_priority_49 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -10981,6 +11425,7 @@
                     var:mwp_script_candidate_action = 0
                     can_create_maa = onager
                     maa_regiments_count < maa_regiments_max_count
+                    NOT = { mwp_reorganization_same_siege_pending = { TYPE = 49 } }
                 }
                 set_variable = {
                     name = mwp_script_candidate_action
@@ -11099,6 +11544,12 @@
             limit = {
                 has_variable = mwp_assessed_50
                 var:mwp_assessed_score_50 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 50
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_50 }
+                    var:mwp_priority_50 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -11300,6 +11751,12 @@
             limit = {
                 has_variable = mwp_assessed_51
                 var:mwp_assessed_score_51 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 51
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_51 }
+                    var:mwp_priority_51 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -11383,6 +11840,7 @@
                     var:mwp_script_candidate_action = 0
                     can_create_maa = mangonel
                     maa_regiments_count < maa_regiments_max_count
+                    NOT = { mwp_reorganization_same_siege_pending = { TYPE = 51 } }
                 }
                 set_variable = {
                     name = mwp_script_candidate_action
@@ -11501,6 +11959,12 @@
             limit = {
                 has_variable = mwp_assessed_52
                 var:mwp_assessed_score_52 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 52
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_52 }
+                    var:mwp_priority_52 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -11702,6 +12166,12 @@
             limit = {
                 has_variable = mwp_assessed_53
                 var:mwp_assessed_score_53 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 53
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_53 }
+                    var:mwp_priority_53 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -11785,6 +12255,7 @@
                     var:mwp_script_candidate_action = 0
                     can_create_maa = trebuchet
                     maa_regiments_count < maa_regiments_max_count
+                    NOT = { mwp_reorganization_same_siege_pending = { TYPE = 53 } }
                 }
                 set_variable = {
                     name = mwp_script_candidate_action
@@ -11903,6 +12374,12 @@
             limit = {
                 has_variable = mwp_assessed_54
                 var:mwp_assessed_score_54 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 54
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_54 }
+                    var:mwp_priority_54 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -11986,6 +12463,7 @@
                     var:mwp_script_candidate_action = 0
                     can_create_maa = bombard
                     maa_regiments_count < maa_regiments_max_count
+                    NOT = { mwp_reorganization_same_siege_pending = { TYPE = 54 } }
                 }
                 set_variable = {
                     name = mwp_script_candidate_action
@@ -12104,6 +12582,12 @@
             limit = {
                 has_variable = mwp_assessed_55
                 var:mwp_assessed_score_55 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 55
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_55 }
+                    var:mwp_priority_55 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -12305,6 +12789,12 @@
             limit = {
                 has_variable = mwp_assessed_56
                 var:mwp_assessed_score_56 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 56
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_56 }
+                    var:mwp_priority_56 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -12506,6 +12996,12 @@
             limit = {
                 has_variable = mwp_assessed_58
                 var:mwp_assessed_score_58 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 58
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_58 }
+                    var:mwp_priority_58 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -12707,6 +13203,12 @@
             limit = {
                 has_variable = mwp_assessed_59
                 var:mwp_assessed_score_59 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 59
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_59 }
+                    var:mwp_priority_59 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -12908,6 +13410,12 @@
             limit = {
                 has_variable = mwp_assessed_60
                 var:mwp_assessed_score_60 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 60
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_60 }
+                    var:mwp_priority_60 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -13109,6 +13617,12 @@
             limit = {
                 has_variable = mwp_assessed_61
                 var:mwp_assessed_score_61 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 61
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_61 }
+                    var:mwp_priority_61 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -13310,6 +13824,12 @@
             limit = {
                 has_variable = mwp_assessed_62
                 var:mwp_assessed_score_62 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 62
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_62 }
+                    var:mwp_priority_62 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -13511,6 +14031,12 @@
             limit = {
                 has_variable = mwp_assessed_63
                 var:mwp_assessed_score_63 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 63
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_63 }
+                    var:mwp_priority_63 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -13712,6 +14238,12 @@
             limit = {
                 has_variable = mwp_assessed_64
                 var:mwp_assessed_score_64 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 64
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_64 }
+                    var:mwp_priority_64 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -13913,6 +14445,12 @@
             limit = {
                 has_variable = mwp_assessed_65
                 var:mwp_assessed_score_65 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 65
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_65 }
+                    var:mwp_priority_65 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -14114,6 +14652,12 @@
             limit = {
                 has_variable = mwp_assessed_66
                 var:mwp_assessed_score_66 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 66
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_66 }
+                    var:mwp_priority_66 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -14315,6 +14859,12 @@
             limit = {
                 has_variable = mwp_assessed_67
                 var:mwp_assessed_score_67 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 67
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_67 }
+                    var:mwp_priority_67 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -14516,6 +15066,12 @@
             limit = {
                 has_variable = mwp_assessed_68
                 var:mwp_assessed_score_68 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 68
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_68 }
+                    var:mwp_priority_68 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -14717,6 +15273,12 @@
             limit = {
                 has_variable = mwp_assessed_69
                 var:mwp_assessed_score_69 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 69
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_69 }
+                    var:mwp_priority_69 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -14918,6 +15480,12 @@
             limit = {
                 has_variable = mwp_assessed_70
                 var:mwp_assessed_score_70 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 70
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_70 }
+                    var:mwp_priority_70 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -15119,6 +15687,12 @@
             limit = {
                 has_variable = mwp_assessed_71
                 var:mwp_assessed_score_71 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 71
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_71 }
+                    var:mwp_priority_71 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -15320,6 +15894,12 @@
             limit = {
                 has_variable = mwp_assessed_72
                 var:mwp_assessed_score_72 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 72
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_72 }
+                    var:mwp_priority_72 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -15521,6 +16101,12 @@
             limit = {
                 has_variable = mwp_assessed_73
                 var:mwp_assessed_score_73 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 73
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_73 }
+                    var:mwp_priority_73 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -15722,6 +16308,12 @@
             limit = {
                 has_variable = mwp_assessed_75
                 var:mwp_assessed_score_75 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 75
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_75 }
+                    var:mwp_priority_75 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -15923,6 +16515,12 @@
             limit = {
                 has_variable = mwp_assessed_76
                 var:mwp_assessed_score_76 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 76
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_76 }
+                    var:mwp_priority_76 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -16124,6 +16722,12 @@
             limit = {
                 has_variable = mwp_assessed_77
                 var:mwp_assessed_score_77 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 77
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_77 }
+                    var:mwp_priority_77 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -16325,6 +16929,12 @@
             limit = {
                 has_variable = mwp_assessed_78
                 var:mwp_assessed_score_78 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 78
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_78 }
+                    var:mwp_priority_78 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -16526,6 +17136,12 @@
             limit = {
                 has_variable = mwp_assessed_79
                 var:mwp_assessed_score_79 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 79
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_79 }
+                    var:mwp_priority_79 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -16727,6 +17343,12 @@
             limit = {
                 has_variable = mwp_assessed_80
                 var:mwp_assessed_score_80 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 80
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_80 }
+                    var:mwp_priority_80 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -16928,6 +17550,12 @@
             limit = {
                 has_variable = mwp_assessed_81
                 var:mwp_assessed_score_81 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 81
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_81 }
+                    var:mwp_priority_81 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -17129,6 +17757,12 @@
             limit = {
                 has_variable = mwp_assessed_87
                 var:mwp_assessed_score_87 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 87
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_87 }
+                    var:mwp_priority_87 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -17212,6 +17846,7 @@
                     var:mwp_script_candidate_action = 0
                     can_create_maa = torch_bearers
                     maa_regiments_count < maa_regiments_max_count
+                    NOT = { mwp_reorganization_same_siege_pending = { TYPE = 87 } }
                 }
                 set_variable = {
                     name = mwp_script_candidate_action
@@ -17330,6 +17965,12 @@
             limit = {
                 has_variable = mwp_assessed_95
                 var:mwp_assessed_score_95 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 95
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_95 }
+                    var:mwp_priority_95 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -17531,6 +18172,12 @@
             limit = {
                 has_variable = mwp_assessed_96
                 var:mwp_assessed_score_96 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 96
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_96 }
+                    var:mwp_priority_96 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -17732,6 +18379,12 @@
             limit = {
                 has_variable = mwp_assessed_98
                 var:mwp_assessed_score_98 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 98
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_98 }
+                    var:mwp_priority_98 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -17933,6 +18586,12 @@
             limit = {
                 has_variable = mwp_assessed_99
                 var:mwp_assessed_score_99 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 99
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_99 }
+                    var:mwp_priority_99 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -18134,6 +18793,12 @@
             limit = {
                 has_variable = mwp_assessed_100
                 var:mwp_assessed_score_100 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 100
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_100 }
+                    var:mwp_priority_100 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -18335,6 +19000,12 @@
             limit = {
                 has_variable = mwp_assessed_101
                 var:mwp_assessed_score_101 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 101
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_101 }
+                    var:mwp_priority_101 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -18536,6 +19207,12 @@
             limit = {
                 has_variable = mwp_assessed_102
                 var:mwp_assessed_score_102 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 102
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_102 }
+                    var:mwp_priority_102 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -18737,6 +19414,12 @@
             limit = {
                 has_variable = mwp_assessed_103
                 var:mwp_assessed_score_103 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 103
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_103 }
+                    var:mwp_priority_103 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -18938,6 +19621,12 @@
             limit = {
                 has_variable = mwp_assessed_104
                 var:mwp_assessed_score_104 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 104
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_104 }
+                    var:mwp_priority_104 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -19139,6 +19828,12 @@
             limit = {
                 has_variable = mwp_assessed_105
                 var:mwp_assessed_score_105 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 105
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_105 }
+                    var:mwp_priority_105 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -19338,8 +20033,221 @@
         }
         if = {
             limit = {
+                has_variable = mwp_assessed_112
+                var:mwp_assessed_score_112 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 112
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_112 }
+                    var:mwp_priority_112 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
+            }
+            set_variable = {
+                name = mwp_script_candidate_route
+                value = 1
+            }
+            remove_variable = mwp_script_candidate_title
+            remove_variable = mwp_script_candidate_regiment
+            set_variable = {
+                name = mwp_script_candidate_action
+                value = 0
+            }
+            set_variable = {
+                name = mwp_script_candidate_price
+                value = mwp_script_price_112
+            }
+            set_variable = {
+                name = mwp_script_candidate_id
+                value = 112
+            }
+            set_variable = {
+                name = mwp_script_candidate_currency
+                value = mwp_d21_buy_currency_112
+            }
+            set_variable = {
+                name = mwp_script_candidate_upkeep_currency
+                value = mwp_d21_upkeep_currency_112
+            }
+            set_variable = {
+                name = mwp_script_candidate_upkeep
+                value = mwp_d21_upkeep_bound_112
+            }
+            every_maa_regiment = {
+                limit = {
+                    is_maa_type = condottieri
+                    is_personal_maa_regiment = yes
+                    is_regular_maa_regiment = yes
+                    is_title_maa_regiment = no
+                    regiment_owner = scope:mwp_script_player
+                    can_upgrade_maa = yes
+                    scope:mwp_script_player = {
+                        has_variable = mwp_recommended_regiment_112
+                        var:mwp_recommended_regiment_112 = prev
+                        NOT = {
+                            has_variable = mwp_script_candidate_regiment
+                        }
+                    }
+                }
+                scope:mwp_script_player = {
+                    set_variable = {
+                        name = mwp_script_candidate_regiment
+                        value = prev
+                    }
+                    set_variable = {
+                        name = mwp_script_candidate_action
+                        value = 2
+                    }
+                }
+            }
+            mwp_d21_nomad_candidate_112_effect = yes
+            if = {
+                limit = {
+                    var:mwp_script_candidate_action = 2
+                }
+                if = {
+                    limit = {
+                        mwp_d19_reject_112_2_trigger = yes
+                    }
+                    set_variable = {
+                        name = mwp_script_candidate_action
+                        value = 0
+                    }
+                    set_variable = {
+                        name = mwp_d19_reject_skipped_this_select
+                        value = yes
+                    }
+                    remove_variable = mwp_script_candidate_regiment
+                }
+            }
+            if = {
+                limit = {
+                    var:mwp_script_candidate_action = 0
+                    can_create_maa = condottieri
+                    maa_regiments_count < maa_regiments_max_count
+                }
+                set_variable = {
+                    name = mwp_script_candidate_action
+                    value = 1
+                }
+            }
+            mwp_d21_nomad_candidate_112_effect = yes
+            if = {
+                limit = {
+                    var:mwp_script_candidate_action = 1
+                }
+                if = {
+                    limit = {
+                        mwp_d19_reject_112_1_trigger = yes
+                    }
+                    set_variable = {
+                        name = mwp_script_candidate_action
+                        value = 0
+                    }
+                    set_variable = {
+                        name = mwp_d19_reject_skipped_this_select
+                        value = yes
+                    }
+                    remove_variable = mwp_script_candidate_regiment
+                }
+            }
+            if = {
+                limit = {
+                    var:mwp_script_candidate_action > 0
+                }
+                set_variable = {
+                    name = mwp_script_has_candidate
+                    value = yes
+                }
+                if = {
+                    limit = {
+                        var:mwp_script_candidate_price >= 0
+                        mwp_d21_candidate_wallet_value >= var:mwp_script_candidate_price
+                    }
+                    set_variable = {
+                        name = mwp_script_has_gold
+                        value = yes
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    var:mwp_script_candidate_action > 0
+                    var:mwp_script_candidate_price >= 0
+                    mwp_d21_candidate_wallet_value >= var:mwp_script_candidate_price
+                    mwp_d21_candidate_budget_trigger = yes
+                    OR = {
+                        NOT = {
+                            has_variable = mwp_script_selected_priority
+                        }
+                        var:mwp_priority_112 < var:mwp_script_selected_priority
+                    }
+                }
+                set_variable = {
+                    name = mwp_script_selected_id
+                    value = 112
+                }
+                set_variable = {
+                    name = mwp_script_selected_priority
+                    value = var:mwp_priority_112
+                }
+                set_variable = {
+                    name = mwp_script_selected_score
+                    value = var:mwp_assessed_score_112
+                }
+                set_variable = {
+                    name = mwp_script_selected_price
+                    value = var:mwp_script_candidate_price
+                }
+                set_variable = {
+                    name = mwp_script_selected_currency
+                    value = var:mwp_script_candidate_currency
+                }
+                set_variable = {
+                    name = mwp_script_selected_upkeep_currency
+                    value = var:mwp_script_candidate_upkeep_currency
+                }
+                set_variable = {
+                    name = mwp_script_selected_upkeep
+                    value = var:mwp_script_candidate_upkeep
+                }
+                set_variable = {
+                    name = mwp_script_selected_action
+                    value = var:mwp_script_candidate_action
+                }
+                remove_variable = mwp_script_selected_regiment
+                if = {
+                    limit = {
+                        has_variable = mwp_script_candidate_regiment
+                    }
+                    set_variable = {
+                        name = mwp_script_selected_regiment
+                        value = var:mwp_script_candidate_regiment
+                    }
+                }
+                set_variable = {
+                    name = mwp_script_selected_nomad_mode
+                    value = var:mwp_script_candidate_nomad_mode
+                }
+                set_variable = {
+                    name = mwp_script_selected_subject_source
+                    value = var:mwp_script_candidate_subject_source
+                }
+                set_variable = {
+                    name = mwp_script_selected_herd
+                    value = var:mwp_script_candidate_herd
+                }
+            }
+        }
+        if = {
+            limit = {
                 has_variable = mwp_assessed_106
                 var:mwp_assessed_score_106 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 106
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_106 }
+                    var:mwp_priority_106 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -19541,6 +20449,12 @@
             limit = {
                 has_variable = mwp_assessed_107
                 var:mwp_assessed_score_107 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 107
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_107 }
+                    var:mwp_priority_107 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -19742,6 +20656,12 @@
             limit = {
                 has_variable = mwp_assessed_108
                 var:mwp_assessed_score_108 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 108
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_108 }
+                    var:mwp_priority_108 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -19825,6 +20745,7 @@
                     var:mwp_script_candidate_action = 0
                     can_create_maa = ballista
                     maa_regiments_count < maa_regiments_max_count
+                    NOT = { mwp_reorganization_same_siege_pending = { TYPE = 108 } }
                 }
                 set_variable = {
                     name = mwp_script_candidate_action
@@ -19943,6 +20864,12 @@
             limit = {
                 has_variable = mwp_assessed_109
                 var:mwp_assessed_score_109 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 109
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_109 }
+                    var:mwp_priority_109 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -20026,6 +20953,7 @@
                     var:mwp_script_candidate_action = 0
                     can_create_maa = cloud_ladder
                     maa_regiments_count < maa_regiments_max_count
+                    NOT = { mwp_reorganization_same_siege_pending = { TYPE = 109 } }
                 }
                 set_variable = {
                     name = mwp_script_candidate_action
@@ -20144,6 +21072,12 @@
             limit = {
                 has_variable = mwp_assessed_110
                 var:mwp_assessed_score_110 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 110
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_110 }
+                    var:mwp_priority_110 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -20227,6 +21161,7 @@
                     var:mwp_script_candidate_action = 0
                     can_create_maa = siege_tower
                     maa_regiments_count < maa_regiments_max_count
+                    NOT = { mwp_reorganization_same_siege_pending = { TYPE = 110 } }
                 }
                 set_variable = {
                     name = mwp_script_candidate_action
@@ -20345,6 +21280,12 @@
             limit = {
                 has_variable = mwp_assessed_111
                 var:mwp_assessed_score_111 > 0
+                trigger_if = {
+                    limit = { scope:mwp_pr_active = yes scope:mwp_pr_last != 111
+                        has_variable = mwp_script_selected_priority has_variable = mwp_priority_111 }
+                    var:mwp_priority_111 < var:mwp_script_selected_priority
+                }
+                trigger_else = { always = yes }
             }
             set_variable = {
                 name = mwp_script_candidate_route
@@ -20428,6 +21369,7 @@
                     var:mwp_script_candidate_action = 0
                     can_create_maa = cannon
                     maa_regiments_count < maa_regiments_max_count
+                    NOT = { mwp_reorganization_same_siege_pending = { TYPE = 111 } }
                 }
                 set_variable = {
                     name = mwp_script_candidate_action
@@ -41100,6 +42042,220 @@
                 }
                 if = {
                     limit = {
+                        has_variable = mwp_assessed_112
+                        var:mwp_assessed_score_112 > 0
+                    }
+                    set_variable = {
+                        name = mwp_script_candidate_route
+                        value = 2
+                    }
+                    set_variable = {
+                        name = mwp_script_candidate_title
+                        value = scope:mwp_d21_title_candidate
+                    }
+                    remove_variable = mwp_script_candidate_regiment
+                    set_variable = {
+                        name = mwp_script_candidate_action
+                        value = 0
+                    }
+                    set_variable = {
+                        name = mwp_script_candidate_price
+                        value = mwp_d21_title_price_112
+                    }
+                    set_variable = {
+                        name = mwp_script_candidate_id
+                        value = 112
+                    }
+                    set_variable = {
+                        name = mwp_script_candidate_currency
+                        value = mwp_d21_title_currency_112
+                    }
+                    set_variable = {
+                        name = mwp_script_candidate_upkeep_currency
+                        value = mwp_d21_title_upkeep_currency_112
+                    }
+                    set_variable = {
+                        name = mwp_script_candidate_upkeep
+                        value = mwp_d21_upkeep_bound_112
+                    }
+                    scope:mwp_d21_title_candidate = {
+                        every_owned_title_maa_regiment = {
+                            limit = {
+                                is_maa_type = condottieri
+                                is_regular_maa_regiment = yes
+                                is_title_maa_regiment = yes
+                                regiment_owner = scope:mwp_script_player
+                                can_upgrade_maa = yes
+                                scope:mwp_script_player = {
+                                    NOT = {
+                                        has_variable = mwp_script_candidate_regiment
+                                    }
+                                }
+                                regiment_owning_title = scope:mwp_d21_title_candidate
+                            }
+                            scope:mwp_script_player = {
+                                set_variable = {
+                                    name = mwp_script_candidate_regiment
+                                    value = prev
+                                }
+                                set_variable = {
+                                    name = mwp_script_candidate_action
+                                    value = 2
+                                }
+                            }
+                        }
+                    }
+                    mwp_d21_nomad_candidate_112_effect = yes
+                    if = {
+                        limit = {
+                            var:mwp_script_candidate_action = 2
+                        }
+                        if = {
+                            limit = {
+                                mwp_d19_reject_112_2_trigger = yes
+                            }
+                            set_variable = {
+                                name = mwp_script_candidate_action
+                                value = 0
+                            }
+                            set_variable = {
+                                name = mwp_d19_reject_skipped_this_select
+                                value = yes
+                            }
+                            remove_variable = mwp_script_candidate_regiment
+                        }
+                    }
+                    if = {
+                        limit = {
+                            var:mwp_script_candidate_action = 0
+                            scope:mwp_d21_title_candidate = {
+                                mwp_d21_title_has_capacity_trigger = yes
+                                can_create_title_maa = condottieri
+                            }
+                        }
+                        set_variable = {
+                            name = mwp_script_candidate_action
+                            value = 1
+                        }
+                    }
+                    mwp_d21_nomad_candidate_112_effect = yes
+                    if = {
+                        limit = {
+                            var:mwp_script_candidate_action = 1
+                        }
+                        if = {
+                            limit = {
+                                mwp_d19_reject_112_1_trigger = yes
+                            }
+                            set_variable = {
+                                name = mwp_script_candidate_action
+                                value = 0
+                            }
+                            set_variable = {
+                                name = mwp_d19_reject_skipped_this_select
+                                value = yes
+                            }
+                            remove_variable = mwp_script_candidate_regiment
+                        }
+                    }
+                    if = {
+                        limit = {
+                            var:mwp_script_candidate_action > 0
+                        }
+                        set_variable = {
+                            name = mwp_script_has_candidate
+                            value = yes
+                        }
+                        if = {
+                            limit = {
+                                var:mwp_script_candidate_price >= 0
+                                mwp_d21_candidate_wallet_value >= var:mwp_script_candidate_price
+                            }
+                            set_variable = {
+                                name = mwp_script_has_gold
+                                value = yes
+                            }
+                        }
+                    }
+                    if = {
+                        limit = {
+                            var:mwp_script_candidate_action > 0
+                            var:mwp_script_candidate_price >= 0
+                            mwp_d21_candidate_wallet_value >= var:mwp_script_candidate_price
+                            mwp_d21_candidate_budget_trigger = yes
+                            OR = {
+                                NOT = {
+                                    has_variable = mwp_script_selected_priority
+                                }
+                                var:mwp_priority_112 < var:mwp_script_selected_priority
+                            }
+                        }
+                        set_variable = {
+                            name = mwp_script_selected_id
+                            value = 112
+                        }
+                        set_variable = {
+                            name = mwp_script_selected_priority
+                            value = var:mwp_priority_112
+                        }
+                        set_variable = {
+                            name = mwp_script_selected_score
+                            value = var:mwp_assessed_score_112
+                        }
+                        set_variable = {
+                            name = mwp_script_selected_price
+                            value = var:mwp_script_candidate_price
+                        }
+                        set_variable = {
+                            name = mwp_script_selected_currency
+                            value = var:mwp_script_candidate_currency
+                        }
+                        set_variable = {
+                            name = mwp_script_selected_upkeep_currency
+                            value = var:mwp_script_candidate_upkeep_currency
+                        }
+                        set_variable = {
+                            name = mwp_script_selected_upkeep
+                            value = var:mwp_script_candidate_upkeep
+                        }
+                        set_variable = {
+                            name = mwp_script_selected_action
+                            value = var:mwp_script_candidate_action
+                        }
+                        remove_variable = mwp_script_selected_regiment
+                        if = {
+                            limit = {
+                                has_variable = mwp_script_candidate_regiment
+                            }
+                            set_variable = {
+                                name = mwp_script_selected_regiment
+                                value = var:mwp_script_candidate_regiment
+                            }
+                        }
+                        set_variable = {
+                            name = mwp_script_selected_route
+                            value = 2
+                        }
+                        set_variable = {
+                            name = mwp_script_selected_title
+                            value = scope:mwp_d21_title_candidate
+                        }
+                        set_variable = {
+                            name = mwp_script_selected_nomad_mode
+                            value = var:mwp_script_candidate_nomad_mode
+                        }
+                        set_variable = {
+                            name = mwp_script_selected_subject_source
+                            value = var:mwp_script_candidate_subject_source
+                        }
+                        set_variable = {
+                            name = mwp_script_selected_herd
+                            value = var:mwp_script_candidate_herd
+                        }
+                    }
+                }
+                if = {
+                    limit = {
                         has_variable = mwp_assessed_106
                         var:mwp_assessed_score_106 > 0
                     }
@@ -42404,9 +43560,9 @@
     }
 }
 mwp_priority_refresh_next_effect = {
-    remove_variable = mwp_next_catalog_id
-    remove_variable = mwp_next_price
-    remove_variable = mwp_next_action
+    if = { limit = { NOT = { exists = scope:mwp_display_budget_only } } remove_variable = mwp_next_catalog_id }
+    if = { limit = { NOT = { exists = scope:mwp_display_budget_only } } remove_variable = mwp_next_price }
+    if = { limit = { NOT = { exists = scope:mwp_display_budget_only } } remove_variable = mwp_next_action }
     if = {
         limit = {
             mwp_auto_fresh_trigger = yes
@@ -42420,6 +43576,7 @@ mwp_priority_refresh_next_effect = {
             mwp_script_budget_refresh_effect = yes
             if = {
                 limit = {
+                    NOT = { exists = scope:mwp_display_budget_only }
                     OR = {
                         mwp_auto_budget_mode_value = 3
                         has_variable = mwp_script_budget_ready

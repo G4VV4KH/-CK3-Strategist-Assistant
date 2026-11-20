@@ -29,9 +29,13 @@
         value = 5
     }
 }
-mwp_enemy_cache_expiry_day_value = {
+mwp_regular_world_expiry_day = {
     value = var:mwp_enemy_cache_day
     add = 30
+}
+mwp_enemy_cache_expiry_day_value = {
+    value = mwp_regular_world_expiry_day
+    if = { limit = { has_variable = mwp_fast_calendar } add = 150 }
 }
 mwp_auto_incremental_bound_1 = {
     value = mwp_auto_cost_ceiling_1
@@ -385,6 +389,10 @@ mwp_auto_incremental_bound_105 = {
     value = mwp_auto_cost_ceiling_105
     add = 0.01
 }
+mwp_auto_incremental_bound_112 = {
+    value = mwp_auto_cost_ceiling_112
+    add = 0.01
+}
 mwp_auto_incremental_bound_106 = {
     value = mwp_auto_cost_ceiling_106
     add = 0.01
@@ -410,7 +418,7 @@ mwp_auto_incremental_bound_111 = {
     add = 0.01
 }
 mwp_script_price_1 = {
-    value = 115.2
+    value = 38.4
     round = yes
     min = 0
     multiply = {
@@ -427,7 +435,7 @@ mwp_script_price_1 = {
     }
 }
 mwp_script_price_2 = {
-    value = 90
+    value = 30
     round = yes
     min = 0
     multiply = {
@@ -444,7 +452,7 @@ mwp_script_price_2 = {
     }
 }
 mwp_script_price_3 = {
-    value = 66
+    value = 24
     round = yes
     min = 0
     multiply = {
@@ -461,7 +469,7 @@ mwp_script_price_3 = {
     }
 }
 mwp_script_price_4 = {
-    value = 45
+    value = 15
     round = yes
     min = 0
     multiply = {
@@ -478,7 +486,7 @@ mwp_script_price_4 = {
     }
 }
 mwp_script_price_5 = {
-    value = 240
+    value = 78
     round = yes
     min = 0
     multiply = {
@@ -495,7 +503,7 @@ mwp_script_price_5 = {
     }
 }
 mwp_script_price_6 = {
-    value = 110.5
+    value = 39
     round = yes
     min = 0
     multiply = {
@@ -512,7 +520,7 @@ mwp_script_price_6 = {
     }
 }
 mwp_script_price_7 = {
-    value = 97.5
+    value = 32.5
     round = yes
     min = 0
     multiply = {
@@ -529,7 +537,7 @@ mwp_script_price_7 = {
     }
 }
 mwp_script_price_8 = {
-    value = 180
+    value = 60
     round = yes
     min = 0
     multiply = {
@@ -546,7 +554,7 @@ mwp_script_price_8 = {
     }
 }
 mwp_script_price_9 = {
-    value = 85
+    value = 30
     round = yes
     min = 0
     multiply = {
@@ -563,7 +571,7 @@ mwp_script_price_9 = {
     }
 }
 mwp_script_price_10 = {
-    value = 250
+    value = 81.25
     round = yes
     min = 0
     multiply = {
@@ -580,7 +588,7 @@ mwp_script_price_10 = {
     }
 }
 mwp_script_price_11 = {
-    value = 260
+    value = 84.5
     round = yes
     min = 0
     multiply = {
@@ -597,7 +605,7 @@ mwp_script_price_11 = {
     }
 }
 mwp_script_price_12 = {
-    value = 93.5
+    value = 33
     round = yes
     min = 0
     multiply = {
@@ -614,7 +622,7 @@ mwp_script_price_12 = {
     }
 }
 mwp_script_price_13 = {
-    value = 112.5
+    value = 37.5
     round = yes
     min = 0
     multiply = {
@@ -631,7 +639,7 @@ mwp_script_price_13 = {
     }
 }
 mwp_script_price_14 = {
-    value = 60.5
+    value = 22
     round = yes
     min = 0
     multiply = {
@@ -648,7 +656,7 @@ mwp_script_price_14 = {
     }
 }
 mwp_script_price_15 = {
-    value = 135
+    value = 45
     round = yes
     min = 0
     multiply = {
@@ -665,7 +673,7 @@ mwp_script_price_15 = {
     }
 }
 mwp_script_price_16 = {
-    value = 75
+    value = 15
     round = yes
     min = 0
     multiply = {
@@ -682,7 +690,7 @@ mwp_script_price_16 = {
     }
 }
 mwp_script_price_17 = {
-    value = 108
+    value = 36
     round = yes
     min = 0
     multiply = {
@@ -699,7 +707,7 @@ mwp_script_price_17 = {
     }
 }
 mwp_script_price_18 = {
-    value = 85
+    value = 30
     round = yes
     min = 0
     multiply = {
@@ -716,7 +724,7 @@ mwp_script_price_18 = {
     }
 }
 mwp_script_price_19 = {
-    value = 60.5
+    value = 22
     round = yes
     min = 0
     multiply = {
@@ -733,7 +741,7 @@ mwp_script_price_19 = {
     }
 }
 mwp_script_price_20 = {
-    value = 60.5
+    value = 22
     round = yes
     min = 0
     multiply = {
@@ -750,7 +758,7 @@ mwp_script_price_20 = {
     }
 }
 mwp_script_price_21 = {
-    value = 117
+    value = 39
     round = yes
     min = 0
     multiply = {
@@ -767,7 +775,7 @@ mwp_script_price_21 = {
     }
 }
 mwp_script_price_22 = {
-    value = 110.5
+    value = 39
     round = yes
     min = 0
     multiply = {
@@ -784,7 +792,7 @@ mwp_script_price_22 = {
     }
 }
 mwp_script_price_23 = {
-    value = 45
+    value = 15
     round = yes
     min = 0
     multiply = {
@@ -801,7 +809,7 @@ mwp_script_price_23 = {
     }
 }
 mwp_script_price_24 = {
-    value = 55
+    value = 20
     round = yes
     min = 0
     multiply = {
@@ -818,7 +826,7 @@ mwp_script_price_24 = {
     }
 }
 mwp_script_price_25 = {
-    value = 45
+    value = 15
     round = yes
     min = 0
     multiply = {
@@ -835,7 +843,7 @@ mwp_script_price_25 = {
     }
 }
 mwp_script_price_26 = {
-    value = 115.2
+    value = 38.4
     round = yes
     min = 0
     multiply = {
@@ -852,7 +860,7 @@ mwp_script_price_26 = {
     }
 }
 mwp_script_price_27 = {
-    value = 108
+    value = 36
     round = yes
     min = 0
     multiply = {
@@ -869,7 +877,7 @@ mwp_script_price_27 = {
     }
 }
 mwp_script_price_28 = {
-    value = 108
+    value = 36
     round = yes
     min = 0
     multiply = {
@@ -886,7 +894,7 @@ mwp_script_price_28 = {
     }
 }
 mwp_script_price_29 = {
-    value = 90
+    value = 35
     round = yes
     min = 0
     multiply = {
@@ -903,7 +911,7 @@ mwp_script_price_29 = {
     }
 }
 mwp_script_price_30 = {
-    value = 54
+    value = 18
     round = yes
     min = 0
     multiply = {
@@ -920,7 +928,7 @@ mwp_script_price_30 = {
     }
 }
 mwp_script_price_31 = {
-    value = 108
+    value = 36
     round = yes
     min = 0
     multiply = {
@@ -937,7 +945,7 @@ mwp_script_price_31 = {
     }
 }
 mwp_script_price_32 = {
-    value = 81
+    value = 27
     round = yes
     min = 0
     multiply = {
@@ -954,7 +962,7 @@ mwp_script_price_32 = {
     }
 }
 mwp_script_price_33 = {
-    value = 99
+    value = 33
     round = yes
     min = 0
     multiply = {
@@ -971,7 +979,7 @@ mwp_script_price_33 = {
     }
 }
 mwp_script_price_34 = {
-    value = 108
+    value = 36
     round = yes
     min = 0
     multiply = {
@@ -988,7 +996,7 @@ mwp_script_price_34 = {
     }
 }
 mwp_script_price_35 = {
-    value = 96.25
+    value = 35
     round = yes
     min = 0
     multiply = {
@@ -1005,7 +1013,7 @@ mwp_script_price_35 = {
     }
 }
 mwp_script_price_36 = {
-    value = 54
+    value = 18
     round = yes
     min = 0
     multiply = {
@@ -1022,7 +1030,7 @@ mwp_script_price_36 = {
     }
 }
 mwp_script_price_37 = {
-    value = 102
+    value = 36
     round = yes
     min = 0
     multiply = {
@@ -1056,7 +1064,7 @@ mwp_script_price_38 = {
     }
 }
 mwp_script_price_39 = {
-    value = 260
+    value = 84.5
     round = yes
     min = 0
     multiply = {
@@ -1073,7 +1081,7 @@ mwp_script_price_39 = {
     }
 }
 mwp_script_price_40 = {
-    value = 50.25
+    value = 16.75
     round = yes
     min = 0
     multiply = {
@@ -1090,7 +1098,7 @@ mwp_script_price_40 = {
     }
 }
 mwp_script_price_41 = {
-    value = 93.5
+    value = 33
     round = yes
     min = 0
     multiply = {
@@ -1107,7 +1115,7 @@ mwp_script_price_41 = {
     }
 }
 mwp_script_price_44 = {
-    value = 45
+    value = 15
     round = yes
     min = 0
     multiply = {
@@ -1124,7 +1132,7 @@ mwp_script_price_44 = {
     }
 }
 mwp_script_price_45 = {
-    value = 55
+    value = 20
     round = yes
     min = 0
     multiply = {
@@ -1141,7 +1149,7 @@ mwp_script_price_45 = {
     }
 }
 mwp_script_price_46 = {
-    value = 85
+    value = 30
     round = yes
     min = 0
     multiply = {
@@ -1158,7 +1166,7 @@ mwp_script_price_46 = {
     }
 }
 mwp_script_price_47 = {
-    value = 75
+    value = 25
     round = yes
     min = 0
     multiply = {
@@ -1175,7 +1183,7 @@ mwp_script_price_47 = {
     }
 }
 mwp_script_price_48 = {
-    value = 90
+    value = 30
     round = yes
     min = 0
     multiply = {
@@ -1192,7 +1200,7 @@ mwp_script_price_48 = {
     }
 }
 mwp_script_price_49 = {
-    value = 60
+    value = 20
     round = yes
     min = 0
     multiply = {
@@ -1209,7 +1217,7 @@ mwp_script_price_49 = {
     }
 }
 mwp_script_price_50 = {
-    value = 200
+    value = 65
     round = yes
     min = 0
     multiply = {
@@ -1226,7 +1234,7 @@ mwp_script_price_50 = {
     }
 }
 mwp_script_price_51 = {
-    value = 66
+    value = 22
     round = yes
     min = 0
     multiply = {
@@ -1243,7 +1251,7 @@ mwp_script_price_51 = {
     }
 }
 mwp_script_price_52 = {
-    value = 88
+    value = 32
     round = yes
     min = 0
     multiply = {
@@ -1260,7 +1268,7 @@ mwp_script_price_52 = {
     }
 }
 mwp_script_price_53 = {
-    value = 78
+    value = 26
     round = yes
     min = 0
     multiply = {
@@ -1277,7 +1285,7 @@ mwp_script_price_53 = {
     }
 }
 mwp_script_price_54 = {
-    value = 96
+    value = 32
     round = yes
     min = 0
     multiply = {
@@ -1294,7 +1302,7 @@ mwp_script_price_54 = {
     }
 }
 mwp_script_price_55 = {
-    value = 76
+    value = 25
     round = yes
     min = 0
     multiply = {
@@ -1328,7 +1336,7 @@ mwp_script_price_56 = {
     }
 }
 mwp_script_price_58 = {
-    value = 85
+    value = 30
     round = yes
     min = 0
     multiply = {
@@ -1345,7 +1353,7 @@ mwp_script_price_58 = {
     }
 }
 mwp_script_price_59 = {
-    value = 400
+    value = 130
     round = yes
     min = 0
     multiply = {
@@ -1362,7 +1370,7 @@ mwp_script_price_59 = {
     }
 }
 mwp_script_price_60 = {
-    value = 110
+    value = 40
     round = yes
     min = 0
     multiply = {
@@ -1379,7 +1387,7 @@ mwp_script_price_60 = {
     }
 }
 mwp_script_price_61 = {
-    value = 90
+    value = 30
     round = yes
     min = 0
     multiply = {
@@ -1396,7 +1404,7 @@ mwp_script_price_61 = {
     }
 }
 mwp_script_price_62 = {
-    value = 150
+    value = 50
     round = yes
     min = 0
     multiply = {
@@ -1413,7 +1421,7 @@ mwp_script_price_62 = {
     }
 }
 mwp_script_price_63 = {
-    value = 170
+    value = 60
     round = yes
     min = 0
     multiply = {
@@ -1430,7 +1438,7 @@ mwp_script_price_63 = {
     }
 }
 mwp_script_price_64 = {
-    value = 180
+    value = 60
     round = yes
     min = 0
     multiply = {
@@ -1447,7 +1455,7 @@ mwp_script_price_64 = {
     }
 }
 mwp_script_price_65 = {
-    value = 400
+    value = 130
     round = yes
     min = 0
     multiply = {
@@ -1464,7 +1472,7 @@ mwp_script_price_65 = {
     }
 }
 mwp_script_price_66 = {
-    value = 176
+    value = 64
     round = yes
     min = 0
     multiply = {
@@ -1481,7 +1489,7 @@ mwp_script_price_66 = {
     }
 }
 mwp_script_price_67 = {
-    value = 170
+    value = 60
     round = yes
     min = 0
     multiply = {
@@ -1498,7 +1506,7 @@ mwp_script_price_67 = {
     }
 }
 mwp_script_price_68 = {
-    value = 800
+    value = 260
     round = yes
     min = 0
     multiply = {
@@ -1515,7 +1523,7 @@ mwp_script_price_68 = {
     }
 }
 mwp_script_price_69 = {
-    value = 270
+    value = 90
     round = yes
     min = 0
     multiply = {
@@ -1532,7 +1540,7 @@ mwp_script_price_69 = {
     }
 }
 mwp_script_price_70 = {
-    value = 76
+    value = 25
     round = yes
     min = 0
     multiply = {
@@ -1549,7 +1557,7 @@ mwp_script_price_70 = {
     }
 }
 mwp_script_price_71 = {
-    value = 60.5
+    value = 22
     round = yes
     min = 0
     multiply = {
@@ -1566,7 +1574,7 @@ mwp_script_price_71 = {
     }
 }
 mwp_script_price_72 = {
-    value = 50.25
+    value = 16.75
     round = yes
     min = 0
     multiply = {
@@ -1583,7 +1591,7 @@ mwp_script_price_72 = {
     }
 }
 mwp_script_price_73 = {
-    value = 150.3
+    value = 50.1
     round = yes
     min = 0
     multiply = {
@@ -1600,7 +1608,7 @@ mwp_script_price_73 = {
     }
 }
 mwp_script_price_75 = {
-    value = 85
+    value = 30
     round = yes
     min = 0
     multiply = {
@@ -1617,7 +1625,7 @@ mwp_script_price_75 = {
     }
 }
 mwp_script_price_76 = {
-    value = 170
+    value = 55.25
     round = yes
     min = 0
     multiply = {
@@ -1634,7 +1642,7 @@ mwp_script_price_76 = {
     }
 }
 mwp_script_price_77 = {
-    value = 40.5
+    value = 13.5
     round = yes
     min = 0
     multiply = {
@@ -1651,7 +1659,7 @@ mwp_script_price_77 = {
     }
 }
 mwp_script_price_78 = {
-    value = 63.25
+    value = 23
     round = yes
     min = 0
     multiply = {
@@ -1668,7 +1676,7 @@ mwp_script_price_78 = {
     }
 }
 mwp_script_price_79 = {
-    value = 82.5
+    value = 27.5
     round = yes
     min = 0
     multiply = {
@@ -1685,7 +1693,7 @@ mwp_script_price_79 = {
     }
 }
 mwp_script_price_80 = {
-    value = 72
+    value = 24
     round = yes
     min = 0
     multiply = {
@@ -1702,7 +1710,7 @@ mwp_script_price_80 = {
     }
 }
 mwp_script_price_81 = {
-    value = 67.5
+    value = 22.5
     round = yes
     min = 0
     multiply = {
@@ -1719,7 +1727,7 @@ mwp_script_price_81 = {
     }
 }
 mwp_script_price_87 = {
-    value = 30
+    value = 10
     round = yes
     min = 0
     multiply = {
@@ -1736,7 +1744,7 @@ mwp_script_price_87 = {
     }
 }
 mwp_script_price_95 = {
-    value = 85
+    value = 30
     round = yes
     min = 0
     multiply = {
@@ -1753,7 +1761,7 @@ mwp_script_price_95 = {
     }
 }
 mwp_script_price_96 = {
-    value = 135
+    value = 45
     round = yes
     min = 0
     multiply = {
@@ -1770,7 +1778,7 @@ mwp_script_price_96 = {
     }
 }
 mwp_script_price_98 = {
-    value = 88
+    value = 32
     round = yes
     min = 0
     multiply = {
@@ -1787,7 +1795,7 @@ mwp_script_price_98 = {
     }
 }
 mwp_script_price_99 = {
-    value = 66
+    value = 24
     round = yes
     min = 0
     multiply = {
@@ -1804,7 +1812,7 @@ mwp_script_price_99 = {
     }
 }
 mwp_script_price_100 = {
-    value = 440
+    value = 143
     round = yes
     min = 0
     multiply = {
@@ -1821,7 +1829,7 @@ mwp_script_price_100 = {
     }
 }
 mwp_script_price_101 = {
-    value = 40.5
+    value = 13.5
     round = yes
     min = 0
     multiply = {
@@ -1838,7 +1846,7 @@ mwp_script_price_101 = {
     }
 }
 mwp_script_price_102 = {
-    value = 150.3
+    value = 50.1
     round = yes
     min = 0
     multiply = {
@@ -1855,7 +1863,7 @@ mwp_script_price_102 = {
     }
 }
 mwp_script_price_103 = {
-    value = 85.5
+    value = 28.5
     round = yes
     min = 0
     multiply = {
@@ -1872,7 +1880,7 @@ mwp_script_price_103 = {
     }
 }
 mwp_script_price_104 = {
-    value = 260
+    value = 84.5
     round = yes
     min = 0
     multiply = {
@@ -1889,7 +1897,24 @@ mwp_script_price_104 = {
     }
 }
 mwp_script_price_105 = {
-    value = 260
+    value = 84.5
+    round = yes
+    min = 0
+    multiply = {
+        value = 1
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_cavalry
+        min = 0.1
+    }
+    if = {
+        limit = {
+            government_allows = regiments_prestige_as_gold
+        }
+        multiply = 2
+    }
+}
+mwp_script_price_112 = {
+    value = 71.5
     round = yes
     min = 0
     multiply = {
@@ -1906,7 +1931,7 @@ mwp_script_price_105 = {
     }
 }
 mwp_script_price_106 = {
-    value = 75
+    value = 15
     round = yes
     min = 0
     multiply = {
@@ -1923,7 +1948,7 @@ mwp_script_price_106 = {
     }
 }
 mwp_script_price_107 = {
-    value = 68.75
+    value = 25
     round = yes
     min = 0
     multiply = {
@@ -1940,7 +1965,7 @@ mwp_script_price_107 = {
     }
 }
 mwp_script_price_108 = {
-    value = 60
+    value = 20
     round = yes
     min = 0
     multiply = {
@@ -1957,7 +1982,7 @@ mwp_script_price_108 = {
     }
 }
 mwp_script_price_109 = {
-    value = 66
+    value = 22
     round = yes
     min = 0
     multiply = {
@@ -1974,7 +1999,7 @@ mwp_script_price_109 = {
     }
 }
 mwp_script_price_110 = {
-    value = 78
+    value = 26
     round = yes
     min = 0
     multiply = {
@@ -1991,7 +2016,7 @@ mwp_script_price_110 = {
     }
 }
 mwp_script_price_111 = {
-    value = 121.6
+    value = 40
     round = yes
     min = 0
     multiply = {
@@ -2008,167 +2033,16 @@ mwp_script_price_111 = {
     }
 }
 mwp_script_levy_per_soldier_bound = {
-    value = 0.003
-    if = {
-        limit = {
-            culture = {
-                has_cultural_tradition = tradition_intensive_farming
-            }
-        }
-        multiply = 1.025
-    }
-    multiply = mwp_d18_army_snapshot_value
+value = 0.003
+multiply = { value = 1 add = "this.modifier_value(levy_maintenance)" min = 1 }
+multiply = mwp_d18_army_snapshot_value
 }
 mwp_script_zero_low_ceiling_56 = {
-    value = 1
-    if = {
-        limit = {
-            culture = {
-                has_cultural_tradition = tradition_mobile_guards
-            }
-        }
-        multiply = 1.1
-    }
-    if = {
-        limit = {
-            culture = {
-                has_cultural_tradition = tradition_tgp_art_of_war
-            }
-        }
-        multiply = 1.2
-    }
-    if = {
-        limit = {
-            has_realm_law = mandala_decree_prosperity
-        }
-        multiply = 1.25
-    }
-    if = {
-        limit = {
-            has_character_modifier = laamp_base_1021_failure_employer_modifier
-        }
-        multiply = 1.25
-    }
-    if = {
-        limit = {
-            has_character_modifier = toledo_steel_armaments_modifier
-        }
-        multiply = 1.05
-    }
-    if = {
-        limit = {
-            has_character_modifier = liege_bad_micromanagement
-        }
-        multiply = 1.33
-    }
-    if = {
-        limit = {
-            has_character_modifier = rejecting_bellicose_ways_modifier
-        }
-        multiply = 1.1
-    }
-    if = {
-        limit = {
-            has_character_modifier = ep3_better_paid_soldiers_modifier
-        }
-        multiply = 1.1
-    }
-    if = {
-        limit = {
-            has_character_modifier = ep3_mercenaries_abroad_modifier
-        }
-        multiply = 1.3
-    }
-    if = {
-        limit = {
-            has_character_modifier = ep3_peaceful_administrator_modifier
-        }
-        multiply = 1.25
-    }
-    if = {
-        limit = {
-            has_character_modifier = tgp_advancement_focus_modifier
-        }
-        multiply = 1.15
-    }
-    if = {
-        limit = {
-            exists = situation:the_christian_church
-            situation:the_christian_church = {
-                situation_current_phase = concord
-                any_participant_group = {
-                    participant_group_type = christian_clerical_main_power_rulers
-                    participant_group_has_character = root
-                }
-            }
-        }
-        multiply = 1.1
-    }
-    if = {
-        limit = {
-            exists = situation:the_christian_church
-            situation:the_christian_church = {
-                situation_current_phase = concord
-                any_participant_group = {
-                    participant_group_type = christian_regular_main_power_rulers
-                    participant_group_has_character = root
-                }
-            }
-        }
-        multiply = 1.05
-    }
-    if = {
-        limit = {
-            exists = situation:dynastic_cycle
-            situation:dynastic_cycle = {
-                situation_current_phase = situation_dynastic_cycle_phase_stability_advancement
-                any_participant_group = {
-                    participant_group_type = pro_hegemon_movement
-                    participant_group_has_character = root
-                }
-            }
-        }
-        multiply = 1.1
-    }
-    if = {
-        limit = {
-            exists = situation:dynastic_cycle
-            situation:dynastic_cycle = {
-                situation_current_phase = situation_dynastic_cycle_phase_stability_advancement
-                any_participant_group = {
-                    participant_group_type = advancement_movement
-                    participant_group_has_character = root
-                }
-            }
-        }
-        multiply = 1.2
-    }
-    if = {
-        limit = {
-            exists = situation:dynastic_cycle
-            situation:dynastic_cycle = {
-                situation_current_phase = situation_dynastic_cycle_phase_stability_advancement
-                any_participant_group = {
-                    participant_group_type = conservative_movement
-                    participant_group_has_character = root
-                }
-            }
-        }
-        multiply = 1.2
-    }
-    if = {
-        limit = {
-            exists = situation:dynastic_cycle
-            situation:dynastic_cycle = {
-                situation_current_phase = situation_dynastic_cycle_phase_stability_advancement
-                any_participant_group = {
-                    participant_group_type = undecided_movement
-                    participant_group_has_character = root
-                }
-            }
-        }
-        multiply = 1.2
-    }
+value = 1
+multiply = { value = 1 add = "this.modifier_value(men_at_arms_maintenance)" min = 1 }
+multiply = { value = 1 add = "this.modifier_value(heavy_infantry_maintenance_mult)" min = 1 }
+multiply = { value = 1 add = { value = "this.modifier_value(men_at_arms_maintenance_per_dread_mult)" multiply = dread } min = 1 }
+multiply = mwp_d18_army_snapshot_value
 }
 mwp_script_maa_upkeep_value = {
     value = var:mwp_script_maa_upkeep
@@ -2288,6 +2162,7 @@ mwp_cost_cache_regiment_ratio_value = {
   else_if = { limit = { is_maa_type = zhanmadao_infantry } value = 3 }
   else_if = { limit = { is_maa_type = black_armor_cavalry } value = 3 }
   else_if = { limit = { is_maa_type = tiefutu } value = 3 }
+  else_if = { limit = { is_maa_type = condottieri } value = 3 }
   else_if = { limit = { is_maa_type = burenjia } value = 2.5 }
   else_if = { limit = { is_maa_type = rocket_carts } value = 3 }
   else_if = { limit = { is_maa_type = ballista } value = 3 }
@@ -2299,106 +2174,107 @@ mwp_cost_cache_regiment_ratio_value = {
 mwp_cost_cache_regiment_bound_ratio_value = {
  value = -1
  if = { limit = { is_personal_maa_regiment = yes is_regular_maa_regiment = yes is_title_maa_regiment = no maa_size > 0 }
-  if = { limit = { is_maa_type = huscarl } value = 3 }
-  else_if = { limit = { is_maa_type = landsknecht } value = 3 }
-  else_if = { limit = { is_maa_type = longbowmen } value = 3 }
-  else_if = { limit = { is_maa_type = goedendag } value = 3 }
-  else_if = { limit = { is_maa_type = gendarme } value = 3 }
-  else_if = { limit = { is_maa_type = chasseur } value = 3 }
-  else_if = { limit = { is_maa_type = picchieri } value = 3 }
-  else_if = { limit = { is_maa_type = praetorian } value = 3 }
-  else_if = { limit = { is_maa_type = caballero } value = 3 }
-  else_if = { limit = { is_maa_type = monaspa } value = 3 }
-  else_if = { limit = { is_maa_type = cataphract } value = 3 }
-  else_if = { limit = { is_maa_type = hobelar } value = 3 }
-  else_if = { limit = { is_maa_type = schiltron } value = 3 }
-  else_if = { limit = { is_maa_type = metsanvartija } value = 3 }
-  else_if = { limit = { is_maa_type = horse_archers } value = 3 }
-  else_if = { limit = { is_maa_type = ayyar } value = 3 }
-  else_if = { limit = { is_maa_type = mubarizun } value = 3 }
-  else_if = { limit = { is_maa_type = mulaththamun } value = 3 }
-  else_if = { limit = { is_maa_type = archers_of_the_nile } value = 3 }
-  else_if = { limit = { is_maa_type = paiks } value = 3 }
-  else_if = { limit = { is_maa_type = druzhina } value = 3 }
-  else_if = { limit = { is_maa_type = hussar } value = 3 }
-  else_if = { limit = { is_maa_type = horn_warrior } value = 3 }
-  else_if = { limit = { is_maa_type = bush_hunter } value = 3 }
-  else_if = { limit = { is_maa_type = shomer } value = 3 }
-  else_if = { limit = { is_maa_type = garudas } value = 3 }
-  else_if = { limit = { is_maa_type = khandayat } value = 3 }
-  else_if = { limit = { is_maa_type = mountaineer } value = 3 }
-  else_if = { limit = { is_maa_type = sahel_horsemen } value = 3 }
-  else_if = { limit = { is_maa_type = guinea_warrior } value = 3 }
-  else_if = { limit = { is_maa_type = sarawit } value = 3 }
-  else_if = { limit = { is_maa_type = abudrar } value = 3 }
-  else_if = { limit = { is_maa_type = zbrojnosh } value = 3 }
-  else_if = { limit = { is_maa_type = palace_guards } value = 3 }
-  else_if = { limit = { is_maa_type = shenbigong } value = 3 }
-  else_if = { limit = { is_maa_type = guanch_vaulter } value = 3 }
-  else_if = { limit = { is_maa_type = teulu } value = 3 }
+  if = { limit = { is_maa_type = huscarl } value = 2.5 }
+  else_if = { limit = { is_maa_type = landsknecht } value = 2.5 }
+  else_if = { limit = { is_maa_type = longbowmen } value = 2.5 }
+  else_if = { limit = { is_maa_type = goedendag } value = 2.5 }
+  else_if = { limit = { is_maa_type = gendarme } value = 2.5 }
+  else_if = { limit = { is_maa_type = chasseur } value = 2.5 }
+  else_if = { limit = { is_maa_type = picchieri } value = 2.5 }
+  else_if = { limit = { is_maa_type = praetorian } value = 2.5 }
+  else_if = { limit = { is_maa_type = caballero } value = 2.5 }
+  else_if = { limit = { is_maa_type = monaspa } value = 2.5 }
+  else_if = { limit = { is_maa_type = cataphract } value = 2.5 }
+  else_if = { limit = { is_maa_type = hobelar } value = 2.5 }
+  else_if = { limit = { is_maa_type = schiltron } value = 2.5 }
+  else_if = { limit = { is_maa_type = metsanvartija } value = 2.5 }
+  else_if = { limit = { is_maa_type = horse_archers } value = 2.5 }
+  else_if = { limit = { is_maa_type = ayyar } value = 2.5 }
+  else_if = { limit = { is_maa_type = mubarizun } value = 2.5 }
+  else_if = { limit = { is_maa_type = mulaththamun } value = 2.5 }
+  else_if = { limit = { is_maa_type = archers_of_the_nile } value = 2.5 }
+  else_if = { limit = { is_maa_type = paiks } value = 2.5 }
+  else_if = { limit = { is_maa_type = druzhina } value = 2.5 }
+  else_if = { limit = { is_maa_type = hussar } value = 2.5 }
+  else_if = { limit = { is_maa_type = horn_warrior } value = 2.5 }
+  else_if = { limit = { is_maa_type = bush_hunter } value = 2.5 }
+  else_if = { limit = { is_maa_type = shomer } value = 2.5 }
+  else_if = { limit = { is_maa_type = garudas } value = 2.5 }
+  else_if = { limit = { is_maa_type = khandayat } value = 2.5 }
+  else_if = { limit = { is_maa_type = mountaineer } value = 2.5 }
+  else_if = { limit = { is_maa_type = sahel_horsemen } value = 2.5 }
+  else_if = { limit = { is_maa_type = guinea_warrior } value = 2.5 }
+  else_if = { limit = { is_maa_type = sarawit } value = 2.5 }
+  else_if = { limit = { is_maa_type = abudrar } value = 2.5 }
+  else_if = { limit = { is_maa_type = zbrojnosh } value = 2.5 }
+  else_if = { limit = { is_maa_type = palace_guards } value = 2.5 }
+  else_if = { limit = { is_maa_type = shenbigong } value = 2.5 }
+  else_if = { limit = { is_maa_type = guanch_vaulter } value = 2.5 }
+  else_if = { limit = { is_maa_type = teulu } value = 2.5 }
   else_if = { limit = { is_maa_type = asawira } value = 3 }
-  else_if = { limit = { is_maa_type = tarkhan } value = 3 }
-  else_if = { limit = { is_maa_type = zupin_warrior } value = 3 }
-  else_if = { limit = { is_maa_type = tawashi } value = 3 }
-  else_if = { limit = { is_maa_type = order_serjeants } value = 3 }
-  else_if = { limit = { is_maa_type = order_knights } value = 3 }
-  else_if = { limit = { is_maa_type = light_footmen } value = 3 }
-  else_if = { limit = { is_maa_type = bowmen } value = 3 }
-  else_if = { limit = { is_maa_type = light_horsemen } value = 3 }
-  else_if = { limit = { is_maa_type = pikemen_unit } value = 3 }
-  else_if = { limit = { is_maa_type = armored_footmen } value = 3 }
-  else_if = { limit = { is_maa_type = onager } value = 3 }
-  else_if = { limit = { is_maa_type = armored_horsemen } value = 3 }
-  else_if = { limit = { is_maa_type = mangonel } value = 3 }
-  else_if = { limit = { is_maa_type = crossbowmen } value = 3 }
-  else_if = { limit = { is_maa_type = trebuchet } value = 3 }
-  else_if = { limit = { is_maa_type = bombard } value = 3 }
-  else_if = { limit = { is_maa_type = handgunners } value = 3 }
-  else_if = { limit = { is_maa_type = camel_rider } value = 3 }
-  else_if = { limit = { is_maa_type = war_elephant } value = 3.5 }
-  else_if = { limit = { is_maa_type = accolade_maa_archers } value = 3 }
-  else_if = { limit = { is_maa_type = accolade_maa_skirmishers } value = 3 }
-  else_if = { limit = { is_maa_type = accolade_maa_pikes } value = 3 }
-  else_if = { limit = { is_maa_type = accolade_maa_outriders } value = 3 }
-  else_if = { limit = { is_maa_type = accolade_maa_vanguards } value = 3 }
-  else_if = { limit = { is_maa_type = accolade_maa_lancers } value = 3 }
-  else_if = { limit = { is_maa_type = accolade_maa_crossbowers } value = 3 }
-  else_if = { limit = { is_maa_type = accolade_maa_cameliers } value = 3 }
-  else_if = { limit = { is_maa_type = accolade_maa_elephantiers } value = 3.5 }
-  else_if = { limit = { is_maa_type = accolade_maa_horse_archers } value = 3 }
-  else_if = { limit = { is_maa_type = accolade_maa_handgunners } value = 3 }
-  else_if = { limit = { is_maa_type = vigmen } value = 3 }
-  else_if = { limit = { is_maa_type = bondi } value = 3 }
-  else_if = { limit = { is_maa_type = varangian_veterans } value = 3 }
-  else_if = { limit = { is_maa_type = jomsviking_pirates } value = 3 }
-  else_if = { limit = { is_maa_type = ayrudzi } value = 3 }
-  else_if = { limit = { is_maa_type = conrois } value = 3 }
-  else_if = { limit = { is_maa_type = akritai } value = 3 }
-  else_if = { limit = { is_maa_type = ballistrai } value = 3 }
-  else_if = { limit = { is_maa_type = skoutatoi } value = 3 }
-  else_if = { limit = { is_maa_type = varangian_guards } value = 3 }
-  else_if = { limit = { is_maa_type = handpicked_faithful } value = 3 }
-  else_if = { limit = { is_maa_type = maa_bandits } value = 3 }
-  else_if = { limit = { is_maa_type = maa_poachers } value = 3 }
-  else_if = { limit = { is_maa_type = maa_marauders } value = 3 }
-  else_if = { limit = { is_maa_type = maa_thieves } value = 3 }
-  else_if = { limit = { is_maa_type = torch_bearers } value = 3 }
-  else_if = { limit = { is_maa_type = emishi_horse_archers } value = 3 }
-  else_if = { limit = { is_maa_type = japanese_horse_archers } value = 3 }
-  else_if = { limit = { is_maa_type = fire_lancers } value = 3 }
-  else_if = { limit = { is_maa_type = gakgung_archers } value = 3 }
-  else_if = { limit = { is_maa_type = pesilat_warriors } value = 3 }
-  else_if = { limit = { is_maa_type = samurai } value = 3 }
-  else_if = { limit = { is_maa_type = zhanmadao_infantry } value = 3 }
-  else_if = { limit = { is_maa_type = black_armor_cavalry } value = 3 }
-  else_if = { limit = { is_maa_type = tiefutu } value = 3 }
-  else_if = { limit = { is_maa_type = burenjia } value = 2.5 }
-  else_if = { limit = { is_maa_type = rocket_carts } value = 3 }
-  else_if = { limit = { is_maa_type = ballista } value = 3 }
-  else_if = { limit = { is_maa_type = cloud_ladder } value = 3 }
-  else_if = { limit = { is_maa_type = siege_tower } value = 3 }
-  else_if = { limit = { is_maa_type = cannon } value = 3 }
-  else_if = { limit = { is_maa_type = ballista_elephant } value = 3.429 }
+  else_if = { limit = { is_maa_type = tarkhan } value = 2.5 }
+  else_if = { limit = { is_maa_type = zupin_warrior } value = 2.5 }
+  else_if = { limit = { is_maa_type = tawashi } value = 2.5 }
+  else_if = { limit = { is_maa_type = order_serjeants } value = 2.5 }
+  else_if = { limit = { is_maa_type = order_knights } value = 2.5 }
+  else_if = { limit = { is_maa_type = light_footmen } value = 2.5 }
+  else_if = { limit = { is_maa_type = bowmen } value = 2.5 }
+  else_if = { limit = { is_maa_type = light_horsemen } value = 2.5 }
+  else_if = { limit = { is_maa_type = pikemen_unit } value = 2.5 }
+  else_if = { limit = { is_maa_type = armored_footmen } value = 2.5 }
+  else_if = { limit = { is_maa_type = onager } value = 2.5 }
+  else_if = { limit = { is_maa_type = armored_horsemen } value = 2.5 }
+  else_if = { limit = { is_maa_type = mangonel } value = 2.5 }
+  else_if = { limit = { is_maa_type = crossbowmen } value = 2.5 }
+  else_if = { limit = { is_maa_type = trebuchet } value = 2.5 }
+  else_if = { limit = { is_maa_type = bombard } value = 2.5 }
+  else_if = { limit = { is_maa_type = handgunners } value = 2.5 }
+  else_if = { limit = { is_maa_type = camel_rider } value = 2.5 }
+  else_if = { limit = { is_maa_type = war_elephant } value = 2.917 }
+  else_if = { limit = { is_maa_type = accolade_maa_archers } value = 2.5 }
+  else_if = { limit = { is_maa_type = accolade_maa_skirmishers } value = 2.5 }
+  else_if = { limit = { is_maa_type = accolade_maa_pikes } value = 2.5 }
+  else_if = { limit = { is_maa_type = accolade_maa_outriders } value = 2.5 }
+  else_if = { limit = { is_maa_type = accolade_maa_vanguards } value = 2.5 }
+  else_if = { limit = { is_maa_type = accolade_maa_lancers } value = 2.5 }
+  else_if = { limit = { is_maa_type = accolade_maa_crossbowers } value = 2.5 }
+  else_if = { limit = { is_maa_type = accolade_maa_cameliers } value = 2.5 }
+  else_if = { limit = { is_maa_type = accolade_maa_elephantiers } value = 2.917 }
+  else_if = { limit = { is_maa_type = accolade_maa_horse_archers } value = 2.5 }
+  else_if = { limit = { is_maa_type = accolade_maa_handgunners } value = 2.5 }
+  else_if = { limit = { is_maa_type = vigmen } value = 2.5 }
+  else_if = { limit = { is_maa_type = bondi } value = 2.5 }
+  else_if = { limit = { is_maa_type = varangian_veterans } value = 2.5 }
+  else_if = { limit = { is_maa_type = jomsviking_pirates } value = 2.5 }
+  else_if = { limit = { is_maa_type = ayrudzi } value = 2.5 }
+  else_if = { limit = { is_maa_type = conrois } value = 2.5 }
+  else_if = { limit = { is_maa_type = akritai } value = 2.5 }
+  else_if = { limit = { is_maa_type = ballistrai } value = 2.5 }
+  else_if = { limit = { is_maa_type = skoutatoi } value = 2.5 }
+  else_if = { limit = { is_maa_type = varangian_guards } value = 2.5 }
+  else_if = { limit = { is_maa_type = handpicked_faithful } value = 2.5 }
+  else_if = { limit = { is_maa_type = maa_bandits } value = 2.5 }
+  else_if = { limit = { is_maa_type = maa_poachers } value = 2.5 }
+  else_if = { limit = { is_maa_type = maa_marauders } value = 2.5 }
+  else_if = { limit = { is_maa_type = maa_thieves } value = 2.5 }
+  else_if = { limit = { is_maa_type = torch_bearers } value = 2.5 }
+  else_if = { limit = { is_maa_type = emishi_horse_archers } value = 2.5 }
+  else_if = { limit = { is_maa_type = japanese_horse_archers } value = 2.5 }
+  else_if = { limit = { is_maa_type = fire_lancers } value = 2.5 }
+  else_if = { limit = { is_maa_type = gakgung_archers } value = 2.5 }
+  else_if = { limit = { is_maa_type = pesilat_warriors } value = 2.5 }
+  else_if = { limit = { is_maa_type = samurai } value = 2.5 }
+  else_if = { limit = { is_maa_type = zhanmadao_infantry } value = 2.5 }
+  else_if = { limit = { is_maa_type = black_armor_cavalry } value = 2.5 }
+  else_if = { limit = { is_maa_type = tiefutu } value = 2.5 }
+  else_if = { limit = { is_maa_type = condottieri } value = 2.5 }
+  else_if = { limit = { is_maa_type = burenjia } value = 2.084 }
+  else_if = { limit = { is_maa_type = rocket_carts } value = 2.5 }
+  else_if = { limit = { is_maa_type = ballista } value = 2.5 }
+  else_if = { limit = { is_maa_type = cloud_ladder } value = 2.5 }
+  else_if = { limit = { is_maa_type = siege_tower } value = 2.5 }
+  else_if = { limit = { is_maa_type = cannon } value = 2.5 }
+  else_if = { limit = { is_maa_type = ballista_elephant } value = 2.858 }
   else_if = { limit = { OR = { is_maa_type = house_guard is_maa_type = pikemen_militia } } value = 0 }
  }
 }
@@ -2488,513 +2364,21 @@ mwp_d18_army_task_organize_levies_maintenance_pandidakterion_bonus = {
 }
 mwp_d18_army_raw_value = {
 value = 1
-# buildings/00_duchy_capital_buildings.txt:999
-every_held_title = { limit = { tier = tier_barony exists = title_province has_disabled_building = no has_wrong_holding_type = no } title_province = { if = {
-limit = {
-has_building = military_academy_01 county.holder = { has_title = prev.duchy }
-}
-add = -0.025
-}
- } }
-# buildings/00_duchy_capital_buildings.txt:1055
-every_held_title = { limit = { tier = tier_barony exists = title_province has_disabled_building = no has_wrong_holding_type = no } title_province = { if = {
-limit = {
-has_building = military_academy_02 county.holder = { has_title = prev.duchy }
-}
-add = -0.035
-}
- } }
-# buildings/00_duchy_capital_buildings.txt:1101
-every_held_title = { limit = { tier = tier_barony exists = title_province has_disabled_building = no has_wrong_holding_type = no } title_province = { if = {
-limit = {
-has_building = military_academy_03 county.holder = { has_title = prev.duchy }
-}
-add = -0.05
-}
- } }
-# buildings/00_duchy_capital_buildings.txt:1487
-every_held_title = { limit = { tier = tier_barony exists = title_province has_disabled_building = no has_wrong_holding_type = no } title_province = { if = {
-limit = {
-has_building = royal_armory_01 county.holder = { has_title = prev.duchy }
-}
-add = -0.025
-}
- } }
-# buildings/00_duchy_capital_buildings.txt:1577
-every_held_title = { limit = { tier = tier_barony exists = title_province has_disabled_building = no has_wrong_holding_type = no } title_province = { if = {
-limit = {
-has_building = royal_armory_02 county.holder = { has_title = prev.duchy }
-}
-add = -0.05
-}
- } }
-# buildings/00_duchy_capital_buildings.txt:1645
-every_held_title = { limit = { tier = tier_barony exists = title_province has_disabled_building = no has_wrong_holding_type = no } title_province = { if = {
-limit = {
-has_building = royal_armory_03 county.holder = { has_title = prev.duchy }
-}
-add = -0.1
-}
- } }
-# buildings/00_special_buildings.txt:2159
-every_held_title = { limit = { tier = tier_barony exists = title_province has_disabled_building = no has_wrong_holding_type = no } title_province = { if = {
-limit = {
-has_building = the_colosseum_01
-}
-add = -0.05
-}
- } }
-# buildings/00_special_buildings.txt:2196
-every_held_title = { limit = { tier = tier_barony exists = title_province has_disabled_building = no has_wrong_holding_type = no } title_province = { if = {
-limit = {
-has_building = iron_pillar_of_delhi_01
-}
-add = -0.05
-}
- } }
-# buildings/00_standard_economy_buildings.txt:7890
-every_held_title = { limit = { tier = tier_barony exists = title_province has_disabled_building = no has_wrong_holding_type = no } title_province = { if = {
-limit = {
-has_building = logging_camps_03
-}
-add = -0.01
-}
- } }
-# buildings/00_standard_economy_buildings.txt:7949
-every_held_title = { limit = { tier = tier_barony exists = title_province has_disabled_building = no has_wrong_holding_type = no } title_province = { if = {
-limit = {
-has_building = logging_camps_04
-}
-add = -0.01
-}
- } }
-# buildings/00_standard_economy_buildings.txt:8009
-every_held_title = { limit = { tier = tier_barony exists = title_province has_disabled_building = no has_wrong_holding_type = no } title_province = { if = {
-limit = {
-has_building = logging_camps_05
-}
-add = -0.01
-}
- } }
-# buildings/00_standard_economy_buildings.txt:8070
-every_held_title = { limit = { tier = tier_barony exists = title_province has_disabled_building = no has_wrong_holding_type = no } title_province = { if = {
-limit = {
-has_building = logging_camps_06
-}
-add = -0.01
-}
- } }
-# buildings/00_standard_economy_buildings.txt:8131
-every_held_title = { limit = { tier = tier_barony exists = title_province has_disabled_building = no has_wrong_holding_type = no } title_province = { if = {
-limit = {
-has_building = logging_camps_07
-}
-add = -0.01
-}
- } }
-# buildings/00_standard_economy_buildings.txt:8192
-every_held_title = { limit = { tier = tier_barony exists = title_province has_disabled_building = no has_wrong_holding_type = no } title_province = { if = {
-limit = {
-has_building = logging_camps_08
-}
-add = -0.01
-}
- } }
-# buildings/00_standard_military_buildings.txt:3523
-every_held_title = { limit = { tier = tier_barony exists = title_province has_disabled_building = no has_wrong_holding_type = no } title_province = { if = {
-limit = {
-has_building = regimental_grounds_08
-}
-add = -0.01
-}
- } }
-# buildings/cp6_special_buildings.txt:710
-every_held_title = { limit = { tier = tier_barony exists = title_province has_disabled_building = no has_wrong_holding_type = no } title_province = { if = {
-limit = {
-has_building = qutb_minar_01
-}
-add = -0.05
-}
- } }
-# buildings/cp6_special_buildings.txt:791
-every_held_title = { limit = { tier = tier_barony exists = title_province has_disabled_building = no has_wrong_holding_type = no } title_province = { if = {
-limit = {
-has_building = qutb_minar_02 custom_description = { text = holy_site_muslim_or_holy_site_trigger OR = { islam_or_syncretic_with_islam_trigger = { CHARACTER = root } custom_description = { text = holy_site_building_trigger barony = { is_holy_site_of = root.faith } } } }
-}
-add = -0.05
-}
- } }
-# buildings/cp6_special_buildings.txt:884
-every_held_title = { limit = { tier = tier_barony exists = title_province has_disabled_building = no has_wrong_holding_type = no } title_province = { if = {
-limit = {
-has_building = qutb_minar_03 custom_description = { text = holy_site_muslim_or_holy_site_trigger OR = { barony = { is_holy_site_of = root.faith } islam_or_syncretic_with_islam_trigger = { CHARACTER = root } } }
-}
-add = -0.05
-}
- } }
-# buildings/cp6_special_buildings.txt:975
-every_held_title = { limit = { tier = tier_barony exists = title_province has_disabled_building = no has_wrong_holding_type = no } title_province = { if = {
-limit = {
-has_building = qutb_minar_04 custom_description = { text = holy_site_muslim_or_holy_site_trigger OR = { barony = { is_holy_site_of = root.faith } islam_or_syncretic_with_islam_trigger = { CHARACTER = root } } }
-}
-add = -0.05
-}
- } }
-# council_positions/00_council_positions.txt:349
-if = {
-limit = {
-has_council_position = councillor_marshal exists = liege
-}
-add = { value = council_scaled_by_liege_tier multiply = -0.05 }
-}
-# council_positions/01_ministry_positions.txt:220
-if = {
-limit = {
-has_council_position = minister_grand_marshal exists = liege
-}
-add = { value = council_scaled_by_liege_tier multiply = -0.06 }
-}
-# council_tasks/00_marshal_tasks.txt:155
-if = {
-limit = {
-exists = cp:councillor_marshal
-}
-cp:councillor_marshal = { if = {
-limit = {
-is_performing_council_task = task_organize_levies
-}
-add = { value = mwp_d18_army_marshal_organize_levies_maintenance_total multiply = -0.01 }
-}
- }
-}
-# culture/traditions/00_combat_traditions.txt:1339
-if = {
-limit = {
-culture = { has_cultural_tradition = tradition_frugal_armorsmiths }
-}
-add = -0.25
-}
-# culture/traditions/00_realm_traditions.txt:1265
-if = {
-limit = {
-culture = { has_cultural_tradition = tradition_metal_craftsmanship }
-}
-add = 0.1
-}
-# governments/00_government_types.txt:215
-if = {
-limit = {
-has_government = tribal_government
-}
-add = -0.5
-}
-# house_aspirations/10_tgp_japan_house_aspirations.txt:662
-if = {
-limit = {
-exists = house house = { has_house_aspiration_parameter = aspiration_strength has_house_aspiration_parameter = aspiration_level_2 }
-}
-add = -0.05
-}
-# house_aspirations/10_tgp_japan_house_aspirations.txt:698
-if = {
-limit = {
-exists = house house = { has_house_aspiration_parameter = aspiration_strength has_house_aspiration_parameter = aspiration_level_3 }
-}
-add = -0.05
-}
-# lifestyle_perks/00_martial_2_authority_tree_perks.txt:139
-if = {
-limit = {
-has_perk = prepared_conscription_perk NOT = { government_has_flag = government_is_landless_adventurer }
-}
-add = -0.15
-}
-# modifiers/00_activity_tournament_modifiers.txt:367
-if = {
-limit = {
-OR = { has_character_modifier = tournament_man_of_the_people_modifier }
-}
-add = -0.1
-}
-# modifiers/00_basic_modifiers.txt:38
-add = { value = martial add = -8 multiply = -0.01 }
-# modifiers/00_bookmark_modifiers.txt:26
-if = {
-limit = {
-OR = { has_character_modifier = guiscard_modifier }
-}
-add = -0.25
-}
-# modifiers/00_event_modifiers.txt:287
-if = {
-limit = {
-OR = { has_character_modifier = smithy_investment_character_modifier }
-}
-add = -0.1
-}
-# modifiers/00_event_modifiers.txt:328
-if = {
-limit = {
-OR = { has_character_modifier = great_smithy_investment_character_modifier }
-}
-add = -0.1
-}
-# modifiers/00_event_modifiers.txt:424
-if = {
-limit = {
-OR = { has_character_modifier = the_great_khan_modifier }
-}
-add = -0.5
-}
-# modifiers/00_event_modifiers.txt:584
-if = {
-limit = {
-OR = { has_character_modifier = war_guilt_modifier }
-}
-add = 0.1
-}
-# modifiers/00_governance_lifestyle_modifiers.txt:29
-if = {
-limit = {
-OR = { has_character_modifier = governance_1021_efficiently_supplied_armies_modifer }
-}
-add = -0.2
-}
-# modifiers/00_governance_lifestyle_modifiers.txt:34
-if = {
-limit = {
-OR = { has_character_modifier = governance_1021_undersupplied_armies_modifier }
-}
-add = -0.1
-}
-# modifiers/00_historical_artifact_modifiers.txt:266
-# modifiers/00_historical_artifact_modifiers.txt:622
-# modifiers/01_dlc_ep1_modifiers.txt:224
-if = {
-limit = {
-OR = { has_character_modifier = inspiration_invested_in_new_forge_modifier }
-}
-add = -0.01
-}
-# modifiers/01_dlc_fp3_modifiers.txt:516
-if = {
-limit = {
-OR = { has_character_modifier = fp3_delegated_payments_modifier }
-}
-add = -0.1
-}
-# modifiers/01_dlc_fp3_modifiers.txt:527
-if = {
-limit = {
-OR = { has_character_modifier = fp3_messy_payments_modifier }
-}
-add = -0.10
-}
-# modifiers/01_dlc_fp3_modifiers.txt:883
-if = {
-limit = {
-OR = { has_character_modifier = fp3_honorary_title_martial_modifier }
-}
-add = -0.15
-}
-# modifiers/03_dlc_fp2_modifiers.txt:703
-if = {
-limit = {
-OR = { has_character_modifier = fanatical_recruits_modifier }
-}
-add = -0.10
-}
-# modifiers/04_bp2_modifiers_3.txt:36
-if = {
-limit = {
-OR = { has_character_modifier = glory_hound_contribution }
-}
-add = -0.15
-}
-# modifiers/06_ce1_modifiers.txt:1078
-# modifiers/07_ep3_modifiers.txt:526
-if = {
-limit = {
-OR = { has_character_modifier = ep3_long_contested_province_modifier }
-}
-add = -0.1
-}
-# modifiers/10_ach_klank_modifiers.txt:28
-if = {
-limit = {
-OR = { has_character_modifier = ach_partners_in_revanchism_active_modifier }
-}
-add = -0.15
-}
-# modifiers/10_ach_modifiers.txt:199
-if = {
-limit = {
-OR = { has_character_modifier = ach_marshal_reconstituting_army_modifier }
-}
-add = -0.5
-}
-# modifiers/10_ach_oath_modifiers.txt:134
-if = {
-limit = {
-OR = { has_character_modifier = oath_provide_for_the_warriors }
-}
-add = -0.05
-}
-# modifiers/10_tgp_modifiers.txt:1183
-if = {
-limit = {
-OR = { AND = { exists = house house = { has_house_modifier = tgp_e_minister_of_war_modifier } } }
-}
-add = -0.1
-}
-# religion/holy_site_types/00_holy_site_types.txt:3380
-# religion/holy_site_types/00_holy_site_types.txt:3390
-# religion/holy_site_types/00_holy_site_types.txt:3396
-# situation/situations/pam_christian_situation.txt:1811
-if = {
-limit = {
-exists = situation:the_christian_church situation:the_christian_church = { situation_current_phase = concord any_participant_group = { participant_group_type = christian_clerical_main_power_rulers participant_group_has_character = root } }
-}
-add = 0.15
-}
-# situation/situations/pam_christian_situation.txt:1817
-if = {
-limit = {
-exists = situation:the_christian_church situation:the_christian_church = { situation_current_phase = concord any_participant_group = { participant_group_type = christian_regular_main_power_rulers participant_group_has_character = root } }
-}
-add = 0.05
-}
-# subject_contracts/contracts/special_contracts.txt:171
-if = {
-limit = {
-vassal_contract_has_flag = has_march_contract
-}
-add = -0.2
-}
-# subject_contracts/contracts/special_contracts.txt:219
-if = {
-limit = {
-vassal_contract_has_flag = has_castellan_contract
-}
-add = -0.2
-}
-# traits/00_traits.txt:12507
-if = {
-limit = {
-has_trait = peasant_leader
-}
-add = -0.5
-}
-# traits/00_traits.txt:12588
-if = {
-limit = {
-has_trait = populist_leader
-}
-add = -0.5
-}
-# traits/00_traits.txt:15571
-if = {
-limit = {
-has_trait = greatest_of_khans
-}
-add = -0.5
-}
-# traits/00_traits.txt:16503
-if = {
-limit = {
-has_trait_xp = { trait = tourney_participant track = bow value >= 100 }
-}
-add = -0.25
-}
-
+add = "this.modifier_value(army_maintenance_mult)"
 }
 mwp_d18_army_positive_value = {
-value = 1
-if = {
-limit = {
-culture = { has_cultural_tradition = tradition_metal_craftsmanship }
-}
-add = 0.1
-}
-if = {
-limit = {
-martial < 8
-}
-add = { value = martial add = -8 multiply = -0.01 }
-
-}
-if = {
-limit = {
-OR = { has_character_modifier = war_guilt_modifier }
-}
-add = 0.1
-}
-if = {
-limit = {
-exists = situation:the_christian_church situation:the_christian_church = { situation_current_phase = concord any_participant_group = { participant_group_type = christian_clerical_main_power_rulers participant_group_has_character = root } }
-}
-add = 0.15
-}
-if = {
-limit = {
-exists = situation:the_christian_church situation:the_christian_church = { situation_current_phase = concord any_participant_group = { participant_group_type = christian_regular_main_power_rulers participant_group_has_character = root } }
-}
-add = 0.05
-}
-
+value = mwp_d18_army_raw_value
+min = 1
 }
 mwp_d18_army_omitted_value = {
 value = 0
-if = {
-limit = {
-any_equipped_character_artifact = { has_artifact_modifier = babr_e_bayan_modifier }
-}
-add = 1
-}
-if = {
-limit = {
-any_equipped_character_artifact = { has_artifact_modifier = kaves_apron_modifier }
-}
-add = 1
-}
-if = {
-limit = {
-always = yes
-}
-add = 1
-}
-if = {
-limit = {
-OR = { has_title = title:c_kerch faith = { controls_holy_site = kerch } }
-}
-add = 1
-}
-if = {
-limit = {
-OR = { has_title = title:c_kerch faith = { controls_holy_site = kerch } }
-}
-add = 1
-}
-if = {
-limit = {
-OR = { has_title = title:c_kerch faith = { controls_holy_site = kerch } }
-}
-add = 1
-}
-
 }
 mwp_d18_army_factor_value = {
     value = mwp_d18_army_raw_value
     min = 0
 }
 mwp_d18_army_exact_value = {
-    value = 0
-    if = {
-        limit = {
-            mwp_d18_army_omitted_value = 0
-        }
-        value = 1
-    }
+value = 1
 }
 mwp_d18_army_snapshot_value = {
 value = mwp_d18_army_positive_value
@@ -3002,13 +2386,13 @@ if = {
 limit = {
 has_variable = mwp_d18_army_factor
 }
-value = var:mwp_d18_army_factor
+value = var:mwp_d18_army_factor min = 1
 }
 
 }
 
 mwp_script_price_88 = {
-value = 225
+value = 75
 round = yes
 min = 0
 multiply = { value = 1 add = var:mwp_script_price_generic add = var:mwp_script_price_archer_cavalry min = 0.1 }
@@ -3016,7 +2400,7 @@ if = { limit = { government_allows = regiments_prestige_as_gold } multiply = 2 }
 }
 
 mwp_script_price_89 = {
-value = 76.5
+value = 27
 round = yes
 min = 0
 multiply = { value = 1 add = var:mwp_script_price_generic add = var:mwp_script_price_light_cavalry min = 0.1 }
@@ -3024,7 +2408,7 @@ if = { limit = { government_allows = regiments_prestige_as_gold } multiply = 2 }
 }
 
 mwp_script_price_90 = {
-value = 157.5
+value = 52.5
 round = yes
 min = 0
 multiply = { value = 1 add = var:mwp_script_price_generic add = var:mwp_script_price_archer_cavalry min = 0.1 }
@@ -3032,7 +2416,7 @@ if = { limit = { government_allows = regiments_prestige_as_gold } multiply = 2 }
 }
 
 mwp_script_price_91 = {
-value = 190
+value = 61.75
 round = yes
 min = 0
 multiply = { value = 1 add = var:mwp_script_price_generic add = var:mwp_script_price_heavy_cavalry min = 0.1 }
@@ -3040,7 +2424,7 @@ if = { limit = { government_allows = regiments_prestige_as_gold } multiply = 2 }
 }
 
 mwp_script_price_92 = {
-value = 99
+value = 33
 round = yes
 min = 0
 multiply = { value = 1 add = var:mwp_script_price_generic add = var:mwp_script_price_archer_cavalry min = 0.1 }
@@ -3048,7 +2432,7 @@ if = { limit = { government_allows = regiments_prestige_as_gold } multiply = 2 }
 }
 
 mwp_script_price_93 = {
-value = 260
+value = 84.5
 round = yes
 min = 0
 multiply = { value = 1 add = var:mwp_script_price_generic add = var:mwp_script_price_heavy_cavalry min = 0.1 }
@@ -3056,7 +2440,7 @@ if = { limit = { government_allows = regiments_prestige_as_gold } multiply = 2 }
 }
 
 mwp_script_price_94 = {
-value = 57.75
+value = 21
 round = yes
 min = 0
 multiply = { value = 1 add = var:mwp_script_price_generic add = var:mwp_script_price_archers min = 0.1 }

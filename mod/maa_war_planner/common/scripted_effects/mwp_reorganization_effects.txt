@@ -2148,6 +2148,26 @@
         }
         if = {
             limit = {
+                has_variable = mwp_rank_112
+                var:mwp_rank_112 >= 0
+                any_maa_regiment = {
+                    is_maa_type = condottieri
+                    is_regular_maa_regiment = yes
+                    is_personal_maa_regiment = yes
+                    is_title_maa_regiment = no
+                    regiment_owner = {
+                        this = root
+                    }
+                    can_upgrade_maa = yes
+                }
+            }
+            set_variable = {
+                name = mwp_reorganization_nonred_expand
+                value = yes
+            }
+        }
+        if = {
+            limit = {
                 has_variable = mwp_rank_106
                 var:mwp_rank_106 >= 0
                 any_maa_regiment = {
@@ -5890,6 +5910,7 @@
                         }
                         is_maa_type = onager
                         maa_size >= 1
+                        mwp_reorganization_keeps_siege_trigger = yes
                         NOT = {
                             root = {
                                 has_variable_list = mwp_reorganization_protected_regiments
@@ -6040,6 +6061,7 @@
                         }
                         is_maa_type = mangonel
                         maa_size >= 1
+                        mwp_reorganization_keeps_siege_trigger = yes
                         NOT = {
                             root = {
                                 has_variable_list = mwp_reorganization_protected_regiments
@@ -6190,6 +6212,7 @@
                         }
                         is_maa_type = trebuchet
                         maa_size >= 1
+                        mwp_reorganization_keeps_siege_trigger = yes
                         NOT = {
                             root = {
                                 has_variable_list = mwp_reorganization_protected_regiments
@@ -6265,6 +6288,7 @@
                         }
                         is_maa_type = bombard
                         maa_size >= 1
+                        mwp_reorganization_keeps_siege_trigger = yes
                         NOT = {
                             root = {
                                 has_variable_list = mwp_reorganization_protected_regiments
@@ -8740,6 +8764,7 @@
                         }
                         is_maa_type = torch_bearers
                         maa_size >= 1
+                        mwp_reorganization_keeps_siege_trigger = yes
                         NOT = {
                             root = {
                                 has_variable_list = mwp_reorganization_protected_regiments
@@ -10149,6 +10174,81 @@
             }
             if = {
                 limit = {
+                    has_variable = mwp_rank_112
+                    var:mwp_rank_112 = -1
+                    has_variable = mwp_assessed_score_112
+                    has_variable = mwp_assessed_112
+                }
+                every_maa_regiment = {
+                    limit = {
+                        is_personal_maa_regiment = yes
+                        is_regular_maa_regiment = yes
+                        is_title_maa_regiment = no
+                        is_raised = no
+                        regiment_owner = {
+                            this = scope:mwp_script_player
+                        }
+                        is_maa_type = condottieri
+                        maa_size >= 1
+                        NOT = {
+                            root = {
+                                has_variable_list = mwp_reorganization_protected_regiments
+                                is_target_in_variable_list = {
+                                    name = mwp_reorganization_protected_regiments
+                                    target = prev
+                                }
+                            }
+                        }
+                        root = {
+                            OR = {
+                                NOT = {
+                                    has_variable = mwp_reorganization_victim
+                                }
+                                var:mwp_assessed_score_112 < var:mwp_reorganization_victim_score
+                            }
+                        }
+                        scope:mwp_script_player = {
+                            OR = {
+                                NOT = {
+                                    AND = {
+                                        has_variable = mwp_war_fort_weight_sum
+                                        var:mwp_war_fort_weight_sum > 0
+                                        var:mwp_d14_useful_siege_count = 1
+                                        exists = var:mwp_d14_last_useful_siege
+                                        var:mwp_d14_last_useful_siege = prev
+                                    }
+                                }
+                                has_variable = mwp_d14_siege_replacement_ready
+                            }
+                        }
+                    }
+                    save_scope_as = mwp_reorganization_candidate_victim
+                    save_scope_value_as = {
+                        name = mwp_reorganization_candidate_levels
+                        value = maa_size
+                    }
+                    scope:mwp_script_player = {
+                        set_variable = {
+                            name = mwp_reorganization_victim
+                            value = scope:mwp_reorganization_candidate_victim
+                        }
+                        set_variable = {
+                            name = mwp_reorganization_victim_type
+                            value = 112
+                        }
+                        set_variable = {
+                            name = mwp_reorganization_levels
+                            value = scope:mwp_reorganization_candidate_levels
+                        }
+                        set_variable = {
+                            name = mwp_reorganization_victim_score
+                            value = var:mwp_assessed_score_112
+                        }
+                    }
+                }
+            }
+            if = {
+                limit = {
                     has_variable = mwp_rank_106
                     var:mwp_rank_106 = -1
                     has_variable = mwp_assessed_score_106
@@ -10315,6 +10415,7 @@
                         }
                         is_maa_type = ballista
                         maa_size >= 1
+                        mwp_reorganization_keeps_siege_trigger = yes
                         NOT = {
                             root = {
                                 has_variable_list = mwp_reorganization_protected_regiments
@@ -10390,6 +10491,7 @@
                         }
                         is_maa_type = cloud_ladder
                         maa_size >= 1
+                        mwp_reorganization_keeps_siege_trigger = yes
                         NOT = {
                             root = {
                                 has_variable_list = mwp_reorganization_protected_regiments
@@ -10465,6 +10567,7 @@
                         }
                         is_maa_type = siege_tower
                         maa_size >= 1
+                        mwp_reorganization_keeps_siege_trigger = yes
                         NOT = {
                             root = {
                                 has_variable_list = mwp_reorganization_protected_regiments
@@ -10540,6 +10643,7 @@
                         }
                         is_maa_type = cannon
                         maa_size >= 1
+                        mwp_reorganization_keeps_siege_trigger = yes
                         NOT = {
                             root = {
                                 has_variable_list = mwp_reorganization_protected_regiments
@@ -20784,6 +20888,112 @@
                 }
                 if = {
                     limit = {
+                        has_variable = mwp_assessed_112
+                        has_variable = mwp_assessed_score_112
+                        has_variable = mwp_rank_112
+                        var:mwp_rank_112 = 1
+                        var:mwp_assessed_score_112 > 0
+                        var:mwp_assessed_score_112 > var:mwp_reorganization_victim_score
+                        mwp_type_replacement_available_112_trigger = yes
+                        OR = {
+                            NOT = {
+                                AND = {
+                                    has_variable = mwp_war_fort_weight_sum
+                                    var:mwp_war_fort_weight_sum > 0
+                                    var:mwp_d14_useful_siege_count = 1
+                                    exists = var:mwp_d14_last_useful_siege
+                                    exists = var:mwp_reorganization_victim
+                                    var:mwp_reorganization_victim = var:mwp_d14_last_useful_siege
+                                }
+                            }
+                            always = no
+                        }
+                    }
+                    if = {
+                        limit = {
+                            mwp_d21_reorg_price_112 >= 0
+                            mwp_d21_type_wallet_112_value >= mwp_d21_reorg_price_112
+                            mwp_d21_type_budget_112_trigger = yes
+                        }
+                        if = {
+                            limit = {
+                                OR = {
+                                    NOT = {
+                                        has_variable = mwp_dev14_reorganization_feasible_choice
+                                    }
+                                    var:mwp_assessed_score_112 > var:mwp_reorganization_target_score
+                                }
+                            }
+                            set_variable = {
+                                name = mwp_reorganization_planned_id
+                                value = 112
+                            }
+                            set_variable = {
+                                name = mwp_reorganization_currency
+                                value = mwp_d21_buy_currency_112
+                            }
+                            set_variable = {
+                                name = mwp_reorganization_upkeep_currency
+                                value = mwp_d21_upkeep_currency_112
+                            }
+                            set_variable = {
+                                name = mwp_reorganization_target_score
+                                value = var:mwp_assessed_score_112
+                            }
+                            set_variable = {
+                                name = mwp_reorganization_unit_price
+                                value = mwp_d21_reorg_price_112
+                            }
+                            set_variable = {
+                                name = mwp_reorganization_unit_upkeep
+                                value = mwp_d21_upkeep_bound_112
+                            }
+                            set_variable = {
+                                name = mwp_dev14_reorganization_feasible_choice
+                                value = yes
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            NOT = {
+                                has_variable = mwp_dev14_reorganization_feasible_choice
+                            }
+                            OR = {
+                                NOT = {
+                                    has_variable = mwp_reorganization_planned_id
+                                }
+                                var:mwp_assessed_score_112 > var:mwp_reorganization_target_score
+                            }
+                        }
+                        set_variable = {
+                            name = mwp_reorganization_planned_id
+                            value = 112
+                        }
+                        set_variable = {
+                            name = mwp_reorganization_currency
+                            value = mwp_d21_buy_currency_112
+                        }
+                        set_variable = {
+                            name = mwp_reorganization_upkeep_currency
+                            value = mwp_d21_upkeep_currency_112
+                        }
+                        set_variable = {
+                            name = mwp_reorganization_target_score
+                            value = var:mwp_assessed_score_112
+                        }
+                        set_variable = {
+                            name = mwp_reorganization_unit_price
+                            value = mwp_d21_reorg_price_112
+                        }
+                        set_variable = {
+                            name = mwp_reorganization_unit_upkeep
+                            value = mwp_d21_upkeep_bound_112
+                        }
+                    }
+                }
+                if = {
+                    limit = {
                         has_variable = mwp_assessed_106
                         has_variable = mwp_assessed_score_106
                         has_variable = mwp_rank_106
@@ -22479,6 +22689,15 @@ mwp_reorganization_execute_effect = {
                     }
                 }
                 AND = {
+                    var:mwp_reorganization_victim_type = 112
+                    has_variable = mwp_assessed_112
+                    var:mwp_rank_112 = -1
+                    var:mwp_assessed_score_112 = var:mwp_reorganization_victim_score
+                    var:mwp_reorganization_victim = {
+                        is_maa_type = condottieri
+                    }
+                }
+                AND = {
                     var:mwp_reorganization_victim_type = 106
                     has_variable = mwp_assessed_106
                     var:mwp_rank_106 = -1
@@ -23399,6 +23618,15 @@ mwp_reorganization_execute_effect = {
                     var:mwp_reorganization_upkeep = mwp_d21_upkeep_bound_105
                 }
                 AND = {
+                    var:mwp_reorganization_planned_id = 112
+                    has_variable = mwp_assessed_112
+                    var:mwp_rank_112 = 1
+                    var:mwp_assessed_score_112 = var:mwp_reorganization_target_score
+                    mwp_type_replacement_available_112_trigger = yes
+                    var:mwp_reorganization_price = mwp_d21_reorg_price_112
+                    var:mwp_reorganization_upkeep = mwp_d21_upkeep_bound_112
+                }
+                AND = {
                     var:mwp_reorganization_planned_id = 106
                     has_variable = mwp_assessed_106
                     var:mwp_rank_106 = 1
@@ -23547,6 +23775,8 @@ mwp_reorganization_execute_effect = {
                     name = mwp_reorganization_pending_epoch
                     value = var:mwp_enemy_cache_epoch
                 }
+                set_variable = { name = mwp_reorganization_retired_type value = var:mwp_reorganization_victim_type }
+                set_variable = { name = mwp_reorganization_retired_day value = days_since_birth }
                 set_variable = {
                     name = mwp_reorganization_pending_owner
                     value = this
@@ -23620,6 +23850,8 @@ mwp_reorganization_record_purchase_effect = {
         }
         remove_variable = mwp_reorganization_pending_owner
         remove_variable = mwp_reorganization_pending_epoch
+        remove_variable = mwp_reorganization_retired_type
+        remove_variable = mwp_reorganization_retired_day
         remove_variable = mwp_reorganization_pending_target
     }
 }
@@ -23960,6 +24192,8 @@ mwp_d14_reorg_validate_siege_effect = {
     remove_variable = mwp_d14_reorg_siege_safe
     if = {
         limit = {
+            exists = var:mwp_reorganization_victim
+            var:mwp_reorganization_victim = { mwp_reorganization_keeps_siege_trigger = yes }
             has_variable = mwp_d14_siege_observed
             var:mwp_d14_siege_observed = yes
             OR = {

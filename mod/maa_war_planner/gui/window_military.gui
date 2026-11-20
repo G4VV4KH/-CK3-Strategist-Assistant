@@ -4,16 +4,20 @@
 
 window = {
 	name = "military_view"
+widget = { size = { 1 1 } alwaystransparent = yes datamodel = "[DataModelFirst(GetPlayer.MakeScope.GetList('mwp_id_finance_rows'),Select_int32(And(And(Not(GameIsMultiplayer),And(GetPlayer.IsValid,And(GetPlayer.MakeScope.GetVariable('mwp_auto_recruit_enabled').IsSet,And(GetPlayer.MakeScope.GetVariable('mwp_fast_calendar').IsSet,And(EqualTo_int32(GetCurrentGameSpeed,'(int32)5'),And(Or(Not(IsManuallyPaused),IsPausedByEvent),Not(GetPlayer.MakeScope.GetVariable('mwp_reorganization_enabled').IsSet))))))),And(GetPlayer.MakeScope.GetVariable('mwp_fc_full').IsSet,And(Not(GetPlayer.MakeScope.GetVariable('mwp_batch_active').IsSet),And(Not(GetPlayer.MakeScope.GetVariable('mwp_fa_live').IsSet),And(Not(GetPlayer.MakeScope.GetVariable('mwp_d19_tx_active').IsSet),Not(GetPlayer.MakeScope.GetVariable('mwp_d21p_pending').IsSet)))))),'(int32)0','(int32)1'))]"
+ item = { widget = { size = { 1 1 } alwaystransparent = yes
 widget = { name = mwp_n16c_panel_observer size = { 1 1 } alwaystransparent = yes
 widget = { size = { 1 1 } alwaystransparent = yes
  state = { name = mwp_n16c_begin_poll trigger_on_create = yes alpha = 1 duration = 0.1
   on_finish = "[PdxGuiWidget.TriggerAnimation(Select_CString(And(IsGameViewOpen('military'),And(And(GetPlayer.IsValid,And(GetVariableSystem.HasValue('mwp_n16c_session_player',UIntToString(GetPlayer.GetID)),And(GetPlayer.MakeScope.GetVariable('mwp_n16c_owner').IsSet,ObjectsEqual(GetPlayer,GetPlayer.MakeScope.GetVariable('mwp_n16c_owner').GetCharacter)))),And(And(MilitaryView.GetCharacter.IsValid,ObjectsEqual(MilitaryView.GetCharacter,GetPlayer)),And(GetPlayer.MakeScope.GetVariable('mwp_generation').IsSet,Not(GetPlayer.MakeScope.GetVariable('mwp_n16c_collecting').IsSet))))),'mwp_n16c_begin_commit','mwp_n16c_begin_idle'))]" }
  state = { name = mwp_n16c_begin_commit alpha = 1
   on_start = "[PdxGuiWidget.TriggerAnimation('mwp_n16c_begin_idle')]"
-  on_start = "[GetScriptedGui('mwp_n16c_begin').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('mwp_n16c_input_owner',GetPlayer.MakeScope).AddScope('mwp_n16c_input_generation',MakeScopeValue(GetPlayer.MakeScope.GetVariable('mwp_generation').GetValueWithDefault('(CFixedPoint)-777'))).AddScope('mwp_n16c_input_day',MakeScopeValue(GetPlayer.MakeScope.ScriptValue('mwp_native_cost_day_value'))).AddScope('mwp_n16c_input_purchase_count',MakeScopeValue(GetPlayer.MakeScope.GetVariable('mwp_auto_purchase_count').GetValueWithDefault('(CFixedPoint)0'))).AddScope('mwp_n16c_input_max_strength',MakeScopeValue(IntToFixedPoint(GetPlayer.GetMaxMilitaryStrength))).AddScope('mwp_n16c_input_max_maa',MakeScopeValue(IntToFixedPoint(GetPlayerArmyComposition.GetMaxNumberOfMAA))).AddScope('mwp_n16c_input_army_raw',MakeScopeValue(MilitaryView.GetAllRaisedGoldMilitaryExpenses.GetFixedPointValue)).AddScope('mwp_n16c_input_current_raw',MakeScopeValue(MilitaryView.GetGoldMilitaryExpenses.GetFixedPointValue)).AddScope('mwp_n16c_input_income',MakeScopeValue(AccessTopBar.GetGoldIncomeBreakdown.GetFixedPointValue)).AddScope('mwp_n16c_input_expenses_raw',MakeScopeValue(AccessTopBar.GetGoldExpensesBreakdown.GetFixedPointValue)).AddScope('mwp_n16c_input_raised_balance',MakeScopeValue(MilitaryView.GetAllRaisedGoldBalance)).AddScope('mwp_n16c_input_expected',MakeScopeValue(IntToFixedPoint(GetDataModelSize(MilitaryView.GetAllRaisedGoldMilitaryExpenses.GetSubValues)))).AddScope('mwp_n16c_input_provider',MakeScopeBool(And(MilitaryView.GetCharacter.IsValid,ObjectsEqual(MilitaryView.GetCharacter,GetPlayer)))).AddScope('mwp_n16c_input_panel_open',MakeScopeBool(IsGameViewOpen('military'))).End)]"
+  on_start = "[GetScriptedGui('mwp_n16c_begin').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('mwp_n16c_input_owner',GetPlayer.MakeScope).AddScope('mwp_n16c_input_generation',MakeScopeValue(GetPlayer.MakeScope.GetVariable('mwp_generation').GetValueWithDefault('(CFixedPoint)-777'))).AddScope('mwp_n16c_input_day',MakeScopeValue(GetPlayer.MakeScope.ScriptValue('mwp_native_cost_day_value'))).AddScope('mwp_n16c_input_purchase_count',MakeScopeValue(GetPlayer.MakeScope.GetVariable('mwp_auto_purchase_count').GetValueWithDefault('(CFixedPoint)0'))).AddScope('mwp_n16c_input_max_strength',MakeScopeValue(IntToFixedPoint(GetPlayer.GetMaxMilitaryStrength))).AddScope('mwp_n16c_input_max_maa',MakeScopeValue(IntToFixedPoint(GetPlayerArmyComposition.GetMaxNumberOfMAA))).AddScope('mwp_n16c_input_army_raw',MakeScopeValue(MilitaryView.GetAllRaisedGoldMilitaryExpenses.GetFixedPointValue)).AddScope('mwp_n16c_input_current_raw',MakeScopeValue(MilitaryView.GetGoldMilitaryExpenses.GetFixedPointValue)).AddScope('mwp_rp_levies',MakeScopeValue(IntToFixedPoint(GetPlayerArmyComposition.GetMaxNumberOfLevies))).AddScope('mwp_rp_pay_treasury',MakeScopeBool(MilitaryView.UsesTreasuryForLevies)).AddScope('mwp_rp_pay_barter',MakeScopeBool(MilitaryView.UsesBarterGoodsForLevies)).AddScope('mwp_rp_raised_2',MakeScopeValue(MilitaryView.GetAllRaisedPrestigeMilitaryExpenses.GetFixedPointValue)).AddScope('mwp_rp_raised_3',MakeScopeValue(MilitaryView.GetAllRaisedPietyMilitaryExpenses.GetFixedPointValue)).AddScope('mwp_rp_current_4',MakeScopeValue(MilitaryView.GetTreasuryMilitaryExpenses.GetFixedPointValue)).AddScope('mwp_rp_raised_4',MakeScopeValue(MilitaryView.GetAllRaisedTreasuryMilitaryExpenses.GetFixedPointValue)).AddScope('mwp_rp_current_5',MakeScopeValue(MilitaryView.GetBarterGoodsMilitaryExpenses.GetFixedPointValue)).AddScope('mwp_rp_raised_5',MakeScopeValue(MilitaryView.GetAllRaisedBarterGoodsMilitaryExpenses.GetFixedPointValue)).AddScope('mwp_n16c_input_income',MakeScopeValue(AccessTopBar.GetGoldIncomeBreakdown.GetFixedPointValue)).AddScope('mwp_n16c_input_expenses_raw',MakeScopeValue(AccessTopBar.GetGoldExpensesBreakdown.GetFixedPointValue)).AddScope('mwp_n16c_input_raised_balance',MakeScopeValue(MilitaryView.GetAllRaisedGoldBalance)).AddScope('mwp_n16c_input_expected',MakeScopeValue(IntToFixedPoint(GetDataModelSize(MilitaryView.GetAllRaisedGoldMilitaryExpenses.GetSubValues)))).AddScope('mwp_n16c_input_provider',MakeScopeBool(And(MilitaryView.GetCharacter.IsValid,ObjectsEqual(MilitaryView.GetCharacter,GetPlayer)))).AddScope('mwp_n16c_input_panel_open',MakeScopeBool(IsGameViewOpen('military'))).End)]"
  }
  state = { name = mwp_n16c_begin_idle alpha = 1 duration = 0 next = mwp_n16c_begin_poll }
 }
+widget = { name = mwp_p15_n16c_details size = { 1 1 } alwaystransparent = yes datamodel = "[DataModelFirst(GetPlayer.MakeScope.GetList('mwp_id_finance_rows'),Select_int32(GetPlayer.MakeScope.GetVariable('mwp_n16c_collecting').IsSet,'(int32)1','(int32)0'))]"
+ item = { widget = { size = { 1 1 } alwaystransparent = yes
 widget = { size = { 1 1 } alwaystransparent = yes datacontext = "[MilitaryView.GetAllRaisedGoldMilitaryExpenses]"
  dynamicgridbox = { size = { 1 1 } alwaystransparent = yes datamodel = "[ValueBreakdown.GetSubValues]"
   item = { widget = { size = { 1 1 } alwaystransparent = yes
@@ -27,7 +31,10 @@ widget = { size = { 1 1 } alwaystransparent = yes
  state = { name = mwp_n16c_row_idle alpha = 1 duration = 0 next = mwp_n16c_row_poll }
 }
 } } } }
+ } } }
 }
+ } } }
+
 	widgetid = "military_view"
 	datacontext = "[GetVariableSystem]"
 	datacontext = "[GetPlayer]"
@@ -342,7 +349,7 @@ types ArmiesView
 		button_tab = {
 			name = ra_highlight_imperial_armies
 			widgetid = ra_highlight_imperial_armies
-			visible = "[MilitaryView.GetCharacter.GetGovernment.HasMechanic( 'administrative' )]"
+			visible = "[MilitaryView.GetCharacter.GetGovernment.CanHaveTitleMaa]"
 
 			shortcut = "tab_2"
 			onclick = "[MilitaryView.SetActiveTab( 'title_troops' )]"
@@ -370,7 +377,7 @@ types ArmiesView
 			down = "[MilitaryView.IsTabActive( 'mercenary' )]"
 
 			# this feels much better than setting theme armies to 3
-			shortcut = "[Select_CString(MilitaryView.GetCharacter.GetGovernment.HasMechanic( 'administrative' ), 'tab_3', 'tab_2')]"
+			shortcut = "[Select_CString(MilitaryView.GetCharacter.GetGovernment.CanHaveTitleMaa, 'tab_3', 'tab_2')]"
 
 
 			alwaystransparent = "[MilitaryView.IsTabActive( 'mercenary' )]"
@@ -417,7 +424,7 @@ types ArmiesView
 
 			blockoverride "scrollbox_content" {
 				vbox_your_armies = {
-					visible = "[Or(GetVariableSystem.HasValue( 'military_view_armies', 'personal' ), Or(Not(GetVariableSystem.Exists('military_view_armies')), Not(MilitaryView.GetCharacter.GetGovernment.HasMechanic( 'administrative' ))))]"
+					visible = "[Or(GetVariableSystem.HasValue( 'military_view_armies', 'personal' ), Or(Not(GetVariableSystem.Exists('military_view_armies')), Not(MilitaryView.GetCharacter.GetGovernment.CanHaveTitleMaa)))]"
 
 					layoutpolicy_horizontal = expanding
 					margin = { 10 0 }
@@ -439,7 +446,7 @@ types ArmiesView
 
 			button_standard = {
 				datacontext = "[GetPlayer]"
-				visible = "[Character.GetGovernment.HasMechanic( 'administrative' )]"
+				visible = "[Character.GetGovernment.CanHaveTitleMaa]"
 				enabled = "[MilitaryView.CanReturnControlledMaA]"
 				onclick = "[MilitaryView.ReturnControlledMaA]"
 
@@ -448,7 +455,7 @@ types ArmiesView
 
 			button_standard = {
 				datacontext = "[GetPlayer]"
-				visible = "[And(Character.GetGovernment.HasMechanic( 'administrative' ), Character.IsIndependentRuler)]"
+				visible = "[And(Character.GetGovernment.CanHaveTitleMaa, Character.IsIndependentRuler)]"
 				enabled = "[MilitaryView.CanReturnReassignedMaA]"
 				onclick = "[MilitaryView.ReturnReassignedMaA]"
 
@@ -847,7 +854,7 @@ types ArmiesView
 
 			button_standard = {
 				datacontext = "[GetPlayer]"
-				visible = "[Character.GetGovernment.HasMechanic( 'administrative' )]"
+				visible = "[Character.GetGovernment.CanHaveTitleMaa]"
 				layoutpolicy_horizontal = expanding
 				enabled = "[MilitaryView.CanReturnControlledMaA]"
 				onclick = "[MilitaryView.ReturnControlledMaA]"
@@ -859,7 +866,7 @@ types ArmiesView
 
 			button_standard = {
 				datacontext = "[GetPlayer]"
-				visible = "[And(Character.GetGovernment.HasMechanic( 'administrative' ), Character.IsIndependentRuler)]"
+				visible = "[And(Character.GetGovernment.CanHaveTitleMaa, Character.IsIndependentRuler)]"
 				layoutpolicy_horizontal = expanding
 				enabled = "[MilitaryView.CanReturnReassignedMaA]"
 				onclick = "[MilitaryView.ReturnReassignedMaA]"
@@ -1278,6 +1285,20 @@ types ArmiesView
                     visible = no
                 }
 
+			}
+		}
+
+		vbox = {
+			visible = "[Not( GetVariableSystem.HasValue( 'military_view_mercenaries', 'holy_orders' ) )]"
+			layoutpolicy_horizontal = expanding
+			margin_top = 5
+			margin_bottom = 10
+		
+			text_single = {
+				text = "MV_MERCENARIES_HIRED_COUNT"
+				default_format = "#high"
+
+				tooltip = "[Character.GetMercenaryLimitTooltip]"
 			}
 		}
 
@@ -1962,6 +1983,7 @@ types ArmiesView
 
 		vbox = {
 			name = "maa_area"
+			visible = "[Or( Not( Character.IsMerchant ), Not(IsDataModelEmpty(MilitaryItem.GetOwnedMaa) ) )]" # Shows for Merchants only if they have somehow gotten their hands on MAA
 			datacontext = "[MilitaryView.GetMilitaryItem]"
 			layoutpolicy_horizontal = expanding
 			layoutpolicy_vertical = expanding
@@ -2496,18 +2518,20 @@ types ArmiesView
 							enabled = "[HiredTroopItem.CanBeHired]"
 							size = { 35 35 }
 
+							onclick = "[HiredTroopItem.Hire]"
+							tooltip = "TITLE_TROOPS_CALL_ON_TROOPS"
+							tooltip_when_disabled = "[HiredTroopItem.GetHireTooltip]"
+							using = tooltip_ne
+
 							button_icon = {
+								alwaystransparent = yes
 								parentanchor = center
 								size = { 22 22 }
 
 
 								texture = "gfx/interface/icons/title_troops/call_on_troops.dds"
 
-								onclick = "[HiredTroopItem.Hire]"
 
-								tooltip = "TITLE_TROOPS_CALL_ON_TROOPS"
-								tooltip_when_disabled = "[HiredTroopItem.GetHireTooltip]"
-								using = tooltip_ne
 							}
 						}
 
@@ -2518,21 +2542,20 @@ types ArmiesView
 							enabled = "[HiredTroopItem.CanBeHired]"
 							size = { 35 35 }
 
+							block "reassign_troops_on_click"
+							{
+								onclick = "[MilitaryView.Close]"
+							}
+							onclick = "[OpenGameViewData( 'select_title_troop_assignment', HiredTroopItem.GetAdministrativeTitle.GetID )]"
+							tooltip = "TITLE_TROOPS_REASSIGN"
+							tooltip_when_disabled = "[HiredTroopItem.GetHireTooltip]"
+							using = tooltip_ne
+
 							button_icon = {
+								alwaystransparent = yes
 								parentanchor = center
 								size = { 22 22 }
-
 								texture = "gfx/interface/icons/title_troops/reassign_troops.dds"
-
-								block "reassign_troops_on_click"
-								{
-									onclick = "[MilitaryView.Close]"
-								}
-								onclick = "[OpenGameViewData( 'select_title_troop_assignment', HiredTroopItem.GetAdministrativeTitle.GetID )]"
-
-								tooltip = "TITLE_TROOPS_REASSIGN"
-								tooltip_when_disabled = "[HiredTroopItem.GetHireTooltip]"
-								using = tooltip_ne
 							}
 						}
 
@@ -2542,17 +2565,19 @@ types ArmiesView
 							visible = "[And( Not( Title.IsAdministrativeArmyHiredByLocalPlayer ), And( Not( Character.IsPlayer ), Character.IsPlayerInteractionShown( 'request_emperor_title_troops_interaction' ) ) )]"
 							size = { 35 35 }
 
+							onclick = "[Character.OpenPlayerInteractionWithTargetTitle('request_emperor_title_troops_interaction', HiredTroopItem.GetTitle)]"
+							enabled = "[Character.IsPlayerInteractionValid('request_emperor_title_troops_interaction')]"
+							tooltip = "[Character.GetPlayerInteractionTooltip('request_emperor_title_troops_interaction')]"
+							using = tooltip_se
+
 							button_icon = {
+								alwaystransparent = yes
 								parentanchor = center
 								size = { 22 22 }
 
 								texture = "gfx/interface/icons/title_troops/ask_liege_for_troops.dds"
 
-								onclick = "[Character.OpenPlayerInteractionWithTargetTitle('request_emperor_title_troops_interaction', HiredTroopItem.GetTitle)]"
-								enabled = "[Character.IsPlayerInteractionValid('request_emperor_title_troops_interaction')]"
 
-								tooltip = "[Character.GetPlayerInteractionTooltip('request_emperor_title_troops_interaction')]"
-								using = tooltip_se
 							}
 						}
 
@@ -2562,17 +2587,19 @@ types ArmiesView
 							visible = "[And( Not( Title.IsAdministrativeArmyHiredByLocalPlayer ), Character.IsPlayerInteractionShown( 'request_ally_title_troops_interaction' ) )]"
 							size = { 35 35 }
 
+							enabled = "[Character.IsPlayerInteractionValid('request_ally_title_troops_interaction')]"
+							onclick = "[Character.OpenPlayerInteractionWithTargetTitle('request_ally_title_troops_interaction', HiredTroopItem.GetTitle)]"
+							tooltip = "[Character.GetPlayerInteractionTooltip('request_ally_title_troops_interaction')]"
+							using = tooltip_se
+
 							button_icon = {
+								alwaystransparent = yes
 								parentanchor = center
 								size = { 22 22 }
 
 								texture = "gfx/interface/icons/title_troops/request_troops.dds"
 
-								enabled = "[Character.IsPlayerInteractionValid('request_ally_title_troops_interaction')]"
-								onclick = "[Character.OpenPlayerInteractionWithTargetTitle('request_ally_title_troops_interaction', HiredTroopItem.GetTitle)]"
 
-								tooltip = "[Character.GetPlayerInteractionTooltip('request_ally_title_troops_interaction')]"
-								using = tooltip_se
 							}
 						}
 
@@ -2582,16 +2609,18 @@ types ArmiesView
 							visible = "[HiredTroopItem.IsHiredByPlayer]"
 							size = { 35 35 }
 
+							onclick = "[HiredTroopItem.GetTitle.ReturnTitleMaaToOwner]"
+							tooltip = "TITLE_TROOPS_RETURN"
+							using = tooltip_se
+
 							button_icon = {
+								alwaystransparent = yes
 								parentanchor = center
 								size = { 22 22 }
 
 								texture = "gfx/interface/icons/title_troops/return_troops.dds"
 
-								onclick = "[HiredTroopItem.GetTitle.ReturnTitleMaaToOwner]"
 
-								tooltip = "TITLE_TROOPS_RETURN"
-								using = tooltip_se
 							}
 						}
 
@@ -2601,17 +2630,19 @@ types ArmiesView
 							visible = "[Character.IsPlayerInteractionShown('request_title_troops_back_interaction')]"
 							size = { 35 35 }
 
+							enabled = "[Character.IsPlayerInteractionValid('request_title_troops_back_interaction')]"
+							onclick = "[Character.OpenPlayerInteractionWithTargetTitle('request_title_troops_back_interaction', HiredTroopItem.GetTitle)]"
+							tooltip = "[Character.GetPlayerInteractionTooltip('request_title_troops_back_interaction')]"
+							using = tooltip_se
+
 							button_icon = {
+								alwaystransparent = yes
 								parentanchor = center
 								size = { 22 22 }
 
 								texture = "gfx/interface/icons/title_troops/reclaim_troops.dds"
 
-								enabled = "[Character.IsPlayerInteractionValid('request_title_troops_back_interaction')]"
-								onclick = "[Character.OpenPlayerInteractionWithTargetTitle('request_title_troops_back_interaction', HiredTroopItem.GetTitle)]"
 
-								tooltip = "[Character.GetPlayerInteractionTooltip('request_title_troops_back_interaction')]"
-								using = tooltip_se
 							}
 						}
 					}
@@ -3699,7 +3730,7 @@ widget = {
     position = { 4 4 }
     visible = "[And(ObjectsEqual(Regiment.GetOwner,GetPlayer),And(Regiment.IsPersonal,Regiment.IsRegular))]"
     background = { using = Background_Area_Dark }
-    mwp_type_badge = { parentanchor = center widgetanchor = center }
+    mwp_florin_hired_badge = { parentanchor = center widgetanchor = center }
 }
 # MWP HIRED CARD BADGE END
 }
@@ -3752,14 +3783,14 @@ types HiredTroops
 
 					# Status available
 					highlight_icon = {
-						visible = "[And( Not( MercenaryCompany.IsHired ), Not( MercenaryCompany.WillGoInBankruptcy( GetPlayer.Self ) ) )]"
+						visible = "[MercenaryCompany.IsAvailableCanAfford]"
 						position = { -2 1 }
 						size = { 100% 100% }
 						texture = "gfx/interface/window_military/military_banner_green.dds"
 					}
 
 					highlight_icon = {
-						visible = "[Or( And( Not( MercenaryCompany.IsHired ), MercenaryCompany.WillGoInBankruptcy(GetPlayer.Self) ), And( Not( MercenaryCompany.IsHiredByLocalPlayer ), MercenaryCompany.IsHired ) )]"
+						visible = "[MercenaryCompany.IsUnavailable]"
 						position = { -2 1 }
 						size = { 100% 100% }
 						texture = "gfx/interface/window_military/military_banner_red.dds"
@@ -3790,7 +3821,7 @@ types HiredTroops
 
 						# Status available
 						widget = {
-							visible = "[And( And( Not( MercenaryCompany.IsHired ), Not( MercenaryCompany.WillGoInBankruptcy( GetPlayer.Self ) ) ), Not( MercenaryCompany.WillGoInDebt( GetPlayer.Self ) ) )]"
+							visible = "[And( MercenaryCompany.IsAvailableCanAfford, Not( MercenaryCompany.WillGoInDebt( GetPlayer.Self ) ) )]"
 							parentanchor = center
 							size = { 100% 100% }
 
@@ -3834,7 +3865,7 @@ types HiredTroops
 
 						# Status debt
 						widget = {
-							visible = "[And( Not( MercenaryCompany.IsHired ), MercenaryCompany.WillGoInDebt( GetPlayer.Self ) )]"
+							visible = "[MercenaryCompany.IsAvailableWouldPutInDebt]"
 							parentanchor = center
 							size = { 100% 100% }
 
@@ -3854,9 +3885,9 @@ types HiredTroops
 							}
 						}
 
-						# Status unavailable
+						# Status unavailable, cannot afford
 						widget = {
-							visible = "[And( Not( MercenaryCompany.IsHired ), MercenaryCompany.WillGoInBankruptcy(GetPlayer.Self) )]"
+							visible = "[MercenaryCompany.IsAvailableWouldBankrupt]"
 							parentanchor = center
 							size = { 100% 100% }
 
@@ -3879,11 +3910,34 @@ types HiredTroops
 
 						# Status unavailable, hired by other
 						widget = {
-							visible = "[And( Not( MercenaryCompany.IsHiredByLocalPlayer ), MercenaryCompany.IsHired )]"
+							visible = "[MercenaryCompany.IsHiredNotByPlayer]"
 							parentanchor = center
 							size = { 100% 100% }
 
 							tooltip = "HIRED_TROOPS_VIEW_NOT_AVAILABLE"
+
+							highlight_icon = {
+								parentanchor = center
+								position = { 0 2}
+								size = { 42 52 }
+								texture = "gfx/interface/window_military/military_banner_red_icon_bg.dds"
+							}
+
+							icon_flat_standard_gold = {
+								parentanchor = top|hcenter
+								position = { 0 9 }
+								size = { 30 30 }
+								texture = "gfx/interface/icons/flat_icons/cancel.dds"
+							}
+						}
+
+						# Status unavailable, cannot hire more mercs
+						widget = {
+							visible = "[And( Not( MercenaryCompany.IsHired ), GetPlayer.IsAtMercenaryLimit)]"
+							parentanchor = center
+							size = { 100% 100% }
+
+							tooltip = "HIRED_TROOPS_VIEW_AT_LIMIT"
 
 							highlight_icon = {
 								parentanchor = center
@@ -3905,6 +3959,8 @@ types HiredTroops
 						parentanchor = right|vcenter
 						position = { -58 -1 }
 						size = { 192 34 }
+						tooltip = "[MercenaryCompany.GetCostTooltip]"
+						using = tooltip_se
 
 						hbox = {
 							layoutpolicy_horizontal = expanding
@@ -3919,6 +3975,16 @@ types HiredTroops
 								texture = "gfx/interface/icons/symbols/icon_alert.dds"
 
 								tooltip = "[SelectLocalization(MercenaryCompany.IsHiredByLocalPlayer, 'MERCENARY_COMPANY_COST_DEBT_HIRED', 'MERCENARY_COMPANY_COST_DEBT')]"
+								using = tooltip_se
+							}
+
+							highlight_icon = {
+								name = "bankrupt"
+								visible = "[MercenaryCompany.WillGoInBankruptcy(GetPlayer.Self)]"
+								size = { 24 24 }
+								texture = "gfx/interface/icons/symbols/icon_warning.dds"
+
+								tooltip = "[SelectLocalization(MercenaryCompany.IsHiredByLocalPlayer, 'MERCENARY_COMPANY_COST_BANKRUPTCY_HIRED', 'MERCENARY_COMPANY_COST_BANKRUPTCY')]"
 								using = tooltip_se
 							}
 

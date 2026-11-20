@@ -4049,6 +4049,48 @@ mwp_d21_nomad_source_105_trigger = {
         }
     }
 }
+mwp_d21_nomad_source_112_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_active_route_value = 1
+            government_allows = subject_men_at_arms
+        }
+        trigger_if = {
+            limit = {
+                mwp_d21_subject_source_value = 1
+            }
+            NOT = {
+                has_access_to_maa = condottieri
+            }
+            mwp_d21_type_subject_access_112_trigger = yes
+        }
+        trigger_else = {
+            has_access_to_maa = condottieri
+        }
+    }
+    trigger_if = {
+        limit = {
+            mwp_d21_nomad_mode_value = 1
+        }
+        mwp_d21_nomad_herd_cost_value >= 50.0
+        mwp_d21_nomad_herd_cost_value <= 50.0
+        OR = {
+            mwp_d21_subject_source_value = 0
+            var:mwp_script_selected_action = 2
+        }
+    }
+    trigger_else = {
+        mwp_d21_nomad_mode_value = 0
+        mwp_d21_nomad_herd_cost_value = 0
+        NOT = {
+            AND = {
+                government_has_flag = government_is_nomadic
+                mwp_d21_active_route_value = 1
+                var:mwp_script_selected_action = 2
+            }
+        }
+    }
+}
 mwp_d21_nomad_source_106_trigger = {
     trigger_if = {
         limit = {

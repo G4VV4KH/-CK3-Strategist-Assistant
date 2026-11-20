@@ -21125,6 +21125,225 @@ mwp_script_execute_purchase_effect = {
             }
             if = {
                 limit = {
+                    var:mwp_script_selected_id = 112
+                    var:mwp_script_selected_price = mwp_d21_route_price_112
+                    mwp_d21_nomad_source_112_trigger = yes
+                }
+                if = {
+                    limit = {
+                        var:mwp_script_selected_action = 1
+                        mwp_d21_can_create_112_trigger = yes
+                    }
+                    if = {
+                        limit = {
+                            mwp_d21_active_route_value = 2
+                        }
+                        create_maa_regiment = {
+                            type = condottieri
+                            check_can_recruit = yes
+                            size = 1
+                            title = var:mwp_script_selected_title
+                        }
+                    }
+                    else = {
+                        create_maa_regiment = {
+                            type = condottieri
+                            check_can_recruit = yes
+                            size = 1
+                        }
+                    }
+                    set_variable = {
+                        name = mwp_script_new_count
+                        value = 0
+                    }
+                    if = {
+                        limit = {
+                            mwp_d21_active_route_value = 2
+                        }
+                        var:mwp_script_selected_title = {
+                            every_owned_title_maa_regiment = {
+                                limit = {
+                                    is_regular_maa_regiment = yes
+                                    mwp_d21_selected_regiment_route_trigger = yes
+                                    regiment_owner = {
+                                        this = scope:mwp_script_player
+                                    }
+                                    is_maa_type = condottieri
+                                    NOT = {
+                                        is_in_list = mwp_script_before_regiments
+                                    }
+                                }
+                                save_scope_as = mwp_script_new_regiment
+                                scope:mwp_script_player = {
+                                    change_variable = {
+                                        name = mwp_script_new_count
+                                        add = 1
+                                    }
+                                    set_variable = {
+                                        name = mwp_script_mutated_regiment
+                                        value = scope:mwp_script_new_regiment
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else = {
+                        every_maa_regiment = {
+                            limit = {
+                                is_regular_maa_regiment = yes
+                                mwp_d21_selected_regiment_route_trigger = yes
+                                regiment_owner = {
+                                    this = scope:mwp_script_player
+                                }
+                                is_maa_type = condottieri
+                                NOT = {
+                                    is_in_list = mwp_script_before_regiments
+                                }
+                            }
+                            save_scope_as = mwp_script_new_regiment
+                            scope:mwp_script_player = {
+                                change_variable = {
+                                    name = mwp_script_new_count
+                                    add = 1
+                                }
+                                set_variable = {
+                                    name = mwp_script_mutated_regiment
+                                    value = scope:mwp_script_new_regiment
+                                }
+                            }
+                        }
+                    }
+                    if = {
+                        limit = {
+                            var:mwp_script_new_count = 1
+                            mwp_d21_route_count_value = mwp_d21_primitive_created_count_value
+                            var:mwp_script_mutated_regiment = {
+                                maa_size = 1
+                            }
+                        }
+                        var:mwp_script_mutated_regiment = {
+                            save_scope_value_as = {
+                                name = mwp_script_created_max
+                                value = maa_max_troops_count
+                            }
+                            save_scope_value_as = {
+                                name = mwp_script_created_seed
+                                value = {
+                                    value = 5
+                                    max = maa_max_troops_count
+                                    if = {
+                                        limit = {
+                                            root = {
+                                                mwp_d21_nomad_mode_value = 1
+                                            }
+                                        }
+                                        value = maa_max_troops_count
+                                    }
+                                }
+                            }
+                            change_maa_troops_count = {
+                                value = scope:mwp_script_created_seed
+                                subtract = maa_current_troops_count
+                            }
+                        }
+                        if = {
+                            limit = {
+                                var:mwp_script_mutated_regiment = {
+                                    maa_size = 1
+                                    maa_max_troops_count > 0
+                                    maa_max_troops_count = scope:mwp_script_created_max
+                                    maa_current_troops_count = scope:mwp_script_created_seed
+                                }
+                            }
+                            set_variable = {
+                                name = mwp_script_purchase_verified
+                                value = yes
+                            }
+                        }
+                    }
+                }
+                else_if = {
+                    limit = {
+                        var:mwp_script_selected_action = 2
+                        exists = var:mwp_script_selected_regiment
+                        trigger_if = {
+                            limit = {
+                                mwp_d21_active_route_value = 2
+                            }
+                            var:mwp_script_selected_title = {
+                                any_owned_title_maa_regiment = {
+                                    this = root.var:mwp_script_selected_regiment
+                                }
+                            }
+                        }
+                        trigger_else = {
+                            any_maa_regiment = {
+                                this = root.var:mwp_script_selected_regiment
+                            }
+                        }
+                        var:mwp_script_selected_regiment = {
+                            is_regular_maa_regiment = yes
+                            mwp_d21_selected_regiment_route_trigger = yes
+                            regiment_owner = {
+                                this = scope:mwp_script_player
+                            }
+                            is_maa_type = condottieri
+                            can_upgrade_maa = yes
+                        }
+                    }
+                    var:mwp_script_selected_regiment = {
+                        save_scope_value_as = {
+                            name = mwp_script_size_before
+                            value = maa_size
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_troops_before
+                            value = maa_current_troops_count
+                        }
+                        change_maa_regiment_size = {
+                            size = 1
+                            reinforce = no
+                        }
+                        if = {
+                            limit = {
+                                root = {
+                                    mwp_d21_nomad_mode_value = 1
+                                }
+                            }
+                            change_maa_troops_count = {
+                                value = maa_max_troops_count
+                                subtract = maa_current_troops_count
+                            }
+                            save_scope_value_as = {
+                                name = mwp_script_troops_before
+                                value = maa_current_troops_count
+                            }
+                        }
+                    }
+                    if = {
+                        limit = {
+                            mwp_d21_route_count_value = var:mwp_auto_last_count_before
+                            var:mwp_script_selected_regiment = {
+                                maa_size = {
+                                    value = scope:mwp_script_size_before
+                                    add = 1
+                                }
+                                maa_current_troops_count = scope:mwp_script_troops_before
+                            }
+                        }
+                        set_variable = {
+                            name = mwp_script_mutated_regiment
+                            value = var:mwp_script_selected_regiment
+                        }
+                        set_variable = {
+                            name = mwp_script_purchase_verified
+                            value = yes
+                        }
+                    }
+                }
+            }
+            if = {
+                limit = {
                     var:mwp_script_selected_id = 106
                     var:mwp_script_selected_price = mwp_d21_route_price_106
                     mwp_d21_nomad_source_106_trigger = yes
@@ -22539,8 +22758,9 @@ mwp_script_observe_own_army_effect = {
                 NOT = {
                     maa_regiments_max_count = var:mwp_script_watch_cap
                 }
-                NOT = {
-                    days_since_birth = var:mwp_script_watch_day
+                AND = {
+                    NOT = { has_variable = mwp_fast_calendar }
+                    NOT = { days_since_birth = var:mwp_script_watch_day }
                 }
             }
         }
@@ -22931,6 +23151,10 @@ mwp_script_observe_own_army_effect = {
     }
     set_variable = {
         name = mwp_script_watch_now_105
+        value = 0
+    }
+    set_variable = {
+        name = mwp_script_watch_now_112
         value = 0
     }
     set_variable = {
@@ -23952,6 +24176,17 @@ mwp_script_observe_own_army_effect = {
             scope:mwp_script_player = {
                 change_variable = {
                     name = mwp_script_watch_now_105
+                    add = scope:mwp_script_watch_read_size
+                }
+            }
+        }
+        if = {
+            limit = {
+                is_maa_type = condottieri
+            }
+            scope:mwp_script_player = {
+                change_variable = {
+                    name = mwp_script_watch_now_112
                     add = scope:mwp_script_watch_read_size
                 }
             }
@@ -31288,6 +31523,46 @@ mwp_script_observe_own_army_effect = {
         name = mwp_script_watch_selected_105
         value = var:mwp_script_watch_selected_now
     }
+    if = {
+        limit = {
+            exists = var:mwp_recommended_regiment_112
+        }
+        var:mwp_recommended_regiment_112 = {
+            save_scope_value_as = {
+                name = mwp_script_watch_selected_size
+                value = maa_size
+            }
+        }
+        set_variable = {
+            name = mwp_script_watch_selected_now
+            value = scope:mwp_script_watch_selected_size
+        }
+    }
+    if = {
+        limit = {
+            var:mwp_script_watch_same_generation = 1
+            OR = {
+                NOT = {
+                    var:mwp_script_watch_levels_112 = var:mwp_script_watch_now_112
+                }
+                NOT = {
+                    var:mwp_script_watch_selected_112 = var:mwp_script_watch_selected_now
+                }
+            }
+        }
+        set_variable = {
+            name = mwp_script_own_changed
+            value = yes
+        }
+    }
+    set_variable = {
+        name = mwp_script_watch_levels_112
+        value = var:mwp_script_watch_now_112
+    }
+    set_variable = {
+        name = mwp_script_watch_selected_112
+        value = var:mwp_script_watch_selected_now
+    }
     set_variable = {
         name = mwp_script_eligible_now
         value = 0
@@ -31325,6 +31600,41 @@ mwp_script_observe_own_army_effect = {
     }
     set_variable = {
         name = mwp_script_eligible_105
+        value = var:mwp_script_eligible_now
+    }
+    if = {
+        limit = {
+            OR = {
+                can_create_maa = condottieri
+                any_maa_regiment = {
+                    is_maa_type = condottieri
+                    is_personal_maa_regiment = yes
+                    is_regular_maa_regiment = yes
+                    is_title_maa_regiment = no
+                    can_upgrade_maa = yes
+                }
+            }
+        }
+        set_variable = {
+            name = mwp_script_eligible_now
+            value = 1
+        }
+    }
+    if = {
+        limit = {
+            var:mwp_script_watch_same_generation = 1
+            has_variable = mwp_script_eligible_112
+            NOT = {
+                var:mwp_script_eligible_112 = var:mwp_script_eligible_now
+            }
+        }
+        set_variable = {
+            name = mwp_script_own_changed
+            value = yes
+        }
+    }
+    set_variable = {
+        name = mwp_script_eligible_112
         value = var:mwp_script_eligible_now
     }
     set_variable = {
@@ -32033,238 +32343,12 @@ mwp_script_run_batch_effect = {
                                     name = mwp_d18_mixed_batch
                                     value = yes
                                 }
-                                while = {
-                                    count = 16
-                                    limit = {
-                                        has_variable = mwp_batch_continue
-                                    }
-                                    if = {
-                                        limit = {
-                                            var:mwp_batch_steps > 0
-                                        }
-                                        mwp_collect_script_price_factors_effect = yes
-                                        set_variable = {
-                                            name = mwp_auto_B
-                                            value = var:mwp_batch_remaining_headroom
-                                        }
-                                        mwp_priority_select_effect = yes
-                                        remove_variable = mwp_batch_regiment
-                                        remove_variable = mwp_batch_station
-                                        if = {
-                                            limit = {
-                                                has_variable = mwp_script_selected_id
-                                                mwp_script_price_supported_trigger = yes
-                                            }
-                                            if = {
-                                                limit = {
-                                                    var:mwp_script_selected_action = 2
-                                                    exists = var:mwp_script_selected_regiment
-                                                }
-                                                set_variable = {
-                                                    name = mwp_batch_regiment
-                                                    value = var:mwp_script_selected_regiment
-                                                }
-                                                var:mwp_script_selected_regiment = {
-                                                    if = {
-                                                        limit = {
-                                                            exists = regiment_station
-                                                        }
-                                                        regiment_station = {
-                                                            save_scope_as = mwp_batch_selected_station
-                                                        }
-                                                        scope:mwp_script_player = {
-                                                            set_variable = {
-                                                                name = mwp_batch_station
-                                                                value = scope:mwp_batch_selected_station
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        else = {
-                                            remove_variable = mwp_batch_continue
-                                        }
-                                    }
-                                    if = {
-                                        limit = {
-                                            has_variable = mwp_script_selected_id
-                                            has_variable = mwp_batch_continue
-                                            is_ai = no
-                                            is_alive = yes
-                                            has_variable = mwp_auto_recruit_enabled
-                                            var:mwp_auto_recruit_enabled = yes
-                                            mwp_auto_supported_trigger = yes
-                                            NOT = {
-                                                has_variable = mwp_script_purchase_error
-                                            }
-                                            mwp_auto_fresh_trigger = yes
-                                            exists = scope:mwp_script_input_owner
-                                            scope:mwp_script_input_owner = this
-                                            exists = scope:mwp_script_input_generation
-                                            scope:mwp_script_input_generation = var:mwp_generation
-                                            exists = scope:mwp_script_input_singleplayer
-                                            scope:mwp_script_input_singleplayer = yes
-                                            mwp_auto_budget_mode_value = var:mwp_batch_mode
-                                            var:mwp_script_selected_price >= 0
-                                            mwp_d21_selected_wallet_value >= var:mwp_script_selected_price
-                                            mwp_d21_selected_budget_trigger = yes
-                                            OR = {
-                                                var:mwp_script_selected_action = 1
-                                                AND = {
-                                                    exists = var:mwp_script_selected_regiment
-                                                    var:mwp_script_selected_regiment = {
-                                                        is_regular_maa_regiment = yes
-                                                        mwp_d21_selected_regiment_route_trigger = yes
-                                                        regiment_owner = {
-                                                            this = root
-                                                        }
-                                                        can_upgrade_maa = yes
-                                                        OR = {
-                                                            AND = {
-                                                                NOT = {
-                                                                    exists = regiment_station
-                                                                }
-                                                                root = {
-                                                                    NOT = {
-                                                                        has_variable = mwp_batch_station
-                                                                    }
-                                                                }
-                                                            }
-                                                            AND = {
-                                                                exists = regiment_station
-                                                                root = {
-                                                                    has_variable = mwp_batch_station
-                                                                }
-                                                                regiment_station = root.var:mwp_batch_station
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        remove_variable = mwp_auto_last_paid_verified
-                                        set_variable = {
-                                            name = mwp_batch_count_before
-                                            value = var:mwp_auto_purchase_count
-                                        }
-                                        set_variable = {
-                                            name = mwp_batch_count_expected
-                                            value = {
-                                                value = var:mwp_auto_purchase_count
-                                                add = 1
-                                            }
-                                        }
-                                        if = {
-                                            limit = {
-                                                var:mwp_script_selected_action = 2
-                                            }
-                                            var:mwp_script_selected_regiment = {
-                                                save_scope_value_as = {
-                                                    name = mwp_batch_size_before
-                                                    value = maa_size
-                                                }
-                                                save_scope_value_as = {
-                                                    name = mwp_batch_max_before
-                                                    value = maa_max_troops_count
-                                                }
-                                                save_scope_value_as = {
-                                                    name = mwp_batch_troops_before
-                                                    value = maa_current_troops_count
-                                                }
-                                            }
-                                        }
-                                        mwp_d19_transaction_purchase_effect = yes
-                                        mwp_reorganization_record_purchase_effect = yes
-                                        if = {
-                                            limit = {
-                                                has_variable = mwp_auto_last_paid_verified
-                                                var:mwp_auto_purchase_count = var:mwp_batch_count_expected
-                                            }
-                                            mwp_native_cost_invalidate_effect = yes
-                                            change_variable = {
-                                                name = mwp_batch_steps
-                                                add = 1
-                                            }
-                                            if = {
-                                                limit = {
-                                                    mwp_d21_selected_legacy_gold_trigger = yes
-                                                }
-                                                change_variable = {
-                                                    name = mwp_batch_reserved_upkeep
-                                                    add = var:mwp_script_selected_upkeep
-                                                }
-                                            }
-                                            if = {
-                                                limit = {
-                                                    mwp_d21_selected_legacy_gold_trigger = yes
-                                                }
-                                                change_variable = {
-                                                    name = mwp_batch_remaining_headroom
-                                                    subtract = var:mwp_script_selected_upkeep
-                                                }
-                                            }
-                                            set_variable = {
-                                                name = mwp_auto_B
-                                                value = var:mwp_batch_remaining_headroom
-                                            }
-                                            if = {
-                                                limit = {
-                                                    var:mwp_script_selected_action = 1
-                                                }
-                                                remove_variable = mwp_batch_continue
-                                            }
-                                            else = {
-                                                var:mwp_script_selected_regiment = {
-                                                    save_scope_value_as = {
-                                                        name = mwp_batch_capacity_left
-                                                        value = {
-                                                            value = maa_max_troops_count
-                                                            multiply = scope:mwp_batch_size_before
-                                                        }
-                                                    }
-                                                    save_scope_value_as = {
-                                                        name = mwp_batch_capacity_right
-                                                        value = {
-                                                            value = scope:mwp_batch_max_before
-                                                            multiply = maa_size
-                                                        }
-                                                    }
-                                                }
-                                                if = {
-                                                    limit = {
-                                                        NOT = {
-                                                            AND = {
-                                                                scope:mwp_batch_size_before > 0
-                                                                scope:mwp_batch_max_before > 0
-                                                                var:mwp_script_selected_regiment = {
-                                                                    maa_max_troops_count > 0
-                                                                    maa_current_troops_count = scope:mwp_batch_troops_before
-                                                                    maa_size = {
-                                                                        value = scope:mwp_batch_size_before
-                                                                        add = 1
-                                                                    }
-                                                                }
-                                                                scope:mwp_batch_capacity_left = scope:mwp_batch_capacity_right
-                                                            }
-                                                        }
-                                                    }
-                                                    remove_variable = mwp_batch_continue
-                                                }
-                                                mwp_dev11_refresh_siege_priorities_effect = yes
-                                                mwp_dev13_refresh_combat_batch_effect = yes
-                                            }
-                                        }
-                                        else = {
-                                            remove_variable = mwp_batch_continue
-                                        }
-                                    }
-                                    else = {
-                                        remove_variable = mwp_batch_continue
-                                    }
-                                }
-                                remove_variable = mwp_d18_mixed_batch
-                                remove_variable = mwp_batch_continue
+                                save_scope_value_as = { name = mwp_fa_managed value = yes }
+                                    set_variable = { name = mwp_fa_live value = this }
+                                    set_variable = { name = mwp_fa_day value = days_since_birth }
+                                    set_variable = { name = mwp_fa_balance value = scope:mwp_input_current_balance }
+                                    mwp_fa_one_step_effect = yes
+                                    mwp_fa_after_step_effect = yes
                             }
                         }
                     }
@@ -32282,7 +32366,8 @@ mwp_script_run_batch_effect = {
                     }
                 }
             }
-            remove_variable = mwp_batch_active
+            if = { limit = { NOT = { exists = scope:mwp_fa_managed } }
+remove_variable = mwp_batch_active
             if = {
                 limit = {
                     OR = {
@@ -32293,2390 +32378,28 @@ mwp_script_run_batch_effect = {
                 remove_variable = mwp_d19_transaction_rebuild_requested
                 mwp_request_own_analysis_effect = yes
             }
+            }
         }
     }
 }
 mwp_collect_script_price_factors_effect = {
-    save_scope_as = mwp_price_owner
-    set_variable = {
-        name = mwp_script_price_collection_owner
-        value = this
-    }
-    set_variable = {
-        name = mwp_script_price_generic
-        value = 0
-    }
-    set_variable = {
-        name = mwp_script_price_archer_cavalry
-        value = 0
-    }
-    set_variable = {
-        name = mwp_script_price_archers
-        value = 0
-    }
-    set_variable = {
-        name = mwp_script_price_camel_cavalry
-        value = 0
-    }
-    set_variable = {
-        name = mwp_script_price_elephant_cavalry
-        value = 0
-    }
-    set_variable = {
-        name = mwp_script_price_gunpowder
-        value = 0
-    }
-    set_variable = {
-        name = mwp_script_price_heavy_cavalry
-        value = 0
-    }
-    set_variable = {
-        name = mwp_script_price_heavy_infantry
-        value = 0
-    }
-    set_variable = {
-        name = mwp_script_price_light_cavalry
-        value = 0
-    }
-    set_variable = {
-        name = mwp_script_price_nomadic_horde
-        value = 0
-    }
-    set_variable = {
-        name = mwp_script_price_peasant_militia
-        value = 0
-    }
-    set_variable = {
-        name = mwp_script_price_pikemen
-        value = 0
-    }
-    set_variable = {
-        name = mwp_script_price_siege_weapon
-        value = 0
-    }
-    set_variable = {
-        name = mwp_script_price_skirmishers
-        value = 0
-    }
-    remove_variable = mwp_script_price_ready
-    set_variable = {
-        name = mwp_script_price_unresolved_source_count
-        value = 4
-    }
-    if = {
-        limit = {
-            has_council_position = minister_grand_marshal
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.15
-        }
-    }
-    if = {
-        limit = {
-            culture = {
-                has_innovation = innovation_coking
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.15
-        }
-    }
-    if = {
-        limit = {
-            culture = {
-                has_cultural_pillar = ethos_bellicose
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.1
-        }
-    }
-    if = {
-        limit = {
-            culture = {
-                has_cultural_tradition = tradition_only_the_strong
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = 0.25
-        }
-    }
-    if = {
-        limit = {
-            culture = {
-                has_cultural_tradition = tradition_frugal_armorsmiths
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.25
-        }
-    }
-    if = {
-        limit = {
-            culture = {
-                has_cultural_tradition = tradition_horse_breeder
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_light_cavalry
-            add = -0.25
-        }
-    }
-    if = {
-        limit = {
-            culture = {
-                has_cultural_tradition = tradition_horse_breeder
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_heavy_cavalry
-            add = -0.25
-        }
-    }
-    if = {
-        limit = {
-            culture = {
-                has_cultural_tradition = tradition_horse_breeder
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_archer_cavalry
-            add = -0.25
-        }
-    }
-    if = {
-        limit = {
-            culture = {
-                has_cultural_tradition = tradition_roman_legacy
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.15
-        }
-    }
-    if = {
-        limit = {
-            culture = {
-                has_cultural_tradition = tradition_agrarian
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = 0.25
-        }
-    }
-    if = {
-        limit = {
-            culture = {
-                has_cultural_tradition = tradition_lords_of_the_elephant
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_elephant_cavalry
-            add = -0.15
-        }
-    }
-    if = {
-        limit = {
-            culture = {
-                has_cultural_tradition = tradition_saharan_nomads
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_light_cavalry
-            add = -0.25
-        }
-    }
-    if = {
-        limit = {
-            culture = {
-                has_cultural_tradition = tradition_desert_nomads
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_camel_cavalry
-            add = -0.2
-        }
-    }
-    if = {
-        limit = {
-            culture = {
-                has_cultural_tradition = tradition_fortress_mastery
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_archers
-            add = -0.1
-        }
-    }
-    if = {
-        limit = {
-            culture = {
-                has_cultural_tradition = tradition_intensive_farming
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = 0.25
-        }
-    }
-    if = {
-        limit = {
-            has_government = administrative_government
-            is_independent_ruler = yes
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = 1
-        }
-    }
-    if = {
-        limit = {
-            has_government = japan_feudal_government
-        }
-        change_variable = {
-            name = mwp_script_price_archer_cavalry
-            add = -0.25
-        }
-    }
-    if = {
-        limit = {
-            has_government = japan_feudal_government
-        }
-        change_variable = {
-            name = mwp_script_price_heavy_infantry
-            add = -0.25
-        }
-    }
-    if = {
-        limit = {
-            exists = house
-            house = {
-                has_house_aspiration_parameter = aspiration_determination
-                has_house_aspiration_parameter = aspiration_level_2
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_siege_weapon
-            add = -0.05
-        }
-    }
-    if = {
-        limit = {
-            exists = house
-            house = {
-                has_house_aspiration_parameter = aspiration_determination
-                has_house_aspiration_parameter = aspiration_level_3
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_siege_weapon
-            add = -0.05
-        }
-    }
-    if = {
-        limit = {
-            exists = house
-            house = {
-                has_house_aspiration_parameter = aspiration_strength
-                has_house_aspiration_parameter = aspiration_level_1
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.1
-        }
-    }
-    if = {
-        limit = {
-            exists = house
-            house = {
-                has_house_aspiration_parameter = aspiration_strength
-                has_house_aspiration_parameter = aspiration_level_2
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.1
-        }
-    }
-    if = {
-        limit = {
-            exists = house
-            house = {
-                has_house_aspiration_parameter = aspiration_strength
-                has_house_aspiration_parameter = aspiration_level_3
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.1
-        }
-    }
-    if = {
-        limit = {
-            has_realm_law = disarmament_law
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = 0.25
-        }
-    }
-    if = {
-        limit = {
-            has_realm_law = imperial_expansion_law
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.15
-        }
-    }
-    if = {
-        limit = {
-            has_perk = planned_cultivation_perk
-            government_has_flag = government_is_landless_adventurer
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.25
-        }
-    }
-    if = {
-        limit = {
-            has_perk = serve_the_crown_perk
-            government_has_flag = government_is_landless_adventurer
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.1
-        }
-    }
-    if = {
-        limit = {
-            has_perk = prepared_conscription_perk
-            government_has_flag = government_is_landless_adventurer
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.2
-        }
-    }
-    if = {
-        limit = {
-            has_perk = soldiers_of_lesser_fortune_perk
-            government_has_flag = government_is_landless_adventurer
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.2
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = hc_7020_guardian_of_the_old_ways
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.1
-        }
-    }
-    if = {
-        limit = {
-            is_ai = yes
-            has_game_rule = hard_difficulty
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.5
-        }
-    }
-    if = {
-        limit = {
-            is_ai = yes
-            has_game_rule = very_hard_difficulty
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.75
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = majapahit_empire_knight_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.1
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = 6230_new_elephants_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_elephant_cavalry
-            add = -0.3
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = mandate_sellswords_bolster_recruitment_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.25
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = laamp_base_1021_success_employer_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.25
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = laamp_base_1021_failure_employer_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = 0.5
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = laamps_8090_preparing_invasion
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.15
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = glorious_accolade_mercenary
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.5
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = august_accolade_mercenary
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.35
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = lionized_accolade_mercenary
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.25
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = repurposed_billhook_halberd
-        }
-        change_variable = {
-            name = mwp_script_price_pikemen
-            add = -0.5
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = repurposed_billhook_dagger
-        }
-        change_variable = {
-            name = mwp_script_price_skirmishers
-            add = -0.5
-        }
-    }
-    if = {
-        limit = {
-            exists = dynasty
-            dynasty = {
-                has_dynasty_modifier = fp3_nomad_recruits_modifier
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_light_cavalry
-            add = -0.4
-        }
-    }
-    if = {
-        limit = {
-            exists = dynasty
-            dynasty = {
-                has_dynasty_modifier = fp3_nomad_recruits_modifier
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_archer_cavalry
-            add = -0.4
-        }
-    }
-    if = {
-        limit = {
-            exists = house
-            house = {
-                has_house_modifier = fp3_house_modifier_frontier_ambitions
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.2
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = turkic_war_band
-        }
-        change_variable = {
-            name = mwp_script_price_light_cavalry
-            add = -0.15
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = maa_recruitment_boon
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.3
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = skirmisher_learnings
-        }
-        change_variable = {
-            name = mwp_script_price_skirmishers
-            add = -0.25
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = heavy_infantry_learnings
-        }
-        change_variable = {
-            name = mwp_script_price_heavy_infantry
-            add = -0.25
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = archers_learnings
-        }
-        change_variable = {
-            name = mwp_script_price_archers
-            add = -0.25
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = cavalry_learnings
-        }
-        change_variable = {
-            name = mwp_script_price_light_cavalry
-            add = -0.25
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = cavalry_learnings
-        }
-        change_variable = {
-            name = mwp_script_price_heavy_cavalry
-            add = -0.25
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = cavalry_learnings
-        }
-        change_variable = {
-            name = mwp_script_price_archer_cavalry
-            add = -0.25
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = cavalry_learnings
-        }
-        change_variable = {
-            name = mwp_script_price_camel_cavalry
-            add = -0.25
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = cavalry_learnings
-        }
-        change_variable = {
-            name = mwp_script_price_elephant_cavalry
-            add = -0.25
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = riders_of_song_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_light_cavalry
-            add = -0.2
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = riders_of_song_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_heavy_cavalry
-            add = -0.2
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = riders_of_song_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_archer_cavalry
-            add = -0.2
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = tales_of_knightly_valor_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_light_cavalry
-            add = -0.2
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = tales_of_knightly_valor_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_skirmishers
-            add = -0.2
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = tales_of_knightly_valor_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_heavy_infantry
-            add = -0.2
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = tales_of_knightly_leadership_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_pikemen
-            add = -0.2
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = tales_of_knightly_leadership_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_archers
-            add = -0.2
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = tales_of_knightly_leadership_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_elephant_cavalry
-            add = -0.2
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = rejecting_bellicose_ways_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = 0.1
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = loyal_varangians_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_heavy_infantry
-            add = -0.25
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = ep3_mercenaries_abroad_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = 0.3
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = ep3_mercenaries_from_abroad_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.3
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = laamp_prepping_for_invasion
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.1
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = ep3_grand_ambitions_cheaper_maa_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.3
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = ep3_grand_ambitions_local_labor_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.1
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = ep3_loyal_troops_raid_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.1
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = ep3_loyal_troops_2_raid_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.15
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = ep3_loyal_troops_3_raid_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.2
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = ep3_loyal_troops_4_raid_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.3
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = ep3_loyal_troops_5_raid_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.4
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = ep3_redistributed_equipment
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.5
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = raid_insight_barracks
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.1
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = reluctant_recruits
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = 0.2
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = blood_brother_august_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.2
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = confederate_king_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.5
-        }
-    }
-    if = {
-        limit = {
-            has_character_modifier = tgp_japan_drafted_villagers_modifier
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.15
-        }
-    }
-    if = {
-        limit = {
-            exists = situation:the_christian_church
-            situation:the_christian_church = {
-                situation_current_phase = crusade_phase
-                any_participant_group = {
-                    participant_group_type = christian_regular_main_power_rulers
-                    participant_group_has_character = scope:mwp_price_owner
-                }
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.25
-        }
-    }
-    if = {
-        limit = {
-            any_character_struggle = {
-                involvement = involved
-                is_struggle_type = persian_struggle
-                is_struggle_phase = struggle_persia_phase_stabilisation
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.5
-        }
-    }
-    if = {
-        limit = {
-            any_character_struggle = {
-                involvement = interloper
-                is_struggle_type = persian_struggle
-                is_struggle_phase = struggle_persia_phase_stabilisation
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.25
-        }
-    }
-    if = {
-        limit = {
-            vassal_contract_has_flag = celestial_grand_marshal_obligation
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.5
-        }
-    }
-    if = {
-        limit = {
-            exists = assigned_tax_slot
-            assigned_tax_slot = {
-                is_active_obligation = iqta_special_rights_tax_collector
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = -0.1
-        }
-    }
-    if = {
-        limit = {
-            has_trait = education_diplomacy_4
-            culture = {
-                has_cultural_parameter = elephant_bonuses_for_rank_4_education
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_elephant_cavalry
-            add = -0.1
-        }
-    }
-    if = {
-        limit = {
-            has_trait = education_diplomacy_5
-            culture = {
-                has_cultural_parameter = elephant_bonuses_for_rank_4_education
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_elephant_cavalry
-            add = -0.1
-        }
-    }
-    if = {
-        limit = {
-            has_trait = education_stewardship_4
-            culture = {
-                has_cultural_parameter = elephant_bonuses_for_rank_4_education
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_elephant_cavalry
-            add = -0.2
-        }
-    }
-    if = {
-        limit = {
-            has_trait = education_stewardship_5
-            culture = {
-                has_cultural_parameter = elephant_bonuses_for_rank_4_education
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_elephant_cavalry
-            add = -0.2
-        }
-    }
-    if = {
-        limit = {
-            has_trait = overseer
-            culture = {
-                has_cultural_parameter = martial_traits_give_out_hcav_bonus
-            }
-        }
-        change_variable = {
-            name = mwp_script_price_heavy_cavalry
-            add = -0.1
-        }
-    }
-    if = {
-        limit = {
-            exists = domicile
-        }
-        domicile = {
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = proving_grounds_02
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_generic
-                        add = -0.05
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = proving_grounds_04
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_generic
-                        add = -0.05
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = proving_grounds_06
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_generic
-                        add = -0.05
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = east_asian_estate_quartermaster_01
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_generic
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = east_asian_estate_quartermaster_02
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_generic
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = east_asian_estate_quartermaster_03
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_generic
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = east_asian_estate_quartermaster_04
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_generic
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = east_asian_estate_fodder_reserves_01
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_heavy_cavalry
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = east_asian_estate_fodder_reserves_01
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_light_cavalry
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = east_asian_estate_fodder_reserves_02
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_heavy_cavalry
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = east_asian_estate_fodder_reserves_02
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_light_cavalry
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = east_asian_estate_fodder_reserves_03
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_heavy_cavalry
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = east_asian_estate_fodder_reserves_03
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_light_cavalry
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = east_asian_estate_fodder_reserves_04
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_heavy_cavalry
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = east_asian_estate_fodder_reserves_04
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_light_cavalry
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = east_asian_estate_salt_lick_terraces_01
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_light_cavalry
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = east_asian_estate_salt_lick_terraces_02
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_light_cavalry
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = east_asian_estate_salt_lick_terraces_03
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_light_cavalry
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = east_asian_estate_salt_lick_terraces_04
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_light_cavalry
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = japanese_armory_01
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_generic
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = japanese_armory_02
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_generic
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = japanese_armory_03
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_generic
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = japanese_armory_04
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_generic
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = japanese_armory_05
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_generic
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = japanese_armory_06
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_generic
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = japanese_stud_farm_01
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_light_cavalry
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = japanese_stud_farm_01
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_archer_cavalry
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = japanese_stud_farm_02
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_light_cavalry
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = japanese_stud_farm_02
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_archer_cavalry
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = japanese_stud_farm_03
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_light_cavalry
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = japanese_stud_farm_03
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_archer_cavalry
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = japanese_stud_farm_04
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_light_cavalry
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = japanese_stud_farm_04
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_archer_cavalry
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = japanese_stud_farm_05
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_light_cavalry
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = japanese_stud_farm_05
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_archer_cavalry
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = japanese_stud_farm_06
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_light_cavalry
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_domicile_building_or_higher = japanese_stud_farm_06
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_archer_cavalry
-                        add = -0.04
-                    }
-                }
-            }
-        }
-    }
-    every_held_title = {
-        limit = {
-            tier = tier_barony
-            exists = title_province
-        }
-        title_province = {
-            save_scope_as = mwp_price_province
-            scope:mwp_price_owner = {
-                save_scope_as = holder
-            }
-            county = {
-                save_scope_as = county
-            }
-            if = {
-                limit = {
-                    has_building = military_academy_01
-                    county.holder = {
-                        has_title = prev.duchy
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_generic
-                        add = -0.1
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = military_academy_02
-                    county.holder = {
-                        has_title = prev.duchy
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_generic
-                        add = -0.2
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = military_academy_03
-                    county.holder = {
-                        has_title = prev.duchy
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_generic
-                        add = -0.3
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = siege_works_01
-                    county.holder = {
-                        has_title = prev.duchy
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_siege_weapon
-                        add = -0.15
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = siege_works_02
-                    county.holder = {
-                        has_title = prev.duchy
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_siege_weapon
-                        add = -0.3
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = siege_works_03
-                    county.holder = {
-                        has_title = prev.duchy
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_siege_weapon
-                        add = -0.45
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = hunting_grounds_01
-                    scope:holder.culture = {
-                        NOT = {
-                            has_cultural_parameter = vegetarian_building_ban
-                        }
-                    }
-                    culture = {
-                        NOT = {
-                            has_cultural_parameter = vegetarian_building_ban
-                        }
-                    }
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = hunting_archery_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_archers
-                        add = -0.01
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = hunting_grounds_02
-                    scope:holder.culture = {
-                        NOT = {
-                            has_cultural_parameter = vegetarian_building_ban
-                        }
-                    }
-                    culture = {
-                        NOT = {
-                            has_cultural_parameter = vegetarian_building_ban
-                        }
-                    }
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = hunting_archery_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_archers
-                        add = -0.02
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = hunting_grounds_03
-                    scope:holder.culture = {
-                        NOT = {
-                            has_cultural_parameter = vegetarian_building_ban
-                        }
-                    }
-                    culture = {
-                        NOT = {
-                            has_cultural_parameter = vegetarian_building_ban
-                        }
-                    }
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = hunting_archery_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_archers
-                        add = -0.02
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = hunting_grounds_04
-                    scope:holder.culture = {
-                        NOT = {
-                            has_cultural_parameter = vegetarian_building_ban
-                        }
-                    }
-                    culture = {
-                        NOT = {
-                            has_cultural_parameter = vegetarian_building_ban
-                        }
-                    }
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = hunting_archery_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_archers
-                        add = -0.03
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = hunting_grounds_05
-                    scope:holder.culture = {
-                        NOT = {
-                            has_cultural_parameter = vegetarian_building_ban
-                        }
-                    }
-                    culture = {
-                        NOT = {
-                            has_cultural_parameter = vegetarian_building_ban
-                        }
-                    }
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = hunting_archery_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_archers
-                        add = -0.03
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = hunting_grounds_06
-                    scope:holder.culture = {
-                        NOT = {
-                            has_cultural_parameter = vegetarian_building_ban
-                        }
-                    }
-                    culture = {
-                        NOT = {
-                            has_cultural_parameter = vegetarian_building_ban
-                        }
-                    }
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = hunting_archery_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_archers
-                        add = -0.03
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = hunting_grounds_07
-                    scope:holder.culture = {
-                        NOT = {
-                            has_cultural_parameter = vegetarian_building_ban
-                        }
-                    }
-                    culture = {
-                        NOT = {
-                            has_cultural_parameter = vegetarian_building_ban
-                        }
-                    }
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = hunting_archery_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_archers
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = hunting_grounds_08
-                    scope:holder.culture = {
-                        NOT = {
-                            has_cultural_parameter = vegetarian_building_ban
-                        }
-                    }
-                    culture = {
-                        NOT = {
-                            has_cultural_parameter = vegetarian_building_ban
-                        }
-                    }
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = hunting_archery_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_archers
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = plantations_01
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = plantations_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_light_cavalry
-                        add = -0.01
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = plantations_01
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = plantations_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_camel_cavalry
-                        add = -0.01
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = plantations_02
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = plantations_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_light_cavalry
-                        add = -0.02
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = plantations_02
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = plantations_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_camel_cavalry
-                        add = -0.02
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = plantations_03
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = plantations_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_light_cavalry
-                        add = -0.03
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = plantations_03
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = plantations_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_camel_cavalry
-                        add = -0.03
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = plantations_04
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = plantations_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_light_cavalry
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = plantations_04
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = plantations_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_camel_cavalry
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = plantations_05
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = plantations_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_light_cavalry
-                        add = -0.05
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = plantations_05
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = plantations_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_camel_cavalry
-                        add = -0.05
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = plantations_06
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = plantations_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_light_cavalry
-                        add = -0.06
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = plantations_06
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = plantations_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_camel_cavalry
-                        add = -0.06
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = plantations_07
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = plantations_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_light_cavalry
-                        add = -0.07
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = plantations_07
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = plantations_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_camel_cavalry
-                        add = -0.07
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = plantations_08
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = plantations_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_light_cavalry
-                        add = -0.08
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = plantations_08
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = plantations_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_camel_cavalry
-                        add = -0.08
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = quarries_01
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = quarries_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_generic
-                        add = -0.01
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = quarries_02
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = quarries_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_generic
-                        add = -0.02
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = quarries_03
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = quarries_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_generic
-                        add = -0.03
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = quarries_04
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = quarries_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_generic
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = quarries_05
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = quarries_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_generic
-                        add = -0.05
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = quarries_06
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = quarries_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_generic
-                        add = -0.06
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = quarries_07
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = quarries_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_generic
-                        add = -0.07
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = quarries_08
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = quarries_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_generic
-                        add = -0.08
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = outposts_01
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = outposts_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_skirmishers
-                        add = -0.01
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = outposts_01
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = outposts_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_archers
-                        add = -0.01
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = outposts_02
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = outposts_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_skirmishers
-                        add = -0.02
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = outposts_02
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = outposts_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_archers
-                        add = -0.02
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = outposts_03
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = outposts_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_skirmishers
-                        add = -0.03
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = outposts_03
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = outposts_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_archers
-                        add = -0.03
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = outposts_04
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = outposts_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_skirmishers
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = outposts_04
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = outposts_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_archers
-                        add = -0.04
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = outposts_05
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = outposts_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_skirmishers
-                        add = -0.05
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = outposts_05
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = outposts_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_archers
-                        add = -0.05
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = outposts_06
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = outposts_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_skirmishers
-                        add = -0.06
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = outposts_06
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = outposts_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_archers
-                        add = -0.06
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = outposts_07
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = outposts_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_skirmishers
-                        add = -0.07
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = outposts_07
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = outposts_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_archers
-                        add = -0.07
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = outposts_08
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = outposts_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_skirmishers
-                        add = -0.08
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = outposts_08
-                    scope:mwp_price_owner.culture = {
-                        has_cultural_parameter = outposts_building_bonuses
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_archers
-                        add = -0.08
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    has_building = celestial_great_barracks_01
-                    county.holder = {
-                        has_title = prev.duchy
-                        custom_tooltip = {
-                            text = celestial_great_barracks_enabled_desc
-                            OR = {
-                                vassal_contract_has_flag = province_military
-                                government_has_flag = government_is_administrative
-                                is_independent_ruler = yes
-                            }
-                        }
-                    }
-                }
-                scope:mwp_price_owner = {
-                    change_variable = {
-                        name = mwp_script_price_generic
-                        add = -0.1
-                    }
-                }
-            }
-        }
-    }
-    if = {
-        limit = {
-            any_powerful_family = {
-                always = yes
-            }
-            mwp_d21_house_prices_current_trigger = yes
-        }
-        change_variable = {
-            name = mwp_script_price_generic
-            add = var:mwp_d21h_recruitment
-        }
-        change_variable = {
-            name = mwp_script_price_siege_weapon
-            add = var:mwp_d21h_siege_recruitment
-        }
-    }
-    set_variable = {
-        name = mwp_d21_horde_cost
-        value = 0
-    }
-    if = {
-        limit = {
-            has_character_modifier = blood_brother_august_nomadic_modifier
-        }
-        change_variable = {
-            name = mwp_d21_horde_cost
-            add = -0.2
-        }
-    }
-    if = {
-        limit = {
-            has_perk = prepared_conscription_perk
-            government_has_flag = government_is_nomadic
-        }
-        change_variable = {
-            name = mwp_d21_horde_cost
-            add = -0.2
-        }
-    }
-    if = {
-        limit = {
-            exists = situation:the_great_steppe
-            situation:the_great_steppe = {
-                any_situation_sub_region = {
-                    sub_region_current_phase = situation_steppe_white_zud_season
-                    any_situation_sub_region_participant_group = {
-                        participant_group_type = nomad_rulers_capital
-                        participant_group_has_character = root
-                    }
-                }
-            }
-        }
-        change_variable = {
-            name = mwp_d21_horde_cost
-            add = -0.25
-        }
-    }
-    if = {
-        limit = {
-            exists = situation:game_rule_extra_nomads_tibet
-            situation:game_rule_extra_nomads_tibet = {
-                any_situation_sub_region = {
-                    sub_region_current_phase = situation_steppe_white_zud_season
-                    any_situation_sub_region_participant_group = {
-                        participant_group_type = nomad_rulers_capital
-                        participant_group_has_character = root
-                    }
-                }
-            }
-        }
-        change_variable = {
-            name = mwp_d21_horde_cost
-            add = -0.25
-        }
-    }
-    if = {
-        limit = {
-            exists = situation:game_rule_extra_nomads_sami
-            situation:game_rule_extra_nomads_sami = {
-                any_situation_sub_region = {
-                    sub_region_current_phase = situation_steppe_white_zud_season
-                    any_situation_sub_region_participant_group = {
-                        participant_group_type = nomad_rulers_capital
-                        participant_group_has_character = root
-                    }
-                }
-            }
-        }
-        change_variable = {
-            name = mwp_d21_horde_cost
-            add = -0.25
-        }
-    }
+set_variable = { name = mwp_script_price_collection_owner value = this }
+set_variable = { name = mwp_script_price_unresolved_source_count value = 0 }
+set_variable = { name = mwp_script_price_generic value = "this.modifier_value(men_at_arms_recruitment_cost)" }
+set_variable = { name = mwp_script_price_archer_cavalry value = "this.modifier_value(archer_cavalry_recruitment_cost_mult)" }
+set_variable = { name = mwp_script_price_archers value = "this.modifier_value(archers_recruitment_cost_mult)" }
+set_variable = { name = mwp_script_price_camel_cavalry value = "this.modifier_value(camel_cavalry_recruitment_cost_mult)" }
+set_variable = { name = mwp_script_price_elephant_cavalry value = "this.modifier_value(elephant_cavalry_recruitment_cost_mult)" }
+set_variable = { name = mwp_script_price_gunpowder value = "this.modifier_value(gunpowder_recruitment_cost_mult)" }
+set_variable = { name = mwp_script_price_heavy_cavalry value = "this.modifier_value(heavy_cavalry_recruitment_cost_mult)" }
+set_variable = { name = mwp_script_price_heavy_infantry value = "this.modifier_value(heavy_infantry_recruitment_cost_mult)" }
+set_variable = { name = mwp_script_price_light_cavalry value = "this.modifier_value(light_cavalry_recruitment_cost_mult)" }
+set_variable = { name = mwp_script_price_nomadic_horde value = "this.modifier_value(nomadic_horde_recruitment_cost_mult)" }
+set_variable = { name = mwp_script_price_peasant_militia value = "this.modifier_value(peasant_militia_recruitment_cost_mult)" }
+set_variable = { name = mwp_script_price_pikemen value = "this.modifier_value(pikemen_recruitment_cost_mult)" }
+set_variable = { name = mwp_script_price_siege_weapon value = "this.modifier_value(siege_weapon_recruitment_cost_mult)" }
+set_variable = { name = mwp_script_price_skirmishers value = "this.modifier_value(skirmishers_recruitment_cost_mult)" }
+set_variable = { name = mwp_d21_horde_cost value = "this.modifier_value(horde_conversion_cost)" }
 }
 mwp_script_budget_refresh_effect = {
     if = {
@@ -34685,8 +32408,20 @@ mwp_script_budget_refresh_effect = {
                 has_variable = mwp_d21p_pending
             }
         }
-        mwp_d21_legacy_budget_refresh_effect = yes
+        if = { limit = { mwp_fbr_live = yes NOT = { trigger_if = { limit = { mwp_fallback_cost_current_trigger = yes
+        exists = scope:mwp_input_fallback_cost_sequence exists = scope:mwp_input_cost_max_maa }
+        scope:mwp_input_fallback_cost_sequence = var:mwp_fallback_cost_sequence
+        scope:mwp_input_cost_max_maa = var:mwp_fallback_cost_max_maa }
+        trigger_else = { always = no } } } mwp_fbr_refresh = yes }
+else = { mwp_d21_legacy_budget_refresh_effect = yes }
+        
+        remove_variable = mwp_raised_gold_input
+        if = { limit = { mwp_d21_legacy_gold_budget_trigger = yes
+                has_variable = mwp_script_budget_ready var:mwp_script_budget_ready = yes }
+            set_variable = { name = mwp_raised_gold_input value = 1 }
+        }
         mwp_d21_budget_refresh_effect = yes
+        if = { limit = { has_variable = mwp_raised_gold_input } mwp_raised_finish_gold_projection = yes }
         if = {
             limit = {
                 OR = {
@@ -34798,7 +32533,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -34820,7 +32555,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -34842,7 +32577,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -34864,7 +32599,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -34886,7 +32621,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -34908,7 +32643,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -34930,7 +32665,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -34952,7 +32687,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -34974,7 +32709,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -34996,7 +32731,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35018,7 +32753,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35040,7 +32775,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35062,7 +32797,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35084,7 +32819,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35106,7 +32841,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35128,7 +32863,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35150,7 +32885,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35172,7 +32907,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35194,7 +32929,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35216,7 +32951,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35238,7 +32973,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35260,7 +32995,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35282,7 +33017,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35304,7 +33039,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35326,7 +33061,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35348,7 +33083,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35370,7 +33105,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35392,7 +33127,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35414,7 +33149,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35436,7 +33171,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35458,7 +33193,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35480,7 +33215,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35502,7 +33237,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35524,7 +33259,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35546,7 +33281,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35568,7 +33303,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35590,7 +33325,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35634,7 +33369,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35656,7 +33391,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35678,7 +33413,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35700,7 +33435,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35722,7 +33457,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35744,7 +33479,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35766,7 +33501,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35788,7 +33523,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35810,7 +33545,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35832,7 +33567,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35854,7 +33589,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35876,7 +33611,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35898,7 +33633,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35942,7 +33677,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35964,7 +33699,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -35986,7 +33721,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36008,7 +33743,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36030,7 +33765,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36052,7 +33787,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36074,7 +33809,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36096,7 +33831,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36118,7 +33853,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36140,7 +33875,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36162,7 +33897,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36221,7 +33956,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36243,7 +33978,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3.5
+                                    min = 2.917
                                 }
                             }
                         }
@@ -36265,7 +34000,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36287,7 +34022,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36309,7 +34044,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36331,7 +34066,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36353,7 +34088,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36375,7 +34110,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36397,7 +34132,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36419,7 +34154,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36441,7 +34176,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3.5
+                                    min = 2.917
                                 }
                             }
                         }
@@ -36463,7 +34198,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36485,7 +34220,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36507,7 +34242,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36529,7 +34264,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36551,7 +34286,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36573,7 +34308,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36595,7 +34330,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36617,7 +34352,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36639,7 +34374,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36661,7 +34396,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36683,7 +34418,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36705,7 +34440,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36727,7 +34462,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36749,7 +34484,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36771,7 +34506,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36793,7 +34528,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36815,7 +34550,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36837,7 +34572,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36859,7 +34594,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36881,7 +34616,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36903,7 +34638,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36925,7 +34660,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36947,7 +34682,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3.429
+                                    min = 2.858
                                 }
                             }
                         }
@@ -36969,7 +34704,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -36991,7 +34726,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -37013,7 +34748,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -37035,7 +34770,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -37057,14 +34792,14 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
                     }
                     else_if = {
                         limit = {
-                            is_maa_type = burenjia
+                            is_maa_type = condottieri
                         }
                         save_scope_value_as = {
                             name = mwp_script_budget_regiment_size
@@ -37086,6 +34821,28 @@ mwp_fallback_budget_calculate_effect = {
                     }
                     else_if = {
                         limit = {
+                            is_maa_type = burenjia
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.084
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
                             is_maa_type = rocket_carts
                         }
                         save_scope_value_as = {
@@ -37101,7 +34858,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -37123,7 +34880,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -37145,7 +34902,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -37167,7 +34924,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -37189,7 +34946,7 @@ mwp_fallback_budget_calculate_effect = {
                                 name = mwp_script_budget_ratio
                                 value = {
                                     value = var:mwp_script_budget_ratio
-                                    min = 3
+                                    min = 2.5
                                 }
                             }
                         }
@@ -37228,7 +34985,7 @@ mwp_fallback_budget_calculate_effect = {
                     value = var:mwp_script_budget_unraised
                     multiply = var:mwp_script_budget_ratio
                     add = var:mwp_script_budget_zero_low_bound
-                    multiply = var:mwp_d18_army_factor
+                    multiply = mwp_d18_army_positive_value
                 }
             }
             set_variable = {
@@ -37273,6 +35030,7 @@ mwp_fallback_budget_calculate_effect = {
                     add = var:mwp_script_budget_levy_bound
                 }
             }
+            mwp_enforce_raised_gold_floor = yes
             set_variable = {
                 name = mwp_script_budget_ready
                 value = yes
@@ -37833,6 +35591,16 @@ mwp_d19_preserve_current_military_effect = {
                             add = var:mwp_d19_current_military_excess
                         }
                     }
+                    # Keep the owner's live gold estimate from the Military panel.
+                    # The fallback can still give a higher forecast when already at sea.
+                    if = {
+                        limit = {
+                            mwp_native_cost_current_trigger = yes
+                            has_variable = mwp_native_cost_army
+                            var:mwp_native_cost_army > var:mwp_script_raised_army_upkeep
+                        }
+                        set_variable = { name = mwp_script_raised_army_upkeep value = var:mwp_native_cost_army }
+                    }
                     set_variable = {
                         name = mwp_script_full_army_expense
                         value = {
@@ -37841,6 +35609,7 @@ mwp_d19_preserve_current_military_effect = {
                             add = var:mwp_script_raised_army_upkeep
                         }
                     }
+                    mwp_enforce_raised_gold_floor = yes
                 }
                 else = {
                     remove_variable = mwp_script_budget_ready
@@ -39910,6 +37679,22 @@ mwp_d19_reject_clear_effect = {
     remove_variable = mwp_d19_reject_105_2_max
     remove_variable = mwp_d19_reject_105_2_current
     remove_variable = mwp_d19_reject_105_2_station
+    remove_variable = mwp_d19_reject_112_1_present
+    remove_variable = mwp_d19_reject_112_1_price
+    remove_variable = mwp_d19_reject_112_1_upkeep
+    remove_variable = mwp_d19_reject_112_1_regiment
+    remove_variable = mwp_d19_reject_112_1_size
+    remove_variable = mwp_d19_reject_112_1_max
+    remove_variable = mwp_d19_reject_112_1_current
+    remove_variable = mwp_d19_reject_112_1_station
+    remove_variable = mwp_d19_reject_112_2_present
+    remove_variable = mwp_d19_reject_112_2_price
+    remove_variable = mwp_d19_reject_112_2_upkeep
+    remove_variable = mwp_d19_reject_112_2_regiment
+    remove_variable = mwp_d19_reject_112_2_size
+    remove_variable = mwp_d19_reject_112_2_max
+    remove_variable = mwp_d19_reject_112_2_current
+    remove_variable = mwp_d19_reject_112_2_station
     remove_variable = mwp_d19_reject_106_1_present
     remove_variable = mwp_d19_reject_106_1_price
     remove_variable = mwp_d19_reject_106_1_upkeep
@@ -47055,6 +44840,83 @@ mwp_d19_reject_record_effect = {
             }
             if = {
                 limit = {
+                    var:mwp_d19_tx_id = 112
+                    var:mwp_d19_tx_action = 1
+                }
+                remove_variable = mwp_d19_reject_112_1_present
+                remove_variable = mwp_d19_reject_112_1_price
+                remove_variable = mwp_d19_reject_112_1_upkeep
+                remove_variable = mwp_d19_reject_112_1_regiment
+                remove_variable = mwp_d19_reject_112_1_size
+                remove_variable = mwp_d19_reject_112_1_max
+                remove_variable = mwp_d19_reject_112_1_current
+                remove_variable = mwp_d19_reject_112_1_station
+                set_variable = {
+                    name = mwp_d19_reject_112_1_present
+                    value = yes
+                }
+                set_variable = {
+                    name = mwp_d19_reject_112_1_price
+                    value = var:mwp_d19_tx_price
+                }
+                set_variable = {
+                    name = mwp_d19_reject_112_1_upkeep
+                    value = var:mwp_script_selected_upkeep
+                }
+            }
+            if = {
+                limit = {
+                    var:mwp_d19_tx_id = 112
+                    var:mwp_d19_tx_action = 2
+                }
+                remove_variable = mwp_d19_reject_112_2_present
+                remove_variable = mwp_d19_reject_112_2_price
+                remove_variable = mwp_d19_reject_112_2_upkeep
+                remove_variable = mwp_d19_reject_112_2_regiment
+                remove_variable = mwp_d19_reject_112_2_size
+                remove_variable = mwp_d19_reject_112_2_max
+                remove_variable = mwp_d19_reject_112_2_current
+                remove_variable = mwp_d19_reject_112_2_station
+                set_variable = {
+                    name = mwp_d19_reject_112_2_present
+                    value = yes
+                }
+                set_variable = {
+                    name = mwp_d19_reject_112_2_price
+                    value = var:mwp_d19_tx_price
+                }
+                set_variable = {
+                    name = mwp_d19_reject_112_2_upkeep
+                    value = var:mwp_script_selected_upkeep
+                }
+                set_variable = {
+                    name = mwp_d19_reject_112_2_regiment
+                    value = var:mwp_d19_tx_pre_regiment
+                }
+                set_variable = {
+                    name = mwp_d19_reject_112_2_size
+                    value = var:mwp_d19_tx_size
+                }
+                set_variable = {
+                    name = mwp_d19_reject_112_2_max
+                    value = var:mwp_d19_tx_max
+                }
+                set_variable = {
+                    name = mwp_d19_reject_112_2_current
+                    value = var:mwp_d19_tx_current
+                }
+                if = {
+                    limit = {
+                        has_variable = mwp_d19_tx_station
+                    }
+                    set_variable = {
+                        name = mwp_d19_reject_112_2_station
+                        value = var:mwp_d19_tx_station
+                    }
+                }
+            }
+            if = {
+                limit = {
                     var:mwp_d19_tx_id = 106
                     var:mwp_d19_tx_action = 1
                 }
@@ -47603,6 +45465,10 @@ mwp_d21_legacy_budget_refresh_effect = {
             value = var:mwp_fallback_cost_expenses
         }
         set_variable = {
+            name = mwp_script_budget_levy_bound
+            value = { value = var:mwp_fallback_cost_levies multiply = mwp_script_levy_per_soldier_bound }
+        }
+        set_variable = {
             name = mwp_script_maa_upkeep
             value = {
                 value = var:mwp_native_cost_maa
@@ -47625,6 +45491,7 @@ mwp_d21_legacy_budget_refresh_effect = {
                 add = var:mwp_script_raised_army_upkeep
             }
         }
+        mwp_enforce_raised_gold_floor = yes
         set_variable = {
             name = mwp_script_budget_error
             value = 0
@@ -47670,7 +45537,7 @@ mwp_d21_legacy_headroom_effect = {
         value = {
             value = var:mwp_script_budget_income
             multiply = mwp_auto_income_fraction_value
-            subtract = var:mwp_script_maa_upkeep
+            subtract = var:mwp_script_raised_army_upkeep
         }
     }
     if = {
@@ -47685,6 +45552,471 @@ mwp_d21_legacy_headroom_effect = {
             }
         }
     }
-    mwp_d19_cap_current_net_effect = yes
+    if = { limit = { mwp_fbr_live = yes has_variable = mwp_script_budget_native var:mwp_script_budget_native = 2 } mwp_fbr_cap_current_net = yes }
+else = { mwp_d19_cap_current_net_effect = yes }
     mwp_d19_cap_army_scope_effect = yes
+    if = { limit = { mwp_auto_budget_mode_value != 3 }
+        if = { limit = { has_variable = mwp_raised_gold_input has_variable = mwp_d19_net_ready
+                         var:mwp_d19_whole_army_available = yes }
+            set_variable = { name = mwp_raised_policy_quote value = 1 }
+            # full expense = civilian + projected raised. Reuse this decomposition
+            # after each native purchase, including while the panel is closed.
+            set_variable = { name = mwp_raised_current_military value = {
+                value = var:mwp_script_budget_current_expenses subtract = var:mwp_script_full_army_expense
+                add = var:mwp_script_raised_army_upkeep min = 0 } }
+            set_variable = { name = mwp_raised_initial_maa value = monthly_character_men_at_arms_expense_gold }
+            set_variable = { name = mwp_auto_B value = { value = var:mwp_auto_B
+                max = { value = var:mwp_d19_net_income subtract = var:mwp_script_full_army_expense subtract = 0.01 } } }
+        }
+        else = { set_variable = { name = mwp_auto_B value = -1 } remove_variable = mwp_raised_policy_quote }
+    }
+}
+
+mwp_fa_discard_effect = {
+ remove_variable = mwp_paid_carried
+ mwp_paid_forget = yes
+ clear_variable_list = mwp_fa_a
+ clear_variable_list = mwp_fa_b
+ remove_variable = mwp_fa_live
+ remove_variable = mwp_fa_day
+ remove_variable = mwp_fa_balance
+ remove_variable = mwp_fa_profile
+ remove_variable = mwp_d18_mixed_batch
+ remove_variable = mwp_batch_continue
+ remove_variable = mwp_batch_active
+}
+mwp_fa_finish_effect = {
+ mwp_fa_discard_effect = yes
+remove_variable = mwp_batch_active
+            if = {
+                limit = {
+                    OR = {
+                        var:mwp_batch_steps > 0
+                        has_variable = mwp_d19_transaction_rebuild_requested
+                    }
+                }
+                remove_variable = mwp_d19_transaction_rebuild_requested
+                mwp_request_own_analysis_effect = yes
+            }
+}
+mwp_fa_after_step_effect = {
+ if = { limit = { has_variable = mwp_fa_live NOT = { has_variable = mwp_fa_profile } }
+  if = { limit = { has_variable = mwp_batch_continue var:mwp_batch_steps < 16
+                  NOT = { has_variable = mwp_d21p_pending } }
+   if = { limit = { NOT = { has_variable = mwp_fa_nonce } } set_variable = { name = mwp_fa_nonce value = 0 } }
+   change_variable = { name = mwp_fa_nonce add = 1 }
+   if = { limit = { has_variable = mwp_fa_last_a }
+    clear_variable_list = mwp_fa_a
+    add_to_variable_list = { name = mwp_fa_b target = var:mwp_fa_nonce }
+    remove_variable = mwp_fa_last_a
+   }
+   else = {
+    clear_variable_list = mwp_fa_b
+    add_to_variable_list = { name = mwp_fa_a target = var:mwp_fa_nonce }
+    set_variable = { name = mwp_fa_last_a value = yes }
+   }
+  }
+  else = { mwp_fa_finish_effect = yes }
+ }
+}
+mwp_fa_one_step_effect = {
+ save_scope_as = mwp_script_player
+if = {
+    limit = {
+        var:mwp_batch_steps > 0
+    }
+    mwp_collect_script_price_factors_effect = yes
+    if = { limit = { mwp_d21_legacy_gold_budget_trigger = yes mwp_auto_budget_mode_value != 3 }
+        set_variable = { name = mwp_batch_remaining_headroom value = {
+            value = var:mwp_batch_remaining_headroom
+            max = { value = var:mwp_batch_initial_headroom subtract = var:mwp_batch_reserved_upkeep
+                    add = { value = scope:mwp_input_current_balance subtract = var:mwp_fa_balance max = 0 } }
+        } }
+    }
+    set_variable = {
+        name = mwp_auto_B
+        value = var:mwp_batch_remaining_headroom
+    }
+    mwp_priority_select_effect = yes
+    remove_variable = mwp_batch_regiment
+    remove_variable = mwp_batch_station
+    if = {
+        limit = {
+            has_variable = mwp_script_selected_id
+            mwp_script_price_supported_trigger = yes
+        }
+        if = {
+            limit = {
+                var:mwp_script_selected_action = 2
+                exists = var:mwp_script_selected_regiment
+            }
+            set_variable = {
+                name = mwp_batch_regiment
+                value = var:mwp_script_selected_regiment
+            }
+            var:mwp_script_selected_regiment = {
+                if = {
+                    limit = {
+                        exists = regiment_station
+                    }
+                    regiment_station = {
+                        save_scope_as = mwp_batch_selected_station
+                    }
+                    scope:mwp_script_player = {
+                        set_variable = {
+                            name = mwp_batch_station
+                            value = scope:mwp_batch_selected_station
+                        }
+                    }
+                }
+            }
+        }
+    }
+    else = {
+        remove_variable = mwp_batch_continue
+    }
+}
+if = {
+    limit = {
+        has_variable = mwp_script_selected_id
+        has_variable = mwp_batch_continue
+        is_ai = no
+        is_alive = yes
+        has_variable = mwp_auto_recruit_enabled
+        var:mwp_auto_recruit_enabled = yes
+        mwp_auto_supported_trigger = yes
+        NOT = {
+            has_variable = mwp_script_purchase_error
+        }
+        mwp_auto_fresh_trigger = yes
+        exists = scope:mwp_script_input_owner
+        scope:mwp_script_input_owner = this
+        exists = scope:mwp_script_input_generation
+        scope:mwp_script_input_generation = var:mwp_generation
+        exists = scope:mwp_script_input_singleplayer
+        scope:mwp_script_input_singleplayer = yes
+        mwp_auto_budget_mode_value = var:mwp_batch_mode
+        var:mwp_script_selected_price >= 0
+        mwp_d21_selected_wallet_value >= var:mwp_script_selected_price
+        mwp_d21_selected_budget_trigger = yes
+        trigger_if = { limit = { OR = { exists = scope:mwp_paid_rollover has_variable = mwp_paid_carried } }
+          var:mwp_script_selected_action = 2 mwp_d21_active_route_value = 1 mwp_d21_selected_currency_value = 1
+          exists = var:mwp_script_selected_regiment
+          var:mwp_script_selected_regiment = { is_personal_maa_regiment = yes is_regular_maa_regiment = yes
+           regiment_owner = root can_upgrade_maa = yes mwp_florin_hired_type_id = root.var:mwp_script_selected_id }
+        }
+        OR = {
+            var:mwp_script_selected_action = 1
+            AND = {
+                exists = var:mwp_script_selected_regiment
+                var:mwp_script_selected_regiment = {
+                    is_regular_maa_regiment = yes
+                    mwp_d21_selected_regiment_route_trigger = yes
+                    regiment_owner = {
+                        this = root
+                    }
+                    can_upgrade_maa = yes
+                    OR = {
+                        AND = {
+                            NOT = {
+                                exists = regiment_station
+                            }
+                            root = {
+                                NOT = {
+                                    has_variable = mwp_batch_station
+                                }
+                            }
+                        }
+                        AND = {
+                            exists = regiment_station
+                            root = {
+                                has_variable = mwp_batch_station
+                            }
+                            regiment_station = root.var:mwp_batch_station
+                        }
+                    }
+                }
+            }
+        }
+    }
+    remove_variable = mwp_auto_last_paid_verified
+    set_variable = {
+        name = mwp_batch_count_before
+        value = var:mwp_auto_purchase_count
+    }
+    set_variable = {
+        name = mwp_batch_count_expected
+        value = {
+            value = var:mwp_auto_purchase_count
+            add = 1
+        }
+    }
+    if = {
+        limit = {
+            var:mwp_script_selected_action = 2
+        }
+        var:mwp_script_selected_regiment = {
+            save_scope_value_as = {
+                name = mwp_batch_size_before
+                value = maa_size
+            }
+            save_scope_value_as = {
+                name = mwp_batch_max_before
+                value = maa_max_troops_count
+            }
+            save_scope_value_as = {
+                name = mwp_batch_troops_before
+                value = maa_current_troops_count
+            }
+        }
+    }
+    mwp_d19_transaction_purchase_effect = yes
+    mwp_reorganization_record_purchase_effect = yes
+    if = {
+        limit = {
+            has_variable = mwp_auto_last_paid_verified
+            var:mwp_auto_purchase_count = var:mwp_batch_count_expected
+        }
+        mwp_native_cost_invalidate_effect = yes
+        change_variable = {
+            name = mwp_batch_steps
+            add = 1
+        }
+        if = {
+            limit = {
+                mwp_d21_selected_legacy_gold_trigger = yes
+            }
+            change_variable = {
+                name = mwp_batch_reserved_upkeep
+                add = var:mwp_script_selected_upkeep
+            }
+        }
+        if = {
+            limit = {
+                mwp_d21_selected_legacy_gold_trigger = yes
+            }
+            change_variable = {
+                name = mwp_batch_remaining_headroom
+                subtract = var:mwp_script_selected_upkeep
+            }
+        }
+        set_variable = {
+            name = mwp_auto_B
+            value = var:mwp_batch_remaining_headroom
+        }
+        if = {
+            limit = {
+                var:mwp_script_selected_action = 1
+            }
+            remove_variable = mwp_batch_continue
+        }
+        else = {
+            var:mwp_script_selected_regiment = {
+                save_scope_value_as = {
+                    name = mwp_batch_capacity_left
+                    value = {
+                        value = maa_max_troops_count
+                        multiply = scope:mwp_batch_size_before
+                    }
+                }
+                save_scope_value_as = {
+                    name = mwp_batch_capacity_right
+                    value = {
+                        value = scope:mwp_batch_max_before
+                        multiply = maa_size
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        AND = {
+                            scope:mwp_batch_size_before > 0
+                            scope:mwp_batch_max_before > 0
+                            var:mwp_script_selected_regiment = {
+                                maa_max_troops_count > 0
+                                maa_current_troops_count = scope:mwp_batch_troops_before
+                                maa_size = {
+                                    value = scope:mwp_batch_size_before
+                                    add = 1
+                                }
+                            }
+                            scope:mwp_batch_capacity_left = scope:mwp_batch_capacity_right
+                        }
+                    }
+                }
+                remove_variable = mwp_batch_continue
+            }
+            if = { limit = { has_variable = mwp_batch_continue var:mwp_batch_steps < 16
+                NOT = { has_variable = mwp_d21p_pending } }
+                mwp_paid_capture = yes
+                mwp_dev11_refresh_siege_priorities_effect = yes
+                mwp_dev13_refresh_combat_batch_effect = yes
+            }
+        }
+    }
+    else = {
+        remove_variable = mwp_batch_continue
+    }
+}
+else = {
+    remove_variable = mwp_batch_continue
+}
+
+}
+
+mwp_paid_clear_slot = {
+remove_variable = mwp_paid_unit_$N$
+remove_variable = mwp_paid_size_$N$
+remove_variable = mwp_paid_cap_$N$
+remove_variable = mwp_paid_soldiers_$N$
+remove_variable = mwp_paid_type_$N$
+remove_variable = mwp_paid_station_$N$
+remove_variable = mwp_paid_expand_$N$
+}
+mwp_paid_forget = {
+ if = { limit = { has_variable = mwp_paid_count }
+ remove_variable = mwp_paid_max_count
+ remove_variable = mwp_paid_ready
+remove_variable = mwp_paid_date
+remove_variable = mwp_paid_count
+remove_variable = mwp_paid_culture
+remove_variable = mwp_paid_faith
+remove_variable = mwp_paid_capital
+remove_variable = mwp_paid_government
+remove_variable = mwp_paid_strength
+remove_variable = mwp_paid_counter
+remove_variable = mwp_paid_generation
+ mwp_paid_clear_slot = { N = 1 }
+mwp_paid_clear_slot = { N = 2 }
+mwp_paid_clear_slot = { N = 3 }
+mwp_paid_clear_slot = { N = 4 }
+mwp_paid_clear_slot = { N = 5 }
+mwp_paid_clear_slot = { N = 6 }
+mwp_paid_clear_slot = { N = 7 }
+mwp_paid_clear_slot = { N = 8 }
+mwp_paid_clear_slot = { N = 9 }
+mwp_paid_clear_slot = { N = 10 }
+mwp_paid_clear_slot = { N = 11 }
+mwp_paid_clear_slot = { N = 12 }
+ }
+}
+mwp_paid_store_slot = {
+set_variable = { name = mwp_paid_unit_$N$ value = scope:mwp_paid_unit }
+scope:mwp_paid_unit = {
+ save_scope_value_as = { name = mwp_paid_size value = maa_size }
+ save_scope_value_as = { name = mwp_paid_cap value = maa_max_troops_count }
+ save_scope_value_as = { name = mwp_paid_soldiers value = maa_current_troops_count }
+ save_scope_value_as = { name = mwp_paid_type_id value = mwp_florin_hired_type_id }
+}
+set_variable = { name = mwp_paid_size_$N$ value = scope:mwp_paid_size }
+set_variable = { name = mwp_paid_cap_$N$ value = scope:mwp_paid_cap }
+set_variable = { name = mwp_paid_soldiers_$N$ value = scope:mwp_paid_soldiers }
+set_variable = { name = mwp_paid_type_$N$ value = scope:mwp_paid_type_id }
+if = { limit = { scope:mwp_paid_unit = { exists = regiment_station } }
+ set_variable = { name = mwp_paid_station_$N$ value = scope:mwp_paid_unit.regiment_station } }
+if = { limit = { scope:mwp_paid_unit = { can_upgrade_maa = yes } }
+ set_variable = mwp_paid_expand_$N$ }
+if = { limit = { OR = { scope:mwp_paid_type_id <= 0 scope:mwp_paid_cap <= 0 } }
+ remove_variable = mwp_paid_ready }
+
+}
+mwp_paid_capture = {
+ mwp_paid_forget = yes
+ if = { limit = { mwp_paid_context_trigger = yes
+    has_variable = mwp_auto_last_paid_verified var:mwp_auto_last_paid_verified = yes
+    has_variable = mwp_batch_continue var:mwp_batch_steps > 0 var:mwp_batch_steps < 16
+    var:mwp_script_selected_action = 2 exists = var:mwp_script_selected_regiment
+    mwp_d21_active_route_value = 1 mwp_d21_selected_currency_value = 1
+    has_variable = mwp_auto_purchase_count exists = capital_province
+ }
+ save_scope_as = mwp_paid_ruler
+ set_variable = mwp_paid_ready
+ set_variable = { name = mwp_paid_count value = 0 }
+ set_variable = { name = mwp_paid_max_count value = maa_regiments_max_count }
+ set_variable = { name = mwp_paid_date value = days_since_birth }
+ set_variable = { name = mwp_paid_counter value = var:mwp_auto_purchase_count }
+ set_variable = { name = mwp_paid_generation value = var:mwp_generation }
+ set_variable = { name = mwp_paid_strength value = max_military_strength }
+ set_variable = { name = mwp_paid_culture value = culture }
+ set_variable = { name = mwp_paid_faith value = faith }
+ set_variable = { name = mwp_paid_capital value = capital_province }
+ set_variable = { name = mwp_paid_government value = 1 }
+ if = { limit = { has_government = clan_government } set_variable = { name = mwp_paid_government value = 2 } }
+ every_maa_regiment = {
+   limit = { is_personal_maa_regiment = yes is_regular_maa_regiment = yes regiment_owner = scope:mwp_paid_ruler }
+   save_scope_as = mwp_paid_unit
+   scope:mwp_paid_ruler = {
+    change_variable = { name = mwp_paid_count add = 1 }
+    if = { limit = { var:mwp_paid_count = 1 } mwp_paid_store_slot = { N = 1 } }
+else_if = { limit = { var:mwp_paid_count = 2 } mwp_paid_store_slot = { N = 2 } }
+else_if = { limit = { var:mwp_paid_count = 3 } mwp_paid_store_slot = { N = 3 } }
+else_if = { limit = { var:mwp_paid_count = 4 } mwp_paid_store_slot = { N = 4 } }
+else_if = { limit = { var:mwp_paid_count = 5 } mwp_paid_store_slot = { N = 5 } }
+else_if = { limit = { var:mwp_paid_count = 6 } mwp_paid_store_slot = { N = 6 } }
+else_if = { limit = { var:mwp_paid_count = 7 } mwp_paid_store_slot = { N = 7 } }
+else_if = { limit = { var:mwp_paid_count = 8 } mwp_paid_store_slot = { N = 8 } }
+else_if = { limit = { var:mwp_paid_count = 9 } mwp_paid_store_slot = { N = 9 } }
+else_if = { limit = { var:mwp_paid_count = 10 } mwp_paid_store_slot = { N = 10 } }
+else_if = { limit = { var:mwp_paid_count = 11 } mwp_paid_store_slot = { N = 11 } }
+else_if = { limit = { var:mwp_paid_count = 12 } mwp_paid_store_slot = { N = 12 } }
+   }
+ }
+ if = { limit = { NOT = { var:mwp_paid_count = maa_regiments_count } } mwp_paid_forget = yes }
+ }
+}
+
+mwp_paid_seed_access = {
+ if = { limit = {
+   has_variable = mwp_auto_recruit_enabled var:mwp_auto_recruit_enabled = yes
+   NOT = { has_variable = mwp_fa_live } NOT = { has_variable = mwp_fa_profile }
+   has_variable = mwp_scoring_active has_variable = mwp_scoring_owner var:mwp_scoring_owner = this
+   var:mwp_scores_owner = this var:mwp_scores_generation = var:mwp_generation
+   var:mwp_scoring_seen_count = 112 mwp_d21_legacy_gold_budget_trigger = yes
+   NOT = { government_allows = subject_men_at_arms }
+   maa_regiments_count < maa_regiments_max_count
+ }
+ set_variable = { name = mwp_paid_access_owner value = this }
+ set_variable = { name = mwp_paid_access_gen value = var:mwp_generation }
+ set_variable = { name = mwp_paid_access_0 value = mwp_paid_access_mask_0 }
+ set_variable = { name = mwp_paid_access_1 value = mwp_paid_access_mask_1 }
+ set_variable = { name = mwp_paid_access_2 value = mwp_paid_access_mask_2 }
+ set_variable = { name = mwp_paid_access_3 value = mwp_paid_access_mask_3 }
+ set_variable = { name = mwp_paid_access_4 value = mwp_paid_access_mask_4 }
+ set_variable = { name = mwp_paid_access_5 value = mwp_paid_access_mask_5 }
+ set_variable = { name = mwp_paid_access_6 value = mwp_paid_access_mask_6 }
+ set_variable = { name = mwp_paid_access_7 value = mwp_paid_access_mask_7 }
+ }
+}
+
+mwp_enforce_raised_gold_floor = {
+ if = { limit = { mwp_gold_floor_receipt_current = yes
+                   has_variable = mwp_script_raised_army_upkeep has_variable = mwp_script_full_army_expense }
+  save_scope_value_as = { name = mwp_missing_raised_upkeep value = {
+     value = var:mwp_n16c_army_raw multiply = -1 subtract = var:mwp_script_raised_army_upkeep
+  } }
+  if = { limit = { scope:mwp_missing_raised_upkeep > 0 }
+    change_variable = { name = mwp_script_raised_army_upkeep add = scope:mwp_missing_raised_upkeep }
+    change_variable = { name = mwp_script_full_army_expense add = scope:mwp_missing_raised_upkeep }
+  }
+ }
+}
+
+mwp_raised_finish_gold_projection = {
+    save_scope_value_as = { name = mwp_rp_old_raised value = var:mwp_script_raised_army_upkeep }
+    save_scope_value_as = { name = mwp_rp_existing_military value = {
+        value = var:mwp_script_budget_current_expenses subtract = var:mwp_script_full_army_expense
+        add = scope:mwp_rp_old_raised min = 0 } }
+    if = { limit = { mwp_raised_native_current = yes }
+        set_variable = { name = mwp_script_raised_army_upkeep value = { value = var:mwp_rp_seen_raised_1
+            min = scope:mwp_rp_existing_military } }
+    }
+    if = { limit = { OR = { NOT = { mwp_raised_native_current = yes }
+            any_maa_regiment = { regiment_owner = root maa_current_troops_count < maa_max_troops_count } }
+            has_variable = mwp_d21b_full_maa_1 has_variable = mwp_d21b_unknown var:mwp_d21b_unknown = 0 }
+        set_variable = { name = mwp_script_raised_army_upkeep value = { value = var:mwp_script_raised_army_upkeep
+            min = { value = var:mwp_d21b_full_maa_1 add = var:mwp_script_budget_levy_bound } } }
+    }
+    change_variable = { name = mwp_script_full_army_expense add = var:mwp_script_raised_army_upkeep }
+    change_variable = { name = mwp_script_full_army_expense subtract = scope:mwp_rp_old_raised }
 }

@@ -1739,6 +1739,24 @@
         }
     }
     if = { limit = {
+        scope:mwp_candidate_catalog_id >= 112 scope:mwp_candidate_catalog_id <= 112
+        NOT = { has_variable = mwp_seen_112 }
+    }
+        remove_variable = mwp_d21_subject_provider_112
+        remove_variable = mwp_d21_access_generation_112
+        remove_variable = mwp_d21_access_day_112
+        if = { limit = {
+            government_allows = subject_men_at_arms
+            exists = scope:mwp_d21_candidate_subject_provider
+            scope:mwp_d21_candidate_subject_provider = { is_alive = yes }
+            any_subject = { this = scope:mwp_d21_candidate_subject_provider }
+        }
+            set_variable = { name = mwp_d21_subject_provider_112 value = scope:mwp_d21_candidate_subject_provider }
+            set_variable = { name = mwp_d21_access_generation_112 value = var:mwp_generation }
+            set_variable = { name = mwp_d21_access_day_112 value = days_since_birth }
+        }
+    }
+    if = { limit = {
         scope:mwp_candidate_catalog_id >= 106 scope:mwp_candidate_catalog_id <= 106
         NOT = { has_variable = mwp_seen_106 }
     }

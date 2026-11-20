@@ -3936,6 +3936,45 @@ if = { limit = { root = { has_variable = mwp_d19_tx_station } } set_variable = {
 }
 if = {
 limit = {
+root = { var:mwp_d19_tx_id = 112 var:mwp_d19_tx_action = 1 }
+}
+set_variable = { name = mwp_d21j_112_1_owner value = root }
+set_variable = { name = mwp_d21j_112_1_sequence value = root.var:mwp_d21j_sequence }
+set_variable = { name = mwp_d21j_112_1_price value = root.var:mwp_d19_tx_price }
+set_variable = { name = mwp_d21j_112_1_upkeep value = root.var:mwp_script_selected_upkeep }
+set_variable = { name = mwp_d21j_112_1_currency value = root.var:mwp_script_selected_currency }
+set_variable = { name = mwp_d21j_112_1_upkeep_currency value = root.var:mwp_script_selected_upkeep_currency }
+set_variable = { name = mwp_d21j_112_1_route value = root.var:mwp_d21j_record_route }
+set_variable = { name = mwp_d21j_112_1_nomad_mode value = root.var:mwp_d21j_record_nomad_mode }
+set_variable = { name = mwp_d21j_112_1_subject_source value = root.var:mwp_d21j_record_subject_source }
+set_variable = { name = mwp_d21j_112_1_herd value = root.var:mwp_d21j_record_herd }
+
+}
+if = {
+limit = {
+root = { var:mwp_d19_tx_id = 112 var:mwp_d19_tx_action = 2 }
+}
+set_variable = { name = mwp_d21j_112_2_owner value = root }
+set_variable = { name = mwp_d21j_112_2_sequence value = root.var:mwp_d21j_sequence }
+set_variable = { name = mwp_d21j_112_2_price value = root.var:mwp_d19_tx_price }
+set_variable = { name = mwp_d21j_112_2_upkeep value = root.var:mwp_script_selected_upkeep }
+set_variable = { name = mwp_d21j_112_2_currency value = root.var:mwp_script_selected_currency }
+set_variable = { name = mwp_d21j_112_2_upkeep_currency value = root.var:mwp_script_selected_upkeep_currency }
+set_variable = { name = mwp_d21j_112_2_route value = root.var:mwp_d21j_record_route }
+set_variable = { name = mwp_d21j_112_2_regiment value = root.var:mwp_d19_tx_pre_regiment }
+set_variable = { name = mwp_d21j_112_2_size value = root.var:mwp_d19_tx_size }
+set_variable = { name = mwp_d21j_112_2_max value = root.var:mwp_d19_tx_max }
+set_variable = { name = mwp_d21j_112_2_current value = root.var:mwp_d19_tx_current }
+set_variable = { name = mwp_d21j_112_2_nomad_mode value = root.var:mwp_d21j_record_nomad_mode }
+set_variable = { name = mwp_d21j_112_2_subject_source value = root.var:mwp_d21j_record_subject_source }
+set_variable = { name = mwp_d21j_112_2_herd value = root.var:mwp_d21j_record_herd }
+remove_variable = mwp_d21j_112_2_station
+if = { limit = { root = { has_variable = mwp_d19_tx_station } } set_variable = { name = mwp_d21j_112_2_station value = root.var:mwp_d19_tx_station }
+}
+
+}
+if = {
+limit = {
 root = { var:mwp_d19_tx_id = 106 var:mwp_d19_tx_action = 1 }
 }
 set_variable = { name = mwp_d21j_106_1_owner value = root }

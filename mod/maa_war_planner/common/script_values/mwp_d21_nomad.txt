@@ -11,7 +11,7 @@ mwp_d21_nomad_expected_herd_value = { value = var:mwp_d21_tx_herd_before subtrac
 mwp_d21_nomad_expected_current_value = { value = var:mwp_d19_tx_current
  if = { limit = { mwp_d21_nomad_mode_value = 1 } value = var:mwp_d19_tx_post_max } }
 mwp_d21_subject_price_1 = {
-    value = 115.2
+    value = 38.4
     round = yes
     multiply = {
         value = 1
@@ -22,7 +22,7 @@ mwp_d21_subject_price_1 = {
     }
 }
 mwp_d21_conversion_price_1 = {
-    value = 115.2
+    value = 38.4
     round = yes
     if = {
         limit = {
@@ -45,7 +45,7 @@ mwp_d21_conversion_price_1 = {
     }
 }
 mwp_d21_candidate_conversion_price_1 = {
-    value = 115.2
+    value = 38.4
     round = yes
     if = {
         limit = {
@@ -68,7 +68,7 @@ mwp_d21_candidate_conversion_price_1 = {
     }
 }
 mwp_d21_subject_price_2 = {
-    value = 90
+    value = 30
     round = yes
     multiply = {
         value = 1
@@ -79,7 +79,7 @@ mwp_d21_subject_price_2 = {
     }
 }
 mwp_d21_conversion_price_2 = {
-    value = 90
+    value = 30
     round = yes
     if = {
         limit = {
@@ -102,7 +102,7 @@ mwp_d21_conversion_price_2 = {
     }
 }
 mwp_d21_candidate_conversion_price_2 = {
-    value = 90
+    value = 30
     round = yes
     if = {
         limit = {
@@ -125,7 +125,7 @@ mwp_d21_candidate_conversion_price_2 = {
     }
 }
 mwp_d21_subject_price_3 = {
-    value = 66
+    value = 24
     round = yes
     multiply = {
         value = 1
@@ -136,7 +136,7 @@ mwp_d21_subject_price_3 = {
     }
 }
 mwp_d21_conversion_price_3 = {
-    value = 66
+    value = 24
     round = yes
     if = {
         limit = {
@@ -159,7 +159,7 @@ mwp_d21_conversion_price_3 = {
     }
 }
 mwp_d21_candidate_conversion_price_3 = {
-    value = 66
+    value = 24
     round = yes
     if = {
         limit = {
@@ -182,7 +182,7 @@ mwp_d21_candidate_conversion_price_3 = {
     }
 }
 mwp_d21_subject_price_4 = {
-    value = 45
+    value = 15
     round = yes
     multiply = {
         value = 1
@@ -193,7 +193,7 @@ mwp_d21_subject_price_4 = {
     }
 }
 mwp_d21_conversion_price_4 = {
-    value = 45
+    value = 15
     round = yes
     if = {
         limit = {
@@ -216,7 +216,7 @@ mwp_d21_conversion_price_4 = {
     }
 }
 mwp_d21_candidate_conversion_price_4 = {
-    value = 45
+    value = 15
     round = yes
     if = {
         limit = {
@@ -239,7 +239,7 @@ mwp_d21_candidate_conversion_price_4 = {
     }
 }
 mwp_d21_subject_price_5 = {
-    value = 240
+    value = 78
     round = yes
     multiply = {
         value = 1
@@ -250,7 +250,7 @@ mwp_d21_subject_price_5 = {
     }
 }
 mwp_d21_conversion_price_5 = {
-    value = 240
+    value = 78
     round = yes
     if = {
         limit = {
@@ -273,7 +273,7 @@ mwp_d21_conversion_price_5 = {
     }
 }
 mwp_d21_candidate_conversion_price_5 = {
-    value = 240
+    value = 78
     round = yes
     if = {
         limit = {
@@ -296,7 +296,7 @@ mwp_d21_candidate_conversion_price_5 = {
     }
 }
 mwp_d21_subject_price_6 = {
-    value = 110.5
+    value = 39
     round = yes
     multiply = {
         value = 1
@@ -307,7 +307,7 @@ mwp_d21_subject_price_6 = {
     }
 }
 mwp_d21_conversion_price_6 = {
-    value = 110.5
+    value = 39
     round = yes
     if = {
         limit = {
@@ -330,7 +330,7 @@ mwp_d21_conversion_price_6 = {
     }
 }
 mwp_d21_candidate_conversion_price_6 = {
-    value = 110.5
+    value = 39
     round = yes
     if = {
         limit = {
@@ -353,7 +353,7 @@ mwp_d21_candidate_conversion_price_6 = {
     }
 }
 mwp_d21_subject_price_7 = {
-    value = 97.5
+    value = 32.5
     round = yes
     multiply = {
         value = 1
@@ -364,7 +364,7 @@ mwp_d21_subject_price_7 = {
     }
 }
 mwp_d21_conversion_price_7 = {
-    value = 97.5
+    value = 32.5
     round = yes
     if = {
         limit = {
@@ -387,7 +387,7 @@ mwp_d21_conversion_price_7 = {
     }
 }
 mwp_d21_candidate_conversion_price_7 = {
-    value = 97.5
+    value = 32.5
     round = yes
     if = {
         limit = {
@@ -410,7 +410,7 @@ mwp_d21_candidate_conversion_price_7 = {
     }
 }
 mwp_d21_subject_price_8 = {
-    value = 180
+    value = 60
     round = yes
     multiply = {
         value = 1
@@ -421,7 +421,7 @@ mwp_d21_subject_price_8 = {
     }
 }
 mwp_d21_conversion_price_8 = {
-    value = 180
+    value = 60
     round = yes
     if = {
         limit = {
@@ -444,7 +444,7 @@ mwp_d21_conversion_price_8 = {
     }
 }
 mwp_d21_candidate_conversion_price_8 = {
-    value = 180
+    value = 60
     round = yes
     if = {
         limit = {
@@ -467,7 +467,7 @@ mwp_d21_candidate_conversion_price_8 = {
     }
 }
 mwp_d21_subject_price_9 = {
-    value = 85
+    value = 30
     round = yes
     multiply = {
         value = 1
@@ -478,7 +478,7 @@ mwp_d21_subject_price_9 = {
     }
 }
 mwp_d21_conversion_price_9 = {
-    value = 85
+    value = 30
     round = yes
     if = {
         limit = {
@@ -501,7 +501,7 @@ mwp_d21_conversion_price_9 = {
     }
 }
 mwp_d21_candidate_conversion_price_9 = {
-    value = 85
+    value = 30
     round = yes
     if = {
         limit = {
@@ -524,7 +524,7 @@ mwp_d21_candidate_conversion_price_9 = {
     }
 }
 mwp_d21_subject_price_10 = {
-    value = 250
+    value = 81.25
     round = yes
     multiply = {
         value = 1
@@ -535,7 +535,7 @@ mwp_d21_subject_price_10 = {
     }
 }
 mwp_d21_conversion_price_10 = {
-    value = 250
+    value = 81.25
     round = yes
     if = {
         limit = {
@@ -558,7 +558,7 @@ mwp_d21_conversion_price_10 = {
     }
 }
 mwp_d21_candidate_conversion_price_10 = {
-    value = 250
+    value = 81.25
     round = yes
     if = {
         limit = {
@@ -581,7 +581,7 @@ mwp_d21_candidate_conversion_price_10 = {
     }
 }
 mwp_d21_subject_price_11 = {
-    value = 260
+    value = 84.5
     round = yes
     multiply = {
         value = 1
@@ -592,7 +592,7 @@ mwp_d21_subject_price_11 = {
     }
 }
 mwp_d21_conversion_price_11 = {
-    value = 260
+    value = 84.5
     round = yes
     if = {
         limit = {
@@ -615,7 +615,7 @@ mwp_d21_conversion_price_11 = {
     }
 }
 mwp_d21_candidate_conversion_price_11 = {
-    value = 260
+    value = 84.5
     round = yes
     if = {
         limit = {
@@ -638,7 +638,7 @@ mwp_d21_candidate_conversion_price_11 = {
     }
 }
 mwp_d21_subject_price_12 = {
-    value = 93.5
+    value = 33
     round = yes
     multiply = {
         value = 1
@@ -649,7 +649,7 @@ mwp_d21_subject_price_12 = {
     }
 }
 mwp_d21_conversion_price_12 = {
-    value = 93.5
+    value = 33
     round = yes
     if = {
         limit = {
@@ -672,7 +672,7 @@ mwp_d21_conversion_price_12 = {
     }
 }
 mwp_d21_candidate_conversion_price_12 = {
-    value = 93.5
+    value = 33
     round = yes
     if = {
         limit = {
@@ -695,7 +695,7 @@ mwp_d21_candidate_conversion_price_12 = {
     }
 }
 mwp_d21_subject_price_13 = {
-    value = 112.5
+    value = 37.5
     round = yes
     multiply = {
         value = 1
@@ -706,7 +706,7 @@ mwp_d21_subject_price_13 = {
     }
 }
 mwp_d21_conversion_price_13 = {
-    value = 112.5
+    value = 37.5
     round = yes
     if = {
         limit = {
@@ -729,7 +729,7 @@ mwp_d21_conversion_price_13 = {
     }
 }
 mwp_d21_candidate_conversion_price_13 = {
-    value = 112.5
+    value = 37.5
     round = yes
     if = {
         limit = {
@@ -752,7 +752,7 @@ mwp_d21_candidate_conversion_price_13 = {
     }
 }
 mwp_d21_subject_price_14 = {
-    value = 60.5
+    value = 22
     round = yes
     multiply = {
         value = 1
@@ -763,7 +763,7 @@ mwp_d21_subject_price_14 = {
     }
 }
 mwp_d21_conversion_price_14 = {
-    value = 60.5
+    value = 22
     round = yes
     if = {
         limit = {
@@ -786,7 +786,7 @@ mwp_d21_conversion_price_14 = {
     }
 }
 mwp_d21_candidate_conversion_price_14 = {
-    value = 60.5
+    value = 22
     round = yes
     if = {
         limit = {
@@ -809,7 +809,7 @@ mwp_d21_candidate_conversion_price_14 = {
     }
 }
 mwp_d21_subject_price_15 = {
-    value = 135
+    value = 45
     round = yes
     multiply = {
         value = 1
@@ -820,7 +820,7 @@ mwp_d21_subject_price_15 = {
     }
 }
 mwp_d21_conversion_price_15 = {
-    value = 135
+    value = 45
     round = yes
     if = {
         limit = {
@@ -843,7 +843,7 @@ mwp_d21_conversion_price_15 = {
     }
 }
 mwp_d21_candidate_conversion_price_15 = {
-    value = 135
+    value = 45
     round = yes
     if = {
         limit = {
@@ -866,7 +866,7 @@ mwp_d21_candidate_conversion_price_15 = {
     }
 }
 mwp_d21_subject_price_16 = {
-    value = 75
+    value = 15
     round = yes
     multiply = {
         value = 1
@@ -877,7 +877,7 @@ mwp_d21_subject_price_16 = {
     }
 }
 mwp_d21_conversion_price_16 = {
-    value = 75
+    value = 15
     round = yes
     if = {
         limit = {
@@ -900,7 +900,7 @@ mwp_d21_conversion_price_16 = {
     }
 }
 mwp_d21_candidate_conversion_price_16 = {
-    value = 75
+    value = 15
     round = yes
     if = {
         limit = {
@@ -923,7 +923,7 @@ mwp_d21_candidate_conversion_price_16 = {
     }
 }
 mwp_d21_subject_price_17 = {
-    value = 108
+    value = 36
     round = yes
     multiply = {
         value = 1
@@ -934,7 +934,7 @@ mwp_d21_subject_price_17 = {
     }
 }
 mwp_d21_conversion_price_17 = {
-    value = 108
+    value = 36
     round = yes
     if = {
         limit = {
@@ -957,7 +957,7 @@ mwp_d21_conversion_price_17 = {
     }
 }
 mwp_d21_candidate_conversion_price_17 = {
-    value = 108
+    value = 36
     round = yes
     if = {
         limit = {
@@ -980,7 +980,7 @@ mwp_d21_candidate_conversion_price_17 = {
     }
 }
 mwp_d21_subject_price_18 = {
-    value = 85
+    value = 30
     round = yes
     multiply = {
         value = 1
@@ -991,7 +991,7 @@ mwp_d21_subject_price_18 = {
     }
 }
 mwp_d21_conversion_price_18 = {
-    value = 85
+    value = 30
     round = yes
     if = {
         limit = {
@@ -1014,7 +1014,7 @@ mwp_d21_conversion_price_18 = {
     }
 }
 mwp_d21_candidate_conversion_price_18 = {
-    value = 85
+    value = 30
     round = yes
     if = {
         limit = {
@@ -1037,7 +1037,7 @@ mwp_d21_candidate_conversion_price_18 = {
     }
 }
 mwp_d21_subject_price_19 = {
-    value = 60.5
+    value = 22
     round = yes
     multiply = {
         value = 1
@@ -1048,7 +1048,7 @@ mwp_d21_subject_price_19 = {
     }
 }
 mwp_d21_conversion_price_19 = {
-    value = 60.5
+    value = 22
     round = yes
     if = {
         limit = {
@@ -1071,7 +1071,7 @@ mwp_d21_conversion_price_19 = {
     }
 }
 mwp_d21_candidate_conversion_price_19 = {
-    value = 60.5
+    value = 22
     round = yes
     if = {
         limit = {
@@ -1094,7 +1094,7 @@ mwp_d21_candidate_conversion_price_19 = {
     }
 }
 mwp_d21_subject_price_20 = {
-    value = 60.5
+    value = 22
     round = yes
     multiply = {
         value = 1
@@ -1105,7 +1105,7 @@ mwp_d21_subject_price_20 = {
     }
 }
 mwp_d21_conversion_price_20 = {
-    value = 60.5
+    value = 22
     round = yes
     if = {
         limit = {
@@ -1128,7 +1128,7 @@ mwp_d21_conversion_price_20 = {
     }
 }
 mwp_d21_candidate_conversion_price_20 = {
-    value = 60.5
+    value = 22
     round = yes
     if = {
         limit = {
@@ -1151,7 +1151,7 @@ mwp_d21_candidate_conversion_price_20 = {
     }
 }
 mwp_d21_subject_price_21 = {
-    value = 117
+    value = 39
     round = yes
     multiply = {
         value = 1
@@ -1162,7 +1162,7 @@ mwp_d21_subject_price_21 = {
     }
 }
 mwp_d21_conversion_price_21 = {
-    value = 117
+    value = 39
     round = yes
     if = {
         limit = {
@@ -1185,7 +1185,7 @@ mwp_d21_conversion_price_21 = {
     }
 }
 mwp_d21_candidate_conversion_price_21 = {
-    value = 117
+    value = 39
     round = yes
     if = {
         limit = {
@@ -1208,7 +1208,7 @@ mwp_d21_candidate_conversion_price_21 = {
     }
 }
 mwp_d21_subject_price_22 = {
-    value = 110.5
+    value = 39
     round = yes
     multiply = {
         value = 1
@@ -1219,7 +1219,7 @@ mwp_d21_subject_price_22 = {
     }
 }
 mwp_d21_conversion_price_22 = {
-    value = 110.5
+    value = 39
     round = yes
     if = {
         limit = {
@@ -1242,7 +1242,7 @@ mwp_d21_conversion_price_22 = {
     }
 }
 mwp_d21_candidate_conversion_price_22 = {
-    value = 110.5
+    value = 39
     round = yes
     if = {
         limit = {
@@ -1265,7 +1265,7 @@ mwp_d21_candidate_conversion_price_22 = {
     }
 }
 mwp_d21_subject_price_23 = {
-    value = 45
+    value = 15
     round = yes
     multiply = {
         value = 1
@@ -1276,7 +1276,7 @@ mwp_d21_subject_price_23 = {
     }
 }
 mwp_d21_conversion_price_23 = {
-    value = 45
+    value = 15
     round = yes
     if = {
         limit = {
@@ -1299,7 +1299,7 @@ mwp_d21_conversion_price_23 = {
     }
 }
 mwp_d21_candidate_conversion_price_23 = {
-    value = 45
+    value = 15
     round = yes
     if = {
         limit = {
@@ -1322,7 +1322,7 @@ mwp_d21_candidate_conversion_price_23 = {
     }
 }
 mwp_d21_subject_price_24 = {
-    value = 55
+    value = 20
     round = yes
     multiply = {
         value = 1
@@ -1333,7 +1333,7 @@ mwp_d21_subject_price_24 = {
     }
 }
 mwp_d21_conversion_price_24 = {
-    value = 55
+    value = 20
     round = yes
     if = {
         limit = {
@@ -1356,7 +1356,7 @@ mwp_d21_conversion_price_24 = {
     }
 }
 mwp_d21_candidate_conversion_price_24 = {
-    value = 55
+    value = 20
     round = yes
     if = {
         limit = {
@@ -1379,7 +1379,7 @@ mwp_d21_candidate_conversion_price_24 = {
     }
 }
 mwp_d21_subject_price_25 = {
-    value = 45
+    value = 15
     round = yes
     multiply = {
         value = 1
@@ -1390,7 +1390,7 @@ mwp_d21_subject_price_25 = {
     }
 }
 mwp_d21_conversion_price_25 = {
-    value = 45
+    value = 15
     round = yes
     if = {
         limit = {
@@ -1413,7 +1413,7 @@ mwp_d21_conversion_price_25 = {
     }
 }
 mwp_d21_candidate_conversion_price_25 = {
-    value = 45
+    value = 15
     round = yes
     if = {
         limit = {
@@ -1436,7 +1436,7 @@ mwp_d21_candidate_conversion_price_25 = {
     }
 }
 mwp_d21_subject_price_26 = {
-    value = 115.2
+    value = 38.4
     round = yes
     multiply = {
         value = 1
@@ -1447,7 +1447,7 @@ mwp_d21_subject_price_26 = {
     }
 }
 mwp_d21_conversion_price_26 = {
-    value = 115.2
+    value = 38.4
     round = yes
     if = {
         limit = {
@@ -1470,7 +1470,7 @@ mwp_d21_conversion_price_26 = {
     }
 }
 mwp_d21_candidate_conversion_price_26 = {
-    value = 115.2
+    value = 38.4
     round = yes
     if = {
         limit = {
@@ -1493,7 +1493,7 @@ mwp_d21_candidate_conversion_price_26 = {
     }
 }
 mwp_d21_subject_price_27 = {
-    value = 108
+    value = 36
     round = yes
     multiply = {
         value = 1
@@ -1504,7 +1504,7 @@ mwp_d21_subject_price_27 = {
     }
 }
 mwp_d21_conversion_price_27 = {
-    value = 108
+    value = 36
     round = yes
     if = {
         limit = {
@@ -1527,7 +1527,7 @@ mwp_d21_conversion_price_27 = {
     }
 }
 mwp_d21_candidate_conversion_price_27 = {
-    value = 108
+    value = 36
     round = yes
     if = {
         limit = {
@@ -1550,7 +1550,7 @@ mwp_d21_candidate_conversion_price_27 = {
     }
 }
 mwp_d21_subject_price_28 = {
-    value = 108
+    value = 36
     round = yes
     multiply = {
         value = 1
@@ -1561,7 +1561,7 @@ mwp_d21_subject_price_28 = {
     }
 }
 mwp_d21_conversion_price_28 = {
-    value = 108
+    value = 36
     round = yes
     if = {
         limit = {
@@ -1584,7 +1584,7 @@ mwp_d21_conversion_price_28 = {
     }
 }
 mwp_d21_candidate_conversion_price_28 = {
-    value = 108
+    value = 36
     round = yes
     if = {
         limit = {
@@ -1607,7 +1607,7 @@ mwp_d21_candidate_conversion_price_28 = {
     }
 }
 mwp_d21_subject_price_29 = {
-    value = 90
+    value = 35
     round = yes
     multiply = {
         value = 1
@@ -1618,7 +1618,7 @@ mwp_d21_subject_price_29 = {
     }
 }
 mwp_d21_conversion_price_29 = {
-    value = 90
+    value = 35
     round = yes
     if = {
         limit = {
@@ -1641,7 +1641,7 @@ mwp_d21_conversion_price_29 = {
     }
 }
 mwp_d21_candidate_conversion_price_29 = {
-    value = 90
+    value = 35
     round = yes
     if = {
         limit = {
@@ -1664,7 +1664,7 @@ mwp_d21_candidate_conversion_price_29 = {
     }
 }
 mwp_d21_subject_price_30 = {
-    value = 54
+    value = 18
     round = yes
     multiply = {
         value = 1
@@ -1675,7 +1675,7 @@ mwp_d21_subject_price_30 = {
     }
 }
 mwp_d21_conversion_price_30 = {
-    value = 54
+    value = 18
     round = yes
     if = {
         limit = {
@@ -1698,7 +1698,7 @@ mwp_d21_conversion_price_30 = {
     }
 }
 mwp_d21_candidate_conversion_price_30 = {
-    value = 54
+    value = 18
     round = yes
     if = {
         limit = {
@@ -1721,7 +1721,7 @@ mwp_d21_candidate_conversion_price_30 = {
     }
 }
 mwp_d21_subject_price_31 = {
-    value = 108
+    value = 36
     round = yes
     multiply = {
         value = 1
@@ -1732,7 +1732,7 @@ mwp_d21_subject_price_31 = {
     }
 }
 mwp_d21_conversion_price_31 = {
-    value = 108
+    value = 36
     round = yes
     if = {
         limit = {
@@ -1755,7 +1755,7 @@ mwp_d21_conversion_price_31 = {
     }
 }
 mwp_d21_candidate_conversion_price_31 = {
-    value = 108
+    value = 36
     round = yes
     if = {
         limit = {
@@ -1778,7 +1778,7 @@ mwp_d21_candidate_conversion_price_31 = {
     }
 }
 mwp_d21_subject_price_32 = {
-    value = 81
+    value = 27
     round = yes
     multiply = {
         value = 1
@@ -1789,7 +1789,7 @@ mwp_d21_subject_price_32 = {
     }
 }
 mwp_d21_conversion_price_32 = {
-    value = 81
+    value = 27
     round = yes
     if = {
         limit = {
@@ -1812,7 +1812,7 @@ mwp_d21_conversion_price_32 = {
     }
 }
 mwp_d21_candidate_conversion_price_32 = {
-    value = 81
+    value = 27
     round = yes
     if = {
         limit = {
@@ -1835,7 +1835,7 @@ mwp_d21_candidate_conversion_price_32 = {
     }
 }
 mwp_d21_subject_price_33 = {
-    value = 99
+    value = 33
     round = yes
     multiply = {
         value = 1
@@ -1846,7 +1846,7 @@ mwp_d21_subject_price_33 = {
     }
 }
 mwp_d21_conversion_price_33 = {
-    value = 99
+    value = 33
     round = yes
     if = {
         limit = {
@@ -1869,7 +1869,7 @@ mwp_d21_conversion_price_33 = {
     }
 }
 mwp_d21_candidate_conversion_price_33 = {
-    value = 99
+    value = 33
     round = yes
     if = {
         limit = {
@@ -1892,7 +1892,7 @@ mwp_d21_candidate_conversion_price_33 = {
     }
 }
 mwp_d21_subject_price_34 = {
-    value = 108
+    value = 36
     round = yes
     multiply = {
         value = 1
@@ -1903,7 +1903,7 @@ mwp_d21_subject_price_34 = {
     }
 }
 mwp_d21_conversion_price_34 = {
-    value = 108
+    value = 36
     round = yes
     if = {
         limit = {
@@ -1926,7 +1926,7 @@ mwp_d21_conversion_price_34 = {
     }
 }
 mwp_d21_candidate_conversion_price_34 = {
-    value = 108
+    value = 36
     round = yes
     if = {
         limit = {
@@ -1949,7 +1949,7 @@ mwp_d21_candidate_conversion_price_34 = {
     }
 }
 mwp_d21_subject_price_35 = {
-    value = 96.25
+    value = 35
     round = yes
     multiply = {
         value = 1
@@ -1960,7 +1960,7 @@ mwp_d21_subject_price_35 = {
     }
 }
 mwp_d21_conversion_price_35 = {
-    value = 96.25
+    value = 35
     round = yes
     if = {
         limit = {
@@ -1983,7 +1983,7 @@ mwp_d21_conversion_price_35 = {
     }
 }
 mwp_d21_candidate_conversion_price_35 = {
-    value = 96.25
+    value = 35
     round = yes
     if = {
         limit = {
@@ -2006,7 +2006,7 @@ mwp_d21_candidate_conversion_price_35 = {
     }
 }
 mwp_d21_subject_price_36 = {
-    value = 54
+    value = 18
     round = yes
     multiply = {
         value = 1
@@ -2017,7 +2017,7 @@ mwp_d21_subject_price_36 = {
     }
 }
 mwp_d21_conversion_price_36 = {
-    value = 54
+    value = 18
     round = yes
     if = {
         limit = {
@@ -2040,7 +2040,7 @@ mwp_d21_conversion_price_36 = {
     }
 }
 mwp_d21_candidate_conversion_price_36 = {
-    value = 54
+    value = 18
     round = yes
     if = {
         limit = {
@@ -2063,7 +2063,7 @@ mwp_d21_candidate_conversion_price_36 = {
     }
 }
 mwp_d21_subject_price_37 = {
-    value = 102
+    value = 36
     round = yes
     multiply = {
         value = 1
@@ -2074,7 +2074,7 @@ mwp_d21_subject_price_37 = {
     }
 }
 mwp_d21_conversion_price_37 = {
-    value = 102
+    value = 36
     round = yes
     if = {
         limit = {
@@ -2097,7 +2097,7 @@ mwp_d21_conversion_price_37 = {
     }
 }
 mwp_d21_candidate_conversion_price_37 = {
-    value = 102
+    value = 36
     round = yes
     if = {
         limit = {
@@ -2177,7 +2177,7 @@ mwp_d21_candidate_conversion_price_38 = {
     }
 }
 mwp_d21_subject_price_39 = {
-    value = 260
+    value = 84.5
     round = yes
     multiply = {
         value = 1
@@ -2188,7 +2188,7 @@ mwp_d21_subject_price_39 = {
     }
 }
 mwp_d21_conversion_price_39 = {
-    value = 260
+    value = 84.5
     round = yes
     if = {
         limit = {
@@ -2211,7 +2211,7 @@ mwp_d21_conversion_price_39 = {
     }
 }
 mwp_d21_candidate_conversion_price_39 = {
-    value = 260
+    value = 84.5
     round = yes
     if = {
         limit = {
@@ -2234,7 +2234,7 @@ mwp_d21_candidate_conversion_price_39 = {
     }
 }
 mwp_d21_subject_price_40 = {
-    value = 50.25
+    value = 16.75
     round = yes
     multiply = {
         value = 1
@@ -2245,7 +2245,7 @@ mwp_d21_subject_price_40 = {
     }
 }
 mwp_d21_conversion_price_40 = {
-    value = 50.25
+    value = 16.75
     round = yes
     if = {
         limit = {
@@ -2268,7 +2268,7 @@ mwp_d21_conversion_price_40 = {
     }
 }
 mwp_d21_candidate_conversion_price_40 = {
-    value = 50.25
+    value = 16.75
     round = yes
     if = {
         limit = {
@@ -2291,7 +2291,7 @@ mwp_d21_candidate_conversion_price_40 = {
     }
 }
 mwp_d21_subject_price_41 = {
-    value = 93.5
+    value = 33
     round = yes
     multiply = {
         value = 1
@@ -2302,7 +2302,7 @@ mwp_d21_subject_price_41 = {
     }
 }
 mwp_d21_conversion_price_41 = {
-    value = 93.5
+    value = 33
     round = yes
     if = {
         limit = {
@@ -2325,7 +2325,7 @@ mwp_d21_conversion_price_41 = {
     }
 }
 mwp_d21_candidate_conversion_price_41 = {
-    value = 93.5
+    value = 33
     round = yes
     if = {
         limit = {
@@ -2348,7 +2348,7 @@ mwp_d21_candidate_conversion_price_41 = {
     }
 }
 mwp_d21_subject_price_44 = {
-    value = 45
+    value = 15
     round = yes
     multiply = {
         value = 1
@@ -2359,7 +2359,7 @@ mwp_d21_subject_price_44 = {
     }
 }
 mwp_d21_conversion_price_44 = {
-    value = 45
+    value = 15
     round = yes
     if = {
         limit = {
@@ -2382,7 +2382,7 @@ mwp_d21_conversion_price_44 = {
     }
 }
 mwp_d21_candidate_conversion_price_44 = {
-    value = 45
+    value = 15
     round = yes
     if = {
         limit = {
@@ -2405,7 +2405,7 @@ mwp_d21_candidate_conversion_price_44 = {
     }
 }
 mwp_d21_subject_price_88 = {
-    value = 225
+    value = 75
     round = yes
     multiply = {
         value = 1
@@ -2416,7 +2416,7 @@ mwp_d21_subject_price_88 = {
     }
 }
 mwp_d21_conversion_price_88 = {
-    value = 225
+    value = 75
     round = yes
     if = {
         limit = {
@@ -2439,7 +2439,7 @@ mwp_d21_conversion_price_88 = {
     }
 }
 mwp_d21_candidate_conversion_price_88 = {
-    value = 225
+    value = 75
     round = yes
     if = {
         limit = {
@@ -2462,7 +2462,7 @@ mwp_d21_candidate_conversion_price_88 = {
     }
 }
 mwp_d21_subject_price_89 = {
-    value = 76.5
+    value = 27
     round = yes
     multiply = {
         value = 1
@@ -2473,7 +2473,7 @@ mwp_d21_subject_price_89 = {
     }
 }
 mwp_d21_conversion_price_89 = {
-    value = 76.5
+    value = 27
     round = yes
     if = {
         limit = {
@@ -2496,7 +2496,7 @@ mwp_d21_conversion_price_89 = {
     }
 }
 mwp_d21_candidate_conversion_price_89 = {
-    value = 76.5
+    value = 27
     round = yes
     if = {
         limit = {
@@ -2519,7 +2519,7 @@ mwp_d21_candidate_conversion_price_89 = {
     }
 }
 mwp_d21_subject_price_90 = {
-    value = 157.5
+    value = 52.5
     round = yes
     multiply = {
         value = 1
@@ -2530,7 +2530,7 @@ mwp_d21_subject_price_90 = {
     }
 }
 mwp_d21_conversion_price_90 = {
-    value = 157.5
+    value = 52.5
     round = yes
     if = {
         limit = {
@@ -2553,7 +2553,7 @@ mwp_d21_conversion_price_90 = {
     }
 }
 mwp_d21_candidate_conversion_price_90 = {
-    value = 157.5
+    value = 52.5
     round = yes
     if = {
         limit = {
@@ -2576,7 +2576,7 @@ mwp_d21_candidate_conversion_price_90 = {
     }
 }
 mwp_d21_subject_price_91 = {
-    value = 190
+    value = 61.75
     round = yes
     multiply = {
         value = 1
@@ -2587,7 +2587,7 @@ mwp_d21_subject_price_91 = {
     }
 }
 mwp_d21_conversion_price_91 = {
-    value = 190
+    value = 61.75
     round = yes
     if = {
         limit = {
@@ -2610,7 +2610,7 @@ mwp_d21_conversion_price_91 = {
     }
 }
 mwp_d21_candidate_conversion_price_91 = {
-    value = 190
+    value = 61.75
     round = yes
     if = {
         limit = {
@@ -2633,7 +2633,7 @@ mwp_d21_candidate_conversion_price_91 = {
     }
 }
 mwp_d21_subject_price_92 = {
-    value = 99
+    value = 33
     round = yes
     multiply = {
         value = 1
@@ -2644,7 +2644,7 @@ mwp_d21_subject_price_92 = {
     }
 }
 mwp_d21_conversion_price_92 = {
-    value = 99
+    value = 33
     round = yes
     if = {
         limit = {
@@ -2667,7 +2667,7 @@ mwp_d21_conversion_price_92 = {
     }
 }
 mwp_d21_candidate_conversion_price_92 = {
-    value = 99
+    value = 33
     round = yes
     if = {
         limit = {
@@ -2690,7 +2690,7 @@ mwp_d21_candidate_conversion_price_92 = {
     }
 }
 mwp_d21_subject_price_93 = {
-    value = 260
+    value = 84.5
     round = yes
     multiply = {
         value = 1
@@ -2701,7 +2701,7 @@ mwp_d21_subject_price_93 = {
     }
 }
 mwp_d21_conversion_price_93 = {
-    value = 260
+    value = 84.5
     round = yes
     if = {
         limit = {
@@ -2724,7 +2724,7 @@ mwp_d21_conversion_price_93 = {
     }
 }
 mwp_d21_candidate_conversion_price_93 = {
-    value = 260
+    value = 84.5
     round = yes
     if = {
         limit = {
@@ -2747,7 +2747,7 @@ mwp_d21_candidate_conversion_price_93 = {
     }
 }
 mwp_d21_subject_price_94 = {
-    value = 57.75
+    value = 21
     round = yes
     multiply = {
         value = 1
@@ -2758,7 +2758,7 @@ mwp_d21_subject_price_94 = {
     }
 }
 mwp_d21_conversion_price_94 = {
-    value = 57.75
+    value = 21
     round = yes
     if = {
         limit = {
@@ -2781,7 +2781,7 @@ mwp_d21_conversion_price_94 = {
     }
 }
 mwp_d21_candidate_conversion_price_94 = {
-    value = 57.75
+    value = 21
     round = yes
     if = {
         limit = {
@@ -2861,7 +2861,7 @@ mwp_d21_candidate_conversion_price_97 = {
     }
 }
 mwp_d21_subject_price_45 = {
-    value = 55
+    value = 20
     round = yes
     multiply = {
         value = 1
@@ -2872,7 +2872,7 @@ mwp_d21_subject_price_45 = {
     }
 }
 mwp_d21_conversion_price_45 = {
-    value = 55
+    value = 20
     round = yes
     if = {
         limit = {
@@ -2895,7 +2895,7 @@ mwp_d21_conversion_price_45 = {
     }
 }
 mwp_d21_candidate_conversion_price_45 = {
-    value = 55
+    value = 20
     round = yes
     if = {
         limit = {
@@ -2918,7 +2918,7 @@ mwp_d21_candidate_conversion_price_45 = {
     }
 }
 mwp_d21_subject_price_46 = {
-    value = 85
+    value = 30
     round = yes
     multiply = {
         value = 1
@@ -2929,7 +2929,7 @@ mwp_d21_subject_price_46 = {
     }
 }
 mwp_d21_conversion_price_46 = {
-    value = 85
+    value = 30
     round = yes
     if = {
         limit = {
@@ -2952,7 +2952,7 @@ mwp_d21_conversion_price_46 = {
     }
 }
 mwp_d21_candidate_conversion_price_46 = {
-    value = 85
+    value = 30
     round = yes
     if = {
         limit = {
@@ -2975,7 +2975,7 @@ mwp_d21_candidate_conversion_price_46 = {
     }
 }
 mwp_d21_subject_price_47 = {
-    value = 75
+    value = 25
     round = yes
     multiply = {
         value = 1
@@ -2986,7 +2986,7 @@ mwp_d21_subject_price_47 = {
     }
 }
 mwp_d21_conversion_price_47 = {
-    value = 75
+    value = 25
     round = yes
     if = {
         limit = {
@@ -3009,7 +3009,7 @@ mwp_d21_conversion_price_47 = {
     }
 }
 mwp_d21_candidate_conversion_price_47 = {
-    value = 75
+    value = 25
     round = yes
     if = {
         limit = {
@@ -3032,7 +3032,7 @@ mwp_d21_candidate_conversion_price_47 = {
     }
 }
 mwp_d21_subject_price_48 = {
-    value = 90
+    value = 30
     round = yes
     multiply = {
         value = 1
@@ -3043,7 +3043,7 @@ mwp_d21_subject_price_48 = {
     }
 }
 mwp_d21_conversion_price_48 = {
-    value = 90
+    value = 30
     round = yes
     if = {
         limit = {
@@ -3066,7 +3066,7 @@ mwp_d21_conversion_price_48 = {
     }
 }
 mwp_d21_candidate_conversion_price_48 = {
-    value = 90
+    value = 30
     round = yes
     if = {
         limit = {
@@ -3089,7 +3089,7 @@ mwp_d21_candidate_conversion_price_48 = {
     }
 }
 mwp_d21_subject_price_49 = {
-    value = 60
+    value = 20
     round = yes
     multiply = {
         value = 1
@@ -3100,7 +3100,7 @@ mwp_d21_subject_price_49 = {
     }
 }
 mwp_d21_conversion_price_49 = {
-    value = 60
+    value = 20
     round = yes
     if = {
         limit = {
@@ -3123,7 +3123,7 @@ mwp_d21_conversion_price_49 = {
     }
 }
 mwp_d21_candidate_conversion_price_49 = {
-    value = 60
+    value = 20
     round = yes
     if = {
         limit = {
@@ -3146,7 +3146,7 @@ mwp_d21_candidate_conversion_price_49 = {
     }
 }
 mwp_d21_subject_price_50 = {
-    value = 200
+    value = 65
     round = yes
     multiply = {
         value = 1
@@ -3157,7 +3157,7 @@ mwp_d21_subject_price_50 = {
     }
 }
 mwp_d21_conversion_price_50 = {
-    value = 200
+    value = 65
     round = yes
     if = {
         limit = {
@@ -3180,7 +3180,7 @@ mwp_d21_conversion_price_50 = {
     }
 }
 mwp_d21_candidate_conversion_price_50 = {
-    value = 200
+    value = 65
     round = yes
     if = {
         limit = {
@@ -3203,7 +3203,7 @@ mwp_d21_candidate_conversion_price_50 = {
     }
 }
 mwp_d21_subject_price_51 = {
-    value = 66
+    value = 22
     round = yes
     multiply = {
         value = 1
@@ -3214,7 +3214,7 @@ mwp_d21_subject_price_51 = {
     }
 }
 mwp_d21_conversion_price_51 = {
-    value = 66
+    value = 22
     round = yes
     if = {
         limit = {
@@ -3237,7 +3237,7 @@ mwp_d21_conversion_price_51 = {
     }
 }
 mwp_d21_candidate_conversion_price_51 = {
-    value = 66
+    value = 22
     round = yes
     if = {
         limit = {
@@ -3260,7 +3260,7 @@ mwp_d21_candidate_conversion_price_51 = {
     }
 }
 mwp_d21_subject_price_52 = {
-    value = 88
+    value = 32
     round = yes
     multiply = {
         value = 1
@@ -3271,7 +3271,7 @@ mwp_d21_subject_price_52 = {
     }
 }
 mwp_d21_conversion_price_52 = {
-    value = 88
+    value = 32
     round = yes
     if = {
         limit = {
@@ -3294,7 +3294,7 @@ mwp_d21_conversion_price_52 = {
     }
 }
 mwp_d21_candidate_conversion_price_52 = {
-    value = 88
+    value = 32
     round = yes
     if = {
         limit = {
@@ -3317,7 +3317,7 @@ mwp_d21_candidate_conversion_price_52 = {
     }
 }
 mwp_d21_subject_price_53 = {
-    value = 78
+    value = 26
     round = yes
     multiply = {
         value = 1
@@ -3328,7 +3328,7 @@ mwp_d21_subject_price_53 = {
     }
 }
 mwp_d21_conversion_price_53 = {
-    value = 78
+    value = 26
     round = yes
     if = {
         limit = {
@@ -3351,7 +3351,7 @@ mwp_d21_conversion_price_53 = {
     }
 }
 mwp_d21_candidate_conversion_price_53 = {
-    value = 78
+    value = 26
     round = yes
     if = {
         limit = {
@@ -3374,7 +3374,7 @@ mwp_d21_candidate_conversion_price_53 = {
     }
 }
 mwp_d21_subject_price_54 = {
-    value = 96
+    value = 32
     round = yes
     multiply = {
         value = 1
@@ -3385,7 +3385,7 @@ mwp_d21_subject_price_54 = {
     }
 }
 mwp_d21_conversion_price_54 = {
-    value = 96
+    value = 32
     round = yes
     if = {
         limit = {
@@ -3408,7 +3408,7 @@ mwp_d21_conversion_price_54 = {
     }
 }
 mwp_d21_candidate_conversion_price_54 = {
-    value = 96
+    value = 32
     round = yes
     if = {
         limit = {
@@ -3431,7 +3431,7 @@ mwp_d21_candidate_conversion_price_54 = {
     }
 }
 mwp_d21_subject_price_55 = {
-    value = 76
+    value = 25
     round = yes
     multiply = {
         value = 1
@@ -3442,7 +3442,7 @@ mwp_d21_subject_price_55 = {
     }
 }
 mwp_d21_conversion_price_55 = {
-    value = 76
+    value = 25
     round = yes
     if = {
         limit = {
@@ -3465,7 +3465,7 @@ mwp_d21_conversion_price_55 = {
     }
 }
 mwp_d21_candidate_conversion_price_55 = {
-    value = 76
+    value = 25
     round = yes
     if = {
         limit = {
@@ -3545,7 +3545,7 @@ mwp_d21_candidate_conversion_price_56 = {
     }
 }
 mwp_d21_subject_price_58 = {
-    value = 85
+    value = 30
     round = yes
     multiply = {
         value = 1
@@ -3556,7 +3556,7 @@ mwp_d21_subject_price_58 = {
     }
 }
 mwp_d21_conversion_price_58 = {
-    value = 85
+    value = 30
     round = yes
     if = {
         limit = {
@@ -3579,7 +3579,7 @@ mwp_d21_conversion_price_58 = {
     }
 }
 mwp_d21_candidate_conversion_price_58 = {
-    value = 85
+    value = 30
     round = yes
     if = {
         limit = {
@@ -3602,7 +3602,7 @@ mwp_d21_candidate_conversion_price_58 = {
     }
 }
 mwp_d21_subject_price_59 = {
-    value = 400
+    value = 130
     round = yes
     multiply = {
         value = 1
@@ -3613,7 +3613,7 @@ mwp_d21_subject_price_59 = {
     }
 }
 mwp_d21_conversion_price_59 = {
-    value = 400
+    value = 130
     round = yes
     if = {
         limit = {
@@ -3636,7 +3636,7 @@ mwp_d21_conversion_price_59 = {
     }
 }
 mwp_d21_candidate_conversion_price_59 = {
-    value = 400
+    value = 130
     round = yes
     if = {
         limit = {
@@ -3659,7 +3659,7 @@ mwp_d21_candidate_conversion_price_59 = {
     }
 }
 mwp_d21_subject_price_60 = {
-    value = 110
+    value = 40
     round = yes
     multiply = {
         value = 1
@@ -3670,7 +3670,7 @@ mwp_d21_subject_price_60 = {
     }
 }
 mwp_d21_conversion_price_60 = {
-    value = 110
+    value = 40
     round = yes
     if = {
         limit = {
@@ -3693,7 +3693,7 @@ mwp_d21_conversion_price_60 = {
     }
 }
 mwp_d21_candidate_conversion_price_60 = {
-    value = 110
+    value = 40
     round = yes
     if = {
         limit = {
@@ -3716,7 +3716,7 @@ mwp_d21_candidate_conversion_price_60 = {
     }
 }
 mwp_d21_subject_price_61 = {
-    value = 90
+    value = 30
     round = yes
     multiply = {
         value = 1
@@ -3727,7 +3727,7 @@ mwp_d21_subject_price_61 = {
     }
 }
 mwp_d21_conversion_price_61 = {
-    value = 90
+    value = 30
     round = yes
     if = {
         limit = {
@@ -3750,7 +3750,7 @@ mwp_d21_conversion_price_61 = {
     }
 }
 mwp_d21_candidate_conversion_price_61 = {
-    value = 90
+    value = 30
     round = yes
     if = {
         limit = {
@@ -3773,7 +3773,7 @@ mwp_d21_candidate_conversion_price_61 = {
     }
 }
 mwp_d21_subject_price_62 = {
-    value = 150
+    value = 50
     round = yes
     multiply = {
         value = 1
@@ -3784,7 +3784,7 @@ mwp_d21_subject_price_62 = {
     }
 }
 mwp_d21_conversion_price_62 = {
-    value = 150
+    value = 50
     round = yes
     if = {
         limit = {
@@ -3807,7 +3807,7 @@ mwp_d21_conversion_price_62 = {
     }
 }
 mwp_d21_candidate_conversion_price_62 = {
-    value = 150
+    value = 50
     round = yes
     if = {
         limit = {
@@ -3830,7 +3830,7 @@ mwp_d21_candidate_conversion_price_62 = {
     }
 }
 mwp_d21_subject_price_63 = {
-    value = 170
+    value = 60
     round = yes
     multiply = {
         value = 1
@@ -3841,7 +3841,7 @@ mwp_d21_subject_price_63 = {
     }
 }
 mwp_d21_conversion_price_63 = {
-    value = 170
+    value = 60
     round = yes
     if = {
         limit = {
@@ -3864,7 +3864,7 @@ mwp_d21_conversion_price_63 = {
     }
 }
 mwp_d21_candidate_conversion_price_63 = {
-    value = 170
+    value = 60
     round = yes
     if = {
         limit = {
@@ -3887,7 +3887,7 @@ mwp_d21_candidate_conversion_price_63 = {
     }
 }
 mwp_d21_subject_price_64 = {
-    value = 180
+    value = 60
     round = yes
     multiply = {
         value = 1
@@ -3898,7 +3898,7 @@ mwp_d21_subject_price_64 = {
     }
 }
 mwp_d21_conversion_price_64 = {
-    value = 180
+    value = 60
     round = yes
     if = {
         limit = {
@@ -3921,7 +3921,7 @@ mwp_d21_conversion_price_64 = {
     }
 }
 mwp_d21_candidate_conversion_price_64 = {
-    value = 180
+    value = 60
     round = yes
     if = {
         limit = {
@@ -3944,7 +3944,7 @@ mwp_d21_candidate_conversion_price_64 = {
     }
 }
 mwp_d21_subject_price_65 = {
-    value = 400
+    value = 130
     round = yes
     multiply = {
         value = 1
@@ -3955,7 +3955,7 @@ mwp_d21_subject_price_65 = {
     }
 }
 mwp_d21_conversion_price_65 = {
-    value = 400
+    value = 130
     round = yes
     if = {
         limit = {
@@ -3978,7 +3978,7 @@ mwp_d21_conversion_price_65 = {
     }
 }
 mwp_d21_candidate_conversion_price_65 = {
-    value = 400
+    value = 130
     round = yes
     if = {
         limit = {
@@ -4001,7 +4001,7 @@ mwp_d21_candidate_conversion_price_65 = {
     }
 }
 mwp_d21_subject_price_66 = {
-    value = 176
+    value = 64
     round = yes
     multiply = {
         value = 1
@@ -4012,7 +4012,7 @@ mwp_d21_subject_price_66 = {
     }
 }
 mwp_d21_conversion_price_66 = {
-    value = 176
+    value = 64
     round = yes
     if = {
         limit = {
@@ -4035,7 +4035,7 @@ mwp_d21_conversion_price_66 = {
     }
 }
 mwp_d21_candidate_conversion_price_66 = {
-    value = 176
+    value = 64
     round = yes
     if = {
         limit = {
@@ -4058,7 +4058,7 @@ mwp_d21_candidate_conversion_price_66 = {
     }
 }
 mwp_d21_subject_price_67 = {
-    value = 170
+    value = 60
     round = yes
     multiply = {
         value = 1
@@ -4069,7 +4069,7 @@ mwp_d21_subject_price_67 = {
     }
 }
 mwp_d21_conversion_price_67 = {
-    value = 170
+    value = 60
     round = yes
     if = {
         limit = {
@@ -4092,7 +4092,7 @@ mwp_d21_conversion_price_67 = {
     }
 }
 mwp_d21_candidate_conversion_price_67 = {
-    value = 170
+    value = 60
     round = yes
     if = {
         limit = {
@@ -4115,7 +4115,7 @@ mwp_d21_candidate_conversion_price_67 = {
     }
 }
 mwp_d21_subject_price_68 = {
-    value = 800
+    value = 260
     round = yes
     multiply = {
         value = 1
@@ -4126,7 +4126,7 @@ mwp_d21_subject_price_68 = {
     }
 }
 mwp_d21_conversion_price_68 = {
-    value = 800
+    value = 260
     round = yes
     if = {
         limit = {
@@ -4149,7 +4149,7 @@ mwp_d21_conversion_price_68 = {
     }
 }
 mwp_d21_candidate_conversion_price_68 = {
-    value = 800
+    value = 260
     round = yes
     if = {
         limit = {
@@ -4172,7 +4172,7 @@ mwp_d21_candidate_conversion_price_68 = {
     }
 }
 mwp_d21_subject_price_69 = {
-    value = 270
+    value = 90
     round = yes
     multiply = {
         value = 1
@@ -4183,7 +4183,7 @@ mwp_d21_subject_price_69 = {
     }
 }
 mwp_d21_conversion_price_69 = {
-    value = 270
+    value = 90
     round = yes
     if = {
         limit = {
@@ -4206,7 +4206,7 @@ mwp_d21_conversion_price_69 = {
     }
 }
 mwp_d21_candidate_conversion_price_69 = {
-    value = 270
+    value = 90
     round = yes
     if = {
         limit = {
@@ -4229,7 +4229,7 @@ mwp_d21_candidate_conversion_price_69 = {
     }
 }
 mwp_d21_subject_price_70 = {
-    value = 76
+    value = 25
     round = yes
     multiply = {
         value = 1
@@ -4240,7 +4240,7 @@ mwp_d21_subject_price_70 = {
     }
 }
 mwp_d21_conversion_price_70 = {
-    value = 76
+    value = 25
     round = yes
     if = {
         limit = {
@@ -4263,7 +4263,7 @@ mwp_d21_conversion_price_70 = {
     }
 }
 mwp_d21_candidate_conversion_price_70 = {
-    value = 76
+    value = 25
     round = yes
     if = {
         limit = {
@@ -4286,7 +4286,7 @@ mwp_d21_candidate_conversion_price_70 = {
     }
 }
 mwp_d21_subject_price_71 = {
-    value = 60.5
+    value = 22
     round = yes
     multiply = {
         value = 1
@@ -4297,7 +4297,7 @@ mwp_d21_subject_price_71 = {
     }
 }
 mwp_d21_conversion_price_71 = {
-    value = 60.5
+    value = 22
     round = yes
     if = {
         limit = {
@@ -4320,7 +4320,7 @@ mwp_d21_conversion_price_71 = {
     }
 }
 mwp_d21_candidate_conversion_price_71 = {
-    value = 60.5
+    value = 22
     round = yes
     if = {
         limit = {
@@ -4343,7 +4343,7 @@ mwp_d21_candidate_conversion_price_71 = {
     }
 }
 mwp_d21_subject_price_72 = {
-    value = 50.25
+    value = 16.75
     round = yes
     multiply = {
         value = 1
@@ -4354,7 +4354,7 @@ mwp_d21_subject_price_72 = {
     }
 }
 mwp_d21_conversion_price_72 = {
-    value = 50.25
+    value = 16.75
     round = yes
     if = {
         limit = {
@@ -4377,7 +4377,7 @@ mwp_d21_conversion_price_72 = {
     }
 }
 mwp_d21_candidate_conversion_price_72 = {
-    value = 50.25
+    value = 16.75
     round = yes
     if = {
         limit = {
@@ -4400,7 +4400,7 @@ mwp_d21_candidate_conversion_price_72 = {
     }
 }
 mwp_d21_subject_price_73 = {
-    value = 150.3
+    value = 50.1
     round = yes
     multiply = {
         value = 1
@@ -4411,7 +4411,7 @@ mwp_d21_subject_price_73 = {
     }
 }
 mwp_d21_conversion_price_73 = {
-    value = 150.3
+    value = 50.1
     round = yes
     if = {
         limit = {
@@ -4434,7 +4434,7 @@ mwp_d21_conversion_price_73 = {
     }
 }
 mwp_d21_candidate_conversion_price_73 = {
-    value = 150.3
+    value = 50.1
     round = yes
     if = {
         limit = {
@@ -4457,7 +4457,7 @@ mwp_d21_candidate_conversion_price_73 = {
     }
 }
 mwp_d21_subject_price_75 = {
-    value = 85
+    value = 30
     round = yes
     multiply = {
         value = 1
@@ -4468,7 +4468,7 @@ mwp_d21_subject_price_75 = {
     }
 }
 mwp_d21_conversion_price_75 = {
-    value = 85
+    value = 30
     round = yes
     if = {
         limit = {
@@ -4491,7 +4491,7 @@ mwp_d21_conversion_price_75 = {
     }
 }
 mwp_d21_candidate_conversion_price_75 = {
-    value = 85
+    value = 30
     round = yes
     if = {
         limit = {
@@ -4514,7 +4514,7 @@ mwp_d21_candidate_conversion_price_75 = {
     }
 }
 mwp_d21_subject_price_76 = {
-    value = 170
+    value = 55.25
     round = yes
     multiply = {
         value = 1
@@ -4525,7 +4525,7 @@ mwp_d21_subject_price_76 = {
     }
 }
 mwp_d21_conversion_price_76 = {
-    value = 170
+    value = 55.25
     round = yes
     if = {
         limit = {
@@ -4548,7 +4548,7 @@ mwp_d21_conversion_price_76 = {
     }
 }
 mwp_d21_candidate_conversion_price_76 = {
-    value = 170
+    value = 55.25
     round = yes
     if = {
         limit = {
@@ -4571,7 +4571,7 @@ mwp_d21_candidate_conversion_price_76 = {
     }
 }
 mwp_d21_subject_price_77 = {
-    value = 40.5
+    value = 13.5
     round = yes
     multiply = {
         value = 1
@@ -4582,7 +4582,7 @@ mwp_d21_subject_price_77 = {
     }
 }
 mwp_d21_conversion_price_77 = {
-    value = 40.5
+    value = 13.5
     round = yes
     if = {
         limit = {
@@ -4605,7 +4605,7 @@ mwp_d21_conversion_price_77 = {
     }
 }
 mwp_d21_candidate_conversion_price_77 = {
-    value = 40.5
+    value = 13.5
     round = yes
     if = {
         limit = {
@@ -4628,7 +4628,7 @@ mwp_d21_candidate_conversion_price_77 = {
     }
 }
 mwp_d21_subject_price_78 = {
-    value = 63.25
+    value = 23
     round = yes
     multiply = {
         value = 1
@@ -4639,7 +4639,7 @@ mwp_d21_subject_price_78 = {
     }
 }
 mwp_d21_conversion_price_78 = {
-    value = 63.25
+    value = 23
     round = yes
     if = {
         limit = {
@@ -4662,7 +4662,7 @@ mwp_d21_conversion_price_78 = {
     }
 }
 mwp_d21_candidate_conversion_price_78 = {
-    value = 63.25
+    value = 23
     round = yes
     if = {
         limit = {
@@ -4685,7 +4685,7 @@ mwp_d21_candidate_conversion_price_78 = {
     }
 }
 mwp_d21_subject_price_79 = {
-    value = 82.5
+    value = 27.5
     round = yes
     multiply = {
         value = 1
@@ -4696,7 +4696,7 @@ mwp_d21_subject_price_79 = {
     }
 }
 mwp_d21_conversion_price_79 = {
-    value = 82.5
+    value = 27.5
     round = yes
     if = {
         limit = {
@@ -4719,7 +4719,7 @@ mwp_d21_conversion_price_79 = {
     }
 }
 mwp_d21_candidate_conversion_price_79 = {
-    value = 82.5
+    value = 27.5
     round = yes
     if = {
         limit = {
@@ -4742,7 +4742,7 @@ mwp_d21_candidate_conversion_price_79 = {
     }
 }
 mwp_d21_subject_price_80 = {
-    value = 72
+    value = 24
     round = yes
     multiply = {
         value = 1
@@ -4753,7 +4753,7 @@ mwp_d21_subject_price_80 = {
     }
 }
 mwp_d21_conversion_price_80 = {
-    value = 72
+    value = 24
     round = yes
     if = {
         limit = {
@@ -4776,7 +4776,7 @@ mwp_d21_conversion_price_80 = {
     }
 }
 mwp_d21_candidate_conversion_price_80 = {
-    value = 72
+    value = 24
     round = yes
     if = {
         limit = {
@@ -4799,7 +4799,7 @@ mwp_d21_candidate_conversion_price_80 = {
     }
 }
 mwp_d21_subject_price_81 = {
-    value = 67.5
+    value = 22.5
     round = yes
     multiply = {
         value = 1
@@ -4810,7 +4810,7 @@ mwp_d21_subject_price_81 = {
     }
 }
 mwp_d21_conversion_price_81 = {
-    value = 67.5
+    value = 22.5
     round = yes
     if = {
         limit = {
@@ -4833,7 +4833,7 @@ mwp_d21_conversion_price_81 = {
     }
 }
 mwp_d21_candidate_conversion_price_81 = {
-    value = 67.5
+    value = 22.5
     round = yes
     if = {
         limit = {
@@ -4856,7 +4856,7 @@ mwp_d21_candidate_conversion_price_81 = {
     }
 }
 mwp_d21_subject_price_87 = {
-    value = 30
+    value = 10
     round = yes
     multiply = {
         value = 1
@@ -4867,7 +4867,7 @@ mwp_d21_subject_price_87 = {
     }
 }
 mwp_d21_conversion_price_87 = {
-    value = 30
+    value = 10
     round = yes
     if = {
         limit = {
@@ -4890,7 +4890,7 @@ mwp_d21_conversion_price_87 = {
     }
 }
 mwp_d21_candidate_conversion_price_87 = {
-    value = 30
+    value = 10
     round = yes
     if = {
         limit = {
@@ -4913,7 +4913,7 @@ mwp_d21_candidate_conversion_price_87 = {
     }
 }
 mwp_d21_subject_price_95 = {
-    value = 85
+    value = 30
     round = yes
     multiply = {
         value = 1
@@ -4924,7 +4924,7 @@ mwp_d21_subject_price_95 = {
     }
 }
 mwp_d21_conversion_price_95 = {
-    value = 85
+    value = 30
     round = yes
     if = {
         limit = {
@@ -4947,7 +4947,7 @@ mwp_d21_conversion_price_95 = {
     }
 }
 mwp_d21_candidate_conversion_price_95 = {
-    value = 85
+    value = 30
     round = yes
     if = {
         limit = {
@@ -4970,7 +4970,7 @@ mwp_d21_candidate_conversion_price_95 = {
     }
 }
 mwp_d21_subject_price_96 = {
-    value = 135
+    value = 45
     round = yes
     multiply = {
         value = 1
@@ -4981,7 +4981,7 @@ mwp_d21_subject_price_96 = {
     }
 }
 mwp_d21_conversion_price_96 = {
-    value = 135
+    value = 45
     round = yes
     if = {
         limit = {
@@ -5004,7 +5004,7 @@ mwp_d21_conversion_price_96 = {
     }
 }
 mwp_d21_candidate_conversion_price_96 = {
-    value = 135
+    value = 45
     round = yes
     if = {
         limit = {
@@ -5027,7 +5027,7 @@ mwp_d21_candidate_conversion_price_96 = {
     }
 }
 mwp_d21_subject_price_98 = {
-    value = 88
+    value = 32
     round = yes
     multiply = {
         value = 1
@@ -5038,7 +5038,7 @@ mwp_d21_subject_price_98 = {
     }
 }
 mwp_d21_conversion_price_98 = {
-    value = 88
+    value = 32
     round = yes
     if = {
         limit = {
@@ -5061,7 +5061,7 @@ mwp_d21_conversion_price_98 = {
     }
 }
 mwp_d21_candidate_conversion_price_98 = {
-    value = 88
+    value = 32
     round = yes
     if = {
         limit = {
@@ -5084,7 +5084,7 @@ mwp_d21_candidate_conversion_price_98 = {
     }
 }
 mwp_d21_subject_price_99 = {
-    value = 66
+    value = 24
     round = yes
     multiply = {
         value = 1
@@ -5095,7 +5095,7 @@ mwp_d21_subject_price_99 = {
     }
 }
 mwp_d21_conversion_price_99 = {
-    value = 66
+    value = 24
     round = yes
     if = {
         limit = {
@@ -5118,7 +5118,7 @@ mwp_d21_conversion_price_99 = {
     }
 }
 mwp_d21_candidate_conversion_price_99 = {
-    value = 66
+    value = 24
     round = yes
     if = {
         limit = {
@@ -5141,7 +5141,7 @@ mwp_d21_candidate_conversion_price_99 = {
     }
 }
 mwp_d21_subject_price_100 = {
-    value = 440
+    value = 143
     round = yes
     multiply = {
         value = 1
@@ -5152,7 +5152,7 @@ mwp_d21_subject_price_100 = {
     }
 }
 mwp_d21_conversion_price_100 = {
-    value = 440
+    value = 143
     round = yes
     if = {
         limit = {
@@ -5175,7 +5175,7 @@ mwp_d21_conversion_price_100 = {
     }
 }
 mwp_d21_candidate_conversion_price_100 = {
-    value = 440
+    value = 143
     round = yes
     if = {
         limit = {
@@ -5198,7 +5198,7 @@ mwp_d21_candidate_conversion_price_100 = {
     }
 }
 mwp_d21_subject_price_101 = {
-    value = 40.5
+    value = 13.5
     round = yes
     multiply = {
         value = 1
@@ -5209,7 +5209,7 @@ mwp_d21_subject_price_101 = {
     }
 }
 mwp_d21_conversion_price_101 = {
-    value = 40.5
+    value = 13.5
     round = yes
     if = {
         limit = {
@@ -5232,7 +5232,7 @@ mwp_d21_conversion_price_101 = {
     }
 }
 mwp_d21_candidate_conversion_price_101 = {
-    value = 40.5
+    value = 13.5
     round = yes
     if = {
         limit = {
@@ -5255,7 +5255,7 @@ mwp_d21_candidate_conversion_price_101 = {
     }
 }
 mwp_d21_subject_price_102 = {
-    value = 150.3
+    value = 50.1
     round = yes
     multiply = {
         value = 1
@@ -5266,7 +5266,7 @@ mwp_d21_subject_price_102 = {
     }
 }
 mwp_d21_conversion_price_102 = {
-    value = 150.3
+    value = 50.1
     round = yes
     if = {
         limit = {
@@ -5289,7 +5289,7 @@ mwp_d21_conversion_price_102 = {
     }
 }
 mwp_d21_candidate_conversion_price_102 = {
-    value = 150.3
+    value = 50.1
     round = yes
     if = {
         limit = {
@@ -5312,7 +5312,7 @@ mwp_d21_candidate_conversion_price_102 = {
     }
 }
 mwp_d21_subject_price_103 = {
-    value = 85.5
+    value = 28.5
     round = yes
     multiply = {
         value = 1
@@ -5323,7 +5323,7 @@ mwp_d21_subject_price_103 = {
     }
 }
 mwp_d21_conversion_price_103 = {
-    value = 85.5
+    value = 28.5
     round = yes
     if = {
         limit = {
@@ -5346,7 +5346,7 @@ mwp_d21_conversion_price_103 = {
     }
 }
 mwp_d21_candidate_conversion_price_103 = {
-    value = 85.5
+    value = 28.5
     round = yes
     if = {
         limit = {
@@ -5369,7 +5369,7 @@ mwp_d21_candidate_conversion_price_103 = {
     }
 }
 mwp_d21_subject_price_104 = {
-    value = 260
+    value = 84.5
     round = yes
     multiply = {
         value = 1
@@ -5380,7 +5380,7 @@ mwp_d21_subject_price_104 = {
     }
 }
 mwp_d21_conversion_price_104 = {
-    value = 260
+    value = 84.5
     round = yes
     if = {
         limit = {
@@ -5403,7 +5403,7 @@ mwp_d21_conversion_price_104 = {
     }
 }
 mwp_d21_candidate_conversion_price_104 = {
-    value = 260
+    value = 84.5
     round = yes
     if = {
         limit = {
@@ -5426,7 +5426,7 @@ mwp_d21_candidate_conversion_price_104 = {
     }
 }
 mwp_d21_subject_price_105 = {
-    value = 260
+    value = 84.5
     round = yes
     multiply = {
         value = 1
@@ -5437,7 +5437,7 @@ mwp_d21_subject_price_105 = {
     }
 }
 mwp_d21_conversion_price_105 = {
-    value = 260
+    value = 84.5
     round = yes
     if = {
         limit = {
@@ -5460,7 +5460,64 @@ mwp_d21_conversion_price_105 = {
     }
 }
 mwp_d21_candidate_conversion_price_105 = {
-    value = 260
+    value = 84.5
+    round = yes
+    if = {
+        limit = {
+            var:mwp_script_candidate_subject_source = 1
+        }
+        multiply = {
+            value = 1
+            add = 0.5
+            add = var:mwp_d21_horde_cost
+            min = 0.1
+        }
+    }
+    else = {
+        multiply = 0.5
+        multiply = {
+            value = 1
+            add = var:mwp_d21_horde_cost
+            min = 0.1
+        }
+    }
+}
+mwp_d21_subject_price_112 = {
+    value = 71.5
+    round = yes
+    multiply = {
+        value = 1
+        add = 0.5
+        add = var:mwp_script_price_generic
+        add = var:mwp_script_price_heavy_cavalry
+        min = 0.1
+    }
+}
+mwp_d21_conversion_price_112 = {
+    value = 71.5
+    round = yes
+    if = {
+        limit = {
+            mwp_d21_subject_source_value = 1
+        }
+        multiply = {
+            value = 1
+            add = 0.5
+            add = var:mwp_d21_horde_cost
+            min = 0.1
+        }
+    }
+    else = {
+        multiply = 0.5
+        multiply = {
+            value = 1
+            add = var:mwp_d21_horde_cost
+            min = 0.1
+        }
+    }
+}
+mwp_d21_candidate_conversion_price_112 = {
+    value = 71.5
     round = yes
     if = {
         limit = {
@@ -5483,7 +5540,7 @@ mwp_d21_candidate_conversion_price_105 = {
     }
 }
 mwp_d21_subject_price_106 = {
-    value = 75
+    value = 15
     round = yes
     multiply = {
         value = 1
@@ -5494,7 +5551,7 @@ mwp_d21_subject_price_106 = {
     }
 }
 mwp_d21_conversion_price_106 = {
-    value = 75
+    value = 15
     round = yes
     if = {
         limit = {
@@ -5517,7 +5574,7 @@ mwp_d21_conversion_price_106 = {
     }
 }
 mwp_d21_candidate_conversion_price_106 = {
-    value = 75
+    value = 15
     round = yes
     if = {
         limit = {
@@ -5540,7 +5597,7 @@ mwp_d21_candidate_conversion_price_106 = {
     }
 }
 mwp_d21_subject_price_107 = {
-    value = 68.75
+    value = 25
     round = yes
     multiply = {
         value = 1
@@ -5551,7 +5608,7 @@ mwp_d21_subject_price_107 = {
     }
 }
 mwp_d21_conversion_price_107 = {
-    value = 68.75
+    value = 25
     round = yes
     if = {
         limit = {
@@ -5574,7 +5631,7 @@ mwp_d21_conversion_price_107 = {
     }
 }
 mwp_d21_candidate_conversion_price_107 = {
-    value = 68.75
+    value = 25
     round = yes
     if = {
         limit = {
@@ -5597,7 +5654,7 @@ mwp_d21_candidate_conversion_price_107 = {
     }
 }
 mwp_d21_subject_price_108 = {
-    value = 60
+    value = 20
     round = yes
     multiply = {
         value = 1
@@ -5608,7 +5665,7 @@ mwp_d21_subject_price_108 = {
     }
 }
 mwp_d21_conversion_price_108 = {
-    value = 60
+    value = 20
     round = yes
     if = {
         limit = {
@@ -5631,7 +5688,7 @@ mwp_d21_conversion_price_108 = {
     }
 }
 mwp_d21_candidate_conversion_price_108 = {
-    value = 60
+    value = 20
     round = yes
     if = {
         limit = {
@@ -5654,7 +5711,7 @@ mwp_d21_candidate_conversion_price_108 = {
     }
 }
 mwp_d21_subject_price_109 = {
-    value = 66
+    value = 22
     round = yes
     multiply = {
         value = 1
@@ -5665,7 +5722,7 @@ mwp_d21_subject_price_109 = {
     }
 }
 mwp_d21_conversion_price_109 = {
-    value = 66
+    value = 22
     round = yes
     if = {
         limit = {
@@ -5688,7 +5745,7 @@ mwp_d21_conversion_price_109 = {
     }
 }
 mwp_d21_candidate_conversion_price_109 = {
-    value = 66
+    value = 22
     round = yes
     if = {
         limit = {
@@ -5711,7 +5768,7 @@ mwp_d21_candidate_conversion_price_109 = {
     }
 }
 mwp_d21_subject_price_110 = {
-    value = 78
+    value = 26
     round = yes
     multiply = {
         value = 1
@@ -5722,7 +5779,7 @@ mwp_d21_subject_price_110 = {
     }
 }
 mwp_d21_conversion_price_110 = {
-    value = 78
+    value = 26
     round = yes
     if = {
         limit = {
@@ -5745,7 +5802,7 @@ mwp_d21_conversion_price_110 = {
     }
 }
 mwp_d21_candidate_conversion_price_110 = {
-    value = 78
+    value = 26
     round = yes
     if = {
         limit = {
@@ -5768,7 +5825,7 @@ mwp_d21_candidate_conversion_price_110 = {
     }
 }
 mwp_d21_subject_price_111 = {
-    value = 121.6
+    value = 40
     round = yes
     multiply = {
         value = 1
@@ -5779,7 +5836,7 @@ mwp_d21_subject_price_111 = {
     }
 }
 mwp_d21_conversion_price_111 = {
-    value = 121.6
+    value = 40
     round = yes
     if = {
         limit = {
@@ -5802,7 +5859,7 @@ mwp_d21_conversion_price_111 = {
     }
 }
 mwp_d21_candidate_conversion_price_111 = {
-    value = 121.6
+    value = 40
     round = yes
     if = {
         limit = {

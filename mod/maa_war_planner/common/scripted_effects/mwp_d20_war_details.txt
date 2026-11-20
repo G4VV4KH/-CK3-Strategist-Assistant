@@ -41,6 +41,11 @@ mwp_d20_inspect_offensive_cb_effect = {
    set_variable = { name = mwp_d20_offensive_cb_weight value = 6 }
   }
   else_if = {
+   limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = pax_romana_invasion_war } } }
+   set_variable = { name = mwp_d20_offensive_cb value = flag:pax_romana_invasion_war }
+   set_variable = { name = mwp_d20_offensive_cb_weight value = 5 }
+  }
+  else_if = {
    limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = ep3_laamp_adventurer_empire_invasion } } }
    set_variable = { name = mwp_d20_offensive_cb value = flag:ep3_laamp_adventurer_empire_invasion }
    set_variable = { name = mwp_d20_offensive_cb_weight value = 5 }
@@ -66,8 +71,18 @@ mwp_d20_inspect_offensive_cb_effect = {
    set_variable = { name = mwp_d20_offensive_cb_weight value = 4 }
   }
   else_if = {
+   limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = mongol_invasion_war } } }
+   set_variable = { name = mwp_d20_offensive_cb value = flag:mongol_invasion_war }
+   set_variable = { name = mwp_d20_offensive_cb_weight value = 4 }
+  }
+  else_if = {
    limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = mpo_nomad_invasion_cb } } }
    set_variable = { name = mwp_d20_offensive_cb value = flag:mpo_nomad_invasion_cb }
+   set_variable = { name = mwp_d20_offensive_cb_weight value = 4 }
+  }
+  else_if = {
+   limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = seize_realm_kingdom_cb } } }
+   set_variable = { name = mwp_d20_offensive_cb value = flag:seize_realm_kingdom_cb }
    set_variable = { name = mwp_d20_offensive_cb_weight value = 4 }
   }
   else_if = {
@@ -101,8 +116,18 @@ mwp_d20_inspect_offensive_cb_effect = {
    set_variable = { name = mwp_d20_offensive_cb_weight value = 3 }
   }
   else_if = {
+   limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = imperial_reconquest_cb } } }
+   set_variable = { name = mwp_d20_offensive_cb value = flag:imperial_reconquest_cb }
+   set_variable = { name = mwp_d20_offensive_cb_weight value = 3 }
+  }
+  else_if = {
    limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = duchy_expansion_cb } } }
    set_variable = { name = mwp_d20_offensive_cb value = flag:duchy_expansion_cb }
+   set_variable = { name = mwp_d20_offensive_cb_weight value = 3 }
+  }
+  else_if = {
+   limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = seize_realm_duchy_cb } } }
+   set_variable = { name = mwp_d20_offensive_cb value = flag:seize_realm_duchy_cb }
    set_variable = { name = mwp_d20_offensive_cb_weight value = 3 }
   }
   else_if = {
@@ -118,6 +143,11 @@ mwp_d20_inspect_offensive_cb_effect = {
   else_if = {
    limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = naval_duchy_expansion_cb } } }
    set_variable = { name = mwp_d20_offensive_cb value = flag:naval_duchy_expansion_cb }
+   set_variable = { name = mwp_d20_offensive_cb_weight value = 3 }
+  }
+  else_if = {
+   limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = japan_imperial_reconquest_cb } } }
+   set_variable = { name = mwp_d20_offensive_cb value = flag:japan_imperial_reconquest_cb }
    set_variable = { name = mwp_d20_offensive_cb_weight value = 3 }
   }
   else_if = {
@@ -176,6 +206,21 @@ mwp_d20_inspect_offensive_cb_effect = {
    set_variable = { name = mwp_d20_offensive_cb_weight value = 2 }
   }
   else_if = {
+   limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = trade_county_conquest_cb } } }
+   set_variable = { name = mwp_d20_offensive_cb value = flag:trade_county_conquest_cb }
+   set_variable = { name = mwp_d20_offensive_cb_weight value = 2 }
+  }
+  else_if = {
+   limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = trade_league_commune_cb } } }
+   set_variable = { name = mwp_d20_offensive_cb value = flag:trade_league_commune_cb }
+   set_variable = { name = mwp_d20_offensive_cb_weight value = 2 }
+  }
+  else_if = {
+   limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = trade_league_monopoly_cb } } }
+   set_variable = { name = mwp_d20_offensive_cb value = flag:trade_league_monopoly_cb }
+   set_variable = { name = mwp_d20_offensive_cb_weight value = 2 }
+  }
+  else_if = {
    limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = china_hegemon_seize_county_cb } } }
    set_variable = { name = mwp_d20_offensive_cb value = flag:china_hegemon_seize_county_cb }
    set_variable = { name = mwp_d20_offensive_cb_weight value = 2 }
@@ -191,8 +236,18 @@ mwp_d20_inspect_offensive_cb_effect = {
    set_variable = { name = mwp_d20_offensive_cb_weight value = 2 }
   }
   else_if = {
+   limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = seize_realm_county_cb } } }
+   set_variable = { name = mwp_d20_offensive_cb value = flag:seize_realm_county_cb }
+   set_variable = { name = mwp_d20_offensive_cb_weight value = 2 }
+  }
+  else_if = {
    limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = naval_expansion_cb } } }
    set_variable = { name = mwp_d20_offensive_cb value = flag:naval_expansion_cb }
+   set_variable = { name = mwp_d20_offensive_cb_weight value = 2 }
+  }
+  else_if = {
+   limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = ireland_laudabiliter_conquest_cb } } }
+   set_variable = { name = mwp_d20_offensive_cb value = flag:ireland_laudabiliter_conquest_cb }
    set_variable = { name = mwp_d20_offensive_cb_weight value = 2 }
   }
   else_if = {
@@ -291,18 +346,8 @@ mwp_d20_inspect_offensive_cb_effect = {
    set_variable = { name = mwp_d20_offensive_cb_weight value = 1 }
   }
   else_if = {
-   limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = mongol_invasion_war } } }
-   set_variable = { name = mwp_d20_offensive_cb value = flag:mongol_invasion_war }
-   set_variable = { name = mwp_d20_offensive_cb_weight value = 1 }
-  }
-  else_if = {
    limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = mythical_ancestor_war } } }
    set_variable = { name = mwp_d20_offensive_cb value = flag:mythical_ancestor_war }
-   set_variable = { name = mwp_d20_offensive_cb_weight value = 1 }
-  }
-  else_if = {
-   limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = pax_romana_invasion_war } } }
-   set_variable = { name = mwp_d20_offensive_cb value = flag:pax_romana_invasion_war }
    set_variable = { name = mwp_d20_offensive_cb_weight value = 1 }
   }
   else_if = {
@@ -316,8 +361,23 @@ mwp_d20_inspect_offensive_cb_effect = {
    set_variable = { name = mwp_d20_offensive_cb_weight value = 1 }
   }
   else_if = {
-   limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = imperial_reconquest_cb } } }
-   set_variable = { name = mwp_d20_offensive_cb value = flag:imperial_reconquest_cb }
+   limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = trade_league_trade_war_cb } } }
+   set_variable = { name = mwp_d20_offensive_cb value = flag:trade_league_trade_war_cb }
+   set_variable = { name = mwp_d20_offensive_cb_weight value = 1 }
+  }
+  else_if = {
+   limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = displace_guelph_ghibelline_ruler_cb } } }
+   set_variable = { name = mwp_d20_offensive_cb value = flag:displace_guelph_ghibelline_ruler_cb }
+   set_variable = { name = mwp_d20_offensive_cb_weight value = 1 }
+  }
+  else_if = {
+   limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = dissolve_lombard_league_cb } } }
+   set_variable = { name = mwp_d20_offensive_cb value = flag:dissolve_lombard_league_cb }
+   set_variable = { name = mwp_d20_offensive_cb_weight value = 1 }
+  }
+  else_if = {
+   limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = dissolve_the_hanse_cb } } }
+   set_variable = { name = mwp_d20_offensive_cb value = flag:dissolve_the_hanse_cb }
    set_variable = { name = mwp_d20_offensive_cb_weight value = 1 }
   }
   else_if = {
@@ -346,11 +406,6 @@ mwp_d20_inspect_offensive_cb_effect = {
    set_variable = { name = mwp_d20_offensive_cb_weight value = 1 }
   }
   else_if = {
-   limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = ireland_laudabiliter_conquest_cb } } }
-   set_variable = { name = mwp_d20_offensive_cb value = flag:ireland_laudabiliter_conquest_cb }
-   set_variable = { name = mwp_d20_offensive_cb_weight value = 1 }
-  }
-  else_if = {
    limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = japan_bloc_war_cb } } }
    set_variable = { name = mwp_d20_offensive_cb value = flag:japan_bloc_war_cb }
    set_variable = { name = mwp_d20_offensive_cb_weight value = 1 }
@@ -363,11 +418,6 @@ mwp_d20_inspect_offensive_cb_effect = {
   else_if = {
    limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = japan_establish_soryo_administration_cb } } }
    set_variable = { name = mwp_d20_offensive_cb value = flag:japan_establish_soryo_administration_cb }
-   set_variable = { name = mwp_d20_offensive_cb_weight value = 1 }
-  }
-  else_if = {
-   limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = japan_imperial_reconquest_cb } } }
-   set_variable = { name = mwp_d20_offensive_cb value = flag:japan_imperial_reconquest_cb }
    set_variable = { name = mwp_d20_offensive_cb_weight value = 1 }
   }
   else_if = {
@@ -408,6 +458,11 @@ mwp_d20_inspect_offensive_cb_effect = {
   else_if = {
    limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = pam_investiture_conflict_cb } } }
    set_variable = { name = mwp_d20_offensive_cb value = flag:pam_investiture_conflict_cb }
+   set_variable = { name = mwp_d20_offensive_cb_weight value = 1 }
+  }
+  else_if = {
+   limit = { scope:mwp_player = { has_cb_on = { target = scope:mwp_war_rival casus_belli = reinstate_guelph_ghibelline_ruler_cb } } }
+   set_variable = { name = mwp_d20_offensive_cb value = flag:reinstate_guelph_ghibelline_ruler_cb }
    set_variable = { name = mwp_d20_offensive_cb_weight value = 1 }
   }
   else_if = {
@@ -486,6 +541,11 @@ mwp_d20_inspect_defensive_cb_effect = {
    set_variable = { name = mwp_d20_defensive_cb_weight value = 6 }
   }
   else_if = {
+   limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = pax_romana_invasion_war } } }
+   set_variable = { name = mwp_d20_defensive_cb value = flag:pax_romana_invasion_war }
+   set_variable = { name = mwp_d20_defensive_cb_weight value = 5 }
+  }
+  else_if = {
    limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = ep3_laamp_adventurer_empire_invasion } } }
    set_variable = { name = mwp_d20_defensive_cb value = flag:ep3_laamp_adventurer_empire_invasion }
    set_variable = { name = mwp_d20_defensive_cb_weight value = 5 }
@@ -511,8 +571,18 @@ mwp_d20_inspect_defensive_cb_effect = {
    set_variable = { name = mwp_d20_defensive_cb_weight value = 4 }
   }
   else_if = {
+   limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = mongol_invasion_war } } }
+   set_variable = { name = mwp_d20_defensive_cb value = flag:mongol_invasion_war }
+   set_variable = { name = mwp_d20_defensive_cb_weight value = 4 }
+  }
+  else_if = {
    limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = mpo_nomad_invasion_cb } } }
    set_variable = { name = mwp_d20_defensive_cb value = flag:mpo_nomad_invasion_cb }
+   set_variable = { name = mwp_d20_defensive_cb_weight value = 4 }
+  }
+  else_if = {
+   limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = seize_realm_kingdom_cb } } }
+   set_variable = { name = mwp_d20_defensive_cb value = flag:seize_realm_kingdom_cb }
    set_variable = { name = mwp_d20_defensive_cb_weight value = 4 }
   }
   else_if = {
@@ -546,8 +616,18 @@ mwp_d20_inspect_defensive_cb_effect = {
    set_variable = { name = mwp_d20_defensive_cb_weight value = 3 }
   }
   else_if = {
+   limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = imperial_reconquest_cb } } }
+   set_variable = { name = mwp_d20_defensive_cb value = flag:imperial_reconquest_cb }
+   set_variable = { name = mwp_d20_defensive_cb_weight value = 3 }
+  }
+  else_if = {
    limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = duchy_expansion_cb } } }
    set_variable = { name = mwp_d20_defensive_cb value = flag:duchy_expansion_cb }
+   set_variable = { name = mwp_d20_defensive_cb_weight value = 3 }
+  }
+  else_if = {
+   limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = seize_realm_duchy_cb } } }
+   set_variable = { name = mwp_d20_defensive_cb value = flag:seize_realm_duchy_cb }
    set_variable = { name = mwp_d20_defensive_cb_weight value = 3 }
   }
   else_if = {
@@ -563,6 +643,11 @@ mwp_d20_inspect_defensive_cb_effect = {
   else_if = {
    limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = naval_duchy_expansion_cb } } }
    set_variable = { name = mwp_d20_defensive_cb value = flag:naval_duchy_expansion_cb }
+   set_variable = { name = mwp_d20_defensive_cb_weight value = 3 }
+  }
+  else_if = {
+   limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = japan_imperial_reconquest_cb } } }
+   set_variable = { name = mwp_d20_defensive_cb value = flag:japan_imperial_reconquest_cb }
    set_variable = { name = mwp_d20_defensive_cb_weight value = 3 }
   }
   else_if = {
@@ -621,6 +706,21 @@ mwp_d20_inspect_defensive_cb_effect = {
    set_variable = { name = mwp_d20_defensive_cb_weight value = 2 }
   }
   else_if = {
+   limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = trade_county_conquest_cb } } }
+   set_variable = { name = mwp_d20_defensive_cb value = flag:trade_county_conquest_cb }
+   set_variable = { name = mwp_d20_defensive_cb_weight value = 2 }
+  }
+  else_if = {
+   limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = trade_league_commune_cb } } }
+   set_variable = { name = mwp_d20_defensive_cb value = flag:trade_league_commune_cb }
+   set_variable = { name = mwp_d20_defensive_cb_weight value = 2 }
+  }
+  else_if = {
+   limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = trade_league_monopoly_cb } } }
+   set_variable = { name = mwp_d20_defensive_cb value = flag:trade_league_monopoly_cb }
+   set_variable = { name = mwp_d20_defensive_cb_weight value = 2 }
+  }
+  else_if = {
    limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = china_hegemon_seize_county_cb } } }
    set_variable = { name = mwp_d20_defensive_cb value = flag:china_hegemon_seize_county_cb }
    set_variable = { name = mwp_d20_defensive_cb_weight value = 2 }
@@ -636,8 +736,18 @@ mwp_d20_inspect_defensive_cb_effect = {
    set_variable = { name = mwp_d20_defensive_cb_weight value = 2 }
   }
   else_if = {
+   limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = seize_realm_county_cb } } }
+   set_variable = { name = mwp_d20_defensive_cb value = flag:seize_realm_county_cb }
+   set_variable = { name = mwp_d20_defensive_cb_weight value = 2 }
+  }
+  else_if = {
    limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = naval_expansion_cb } } }
    set_variable = { name = mwp_d20_defensive_cb value = flag:naval_expansion_cb }
+   set_variable = { name = mwp_d20_defensive_cb_weight value = 2 }
+  }
+  else_if = {
+   limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = ireland_laudabiliter_conquest_cb } } }
+   set_variable = { name = mwp_d20_defensive_cb value = flag:ireland_laudabiliter_conquest_cb }
    set_variable = { name = mwp_d20_defensive_cb_weight value = 2 }
   }
   else_if = {
@@ -736,18 +846,8 @@ mwp_d20_inspect_defensive_cb_effect = {
    set_variable = { name = mwp_d20_defensive_cb_weight value = 1 }
   }
   else_if = {
-   limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = mongol_invasion_war } } }
-   set_variable = { name = mwp_d20_defensive_cb value = flag:mongol_invasion_war }
-   set_variable = { name = mwp_d20_defensive_cb_weight value = 1 }
-  }
-  else_if = {
    limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = mythical_ancestor_war } } }
    set_variable = { name = mwp_d20_defensive_cb value = flag:mythical_ancestor_war }
-   set_variable = { name = mwp_d20_defensive_cb_weight value = 1 }
-  }
-  else_if = {
-   limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = pax_romana_invasion_war } } }
-   set_variable = { name = mwp_d20_defensive_cb value = flag:pax_romana_invasion_war }
    set_variable = { name = mwp_d20_defensive_cb_weight value = 1 }
   }
   else_if = {
@@ -761,8 +861,23 @@ mwp_d20_inspect_defensive_cb_effect = {
    set_variable = { name = mwp_d20_defensive_cb_weight value = 1 }
   }
   else_if = {
-   limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = imperial_reconquest_cb } } }
-   set_variable = { name = mwp_d20_defensive_cb value = flag:imperial_reconquest_cb }
+   limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = trade_league_trade_war_cb } } }
+   set_variable = { name = mwp_d20_defensive_cb value = flag:trade_league_trade_war_cb }
+   set_variable = { name = mwp_d20_defensive_cb_weight value = 1 }
+  }
+  else_if = {
+   limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = displace_guelph_ghibelline_ruler_cb } } }
+   set_variable = { name = mwp_d20_defensive_cb value = flag:displace_guelph_ghibelline_ruler_cb }
+   set_variable = { name = mwp_d20_defensive_cb_weight value = 1 }
+  }
+  else_if = {
+   limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = dissolve_lombard_league_cb } } }
+   set_variable = { name = mwp_d20_defensive_cb value = flag:dissolve_lombard_league_cb }
+   set_variable = { name = mwp_d20_defensive_cb_weight value = 1 }
+  }
+  else_if = {
+   limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = dissolve_the_hanse_cb } } }
+   set_variable = { name = mwp_d20_defensive_cb value = flag:dissolve_the_hanse_cb }
    set_variable = { name = mwp_d20_defensive_cb_weight value = 1 }
   }
   else_if = {
@@ -791,11 +906,6 @@ mwp_d20_inspect_defensive_cb_effect = {
    set_variable = { name = mwp_d20_defensive_cb_weight value = 1 }
   }
   else_if = {
-   limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = ireland_laudabiliter_conquest_cb } } }
-   set_variable = { name = mwp_d20_defensive_cb value = flag:ireland_laudabiliter_conquest_cb }
-   set_variable = { name = mwp_d20_defensive_cb_weight value = 1 }
-  }
-  else_if = {
    limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = japan_bloc_war_cb } } }
    set_variable = { name = mwp_d20_defensive_cb value = flag:japan_bloc_war_cb }
    set_variable = { name = mwp_d20_defensive_cb_weight value = 1 }
@@ -808,11 +918,6 @@ mwp_d20_inspect_defensive_cb_effect = {
   else_if = {
    limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = japan_establish_soryo_administration_cb } } }
    set_variable = { name = mwp_d20_defensive_cb value = flag:japan_establish_soryo_administration_cb }
-   set_variable = { name = mwp_d20_defensive_cb_weight value = 1 }
-  }
-  else_if = {
-   limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = japan_imperial_reconquest_cb } } }
-   set_variable = { name = mwp_d20_defensive_cb value = flag:japan_imperial_reconquest_cb }
    set_variable = { name = mwp_d20_defensive_cb_weight value = 1 }
   }
   else_if = {
@@ -853,6 +958,11 @@ mwp_d20_inspect_defensive_cb_effect = {
   else_if = {
    limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = pam_investiture_conflict_cb } } }
    set_variable = { name = mwp_d20_defensive_cb value = flag:pam_investiture_conflict_cb }
+   set_variable = { name = mwp_d20_defensive_cb_weight value = 1 }
+  }
+  else_if = {
+   limit = { scope:mwp_war_rival = { has_cb_on = { target = scope:mwp_player casus_belli = reinstate_guelph_ghibelline_ruler_cb } } }
+   set_variable = { name = mwp_d20_defensive_cb value = flag:reinstate_guelph_ghibelline_ruler_cb }
    set_variable = { name = mwp_d20_defensive_cb_weight value = 1 }
   }
   else_if = {

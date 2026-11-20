@@ -2644,6 +2644,33 @@ mwp_d21_type_wallet_105_value = {
         value = barter_goods
     }
 }
+mwp_d21_type_wallet_112_value = {
+    value = gold
+    if = {
+        limit = {
+            mwp_d21_buy_currency_112 = 2
+        }
+        value = prestige
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_112 = 3
+        }
+        value = piety
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_112 = 4
+        }
+        value = treasury
+    }
+    if = {
+        limit = {
+            mwp_d21_buy_currency_112 = 5
+        }
+        value = barter_goods
+    }
+}
 mwp_d21_type_wallet_106_value = {
     value = gold
     if = {

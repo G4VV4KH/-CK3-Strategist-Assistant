@@ -1,0 +1,80 @@
+﻿mwp_fw_tick = {
+scope = character
+saved_scopes = { mwp_fw_actor mwp_fw_gen mwp_fw_ticket mwp_fw_lane }
+is_valid = {
+is_ai = no is_alive = yes exists = scope:mwp_fw_actor scope:mwp_fw_actor = this
+    has_variable = mwp_fw_stage exists = scope:mwp_fw_gen exists = scope:mwp_fw_ticket
+    var:mwp_fw_epoch = var:mwp_generation scope:mwp_fw_gen = var:mwp_generation scope:mwp_fw_ticket = var:mwp_fw_ticket
+ exists = scope:mwp_fw_lane OR = { AND = { scope:mwp_fw_lane = 1 NOT = { has_variable = mwp_fw_lane_b } } AND = { scope:mwp_fw_lane = 2 has_variable = mwp_fw_lane_b } }
+}
+effect = {
+if = {
+limit = {
+is_ai = no is_alive = yes exists = scope:mwp_fw_actor scope:mwp_fw_actor = this
+    has_variable = mwp_fw_stage exists = scope:mwp_fw_gen exists = scope:mwp_fw_ticket
+    var:mwp_fw_epoch = var:mwp_generation scope:mwp_fw_gen = var:mwp_generation scope:mwp_fw_ticket = var:mwp_fw_ticket
+ exists = scope:mwp_fw_lane OR = { AND = { scope:mwp_fw_lane = 1 NOT = { has_variable = mwp_fw_lane_b } } AND = { scope:mwp_fw_lane = 2 has_variable = mwp_fw_lane_b } }
+}
+mwp_fw_dispatch_effect = yes
+}
+
+}
+
+}
+
+mwp_fp_tick = { scope = character saved_scopes = { mwp_fp_actor mwp_fp_epoch mwp_fp_ticket }
+ is_valid = { is_ai = no is_alive = yes exists = scope:mwp_fp_actor scope:mwp_fp_actor = this
+      exists = scope:mwp_fp_epoch has_variable = mwp_fp_generation scope:mwp_fp_epoch = var:mwp_fp_generation
+      var:mwp_fp_generation = var:mwp_generation exists = scope:mwp_fp_ticket has_variable = mwp_fp_step scope:mwp_fp_ticket = var:mwp_fp_step
+      mwp_fp_job_context_trigger = yes }
+ effect = { if = { limit = { is_ai = no is_alive = yes exists = scope:mwp_fp_actor scope:mwp_fp_actor = this
+      exists = scope:mwp_fp_epoch has_variable = mwp_fp_generation scope:mwp_fp_epoch = var:mwp_fp_generation
+      var:mwp_fp_generation = var:mwp_generation exists = scope:mwp_fp_ticket has_variable = mwp_fp_step scope:mwp_fp_ticket = var:mwp_fp_step
+      mwp_fp_job_context_trigger = yes } mwp_fp_advance_effect = yes } }
+}
+
+mwp_fa_tick = { scope = character saved_scopes = { mwp_fbr_gross mwp_fbr_raw mwp_fbr_net mwp_fbr_day mwp_fbr_count mwp_fbr_strength mwp_fbr_levies  mwp_script_input_owner mwp_script_input_generation mwp_script_input_singleplayer mwp_input_current_balance mwp_input_native_cost_sequence mwp_input_fallback_cost_sequence mwp_input_cost_max_maa mwp_input_cost_panel_open mwp_fa_ticket }
+ is_valid = { is_ai = no is_alive = yes has_variable = mwp_fa_live var:mwp_fa_live = this
+      has_variable = mwp_batch_active exists = scope:mwp_script_input_owner scope:mwp_script_input_owner = this
+      exists = scope:mwp_script_input_generation scope:mwp_script_input_generation = var:mwp_generation
+      var:mwp_batch_generation = var:mwp_generation exists = scope:mwp_fa_ticket
+      has_variable = mwp_fa_nonce scope:mwp_fa_ticket = var:mwp_fa_nonce NOT = { has_variable = mwp_fa_profile } }
+ effect = { if = { limit = { is_ai = no is_alive = yes has_variable = mwp_fa_live var:mwp_fa_live = this
+      has_variable = mwp_batch_active exists = scope:mwp_script_input_owner scope:mwp_script_input_owner = this
+      exists = scope:mwp_script_input_generation scope:mwp_script_input_generation = var:mwp_generation
+      var:mwp_batch_generation = var:mwp_generation exists = scope:mwp_fa_ticket
+      has_variable = mwp_fa_nonce scope:mwp_fa_ticket = var:mwp_fa_nonce NOT = { has_variable = mwp_fa_profile } }
+       # Consume before dispatch: replay of an existing native command cannot spend twice.
+       change_variable = { name = mwp_fa_nonce add = 1 }
+       if = { limit = { exists = scope:mwp_input_current_balance exists = scope:mwp_script_input_singleplayer
+          scope:mwp_script_input_singleplayer = yes has_variable = mwp_auto_recruit_enabled var:mwp_auto_recruit_enabled = yes
+          OR = {
+            days_since_birth = var:mwp_fa_day
+            AND = { OR = { var:mwp_batch_mode = 3 mwp_fbr_live = yes } mwp_paid_new_day_current = yes }
+          }
+          
+          OR = { var:mwp_batch_mode = 3 mwp_d21_upkeep_free_trigger = yes
+                 AND = { mwp_d21_legacy_gold_budget_trigger = yes has_variable = mwp_raised_policy_quote }
+                 AND = { NOT = { mwp_d21_legacy_gold_budget_trigger = yes } has_variable = mwp_raised_policy_ledger }
+                 AND = { has_variable = mwp_raised_policy_ledger has_variable = mwp_script_selected_upkeep_currency
+                         var:mwp_script_selected_upkeep_currency != 1 } }
+          mwp_auto_budget_mode_value = var:mwp_batch_mode
+          NOT = { has_variable = mwp_d21p_pending } mwp_auto_fresh_trigger = yes mwp_auto_supported_trigger = yes }
+        if = { limit = { NOT = { days_since_birth = var:mwp_fa_day } }
+          save_scope_value_as = { name = mwp_paid_rollover value = yes }
+          set_variable = mwp_paid_carried
+          if = { limit = { var:mwp_batch_mode != 3 } mwp_paid_refresh_percentage_budget = yes }
+          set_variable = { name = mwp_fa_day value = days_since_birth }
+        }
+        if = {
+          limit = { OR = {
+            NOT = { exists = scope:mwp_paid_rollover }
+            var:mwp_batch_mode = 3
+            exists = scope:mwp_paid_budget_current
+          } }
+          mwp_fa_one_step_effect = yes mwp_fa_after_step_effect = yes
+        }
+        else = { mwp_fa_finish_effect = yes }
+       }
+       else = { mwp_fa_finish_effect = yes }
+ } } }

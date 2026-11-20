@@ -25,6 +25,7 @@
             scope:mwp_script_input_singleplayer = yes
             exists = scope:mwp_input_current_balance
             mwp_auto_fresh_trigger = yes
+ NOT = { has_variable = mwp_fa_live }
             OR = {
                 NOT = {
                     has_variable = mwp_preview_generation
@@ -94,6 +95,7 @@
                     scope:mwp_script_input_singleplayer = yes
                     exists = scope:mwp_input_current_balance
                     mwp_auto_fresh_trigger = yes
+ NOT = { has_variable = mwp_fa_live }
                     OR = {
                         NOT = {
                             has_variable = mwp_preview_generation
@@ -141,6 +143,13 @@
                             }
                         }
                     }
+                }
+                if = {
+                    limit = { OR = {
+                        NOT = { has_variable = mwp_auto_recruit_enabled }
+                        has_variable = mwp_fast_calendar
+                    } }
+                    save_scope_value_as = { name = mwp_display_budget_only value = yes }
                 }
                 mwp_priority_refresh_next_effect = yes
             }

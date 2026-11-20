@@ -1,0 +1,80 @@
+﻿
+mwp_paid_context_trigger = {
+ has_variable = mwp_fast_calendar has_variable = mwp_fa_live var:mwp_fa_live = this
+ has_variable = mwp_batch_mode var:mwp_batch_mode = mwp_auto_budget_mode_value
+ OR = { var:mwp_batch_mode = 3 mwp_fbr_applicable = yes }
+ mwp_d21_legacy_gold_budget_trigger = yes
+ NOT = { has_variable = mwp_reorganization_enabled } is_at_war = no
+ maa_regiments_count > 0 maa_regiments_count <= 12
+ maa_regiments_count <= maa_regiments_max_count
+ NOT = { government_allows = subject_men_at_arms }
+ NOT = { has_variable = mwp_d19_tx_active } NOT = { has_variable = mwp_d21p_pending }
+ NOT = { has_variable = mwp_fw_stage } NOT = { has_variable = mwp_analysis_requested }
+ NOT = { any_maa_regiment = { is_personal_maa_regiment = yes OR = { is_raised = yes is_maa_in_combat = yes } } }
+}
+mwp_paid_slot_current = {
+ trigger_if = { limit = { exists = var:mwp_paid_unit_$N$ }
+ var:mwp_paid_unit_$N$ = {
+    regiment_owner = root is_personal_maa_regiment = yes is_regular_maa_regiment = yes
+    is_raised = no is_maa_in_combat = no
+    maa_size = root.var:mwp_paid_size_$N$ maa_max_troops_count = root.var:mwp_paid_cap_$N$
+    maa_current_troops_count = root.var:mwp_paid_soldiers_$N$ mwp_florin_hired_type_id = root.var:mwp_paid_type_$N$
+    trigger_if = { limit = { root = { has_variable = mwp_paid_expand_$N$ } } can_upgrade_maa = yes }
+    trigger_else = { can_upgrade_maa = no }
+    trigger_if = { limit = { root = { has_variable = mwp_paid_station_$N$ } } exists = regiment_station regiment_station = root.var:mwp_paid_station_$N$ }
+    trigger_else = { NOT = { exists = regiment_station } }
+ }
+ }
+ trigger_else = { always = no }
+}
+mwp_paid_new_day_current = {
+ trigger_if = { limit = { has_variable = mwp_paid_ready has_variable = mwp_paid_count
+   has_variable = mwp_paid_date has_variable = mwp_paid_generation has_variable = mwp_paid_counter }
+ mwp_paid_context_trigger = yes
+ var:mwp_paid_count = maa_regiments_count var:mwp_paid_generation = var:mwp_generation
+ has_variable = mwp_paid_max_count var:mwp_paid_max_count = maa_regiments_max_count
+ trigger_if = { limit = { maa_regiments_count < maa_regiments_max_count }
+  mwp_paid_open_access_current = yes
+ }
+ var:mwp_paid_counter = var:mwp_auto_purchase_count has_variable = mwp_auto_last_paid_verified
+ var:mwp_auto_last_paid_verified = yes var:mwp_scores_owner = this var:mwp_scores_generation = var:mwp_generation
+ var:mwp_paid_date <= days_since_birth days_since_birth <= { value = var:mwp_paid_date add = 8 }
+ var:mwp_paid_strength = max_military_strength var:mwp_paid_culture = culture var:mwp_paid_faith = faith
+ var:mwp_paid_capital = capital_province
+ OR = { AND = { var:mwp_paid_government = 1 has_government = feudal_government }
+        AND = { var:mwp_paid_government = 2 has_government = clan_government } }
+ mwp_enemy_cache_current_trigger = yes
+ trigger_if = { limit = { var:mwp_paid_count >= 1 } mwp_paid_slot_current = { N = 1 } }
+trigger_if = { limit = { var:mwp_paid_count >= 2 } mwp_paid_slot_current = { N = 2 } }
+trigger_if = { limit = { var:mwp_paid_count >= 3 } mwp_paid_slot_current = { N = 3 } }
+trigger_if = { limit = { var:mwp_paid_count >= 4 } mwp_paid_slot_current = { N = 4 } }
+trigger_if = { limit = { var:mwp_paid_count >= 5 } mwp_paid_slot_current = { N = 5 } }
+trigger_if = { limit = { var:mwp_paid_count >= 6 } mwp_paid_slot_current = { N = 6 } }
+trigger_if = { limit = { var:mwp_paid_count >= 7 } mwp_paid_slot_current = { N = 7 } }
+trigger_if = { limit = { var:mwp_paid_count >= 8 } mwp_paid_slot_current = { N = 8 } }
+trigger_if = { limit = { var:mwp_paid_count >= 9 } mwp_paid_slot_current = { N = 9 } }
+trigger_if = { limit = { var:mwp_paid_count >= 10 } mwp_paid_slot_current = { N = 10 } }
+trigger_if = { limit = { var:mwp_paid_count >= 11 } mwp_paid_slot_current = { N = 11 } }
+trigger_if = { limit = { var:mwp_paid_count >= 12 } mwp_paid_slot_current = { N = 12 } }
+ }
+ trigger_else = { always = no }
+}
+
+mwp_paid_open_access_current = {
+ trigger_if = { limit = {
+     has_variable = mwp_paid_access_gen has_variable = mwp_paid_access_owner
+     var:mwp_paid_access_owner = this var:mwp_paid_access_gen = var:mwp_generation
+     has_variable = mwp_paid_access_0 has_variable = mwp_paid_access_7
+     NOT = { government_allows = subject_men_at_arms }
+ }
+ var:mwp_paid_access_0 = mwp_paid_access_mask_0
+ var:mwp_paid_access_1 = mwp_paid_access_mask_1
+ var:mwp_paid_access_2 = mwp_paid_access_mask_2
+ var:mwp_paid_access_3 = mwp_paid_access_mask_3
+ var:mwp_paid_access_4 = mwp_paid_access_mask_4
+ var:mwp_paid_access_5 = mwp_paid_access_mask_5
+ var:mwp_paid_access_6 = mwp_paid_access_mask_6
+ var:mwp_paid_access_7 = mwp_paid_access_mask_7
+ }
+ trigger_else = { always = no }
+}

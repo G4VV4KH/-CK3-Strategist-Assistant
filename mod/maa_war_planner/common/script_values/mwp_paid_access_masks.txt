@@ -1,0 +1,136 @@
+﻿mwp_paid_access_mask_0 = {
+ value = 0
+ if = { limit = { has_access_to_maa = huscarl } add = 1 }
+ if = { limit = { has_access_to_maa = landsknecht } add = 2 }
+ if = { limit = { has_access_to_maa = longbowmen } add = 4 }
+ if = { limit = { has_access_to_maa = goedendag } add = 8 }
+ if = { limit = { has_access_to_maa = gendarme } add = 16 }
+ if = { limit = { has_access_to_maa = chasseur } add = 32 }
+ if = { limit = { has_access_to_maa = picchieri } add = 64 }
+ if = { limit = { has_access_to_maa = praetorian } add = 128 }
+ if = { limit = { has_access_to_maa = caballero } add = 256 }
+ if = { limit = { has_access_to_maa = monaspa } add = 512 }
+ if = { limit = { has_access_to_maa = cataphract } add = 1024 }
+ if = { limit = { has_access_to_maa = hobelar } add = 2048 }
+ if = { limit = { has_access_to_maa = schiltron } add = 4096 }
+ if = { limit = { has_access_to_maa = metsanvartija } add = 8192 }
+}
+mwp_paid_access_mask_1 = {
+ value = 0
+ if = { limit = { has_access_to_maa = horse_archers } add = 1 }
+ if = { limit = { has_access_to_maa = ayyar } add = 2 }
+ if = { limit = { has_access_to_maa = mubarizun } add = 4 }
+ if = { limit = { has_access_to_maa = mulaththamun } add = 8 }
+ if = { limit = { has_access_to_maa = archers_of_the_nile } add = 16 }
+ if = { limit = { has_access_to_maa = paiks } add = 32 }
+ if = { limit = { has_access_to_maa = druzhina } add = 64 }
+ if = { limit = { has_access_to_maa = hussar } add = 128 }
+ if = { limit = { has_access_to_maa = horn_warrior } add = 256 }
+ if = { limit = { has_access_to_maa = bush_hunter } add = 512 }
+ if = { limit = { has_access_to_maa = shomer } add = 1024 }
+ if = { limit = { has_access_to_maa = garudas } add = 2048 }
+ if = { limit = { has_access_to_maa = khandayat } add = 4096 }
+ if = { limit = { has_access_to_maa = mountaineer } add = 8192 }
+}
+mwp_paid_access_mask_2 = {
+ value = 0
+ if = { limit = { has_access_to_maa = sahel_horsemen } add = 1 }
+ if = { limit = { has_access_to_maa = guinea_warrior } add = 2 }
+ if = { limit = { has_access_to_maa = sarawit } add = 4 }
+ if = { limit = { has_access_to_maa = abudrar } add = 8 }
+ if = { limit = { has_access_to_maa = zbrojnosh } add = 16 }
+ if = { limit = { has_access_to_maa = palace_guards } add = 32 }
+ if = { limit = { has_access_to_maa = shenbigong } add = 64 }
+ if = { limit = { has_access_to_maa = guanch_vaulter } add = 128 }
+ if = { limit = { has_access_to_maa = teulu } add = 256 }
+ if = { limit = { has_access_to_maa = asawira } add = 512 }
+ if = { limit = { has_access_to_maa = tarkhan } add = 1024 }
+ if = { limit = { has_access_to_maa = zupin_warrior } add = 2048 }
+ if = { limit = { has_access_to_maa = tawashi } add = 4096 }
+ if = { limit = { has_access_to_maa = order_serjeants } add = 8192 }
+}
+mwp_paid_access_mask_3 = {
+ value = 0
+ if = { limit = { has_access_to_maa = order_knights } add = 1 }
+ if = { limit = { has_access_to_maa = light_footmen } add = 2 }
+ if = { limit = { has_access_to_maa = bowmen } add = 4 }
+ if = { limit = { has_access_to_maa = light_horsemen } add = 8 }
+ if = { limit = { has_access_to_maa = pikemen_unit } add = 16 }
+ if = { limit = { has_access_to_maa = armored_footmen } add = 32 }
+ if = { limit = { has_access_to_maa = onager } add = 64 }
+ if = { limit = { has_access_to_maa = armored_horsemen } add = 128 }
+ if = { limit = { has_access_to_maa = mangonel } add = 256 }
+ if = { limit = { has_access_to_maa = crossbowmen } add = 512 }
+ if = { limit = { has_access_to_maa = trebuchet } add = 1024 }
+ if = { limit = { has_access_to_maa = bombard } add = 2048 }
+ if = { limit = { has_access_to_maa = handgunners } add = 4096 }
+ if = { limit = { has_access_to_maa = house_guard } add = 8192 }
+}
+mwp_paid_access_mask_4 = {
+ value = 0
+ if = { limit = { has_access_to_maa = pikemen_militia } add = 1 }
+ if = { limit = { has_access_to_maa = camel_rider } add = 2 }
+ if = { limit = { has_access_to_maa = war_elephant } add = 4 }
+ if = { limit = { has_access_to_maa = accolade_maa_archers } add = 8 }
+ if = { limit = { has_access_to_maa = accolade_maa_skirmishers } add = 16 }
+ if = { limit = { has_access_to_maa = accolade_maa_pikes } add = 32 }
+ if = { limit = { has_access_to_maa = accolade_maa_outriders } add = 64 }
+ if = { limit = { has_access_to_maa = accolade_maa_vanguards } add = 128 }
+ if = { limit = { has_access_to_maa = accolade_maa_lancers } add = 256 }
+ if = { limit = { has_access_to_maa = accolade_maa_crossbowers } add = 512 }
+ if = { limit = { has_access_to_maa = accolade_maa_cameliers } add = 1024 }
+ if = { limit = { has_access_to_maa = accolade_maa_elephantiers } add = 2048 }
+ if = { limit = { has_access_to_maa = accolade_maa_horse_archers } add = 4096 }
+ if = { limit = { has_access_to_maa = accolade_maa_handgunners } add = 8192 }
+}
+mwp_paid_access_mask_5 = {
+ value = 0
+ if = { limit = { has_access_to_maa = vigmen } add = 1 }
+ if = { limit = { has_access_to_maa = bondi } add = 2 }
+ if = { limit = { has_access_to_maa = varangian_veterans } add = 4 }
+ if = { limit = { has_access_to_maa = jomsviking_pirates } add = 8 }
+ if = { limit = { has_access_to_maa = ayrudzi } add = 16 }
+ if = { limit = { has_access_to_maa = conrois } add = 32 }
+ if = { limit = { has_access_to_maa = akritai } add = 64 }
+ if = { limit = { has_access_to_maa = ballistrai } add = 128 }
+ if = { limit = { has_access_to_maa = skoutatoi } add = 256 }
+ if = { limit = { has_access_to_maa = varangian_guards } add = 512 }
+ if = { limit = { has_access_to_maa = handpicked_faithful } add = 1024 }
+ if = { limit = { has_access_to_maa = maa_bandits } add = 2048 }
+ if = { limit = { has_access_to_maa = maa_poachers } add = 4096 }
+ if = { limit = { has_access_to_maa = maa_marauders } add = 8192 }
+}
+mwp_paid_access_mask_6 = {
+ value = 0
+ if = { limit = { has_access_to_maa = maa_thieves } add = 1 }
+ if = { limit = { has_access_to_maa = nomadic_riders } add = 2 }
+ if = { limit = { has_access_to_maa = torch_bearers } add = 4 }
+ if = { limit = { has_access_to_maa = kheshig } add = 8 }
+ if = { limit = { has_access_to_maa = steppe_raiders } add = 16 }
+ if = { limit = { has_access_to_maa = heavy_horse_archers } add = 32 }
+ if = { limit = { has_access_to_maa = nomad_lancers } add = 64 }
+ if = { limit = { has_access_to_maa = mangudai } add = 128 }
+ if = { limit = { has_access_to_maa = cataphract_archers } add = 256 }
+ if = { limit = { has_access_to_maa = maturkan_warriors } add = 512 }
+ if = { limit = { has_access_to_maa = emishi_horse_archers } add = 1024 }
+ if = { limit = { has_access_to_maa = japanese_horse_archers } add = 2048 }
+ if = { limit = { has_access_to_maa = warrior_monks } add = 4096 }
+ if = { limit = { has_access_to_maa = fire_lancers } add = 8192 }
+}
+mwp_paid_access_mask_7 = {
+ value = 0
+ if = { limit = { has_access_to_maa = gakgung_archers } add = 1 }
+ if = { limit = { has_access_to_maa = ballista_elephant } add = 2 }
+ if = { limit = { has_access_to_maa = pesilat_warriors } add = 4 }
+ if = { limit = { has_access_to_maa = samurai } add = 8 }
+ if = { limit = { has_access_to_maa = zhanmadao_infantry } add = 16 }
+ if = { limit = { has_access_to_maa = black_armor_cavalry } add = 32 }
+ if = { limit = { has_access_to_maa = tiefutu } add = 64 }
+ if = { limit = { has_access_to_maa = burenjia } add = 128 }
+ if = { limit = { has_access_to_maa = rocket_carts } add = 256 }
+ if = { limit = { has_access_to_maa = ballista } add = 512 }
+ if = { limit = { has_access_to_maa = cloud_ladder } add = 1024 }
+ if = { limit = { has_access_to_maa = siege_tower } add = 2048 }
+ if = { limit = { has_access_to_maa = cannon } add = 4096 }
+ if = { limit = { has_access_to_maa = condottieri } add = 8192 }
+}

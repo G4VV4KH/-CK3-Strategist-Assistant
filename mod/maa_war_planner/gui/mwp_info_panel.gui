@@ -25,6 +25,8 @@ button_tertiary = { name = "mwp_d20_declare_details" size = { 156 24 } position 
 }
 type mwp_dev10_wars = vbox {
  name = "mwp_dev10_wars" size = { 590 0 } layoutpolicy_vertical = expanding spacing = 5
+widget = { name = mwp_p15_future_page size = { 1 1 } alwaystransparent = yes datamodel = "[DataModelFirst(GetPlayer.MakeScope.GetList('mwp_id_live_rows'),Select_int32(And(GetVariableSystem.HasValue('mwp_dev10_tab','wars'),Not(GetVariableSystem.HasValue('mwp_dev10_direction','active'))),'(int32)1','(int32)0'))]"
+ item = { widget = { size = { 1 1 } alwaystransparent = yes
 widget = { name = mwp_d20_page_poll_worker size = { 1 1 } alwaystransparent = yes
  state = { name = mwp_d20_page_poll_poll trigger_on_create = yes alpha = 1 duration = 0.25
   on_finish = "[PdxGuiWidget.TriggerAnimation(Select_CString(And(GetPlayer.IsValid,And(GetVariableSystem.HasValue('mwp_dev10_tab','wars'),Not(GetVariableSystem.HasValue('mwp_dev10_direction','active')))),'mwp_d20_page_poll_decide','mwp_d20_page_poll_idle'))]" }
@@ -36,6 +38,7 @@ widget = { name = mwp_d20_page_poll_worker size = { 1 1 } alwaystransparent = ye
  }
  state = { name = mwp_d20_page_poll_idle alpha = 1 duration = 0 next = mwp_d20_page_poll_poll }
 }
+ } } }
 hbox = { name = "mwp_d20_direction" size = { 590 36 } spacing = 4
 button_tab = { name = "mwp_dev10_offensive_tab" size = { 194 36 } down = "[Not(Or(GetVariableSystem.HasValue('mwp_dev10_direction','defensive'),GetVariableSystem.HasValue('mwp_dev10_direction','active')))]"
  onclick = "[GetVariableSystem.Set('mwp_dev10_direction','offensive')]"
@@ -68,7 +71,7 @@ vbox = { name = "mwp_d20_future_list" size = { 590 0 } layoutpolicy_vertical = e
  text_multi = { text = "mwp_info_empty" max_width = 570 autoresize = yes visible = "[Not(DataModelHasItems(GetPlayer.MakeScope.GetList('mwp_d20_page')))]" }
  scrollbox = { size = { 590 0 } layoutpolicy_vertical = expanding
  blockoverride "scrollbox_content" { fixedgridbox = { size = { 568 -1 } addcolumn = 568 addrow = 128
- datamodel = "[GetPlayer.MakeScope.GetList('mwp_d20_page')]" datamodel_reuse_widgets = yes
+ datamodel = "[DataModelFirst(GetPlayer.MakeScope.GetList('mwp_d20_page'),Select_int32(And(GetVariableSystem.HasValue('mwp_dev10_tab','wars'),Not(GetVariableSystem.HasValue('mwp_dev10_direction','active'))),GetDataModelSize(GetPlayer.MakeScope.GetList('mwp_d20_page')),'(int32)0'))]" datamodel_reuse_widgets = yes
  item = { mwp_d20_opponent_row = { } } } } }
  hbox = { size = { 590 30 } spacing = 6
 button_tertiary = { name = "mwp_d20_page_previous" size = { 288 28 } text = "mwp_d20_previous"

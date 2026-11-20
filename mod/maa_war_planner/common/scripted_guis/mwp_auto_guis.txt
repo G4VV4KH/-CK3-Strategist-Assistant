@@ -116,13 +116,14 @@ mwp_auto_budget_half = {
 }
 
 mwp_n16c_reset = { scope = character saved_scopes = { mwp_n16c_input_owner } is_valid = { is_ai = no exists = scope:mwp_n16c_input_owner scope:mwp_n16c_input_owner = this } effect = { if = { limit = { is_ai = no exists = scope:mwp_n16c_input_owner scope:mwp_n16c_input_owner = this } set_variable = { name = mwp_n16c_owner value = this }
+remove_variable = mwp_gold_floor_owner
 set_variable = { name = mwp_n16c_clock value = 0 }
 if = { limit = { NOT = { has_variable = mwp_n16c_sequence } } set_variable = { name = mwp_n16c_sequence value = 0 }
  }
 change_variable = { name = mwp_n16c_sequence add = 1 } remove_variable = mwp_n16c_collecting remove_variable = mwp_native_cost_ready
  }
 } }
-mwp_n16c_tick = { scope = character saved_scopes = { mwp_n16c_input_panel_open  } is_valid = { exists = scope:mwp_n16c_input_panel_open is_ai = no is_alive = yes has_variable = mwp_n16c_owner var:mwp_n16c_owner = this has_variable = mwp_n16c_clock } effect = { if = { limit = { exists = scope:mwp_n16c_input_panel_open is_ai = no is_alive = yes has_variable = mwp_n16c_owner var:mwp_n16c_owner = this has_variable = mwp_n16c_clock } change_variable = { name = mwp_n16c_clock add = 1 }
+mwp_n16c_tick = { scope = character saved_scopes = { mwp_n16c_input_panel_open  } is_valid = { exists = scope:mwp_n16c_input_panel_open is_ai = no is_alive = yes  has_variable_list = mwp_id_finance_rows has_variable = mwp_n16c_owner var:mwp_n16c_owner = this has_variable = mwp_n16c_clock } effect = { if = { limit = { exists = scope:mwp_n16c_input_panel_open is_ai = no is_alive = yes  has_variable_list = mwp_id_finance_rows has_variable = mwp_n16c_owner var:mwp_n16c_owner = this has_variable = mwp_n16c_clock } change_variable = { name = mwp_n16c_clock add = 1 }
 if = {
 limit = {
 has_variable = mwp_script_budget_ready
@@ -170,7 +171,7 @@ if = { limit = { has_variable = mwp_native_cost_ready has_variable = mwp_native_
 if = { limit = { has_variable = mwp_n16c_collecting mwp_n16c_collection_age_value > var:mwp_n16c_timeout } remove_variable = mwp_n16c_collecting remove_variable = mwp_native_cost_ready }
  }
 } }
-mwp_n16c_begin = { scope = character saved_scopes = { mwp_n16c_input_panel_open mwp_n16c_input_owner mwp_n16c_input_generation mwp_n16c_input_day mwp_n16c_input_purchase_count mwp_n16c_input_max_strength mwp_n16c_input_max_maa mwp_n16c_input_army_raw mwp_n16c_input_current_raw mwp_n16c_input_income mwp_n16c_input_expenses_raw mwp_n16c_input_raised_balance mwp_n16c_input_expected mwp_n16c_input_provider } is_valid = { exists = scope:mwp_n16c_input_panel_open scope:mwp_n16c_input_panel_open = yes is_ai = no is_alive = yes has_variable = mwp_n16c_owner var:mwp_n16c_owner = this NOT = { has_variable = mwp_n16c_collecting } exists = scope:mwp_n16c_input_owner exists = scope:mwp_n16c_input_generation exists = scope:mwp_n16c_input_day exists = scope:mwp_n16c_input_purchase_count exists = scope:mwp_n16c_input_max_strength exists = scope:mwp_n16c_input_max_maa exists = scope:mwp_n16c_input_army_raw exists = scope:mwp_n16c_input_current_raw exists = scope:mwp_n16c_input_income exists = scope:mwp_n16c_input_expenses_raw exists = scope:mwp_n16c_input_raised_balance exists = scope:mwp_n16c_input_expected scope:mwp_n16c_input_owner = this has_variable = mwp_generation
+mwp_n16c_begin = { scope = character saved_scopes = { mwp_rp_levies mwp_rp_pay_treasury mwp_rp_pay_barter mwp_rp_raised_2 mwp_rp_raised_3 mwp_rp_current_4 mwp_rp_raised_4 mwp_rp_current_5 mwp_rp_raised_5 mwp_n16c_input_panel_open mwp_n16c_input_owner mwp_n16c_input_generation mwp_n16c_input_day mwp_n16c_input_purchase_count mwp_n16c_input_max_strength mwp_n16c_input_max_maa mwp_n16c_input_army_raw mwp_n16c_input_current_raw mwp_n16c_input_income mwp_n16c_input_expenses_raw mwp_n16c_input_raised_balance mwp_n16c_input_expected mwp_n16c_input_provider } is_valid = { exists = scope:mwp_n16c_input_panel_open scope:mwp_n16c_input_panel_open = yes is_ai = no is_alive = yes  has_variable_list = mwp_id_finance_rows has_variable = mwp_n16c_owner var:mwp_n16c_owner = this NOT = { has_variable = mwp_n16c_collecting } exists = scope:mwp_n16c_input_owner exists = scope:mwp_n16c_input_generation exists = scope:mwp_n16c_input_day exists = scope:mwp_n16c_input_purchase_count exists = scope:mwp_n16c_input_max_strength exists = scope:mwp_n16c_input_max_maa exists = scope:mwp_n16c_input_army_raw exists = scope:mwp_n16c_input_current_raw exists = scope:mwp_n16c_input_income exists = scope:mwp_n16c_input_expenses_raw exists = scope:mwp_n16c_input_raised_balance exists = scope:mwp_n16c_input_expected scope:mwp_n16c_input_owner = this has_variable = mwp_generation
         scope:mwp_n16c_input_generation = var:mwp_generation
         scope:mwp_n16c_input_day = days_since_birth
         scope:mwp_n16c_input_purchase_count = mwp_native_cost_purchase_count_value
@@ -178,7 +179,7 @@ mwp_n16c_begin = { scope = character saved_scopes = { mwp_n16c_input_panel_open 
         scope:mwp_n16c_input_max_maa >= 0 scope:mwp_n16c_input_expected >= 0
         scope:mwp_n16c_input_army_raw <= 0 scope:mwp_n16c_input_current_raw <= 0
         scope:mwp_n16c_input_expenses_raw <= 0
-        exists = scope:mwp_n16c_input_provider scope:mwp_n16c_input_provider = yes } effect = { if = { limit = { exists = scope:mwp_n16c_input_panel_open scope:mwp_n16c_input_panel_open = yes is_ai = no is_alive = yes has_variable = mwp_n16c_owner var:mwp_n16c_owner = this NOT = { has_variable = mwp_n16c_collecting } exists = scope:mwp_n16c_input_owner exists = scope:mwp_n16c_input_generation exists = scope:mwp_n16c_input_day exists = scope:mwp_n16c_input_purchase_count exists = scope:mwp_n16c_input_max_strength exists = scope:mwp_n16c_input_max_maa exists = scope:mwp_n16c_input_army_raw exists = scope:mwp_n16c_input_current_raw exists = scope:mwp_n16c_input_income exists = scope:mwp_n16c_input_expenses_raw exists = scope:mwp_n16c_input_raised_balance exists = scope:mwp_n16c_input_expected scope:mwp_n16c_input_owner = this has_variable = mwp_generation
+        exists = scope:mwp_n16c_input_provider scope:mwp_n16c_input_provider = yes } effect = { if = { limit = { exists = scope:mwp_n16c_input_panel_open scope:mwp_n16c_input_panel_open = yes is_ai = no is_alive = yes  has_variable_list = mwp_id_finance_rows has_variable = mwp_n16c_owner var:mwp_n16c_owner = this NOT = { has_variable = mwp_n16c_collecting } exists = scope:mwp_n16c_input_owner exists = scope:mwp_n16c_input_generation exists = scope:mwp_n16c_input_day exists = scope:mwp_n16c_input_purchase_count exists = scope:mwp_n16c_input_max_strength exists = scope:mwp_n16c_input_max_maa exists = scope:mwp_n16c_input_army_raw exists = scope:mwp_n16c_input_current_raw exists = scope:mwp_n16c_input_income exists = scope:mwp_n16c_input_expenses_raw exists = scope:mwp_n16c_input_raised_balance exists = scope:mwp_n16c_input_expected scope:mwp_n16c_input_owner = this has_variable = mwp_generation
         scope:mwp_n16c_input_generation = var:mwp_generation
         scope:mwp_n16c_input_day = days_since_birth
         scope:mwp_n16c_input_purchase_count = mwp_native_cost_purchase_count_value
@@ -200,6 +201,26 @@ set_variable = { name = mwp_n16c_expenses_raw value = scope:mwp_n16c_input_expen
 set_variable = { name = mwp_n16c_raised_balance value = scope:mwp_n16c_input_raised_balance }
 set_variable = { name = mwp_n16c_expected value = scope:mwp_n16c_input_expected }
 set_variable = { name = mwp_n16c_start_tick value = var:mwp_n16c_clock }
+set_variable = { name = mwp_gold_floor_owner value = this }
+remove_variable = mwp_rp_seen_owner
+if = { limit = { exists = scope:mwp_rp_levies exists = scope:mwp_rp_pay_treasury exists = scope:mwp_rp_pay_barter exists = scope:mwp_rp_raised_2 exists = scope:mwp_rp_raised_3 exists = scope:mwp_rp_current_4 exists = scope:mwp_rp_raised_4 exists = scope:mwp_rp_current_5 exists = scope:mwp_rp_raised_5 scope:mwp_rp_raised_2 <= 0 scope:mwp_rp_raised_3 <= 0 scope:mwp_rp_current_4 <= 0 scope:mwp_rp_raised_4 <= 0 scope:mwp_rp_current_5 <= 0 scope:mwp_rp_raised_5 <= 0 }
+set_variable = { name = mwp_rp_seen_owner value = this }
+set_variable = { name = mwp_rp_seen_government value = government_type }
+set_variable = { name = mwp_rp_seen_maa value = monthly_character_men_at_arms_expense_gold }
+set_variable = { name = mwp_rp_seen_army_factor value = mwp_d18_army_raw_value }
+set_variable = { name = mwp_rp_seen_levy_factor value = "this.modifier_value(levy_maintenance)" }
+set_variable = { name = mwp_rp_seen_current_1 value = { value = scope:mwp_n16c_input_current_raw multiply = -1 } }
+set_variable = { name = mwp_rp_seen_raised_1 value = { value = scope:mwp_n16c_input_army_raw multiply = -1 } }
+set_variable = { name = mwp_rp_seen_levies value = scope:mwp_rp_levies }
+set_variable = { name = mwp_rp_seen_pay_treasury value = scope:mwp_rp_pay_treasury }
+set_variable = { name = mwp_rp_seen_pay_barter value = scope:mwp_rp_pay_barter }
+set_variable = { name = mwp_rp_seen_raised_2 value = { value = scope:mwp_rp_raised_2 multiply = -1 } }
+set_variable = { name = mwp_rp_seen_raised_3 value = { value = scope:mwp_rp_raised_3 multiply = -1 } }
+set_variable = { name = mwp_rp_seen_current_4 value = { value = scope:mwp_rp_current_4 multiply = -1 } }
+set_variable = { name = mwp_rp_seen_raised_4 value = { value = scope:mwp_rp_raised_4 multiply = -1 } }
+set_variable = { name = mwp_rp_seen_current_5 value = { value = scope:mwp_rp_current_5 multiply = -1 } }
+set_variable = { name = mwp_rp_seen_raised_5 value = { value = scope:mwp_rp_raised_5 multiply = -1 } }
+}
 set_variable = { name = mwp_n16c_timeout value = { value = var:mwp_n16c_expected multiply = 3 add = 20 } }
 set_variable = { name = mwp_n16c_received value = 0 }
 set_variable = { name = mwp_n16c_maa_raw value = 0 }
@@ -208,7 +229,7 @@ set_variable = { name = mwp_n16c_sum value = 0 }
 mwp_n16c_finish_effect = yes
  }
 } }
-mwp_n16c_row = { scope = character saved_scopes = { mwp_n16c_input_panel_open mwp_n16c_input_owner mwp_n16c_input_generation mwp_n16c_input_day mwp_n16c_input_purchase_count mwp_n16c_input_max_strength mwp_n16c_input_max_maa mwp_n16c_input_army_raw mwp_n16c_input_current_raw mwp_n16c_input_income mwp_n16c_input_expenses_raw mwp_n16c_input_raised_balance mwp_n16c_input_expected mwp_n16c_input_provider mwp_n16c_input_sequence mwp_n16c_input_index mwp_n16c_input_raw mwp_n16c_input_maa } is_valid = { exists = scope:mwp_n16c_input_panel_open scope:mwp_n16c_input_panel_open = yes is_ai = no is_alive = yes has_variable = mwp_n16c_owner var:mwp_n16c_owner = this has_variable = mwp_n16c_collecting var:mwp_n16c_collecting = yes
+mwp_n16c_row = { scope = character saved_scopes = { mwp_n16c_input_panel_open mwp_n16c_input_owner mwp_n16c_input_generation mwp_n16c_input_day mwp_n16c_input_purchase_count mwp_n16c_input_max_strength mwp_n16c_input_max_maa mwp_n16c_input_army_raw mwp_n16c_input_current_raw mwp_n16c_input_income mwp_n16c_input_expenses_raw mwp_n16c_input_raised_balance mwp_n16c_input_expected mwp_n16c_input_provider mwp_n16c_input_sequence mwp_n16c_input_index mwp_n16c_input_raw mwp_n16c_input_maa } is_valid = { exists = scope:mwp_n16c_input_panel_open scope:mwp_n16c_input_panel_open = yes is_ai = no is_alive = yes  has_variable_list = mwp_id_finance_rows has_variable = mwp_n16c_owner var:mwp_n16c_owner = this has_variable = mwp_n16c_collecting var:mwp_n16c_collecting = yes
         has_variable = mwp_generation var:mwp_n16c_generation = var:mwp_generation
         var:mwp_n16c_day = days_since_birth
         var:mwp_n16c_purchase_count = mwp_native_cost_purchase_count_value
@@ -222,7 +243,7 @@ mwp_n16c_row = { scope = character saved_scopes = { mwp_n16c_input_panel_open mw
         scope:mwp_n16c_input_expenses_raw <= 0
         exists = scope:mwp_n16c_input_provider scope:mwp_n16c_input_provider = yes exists = scope:mwp_n16c_input_sequence scope:mwp_n16c_input_sequence = var:mwp_n16c_sequence scope:mwp_n16c_input_generation = var:mwp_n16c_generation scope:mwp_n16c_input_day = var:mwp_n16c_day scope:mwp_n16c_input_purchase_count = var:mwp_n16c_purchase_count scope:mwp_n16c_input_max_strength = var:mwp_n16c_max_strength scope:mwp_n16c_input_max_maa = var:mwp_n16c_max_maa scope:mwp_n16c_input_army_raw = var:mwp_n16c_army_raw scope:mwp_n16c_input_current_raw = var:mwp_n16c_current_raw scope:mwp_n16c_input_income = var:mwp_n16c_income scope:mwp_n16c_input_expenses_raw = var:mwp_n16c_expenses_raw scope:mwp_n16c_input_raised_balance = var:mwp_n16c_raised_balance scope:mwp_n16c_input_expected = var:mwp_n16c_expected exists = scope:mwp_n16c_input_index exists = scope:mwp_n16c_input_raw
         exists = scope:mwp_n16c_input_maa scope:mwp_n16c_input_index = var:mwp_n16c_received
-        scope:mwp_n16c_input_index >= 0 scope:mwp_n16c_input_index < var:mwp_n16c_expected } effect = { if = { limit = { exists = scope:mwp_n16c_input_panel_open scope:mwp_n16c_input_panel_open = yes is_ai = no is_alive = yes has_variable = mwp_n16c_owner var:mwp_n16c_owner = this has_variable = mwp_n16c_collecting var:mwp_n16c_collecting = yes
+        scope:mwp_n16c_input_index >= 0 scope:mwp_n16c_input_index < var:mwp_n16c_expected } effect = { if = { limit = { exists = scope:mwp_n16c_input_panel_open scope:mwp_n16c_input_panel_open = yes is_ai = no is_alive = yes  has_variable_list = mwp_id_finance_rows has_variable = mwp_n16c_owner var:mwp_n16c_owner = this has_variable = mwp_n16c_collecting var:mwp_n16c_collecting = yes
         has_variable = mwp_generation var:mwp_n16c_generation = var:mwp_generation
         var:mwp_n16c_day = days_since_birth
         var:mwp_n16c_purchase_count = mwp_native_cost_purchase_count_value
@@ -253,18 +274,18 @@ change_variable = { name = mwp_d16t_sequence add = 1 }
 remove_variable = mwp_d16t_collecting
 remove_variable = mwp_fallback_cost_ready
  } } }
-mwp_d16t_tick = { scope = character saved_scopes = {  } is_valid = { has_variable = mwp_d16t_owner var:mwp_d16t_owner = this is_ai = no has_variable = mwp_d16t_clock } effect = { if = { limit = { has_variable = mwp_d16t_owner var:mwp_d16t_owner = this is_ai = no has_variable = mwp_d16t_clock } change_variable = { name = mwp_d16t_clock add = 1 }
+mwp_d16t_tick = { scope = character saved_scopes = {  } is_valid = {  has_variable_list = mwp_id_finance_rows has_variable = mwp_d16t_owner var:mwp_d16t_owner = this is_ai = no has_variable = mwp_d16t_clock } effect = { if = { limit = {  has_variable_list = mwp_id_finance_rows has_variable = mwp_d16t_owner var:mwp_d16t_owner = this is_ai = no has_variable = mwp_d16t_clock } change_variable = { name = mwp_d16t_clock add = 1 }
 if = { limit = { has_variable = mwp_d16t_collecting var:mwp_d16t_collecting = yes mwp_d16t_collection_age_value > var:mwp_d16t_timeout } remove_variable = mwp_d16t_collecting
 remove_variable = mwp_fallback_cost_ready
  }
  } } }
-mwp_d16t_begin = { scope = character saved_scopes = { mwp_d16t_input_owner mwp_d16t_input_generation mwp_d16t_input_income mwp_d16t_input_expenses mwp_d16t_input_balance mwp_d16t_input_expected mwp_d16t_input_levies mwp_d16t_input_max_maa mwp_d16t_input_max_strength mwp_d16t_input_purchase_count mwp_d16t_input_day } is_valid = { has_variable = mwp_d16t_owner var:mwp_d16t_owner = this is_ai = no has_variable = mwp_generation NOT = { has_variable = mwp_d16t_collecting }
+mwp_d16t_begin = { scope = character saved_scopes = { mwp_d16t_input_owner mwp_d16t_input_generation mwp_d16t_input_income mwp_d16t_input_expenses mwp_d16t_input_balance mwp_d16t_input_expected mwp_d16t_input_levies mwp_d16t_input_max_maa mwp_d16t_input_max_strength mwp_d16t_input_purchase_count mwp_d16t_input_day } is_valid = {  has_variable_list = mwp_id_finance_rows has_variable = mwp_d16t_owner var:mwp_d16t_owner = this is_ai = no has_variable = mwp_generation NOT = { has_variable = mwp_d16t_collecting }
         exists = scope:mwp_d16t_input_owner scope:mwp_d16t_input_owner = this
         exists = scope:mwp_d16t_input_generation scope:mwp_d16t_input_generation = var:mwp_generation
         exists = scope:mwp_d16t_input_income exists = scope:mwp_d16t_input_expenses exists = scope:mwp_d16t_input_balance exists = scope:mwp_d16t_input_expected exists = scope:mwp_d16t_input_levies exists = scope:mwp_d16t_input_max_maa exists = scope:mwp_d16t_input_max_strength exists = scope:mwp_d16t_input_purchase_count exists = scope:mwp_d16t_input_day scope:mwp_d16t_input_expected >= 0 scope:mwp_d16t_input_expenses <= 0
         scope:mwp_d16t_input_levies >= 0 scope:mwp_d16t_input_max_maa >= 0
         scope:mwp_d16t_input_purchase_count = mwp_native_cost_purchase_count_value scope:mwp_d16t_input_day = days_since_birth
-        scope:mwp_d16t_input_max_strength = max_military_strength } effect = { if = { limit = { has_variable = mwp_d16t_owner var:mwp_d16t_owner = this is_ai = no has_variable = mwp_generation NOT = { has_variable = mwp_d16t_collecting }
+        scope:mwp_d16t_input_max_strength = max_military_strength } effect = { if = { limit = {  has_variable_list = mwp_id_finance_rows has_variable = mwp_d16t_owner var:mwp_d16t_owner = this is_ai = no has_variable = mwp_generation NOT = { has_variable = mwp_d16t_collecting }
         exists = scope:mwp_d16t_input_owner scope:mwp_d16t_input_owner = this
         exists = scope:mwp_d16t_input_generation scope:mwp_d16t_input_generation = var:mwp_generation
         exists = scope:mwp_d16t_input_income exists = scope:mwp_d16t_input_expenses exists = scope:mwp_d16t_input_balance exists = scope:mwp_d16t_input_expected exists = scope:mwp_d16t_input_levies exists = scope:mwp_d16t_input_max_maa exists = scope:mwp_d16t_input_max_strength exists = scope:mwp_d16t_input_purchase_count exists = scope:mwp_d16t_input_day scope:mwp_d16t_input_expected >= 0 scope:mwp_d16t_input_expenses <= 0
@@ -290,11 +311,11 @@ set_variable = { name = mwp_d16t_military value = 0 }
 set_variable = { name = mwp_d16t_military_rows value = 0 }
 mwp_d16t_finish_effect = yes
  } } }
-mwp_d16t_row = { scope = character saved_scopes = { mwp_d16t_input_owner mwp_d16t_input_generation mwp_d16t_input_sequence mwp_d16t_input_income mwp_d16t_input_expenses mwp_d16t_input_balance mwp_d16t_input_expected mwp_d16t_input_levies mwp_d16t_input_max_maa mwp_d16t_input_max_strength mwp_d16t_input_purchase_count mwp_d16t_input_day mwp_d16t_input_index mwp_d16t_input_raw mwp_d16t_input_military } is_valid = { has_variable = mwp_d16t_owner var:mwp_d16t_owner = this is_ai = no has_variable = mwp_d16t_collecting var:mwp_d16t_collecting = yes has_variable = mwp_generation var:mwp_d16t_generation = var:mwp_generation days_since_birth = var:mwp_d16t_day
+mwp_d16t_row = { scope = character saved_scopes = { mwp_d16t_input_owner mwp_d16t_input_generation mwp_d16t_input_sequence mwp_d16t_input_income mwp_d16t_input_expenses mwp_d16t_input_balance mwp_d16t_input_expected mwp_d16t_input_levies mwp_d16t_input_max_maa mwp_d16t_input_max_strength mwp_d16t_input_purchase_count mwp_d16t_input_day mwp_d16t_input_index mwp_d16t_input_raw mwp_d16t_input_military } is_valid = {  has_variable_list = mwp_id_finance_rows has_variable = mwp_d16t_owner var:mwp_d16t_owner = this is_ai = no has_variable = mwp_d16t_collecting var:mwp_d16t_collecting = yes has_variable = mwp_generation var:mwp_d16t_generation = var:mwp_generation days_since_birth = var:mwp_d16t_day
         mwp_native_cost_purchase_count_value = var:mwp_d16t_purchase_count
         max_military_strength = var:mwp_d16t_max_strength exists = scope:mwp_d16t_input_owner exists = scope:mwp_d16t_input_generation exists = scope:mwp_d16t_input_sequence exists = scope:mwp_d16t_input_income exists = scope:mwp_d16t_input_expenses exists = scope:mwp_d16t_input_balance exists = scope:mwp_d16t_input_expected exists = scope:mwp_d16t_input_levies exists = scope:mwp_d16t_input_max_maa exists = scope:mwp_d16t_input_max_strength exists = scope:mwp_d16t_input_purchase_count exists = scope:mwp_d16t_input_day scope:mwp_d16t_input_owner = this scope:mwp_d16t_input_generation = var:mwp_generation scope:mwp_d16t_input_sequence = var:mwp_d16t_sequence scope:mwp_d16t_input_income = var:mwp_d16t_income scope:mwp_d16t_input_expenses = var:mwp_d16t_expenses scope:mwp_d16t_input_balance = var:mwp_d16t_balance scope:mwp_d16t_input_expected = var:mwp_d16t_expected scope:mwp_d16t_input_levies = var:mwp_d16t_levies scope:mwp_d16t_input_max_maa = var:mwp_d16t_max_maa scope:mwp_d16t_input_max_strength = var:mwp_d16t_max_strength scope:mwp_d16t_input_purchase_count = var:mwp_d16t_purchase_count scope:mwp_d16t_input_day = var:mwp_d16t_day exists = scope:mwp_d16t_input_index exists = scope:mwp_d16t_input_raw
         exists = scope:mwp_d16t_input_military scope:mwp_d16t_input_index = var:mwp_d16t_received
-        scope:mwp_d16t_input_index >= 0 scope:mwp_d16t_input_index < var:mwp_d16t_expected } effect = { if = { limit = { has_variable = mwp_d16t_owner var:mwp_d16t_owner = this is_ai = no has_variable = mwp_d16t_collecting var:mwp_d16t_collecting = yes has_variable = mwp_generation var:mwp_d16t_generation = var:mwp_generation days_since_birth = var:mwp_d16t_day
+        scope:mwp_d16t_input_index >= 0 scope:mwp_d16t_input_index < var:mwp_d16t_expected } effect = { if = { limit = {  has_variable_list = mwp_id_finance_rows has_variable = mwp_d16t_owner var:mwp_d16t_owner = this is_ai = no has_variable = mwp_d16t_collecting var:mwp_d16t_collecting = yes has_variable = mwp_generation var:mwp_d16t_generation = var:mwp_generation days_since_birth = var:mwp_d16t_day
         mwp_native_cost_purchase_count_value = var:mwp_d16t_purchase_count
         max_military_strength = var:mwp_d16t_max_strength exists = scope:mwp_d16t_input_owner exists = scope:mwp_d16t_input_generation exists = scope:mwp_d16t_input_sequence exists = scope:mwp_d16t_input_income exists = scope:mwp_d16t_input_expenses exists = scope:mwp_d16t_input_balance exists = scope:mwp_d16t_input_expected exists = scope:mwp_d16t_input_levies exists = scope:mwp_d16t_input_max_maa exists = scope:mwp_d16t_input_max_strength exists = scope:mwp_d16t_input_purchase_count exists = scope:mwp_d16t_input_day scope:mwp_d16t_input_owner = this scope:mwp_d16t_input_generation = var:mwp_generation scope:mwp_d16t_input_sequence = var:mwp_d16t_sequence scope:mwp_d16t_input_income = var:mwp_d16t_income scope:mwp_d16t_input_expenses = var:mwp_d16t_expenses scope:mwp_d16t_input_balance = var:mwp_d16t_balance scope:mwp_d16t_input_expected = var:mwp_d16t_expected scope:mwp_d16t_input_levies = var:mwp_d16t_levies scope:mwp_d16t_input_max_maa = var:mwp_d16t_max_maa scope:mwp_d16t_input_max_strength = var:mwp_d16t_max_strength scope:mwp_d16t_input_purchase_count = var:mwp_d16t_purchase_count scope:mwp_d16t_input_day = var:mwp_d16t_day exists = scope:mwp_d16t_input_index exists = scope:mwp_d16t_input_raw
         exists = scope:mwp_d16t_input_military scope:mwp_d16t_input_index = var:mwp_d16t_received
@@ -313,7 +334,7 @@ scope = character is_valid = { mwp_d18_army_display_current_trigger = yes }
 
 mwp_script_quote_ready = {
     scope = character
-    saved_scopes = {
+    saved_scopes = { mwp_fbr_gross mwp_fbr_raw mwp_fbr_net mwp_fbr_day mwp_fbr_count mwp_fbr_strength mwp_fbr_levies 
         mwp_script_input_owner
         mwp_script_input_generation
         mwp_script_input_singleplayer
@@ -363,7 +384,7 @@ mwp_script_quote_ready = {
 }
 
 mwp_d17t_abort_stale = { scope = character saved_scopes = { mwp_d16t_input_owner mwp_d16t_input_generation mwp_d16t_input_income mwp_d16t_input_expenses mwp_d16t_input_balance mwp_d16t_input_expected mwp_d16t_input_levies mwp_d16t_input_max_maa mwp_d16t_input_max_strength mwp_d16t_input_purchase_count mwp_d16t_input_day mwp_d16t_input_sequence }
-is_valid = { trigger_if = { limit = { has_variable = mwp_d16t_owner has_variable = mwp_d16t_collecting has_variable = mwp_d16t_generation has_variable = mwp_d16t_sequence has_variable = mwp_d16t_received has_variable = mwp_d16t_income has_variable = mwp_d16t_expenses has_variable = mwp_d16t_balance has_variable = mwp_d16t_expected has_variable = mwp_d16t_levies has_variable = mwp_d16t_max_maa has_variable = mwp_d16t_max_strength has_variable = mwp_d16t_purchase_count has_variable = mwp_d16t_day has_variable = mwp_generation exists = scope:mwp_d16t_input_owner exists = scope:mwp_d16t_input_generation exists = scope:mwp_d16t_input_income exists = scope:mwp_d16t_input_expenses exists = scope:mwp_d16t_input_balance exists = scope:mwp_d16t_input_expected exists = scope:mwp_d16t_input_levies exists = scope:mwp_d16t_input_max_maa exists = scope:mwp_d16t_input_max_strength exists = scope:mwp_d16t_input_purchase_count exists = scope:mwp_d16t_input_day exists = scope:mwp_d16t_input_sequence } is_ai = no is_alive = yes var:mwp_d16t_owner = this
+is_valid = { trigger_if = { limit = {  has_variable_list = mwp_id_finance_rows has_variable = mwp_d16t_owner has_variable = mwp_d16t_collecting has_variable = mwp_d16t_generation has_variable = mwp_d16t_sequence has_variable = mwp_d16t_received has_variable = mwp_d16t_income has_variable = mwp_d16t_expenses has_variable = mwp_d16t_balance has_variable = mwp_d16t_expected has_variable = mwp_d16t_levies has_variable = mwp_d16t_max_maa has_variable = mwp_d16t_max_strength has_variable = mwp_d16t_purchase_count has_variable = mwp_d16t_day has_variable = mwp_generation exists = scope:mwp_d16t_input_owner exists = scope:mwp_d16t_input_generation exists = scope:mwp_d16t_input_income exists = scope:mwp_d16t_input_expenses exists = scope:mwp_d16t_input_balance exists = scope:mwp_d16t_input_expected exists = scope:mwp_d16t_input_levies exists = scope:mwp_d16t_input_max_maa exists = scope:mwp_d16t_input_max_strength exists = scope:mwp_d16t_input_purchase_count exists = scope:mwp_d16t_input_day exists = scope:mwp_d16t_input_sequence } is_ai = no is_alive = yes var:mwp_d16t_owner = this
         var:mwp_d16t_collecting = yes var:mwp_d16t_received < var:mwp_d16t_expected
         scope:mwp_d16t_input_owner = this
         scope:mwp_d16t_input_generation = var:mwp_generation
@@ -385,7 +406,7 @@ NOT = { scope:mwp_d16t_input_purchase_count = var:mwp_d16t_purchase_count }
 NOT = { scope:mwp_d16t_input_day = var:mwp_d16t_day }
 } }
 trigger_else = { always = no } }
-effect = { if = { limit = { trigger_if = { limit = { has_variable = mwp_d16t_owner has_variable = mwp_d16t_collecting has_variable = mwp_d16t_generation has_variable = mwp_d16t_sequence has_variable = mwp_d16t_received has_variable = mwp_d16t_income has_variable = mwp_d16t_expenses has_variable = mwp_d16t_balance has_variable = mwp_d16t_expected has_variable = mwp_d16t_levies has_variable = mwp_d16t_max_maa has_variable = mwp_d16t_max_strength has_variable = mwp_d16t_purchase_count has_variable = mwp_d16t_day has_variable = mwp_generation exists = scope:mwp_d16t_input_owner exists = scope:mwp_d16t_input_generation exists = scope:mwp_d16t_input_income exists = scope:mwp_d16t_input_expenses exists = scope:mwp_d16t_input_balance exists = scope:mwp_d16t_input_expected exists = scope:mwp_d16t_input_levies exists = scope:mwp_d16t_input_max_maa exists = scope:mwp_d16t_input_max_strength exists = scope:mwp_d16t_input_purchase_count exists = scope:mwp_d16t_input_day exists = scope:mwp_d16t_input_sequence } is_ai = no is_alive = yes var:mwp_d16t_owner = this
+effect = { if = { limit = { trigger_if = { limit = {  has_variable_list = mwp_id_finance_rows has_variable = mwp_d16t_owner has_variable = mwp_d16t_collecting has_variable = mwp_d16t_generation has_variable = mwp_d16t_sequence has_variable = mwp_d16t_received has_variable = mwp_d16t_income has_variable = mwp_d16t_expenses has_variable = mwp_d16t_balance has_variable = mwp_d16t_expected has_variable = mwp_d16t_levies has_variable = mwp_d16t_max_maa has_variable = mwp_d16t_max_strength has_variable = mwp_d16t_purchase_count has_variable = mwp_d16t_day has_variable = mwp_generation exists = scope:mwp_d16t_input_owner exists = scope:mwp_d16t_input_generation exists = scope:mwp_d16t_input_income exists = scope:mwp_d16t_input_expenses exists = scope:mwp_d16t_input_balance exists = scope:mwp_d16t_input_expected exists = scope:mwp_d16t_input_levies exists = scope:mwp_d16t_input_max_maa exists = scope:mwp_d16t_input_max_strength exists = scope:mwp_d16t_input_purchase_count exists = scope:mwp_d16t_input_day exists = scope:mwp_d16t_input_sequence } is_ai = no is_alive = yes var:mwp_d16t_owner = this
         var:mwp_d16t_collecting = yes var:mwp_d16t_received < var:mwp_d16t_expected
         scope:mwp_d16t_input_owner = this
         scope:mwp_d16t_input_generation = var:mwp_generation
@@ -411,7 +432,7 @@ trigger_else = { always = no } } remove_variable = mwp_d16t_collecting } }
 
 mwp_script_driver_step = {
     scope = character
-    saved_scopes = {
+    saved_scopes = { mwp_fbr_gross mwp_fbr_raw mwp_fbr_net mwp_fbr_day mwp_fbr_count mwp_fbr_strength mwp_fbr_levies 
         mwp_script_input_owner
         mwp_script_input_generation
         mwp_script_input_singleplayer
@@ -490,6 +511,7 @@ mwp_script_driver_step = {
         if = {
             limit = {
                 has_variable = mwp_generation
+                NOT = { AND = { has_variable = mwp_fc_full mwp_fc_can_probe = yes mwp_fc_members_current = yes } }
             }
             if = {
                 limit = {

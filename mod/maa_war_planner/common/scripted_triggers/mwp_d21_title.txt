@@ -409,7 +409,7 @@ mwp_d21_can_create_49_trigger = {
   mwp_d21_selected_route_valid_trigger = yes
   var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = onager }
  }
- trigger_else = { can_create_maa = onager maa_regiments_count < maa_regiments_max_count }
+ trigger_else = { can_create_maa = onager maa_regiments_count < maa_regiments_max_count NOT = { mwp_reorganization_same_siege_pending = { TYPE = 49 } } }
 }
 mwp_d21_can_create_50_trigger = {
  trigger_if = { limit = { mwp_d21_active_route_value = 2 }
@@ -423,7 +423,7 @@ mwp_d21_can_create_51_trigger = {
   mwp_d21_selected_route_valid_trigger = yes
   var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = mangonel }
  }
- trigger_else = { can_create_maa = mangonel maa_regiments_count < maa_regiments_max_count }
+ trigger_else = { can_create_maa = mangonel maa_regiments_count < maa_regiments_max_count NOT = { mwp_reorganization_same_siege_pending = { TYPE = 51 } } }
 }
 mwp_d21_can_create_52_trigger = {
  trigger_if = { limit = { mwp_d21_active_route_value = 2 }
@@ -437,14 +437,14 @@ mwp_d21_can_create_53_trigger = {
   mwp_d21_selected_route_valid_trigger = yes
   var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = trebuchet }
  }
- trigger_else = { can_create_maa = trebuchet maa_regiments_count < maa_regiments_max_count }
+ trigger_else = { can_create_maa = trebuchet maa_regiments_count < maa_regiments_max_count NOT = { mwp_reorganization_same_siege_pending = { TYPE = 53 } } }
 }
 mwp_d21_can_create_54_trigger = {
  trigger_if = { limit = { mwp_d21_active_route_value = 2 }
   mwp_d21_selected_route_valid_trigger = yes
   var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = bombard }
  }
- trigger_else = { can_create_maa = bombard maa_regiments_count < maa_regiments_max_count }
+ trigger_else = { can_create_maa = bombard maa_regiments_count < maa_regiments_max_count NOT = { mwp_reorganization_same_siege_pending = { TYPE = 54 } } }
 }
 mwp_d21_can_create_55_trigger = {
  trigger_if = { limit = { mwp_d21_active_route_value = 2 }
@@ -626,7 +626,7 @@ mwp_d21_can_create_87_trigger = {
   mwp_d21_selected_route_valid_trigger = yes
   var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = torch_bearers }
  }
- trigger_else = { can_create_maa = torch_bearers maa_regiments_count < maa_regiments_max_count }
+ trigger_else = { can_create_maa = torch_bearers maa_regiments_count < maa_regiments_max_count NOT = { mwp_reorganization_same_siege_pending = { TYPE = 87 } } }
 }
 mwp_d21_can_create_95_trigger = {
  trigger_if = { limit = { mwp_d21_active_route_value = 2 }
@@ -698,6 +698,13 @@ mwp_d21_can_create_105_trigger = {
  }
  trigger_else = { can_create_maa = tiefutu maa_regiments_count < maa_regiments_max_count }
 }
+mwp_d21_can_create_112_trigger = {
+ trigger_if = { limit = { mwp_d21_active_route_value = 2 }
+  mwp_d21_selected_route_valid_trigger = yes
+  var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = condottieri }
+ }
+ trigger_else = { can_create_maa = condottieri maa_regiments_count < maa_regiments_max_count }
+}
 mwp_d21_can_create_106_trigger = {
  trigger_if = { limit = { mwp_d21_active_route_value = 2 }
   mwp_d21_selected_route_valid_trigger = yes
@@ -717,26 +724,26 @@ mwp_d21_can_create_108_trigger = {
   mwp_d21_selected_route_valid_trigger = yes
   var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = ballista }
  }
- trigger_else = { can_create_maa = ballista maa_regiments_count < maa_regiments_max_count }
+ trigger_else = { can_create_maa = ballista maa_regiments_count < maa_regiments_max_count NOT = { mwp_reorganization_same_siege_pending = { TYPE = 108 } } }
 }
 mwp_d21_can_create_109_trigger = {
  trigger_if = { limit = { mwp_d21_active_route_value = 2 }
   mwp_d21_selected_route_valid_trigger = yes
   var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = cloud_ladder }
  }
- trigger_else = { can_create_maa = cloud_ladder maa_regiments_count < maa_regiments_max_count }
+ trigger_else = { can_create_maa = cloud_ladder maa_regiments_count < maa_regiments_max_count NOT = { mwp_reorganization_same_siege_pending = { TYPE = 109 } } }
 }
 mwp_d21_can_create_110_trigger = {
  trigger_if = { limit = { mwp_d21_active_route_value = 2 }
   mwp_d21_selected_route_valid_trigger = yes
   var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = siege_tower }
  }
- trigger_else = { can_create_maa = siege_tower maa_regiments_count < maa_regiments_max_count }
+ trigger_else = { can_create_maa = siege_tower maa_regiments_count < maa_regiments_max_count NOT = { mwp_reorganization_same_siege_pending = { TYPE = 110 } } }
 }
 mwp_d21_can_create_111_trigger = {
  trigger_if = { limit = { mwp_d21_active_route_value = 2 }
   mwp_d21_selected_route_valid_trigger = yes
   var:mwp_script_selected_title = { mwp_d21_title_has_capacity_trigger = yes can_create_title_maa = cannon }
  }
- trigger_else = { can_create_maa = cannon maa_regiments_count < maa_regiments_max_count }
+ trigger_else = { can_create_maa = cannon maa_regiments_count < maa_regiments_max_count NOT = { mwp_reorganization_same_siege_pending = { TYPE = 111 } } }
 }

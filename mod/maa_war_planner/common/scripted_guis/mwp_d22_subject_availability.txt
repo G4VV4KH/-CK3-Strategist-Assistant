@@ -113,6 +113,7 @@ AND = { scope:type_id >= 102 scope:type_id <= 102 NOT = { has_access_to_maa = sa
 AND = { scope:type_id >= 103 scope:type_id <= 103 NOT = { has_access_to_maa = zhanmadao_infantry } NOT = { has_variable = mwp_rank_103 } }
 AND = { scope:type_id >= 104 scope:type_id <= 104 NOT = { has_access_to_maa = black_armor_cavalry } NOT = { has_variable = mwp_rank_104 } }
 AND = { scope:type_id >= 105 scope:type_id <= 105 NOT = { has_access_to_maa = tiefutu } NOT = { has_variable = mwp_rank_105 } }
+AND = { scope:type_id >= 112 scope:type_id <= 112 NOT = { has_access_to_maa = condottieri } NOT = { has_variable = mwp_rank_112 } }
 AND = { scope:type_id >= 106 scope:type_id <= 106 NOT = { has_access_to_maa = burenjia } NOT = { has_variable = mwp_rank_106 } }
 AND = { scope:type_id >= 107 scope:type_id <= 107 NOT = { has_access_to_maa = rocket_carts } NOT = { has_variable = mwp_rank_107 } }
 AND = { scope:type_id >= 108 scope:type_id <= 108 NOT = { has_access_to_maa = ballista } NOT = { has_variable = mwp_rank_108 } }

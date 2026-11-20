@@ -4,5 +4,12 @@ mwp_session_start = {
 }
 on_player_character_change = { on_actions = { mwp_player_changed } }
 mwp_player_changed = {
-	effect = { mwp_bootstrap_effect = yes }
+	effect = {
+        scope:previous_player_character ?= {
+ if = { limit = { has_variable = mwp_fa_live NOT = { has_variable = mwp_fp_step } } mwp_fa_discard_effect = yes } if = { limit = { has_variable = mwp_fp_step } mwp_fp_cancel_effect = yes } if = { limit = { has_variable = mwp_fw_stage } mwp_fw_discard_effect = yes }
+ if = { limit = { has_variable = mwp_id_finance_awake NOT = { has_variable = mwp_batch_active } NOT = { has_variable = mwp_fa_live } NOT = { has_variable = mwp_d19_tx_active } NOT = { has_variable = mwp_d21p_pending } } mwp_id_park_finance_effect = yes }
+if = { limit = { has_variable = mwp_id_live_awake NOT = { has_variable = mwp_batch_active } NOT = { has_variable = mwp_fa_live } NOT = { has_variable = mwp_d19_tx_active } NOT = { has_variable = mwp_d21p_pending } } mwp_id_park_live_effect = yes }
+ }
+        mwp_bootstrap_effect = yes
+    }
 }

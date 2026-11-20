@@ -6526,6 +6526,74 @@ mwp_d21_type_budget_105_trigger = {
         }
     }
 }
+mwp_d21_type_budget_112_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_upkeep_free_trigger = yes
+        }
+        always = yes
+    }
+    trigger_else_if = {
+        limit = {
+            mwp_auto_budget_mode_value = 3
+        }
+        always = yes
+    }
+    trigger_else = {
+        trigger_if = {
+            limit = {
+
+            }
+            mwp_d21_upkeep_bound_112 >= 0
+            trigger_if = {
+                limit = {
+                    mwp_d21_upkeep_currency_112 = 1
+                    mwp_d21_legacy_gold_budget_trigger = yes
+                }
+                var:mwp_auto_B >= mwp_d21_upkeep_bound_112
+            }
+            trigger_else = {
+                mwp_d21_budget_ledger_current_trigger = yes
+                trigger_if = {
+                    limit = {
+                        mwp_auto_budget_mode_value = 1
+                    }
+                    mwp_d21_whole_army_other_wallets_trigger = yes
+                }
+                OR = {
+                    AND = {
+                        mwp_d21_upkeep_currency_112 = 1
+                        has_variable = mwp_d21b_headroom_1
+                        var:mwp_d21b_headroom_1 >= mwp_d21_upkeep_bound_112
+                    }
+                    AND = {
+                        mwp_d21_upkeep_currency_112 = 2
+                        has_variable = mwp_d21b_headroom_2
+                        var:mwp_d21b_headroom_2 >= mwp_d21_upkeep_bound_112
+                    }
+                    AND = {
+                        mwp_d21_upkeep_currency_112 = 3
+                        has_variable = mwp_d21b_headroom_3
+                        var:mwp_d21b_headroom_3 >= mwp_d21_upkeep_bound_112
+                    }
+                    AND = {
+                        mwp_d21_upkeep_currency_112 = 4
+                        has_variable = mwp_d21b_headroom_4
+                        var:mwp_d21b_headroom_4 >= mwp_d21_upkeep_bound_112
+                    }
+                    AND = {
+                        mwp_d21_upkeep_currency_112 = 5
+                        has_variable = mwp_d21b_headroom_5
+                        var:mwp_d21b_headroom_5 >= mwp_d21_upkeep_bound_112
+                    }
+                }
+            }
+        }
+        trigger_else = {
+            always = no
+        }
+    }
+}
 mwp_d21_type_budget_106_trigger = {
     trigger_if = {
         limit = {
@@ -7607,6 +7675,13 @@ mwp_d21_reorganization_budget_trigger = {
             var:mwp_reorganization_upkeep_currency = mwp_d21_upkeep_currency_105
             var:mwp_reorganization_upkeep = mwp_d21_upkeep_bound_105
             mwp_d21_type_budget_105_trigger = yes
+        }
+        AND = {
+            var:mwp_reorganization_planned_id = 112
+            var:mwp_reorganization_currency = mwp_d21_buy_currency_112
+            var:mwp_reorganization_upkeep_currency = mwp_d21_upkeep_currency_112
+            var:mwp_reorganization_upkeep = mwp_d21_upkeep_bound_112
+            mwp_d21_type_budget_112_trigger = yes
         }
         AND = {
             var:mwp_reorganization_planned_id = 106

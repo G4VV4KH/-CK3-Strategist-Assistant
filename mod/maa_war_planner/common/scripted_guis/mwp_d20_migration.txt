@@ -2,6 +2,7 @@
 mwp_d20_migrate_wars = { scope = character
  is_valid = { is_ai = no is_alive = yes
  NOT = { mwp_d20_war_schema_current_trigger = yes }
+ NOT = { has_variable = mwp_fw_stage }
  NOT = { AND = { has_variable = mwp_analysis_requested var:mwp_analysis_requested = yes } }
  NOT = { AND = {
   has_variable = mwp_d20_migration_owner var:mwp_d20_migration_owner = this
@@ -10,6 +11,7 @@ mwp_d20_migrate_wars = { scope = character
  } } }
  effect = { if = { limit = { is_ai = no is_alive = yes
  NOT = { mwp_d20_war_schema_current_trigger = yes }
+ NOT = { has_variable = mwp_fw_stage }
  NOT = { AND = { has_variable = mwp_analysis_requested var:mwp_analysis_requested = yes } }
  NOT = { AND = {
   has_variable = mwp_d20_migration_owner var:mwp_d20_migration_owner = this

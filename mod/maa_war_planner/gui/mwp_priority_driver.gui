@@ -1,5 +1,7 @@
 ﻿window = { name = mwp_priority_driver size = { 1 1 } alwaystransparent = yes
  visible = "[GetPlayer.IsValid]"
+widget = { size = { 1 1 } alwaystransparent = yes datamodel = "[GetPlayer.MakeScope.GetList('mwp_id_finance_rows')]"
+ item = { widget = { size = { 1 1 } alwaystransparent = yes
  state = { name = priority_poll trigger_on_create = yes alpha = 1 duration = 0.2
   on_finish = "[PdxGuiWidget.TriggerAnimation(Select_CString(And(GetPlayer.IsValid,GetScriptedGui('mwp_priority_refresh').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('mwp_script_input_owner',GetPlayer.MakeScope).AddScope('mwp_script_input_generation',MakeScopeValue(GetPlayer.MakeScope.GetVariable('mwp_generation').GetValueWithDefault('(CFixedPoint)0'))).AddScope('mwp_script_input_singleplayer',MakeScopeBool(Not(GameIsMultiplayer))).AddScope('mwp_input_current_balance',MakeScopeValue(GetPlayer.GetBalance)).AddScope('mwp_input_native_cost_sequence',MakeScopeValue(GetPlayer.MakeScope.GetVariable('mwp_native_cost_sequence').GetValueWithDefault('(CFixedPoint)-1'))).AddScope('mwp_input_fallback_cost_sequence',MakeScopeValue(GetPlayer.MakeScope.GetVariable('mwp_fallback_cost_sequence').GetValueWithDefault('(CFixedPoint)-1'))).AddScope('mwp_input_cost_max_maa',MakeScopeValue(IntToFixedPoint(GetPlayerArmyComposition.GetMaxNumberOfMAA))).AddScope('mwp_input_cost_panel_open',MakeScopeBool(IsGameViewOpen('military'))).End)), 'priority_refresh', 'priority_idle'))]"
  }
@@ -7,6 +9,8 @@
   on_finish = "[GetScriptedGui('mwp_priority_refresh').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('mwp_script_input_owner',GetPlayer.MakeScope).AddScope('mwp_script_input_generation',MakeScopeValue(GetPlayer.MakeScope.GetVariable('mwp_generation').GetValueWithDefault('(CFixedPoint)0'))).AddScope('mwp_script_input_singleplayer',MakeScopeBool(Not(GameIsMultiplayer))).AddScope('mwp_input_current_balance',MakeScopeValue(GetPlayer.GetBalance)).AddScope('mwp_input_native_cost_sequence',MakeScopeValue(GetPlayer.MakeScope.GetVariable('mwp_native_cost_sequence').GetValueWithDefault('(CFixedPoint)-1'))).AddScope('mwp_input_fallback_cost_sequence',MakeScopeValue(GetPlayer.MakeScope.GetVariable('mwp_fallback_cost_sequence').GetValueWithDefault('(CFixedPoint)-1'))).AddScope('mwp_input_cost_max_maa',MakeScopeValue(IntToFixedPoint(GetPlayerArmyComposition.GetMaxNumberOfMAA))).AddScope('mwp_input_cost_panel_open',MakeScopeBool(IsGameViewOpen('military'))).End)]"
  }
  state = { name = priority_idle alpha = 1 duration = 0 next = priority_poll }
+widget = { size = { 1 1 } alwaystransparent = yes datamodel = "[DataModelFirst(GetPlayer.MakeScope.GetList('mwp_id_finance_rows'),Select_int32(And(And(Not(GameIsMultiplayer),And(GetPlayer.IsValid,And(GetPlayer.MakeScope.GetVariable('mwp_auto_recruit_enabled').IsSet,And(GetPlayer.MakeScope.GetVariable('mwp_fast_calendar').IsSet,And(EqualTo_int32(GetCurrentGameSpeed,'(int32)5'),And(Or(Not(IsManuallyPaused),IsPausedByEvent),Not(GetPlayer.MakeScope.GetVariable('mwp_reorganization_enabled').IsSet))))))),And(GetPlayer.MakeScope.GetVariable('mwp_fc_full').IsSet,And(Not(GetPlayer.MakeScope.GetVariable('mwp_batch_active').IsSet),And(Not(GetPlayer.MakeScope.GetVariable('mwp_fa_live').IsSet),And(Not(GetPlayer.MakeScope.GetVariable('mwp_d19_tx_active').IsSet),Not(GetPlayer.MakeScope.GetVariable('mwp_d21p_pending').IsSet)))))),'(int32)0','(int32)1'))]"
+ item = { widget = { size = { 1 1 } alwaystransparent = yes
 widget = { name = mwp_n16c_observer size = { 1 1 } alwaystransparent = yes
  state = { name = mwp_n16c_new_session trigger_on_create = yes alpha = 1 duration = 0
   on_finish = "[GetVariableSystem.Clear('mwp_n16c_session_player')]" }
@@ -30,6 +34,10 @@ widget = { size = { 1 1 } alwaystransparent = yes
  state = { name = mwp_n16c_clock_idle alpha = 1 duration = 0 next = mwp_n16c_clock_poll }
 }
 }
+ } } }
+
+widget = { size = { 1 1 } alwaystransparent = yes datamodel = "[DataModelFirst(GetPlayer.MakeScope.GetList('mwp_id_finance_rows'),Select_int32(And(And(Not(GameIsMultiplayer),And(GetPlayer.IsValid,And(GetPlayer.MakeScope.GetVariable('mwp_auto_recruit_enabled').IsSet,And(GetPlayer.MakeScope.GetVariable('mwp_fast_calendar').IsSet,And(EqualTo_int32(GetCurrentGameSpeed,'(int32)5'),And(Or(Not(IsManuallyPaused),IsPausedByEvent),Not(GetPlayer.MakeScope.GetVariable('mwp_reorganization_enabled').IsSet))))))),And(GetPlayer.MakeScope.GetVariable('mwp_fc_full').IsSet,And(Not(GetPlayer.MakeScope.GetVariable('mwp_batch_active').IsSet),And(Not(GetPlayer.MakeScope.GetVariable('mwp_fa_live').IsSet),And(Not(GetPlayer.MakeScope.GetVariable('mwp_d19_tx_active').IsSet),Not(GetPlayer.MakeScope.GetVariable('mwp_d21p_pending').IsSet)))))),'(int32)0','(int32)1'))]"
+ item = { widget = { size = { 1 1 } alwaystransparent = yes
 widget = { name = mwp_d16t_observer size = { 1 1 } alwaystransparent = yes
  state = { name = mwp_d16t_new_session trigger_on_create = yes alpha = 1 duration = 0
   on_finish = "[GetVariableSystem.Clear('mwp_d16t_session_player')]" }
@@ -61,6 +69,8 @@ widget = { name = mwp_d16t_begin_worker size = { 1 1 } alwaystransparent = yes
  }
  state = { name = mwp_d16t_begin_idle alpha = 1 duration = 0 next = mwp_d16t_begin_poll }
 }
+widget = { name = mwp_p15_d16t_details size = { 1 1 } alwaystransparent = yes datamodel = "[DataModelFirst(GetPlayer.MakeScope.GetList('mwp_id_finance_rows'),Select_int32(GetPlayer.MakeScope.GetVariable('mwp_d16t_collecting').IsSet,'(int32)1','(int32)0'))]"
+ item = { widget = { size = { 1 1 } alwaystransparent = yes
 widget = { size = { 1 1 } alwaystransparent = yes datacontext = "[AccessTopBar.GetGoldExpensesBreakdown]"
  dynamicgridbox = { size = { 1 1 } alwaystransparent = yes datamodel = "[ValueBreakdown.GetSubValues]"
   item = { widget = { size = { 1 1 } alwaystransparent = yes
@@ -74,8 +84,15 @@ widget = { name = mwp_d16t_row_worker size = { 1 1 } alwaystransparent = yes
  state = { name = mwp_d16t_row_idle alpha = 1 duration = 0 next = mwp_d16t_row_poll }
 }
 } } } }
+ } } }
 }
+ } } }
 
+
+widget = { size = { 1 1 } alwaystransparent = yes datamodel = "[DataModelFirst(GetPlayer.MakeScope.GetList('mwp_id_finance_rows'),Select_int32(And(And(Not(GameIsMultiplayer),And(GetPlayer.IsValid,And(GetPlayer.MakeScope.GetVariable('mwp_auto_recruit_enabled').IsSet,And(GetPlayer.MakeScope.GetVariable('mwp_fast_calendar').IsSet,And(EqualTo_int32(GetCurrentGameSpeed,'(int32)5'),And(Or(Not(IsManuallyPaused),IsPausedByEvent),Not(GetPlayer.MakeScope.GetVariable('mwp_reorganization_enabled').IsSet))))))),And(GetPlayer.MakeScope.GetVariable('mwp_fc_full').IsSet,And(Not(GetPlayer.MakeScope.GetVariable('mwp_batch_active').IsSet),And(Not(GetPlayer.MakeScope.GetVariable('mwp_fa_live').IsSet),And(Not(GetPlayer.MakeScope.GetVariable('mwp_d19_tx_active').IsSet),Not(GetPlayer.MakeScope.GetVariable('mwp_d21p_pending').IsSet)))))),'(int32)0','(int32)1'))]"
+ item = { widget = { size = { 1 1 } alwaystransparent = yes
+widget = { name = mwp_p15_fallback_abort size = { 1 1 } alwaystransparent = yes datamodel = "[DataModelFirst(GetPlayer.MakeScope.GetList('mwp_id_finance_rows'),Select_int32(GetPlayer.MakeScope.GetVariable('mwp_d16t_collecting').IsSet,'(int32)1','(int32)0'))]"
+ item = { widget = { size = { 1 1 } alwaystransparent = yes
 widget = { name = mwp_d17t_abort_stale_worker size = { 1 1 } alwaystransparent = yes
  state = { name = mwp_d17t_abort_stale_poll trigger_on_create = yes alpha = 1 duration = 0.1
   on_finish = "[PdxGuiWidget.TriggerAnimation(Select_CString(And(GetPlayer.IsValid,And(GetPlayer.MakeScope.GetVariable('mwp_d16t_collecting').IsSet,GetScriptedGui('mwp_d17t_abort_stale').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('mwp_d16t_input_owner',GetPlayer.MakeScope).AddScope('mwp_d16t_input_generation',MakeScopeValue(GetPlayer.MakeScope.GetVariable('mwp_generation').GetValueWithDefault('(CFixedPoint)-777'))).AddScope('mwp_d16t_input_income',MakeScopeValue(AccessTopBar.GetGoldIncomeBreakdown.GetFixedPointValue)).AddScope('mwp_d16t_input_expenses',MakeScopeValue(AccessTopBar.GetGoldExpensesBreakdown.GetFixedPointValue)).AddScope('mwp_d16t_input_balance',MakeScopeValue(AccessTopBar.GetGoldBalance)).AddScope('mwp_d16t_input_expected',MakeScopeValue(IntToFixedPoint(GetDataModelSize(AccessTopBar.GetGoldExpensesBreakdown.GetSubValues)))).AddScope('mwp_d16t_input_levies',MakeScopeValue(IntToFixedPoint(GetPlayerArmyComposition.GetMaxNumberOfLevies))).AddScope('mwp_d16t_input_max_maa',MakeScopeValue(IntToFixedPoint(GetPlayerArmyComposition.GetMaxNumberOfMAA))).AddScope('mwp_d16t_input_max_strength',MakeScopeValue(IntToFixedPoint(GetPlayer.GetMaxMilitaryStrength))).AddScope('mwp_d16t_input_purchase_count',MakeScopeValue(GetPlayer.MakeScope.ScriptValue('mwp_native_cost_purchase_count_value'))).AddScope('mwp_d16t_input_day',MakeScopeValue(GetPlayer.MakeScope.ScriptValue('mwp_native_cost_day_value'))).AddScope('mwp_d16t_input_sequence',MakeScopeValue(GetPlayer.MakeScope.GetVariable('mwp_d16t_sequence').GetValueWithDefault('(CFixedPoint)-1'))).End))),'mwp_d17t_abort_stale_commit','mwp_d17t_abort_stale_idle'))]" }
@@ -84,4 +101,9 @@ widget = { name = mwp_d17t_abort_stale_worker size = { 1 1 } alwaystransparent =
   on_start = "[GetScriptedGui('mwp_d17t_abort_stale').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('mwp_d16t_input_owner',GetPlayer.MakeScope).AddScope('mwp_d16t_input_generation',MakeScopeValue(GetPlayer.MakeScope.GetVariable('mwp_generation').GetValueWithDefault('(CFixedPoint)-777'))).AddScope('mwp_d16t_input_income',MakeScopeValue(AccessTopBar.GetGoldIncomeBreakdown.GetFixedPointValue)).AddScope('mwp_d16t_input_expenses',MakeScopeValue(AccessTopBar.GetGoldExpensesBreakdown.GetFixedPointValue)).AddScope('mwp_d16t_input_balance',MakeScopeValue(AccessTopBar.GetGoldBalance)).AddScope('mwp_d16t_input_expected',MakeScopeValue(IntToFixedPoint(GetDataModelSize(AccessTopBar.GetGoldExpensesBreakdown.GetSubValues)))).AddScope('mwp_d16t_input_levies',MakeScopeValue(IntToFixedPoint(GetPlayerArmyComposition.GetMaxNumberOfLevies))).AddScope('mwp_d16t_input_max_maa',MakeScopeValue(IntToFixedPoint(GetPlayerArmyComposition.GetMaxNumberOfMAA))).AddScope('mwp_d16t_input_max_strength',MakeScopeValue(IntToFixedPoint(GetPlayer.GetMaxMilitaryStrength))).AddScope('mwp_d16t_input_purchase_count',MakeScopeValue(GetPlayer.MakeScope.ScriptValue('mwp_native_cost_purchase_count_value'))).AddScope('mwp_d16t_input_day',MakeScopeValue(GetPlayer.MakeScope.ScriptValue('mwp_native_cost_day_value'))).AddScope('mwp_d16t_input_sequence',MakeScopeValue(GetPlayer.MakeScope.GetVariable('mwp_d16t_sequence').GetValueWithDefault('(CFixedPoint)-1'))).End)]" }
  state = { name = mwp_d17t_abort_stale_idle alpha = 1 duration = 0 next = mwp_d17t_abort_stale_poll }
 }
+ } } }
+ } } }
+
+
+ } } }
 }

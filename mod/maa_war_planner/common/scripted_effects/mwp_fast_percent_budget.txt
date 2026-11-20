@@ -1,0 +1,2715 @@
+﻿mwp_fbr_compute_maa = {
+    save_scope_as = mwp_script_budget_player
+    remove_variable = mwp_script_budget_ready
+    set_variable = {
+        name = mwp_script_budget_error
+        value = 0
+    }
+    set_variable = {
+        name = mwp_script_budget_ratio
+        value = 0
+    }
+    set_variable = {
+        name = mwp_script_budget_zero_low_bound
+        value = 0
+    }
+    set_variable = {
+        name = mwp_script_budget_known_count
+        value = 0
+    }
+    set_variable = {
+        name = mwp_script_budget_income
+        value = 0
+    }
+    if = {
+        limit = {
+            exists = scope:mwp_input_current_balance
+        }
+        set_variable = {
+            name = mwp_script_budget_income
+            value = scope:mwp_fbr_gross
+        }
+    }
+    set_variable = {
+        name = mwp_script_budget_current_expenses
+        value = { value = scope:mwp_fbr_raw multiply = -1 }
+    }
+    set_variable = {
+        name = mwp_script_budget_unraised
+        value = monthly_character_men_at_arms_expense_gold
+    }
+    set_variable = {
+        name = mwp_script_maa_upkeep
+        value = 0
+    }
+    set_variable = {
+        name = mwp_script_full_army_expense
+        value = 0
+    }
+    set_variable = {
+        name = mwp_script_raised_army_upkeep
+        value = 0
+    }
+    if = {
+        limit = {
+            OR = {
+                has_government = feudal_government
+                has_government = clan_government
+            }
+            maa_regiments_count <= maa_regiments_max_count
+            monthly_character_men_at_arms_expense_gold >= 0
+            monthly_character_expenses >= 0
+            max_military_strength >= 0
+            exists = scope:mwp_input_current_balance
+        }
+        every_maa_regiment = {
+            if = {
+                limit = {
+                    is_personal_maa_regiment = yes
+                }
+                if = {
+                    limit = {
+                        is_regular_maa_regiment = yes
+                        is_title_maa_regiment = no
+                        maa_size > 0
+                    }
+                    if = {
+                        limit = {
+                            is_maa_type = huscarl
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = landsknecht
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = longbowmen
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = goedendag
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = gendarme
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = chasseur
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = picchieri
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = praetorian
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = caballero
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = monaspa
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = cataphract
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = hobelar
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = schiltron
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = metsanvartija
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = horse_archers
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = ayyar
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = mubarizun
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = mulaththamun
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = archers_of_the_nile
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = paiks
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = druzhina
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = hussar
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = horn_warrior
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = bush_hunter
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = shomer
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = garudas
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = khandayat
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = mountaineer
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = sahel_horsemen
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = guinea_warrior
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = sarawit
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = abudrar
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = zbrojnosh
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = palace_guards
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = shenbigong
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = guanch_vaulter
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = teulu
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = asawira
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 3
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = tarkhan
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = zupin_warrior
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = tawashi
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = order_serjeants
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = order_knights
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = light_footmen
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = kheshig
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = steppe_raiders
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = heavy_horse_archers
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = nomad_lancers
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = mangudai
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = cataphract_archers
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = maturkan_warriors
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = warrior_monks
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 3
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = bowmen
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = light_horsemen
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = pikemen_unit
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = armored_footmen
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = onager
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = armored_horsemen
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = mangonel
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = crossbowmen
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = trebuchet
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = bombard
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = handgunners
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = house_guard
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            change_variable = {
+                                name = mwp_script_budget_zero_low_bound
+                                add = {
+                                    value = mwp_script_zero_low_ceiling_56
+                                    multiply = scope:mwp_script_budget_regiment_size
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = pikemen_militia
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = camel_rider
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = war_elephant
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.917
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = accolade_maa_archers
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = accolade_maa_skirmishers
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = accolade_maa_pikes
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = accolade_maa_outriders
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = accolade_maa_vanguards
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = accolade_maa_lancers
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = accolade_maa_crossbowers
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = accolade_maa_cameliers
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = accolade_maa_elephantiers
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.917
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = accolade_maa_horse_archers
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = accolade_maa_handgunners
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = vigmen
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = bondi
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = varangian_veterans
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = jomsviking_pirates
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = ayrudzi
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = conrois
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = akritai
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = ballistrai
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = skoutatoi
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = varangian_guards
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = handpicked_faithful
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = maa_bandits
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = maa_poachers
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = maa_marauders
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = maa_thieves
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = torch_bearers
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = emishi_horse_archers
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = japanese_horse_archers
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = fire_lancers
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = gakgung_archers
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = ballista_elephant
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.858
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = pesilat_warriors
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = samurai
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = zhanmadao_infantry
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = black_armor_cavalry
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = tiefutu
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = condottieri
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = burenjia
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.084
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = rocket_carts
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = ballista
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = cloud_ladder
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = siege_tower
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            is_maa_type = cannon
+                        }
+                        save_scope_value_as = {
+                            name = mwp_script_budget_regiment_size
+                            value = maa_size
+                        }
+                        scope:mwp_script_budget_player = {
+                            change_variable = {
+                                name = mwp_script_budget_known_count
+                                add = 1
+                            }
+                            set_variable = {
+                                name = mwp_script_budget_ratio
+                                value = {
+                                    value = var:mwp_script_budget_ratio
+                                    min = 2.5
+                                }
+                            }
+                        }
+                    }
+                    else = {
+                        scope:mwp_script_budget_player = {
+                            set_variable = {
+                                name = mwp_script_budget_error
+                                value = 2
+                            }
+                        }
+                    }
+                }
+                else = {
+                    scope:mwp_script_budget_player = {
+                        set_variable = {
+                            name = mwp_script_budget_error
+                            value = 3
+                        }
+                    }
+                }
+            }
+        }
+        if = {
+            limit = {
+                var:mwp_script_budget_error = 0
+                var:mwp_script_budget_known_count = maa_regiments_count
+                OR = {
+                    var:mwp_script_budget_ratio > 0
+                    var:mwp_script_budget_unraised = 0
+                }
+            }
+            set_variable = {
+                name = mwp_script_maa_upkeep
+                value = {
+                    value = var:mwp_script_budget_unraised
+                    multiply = var:mwp_script_budget_ratio
+                    add = var:mwp_script_budget_zero_low_bound
+                    multiply = mwp_d18_army_positive_value
+                }
+            }
+            set_variable = {
+                name = mwp_script_budget_rounding
+                value = {
+                    value = maa_regiments_count
+                    add = 1
+                    multiply = 0.001
+                }
+            }
+            set_variable = {
+                name = mwp_script_maa_upkeep
+                value = {
+                    value = var:mwp_script_maa_upkeep
+                    add = var:mwp_script_budget_rounding
+                }
+            }
+
+            set_variable = { name = mwp_script_budget_levy_bound value = {
+                value = scope:mwp_fbr_levies multiply = mwp_script_levy_per_soldier_bound } }
+            set_variable = { name = mwp_script_raised_army_upkeep value = {
+                value = var:mwp_script_maa_upkeep add = var:mwp_script_budget_levy_bound } }
+            set_variable = { name = mwp_script_full_army_expense value = {
+                value = var:mwp_script_budget_current_expenses subtract = monthly_character_men_at_arms_expense_gold
+                min = 0 add = var:mwp_script_raised_army_upkeep } }
+            mwp_enforce_raised_gold_floor = yes
+            set_variable = { name = mwp_script_budget_ready value = yes }
+}
+}
+}
+
+mwp_fbr_refresh = {
+    set_variable = { name = mwp_d18_army_factor value = mwp_d18_army_factor_value }
+    set_variable = { name = mwp_d18_army_exact value = mwp_d18_army_exact_value }
+    # Source 2 is authorization for percentages only. Both HUD branches require
+    # a detailed native/fallback source (1/0) and their separate current quote.
+    set_variable = { name = mwp_script_budget_native value = 2 }
+    remove_variable = mwp_cost_cache_fallback_sequence
+    mwp_fbr_compute_maa = yes
+}
+mwp_fbr_cap_current_net = {
+    remove_variable = mwp_d19_net_ready
+    remove_variable = mwp_d19_net_owner
+    remove_variable = mwp_d19_net_generation
+    remove_variable = mwp_d19_net_day
+    remove_variable = mwp_d19_net_mode
+    remove_variable = mwp_d19_net_gross
+    remove_variable = mwp_d19_net_income
+    remove_variable = mwp_d19_net_expense_limit
+    remove_variable = mwp_d19_net_initial_expenses
+    remove_variable = mwp_d19_net_initial_balance
+    remove_variable = mwp_d19_net_purchase_count
+    if = {
+        limit = {
+            NOT = {
+                mwp_auto_budget_mode_value = 3
+            }
+        }
+        if = {
+            limit = { mwp_fbr_live = yes has_variable = mwp_script_budget_ready has_variable = mwp_auto_B }
+            if = { limit = { var:mwp_script_budget_ready = yes var:mwp_script_budget_income = scope:mwp_fbr_gross }
+                set_variable = {
+                    name = mwp_d19_net_owner
+                    value = this
+                }
+                set_variable = {
+                    name = mwp_d19_net_generation
+                    value = var:mwp_generation
+                }
+                set_variable = {
+                    name = mwp_d19_net_day
+                    value = days_since_birth
+                }
+                set_variable = {
+                    name = mwp_d19_net_mode
+                    value = mwp_auto_budget_mode_value
+                }
+                set_variable = {
+                    name = mwp_d19_net_gross
+                    value = scope:mwp_fbr_gross
+                }
+                set_variable = {
+                    name = mwp_d19_net_initial_expenses
+                    value = { value = scope:mwp_fbr_raw multiply = -1 }
+                }
+                set_variable = {
+                    name = mwp_d19_net_initial_balance
+                    value = { value = scope:mwp_fbr_net max = scope:mwp_input_current_balance }
+                }
+                set_variable = {
+                    name = mwp_d19_net_purchase_count
+                    value = mwp_native_cost_purchase_count_value
+                }
+                set_variable = {
+                    name = mwp_d19_net_income
+                    value = {
+                        value = { value = scope:mwp_fbr_net max = scope:mwp_input_current_balance }
+                        add = { value = scope:mwp_fbr_raw multiply = -1 }
+                        max = scope:mwp_fbr_gross
+                    }
+                }
+                set_variable = {
+                    name = mwp_d19_net_expense_limit
+                    value = {
+                        value = var:mwp_d19_net_income
+                        subtract = 0.01
+                    }
+                }
+                set_variable = {
+                    name = mwp_auto_B
+                    value = {
+                        value = var:mwp_d19_net_expense_limit
+                        subtract = monthly_character_expenses
+                        max = var:mwp_auto_B
+                    }
+                }
+                set_variable = {
+                    name = mwp_d19_net_ready
+                    value = yes
+                }
+            }
+        }
+        if = {
+            limit = {
+                NOT = {
+                    has_variable = mwp_d19_net_ready
+                }
+            }
+            set_variable = {
+                name = mwp_auto_B
+                value = -1
+            }
+            remove_variable = mwp_script_budget_ready
+            set_variable = {
+                name = mwp_script_budget_error
+                value = 1
+            }
+        }
+    }
+}
+
+mwp_paid_refresh_percentage_budget = {
+ remove_variable = mwp_d19_net_ready
+ remove_variable = mwp_script_budget_ready
+ set_variable = { name = mwp_auto_B value = 0 }
+ set_variable = { name = mwp_batch_initial_headroom value = 0 }
+ set_variable = { name = mwp_batch_remaining_headroom value = 0 }
+ set_variable = { name = mwp_batch_reserved_upkeep value = 0 }
+ if = {
+  limit = { mwp_fbr_live = yes }
+  mwp_script_budget_refresh_effect = yes
+  if = {
+   limit = { has_variable = mwp_script_budget_ready var:mwp_script_budget_ready = yes }
+   mwp_compute_headroom_effect = yes
+   if = {
+    limit = {
+     has_variable = mwp_d19_net_ready var:mwp_d19_net_ready = yes
+     var:mwp_d19_net_owner = this var:mwp_d19_net_generation = var:mwp_generation
+     var:mwp_d19_net_day = days_since_birth var:mwp_d19_net_mode = var:mwp_batch_mode
+     var:mwp_d19_net_purchase_count = var:mwp_auto_purchase_count
+     var:mwp_auto_B > 0
+    }
+    set_variable = { name = mwp_batch_initial_headroom value = var:mwp_auto_B }
+    set_variable = { name = mwp_batch_remaining_headroom value = var:mwp_auto_B }
+    set_variable = { name = mwp_fa_balance value = scope:mwp_input_current_balance }
+    save_scope_value_as = { name = mwp_paid_budget_current value = yes }
+   }
+  }
+ }
+}

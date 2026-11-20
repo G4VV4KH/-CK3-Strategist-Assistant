@@ -12,7 +12,7 @@ button_standard = { name = "mwp_d20_claim_sort_3" size = { 126 30 } text = "mwp_
   text_multi = { text = "mwp_d20_claim_empty" max_width = 580 autoresize = yes visible = "[Not(DataModelHasItems(GetPlayer.MakeScope.GetList('mwp_d20_claimants')))]" }
   scrollbox = { size = { 590 0 } layoutpolicy_vertical = expanding
    blockoverride "scrollbox_content" { fixedgridbox = { size = { 568 -1 } addcolumn = 568 addrow = 118
-    datamodel = "[GetPlayer.MakeScope.GetList('mwp_d20_claimants_page')]" datamodel_reuse_widgets = yes
+    datamodel = "[DataModelFirst(GetPlayer.MakeScope.GetList('mwp_d20_claimants_page'),Select_int32(GetVariableSystem.HasValue('mwp_dev10_tab','claimants'),GetDataModelSize(GetPlayer.MakeScope.GetList('mwp_d20_claimants_page')),'(int32)0'))]" datamodel_reuse_widgets = yes
     item = { widget = { name = "mwp_d20_claim_row" size = { 568 112 } datacontext = "[Scope.GetCharacter]"
      background = { using = Background_Area }
      portrait_head_small = { position = { 8 10 } }

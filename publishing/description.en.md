@@ -2,7 +2,7 @@
 
 ## At a glance
 
-- 🟢 **Version 0.1.0** · Targets CK3 **1.20.1.2**.
+- 🟢 **Version 0.1.2** · Targets CK3 **1.21.0.3**.
 - 🟢 **Standalone:** no other mod required; normal DLC restrictions apply.
 - 🟢 Compare troops, review opponents and find useful claimants in the Military window.
 - 🟢 **Languages:** English, Russian, French, German, Spanish, Polish, Japanese, Korean and Simplified Chinese.
@@ -17,11 +17,11 @@ Build an army for the wars around you. Strategist Assistant brings troop priorit
 
 Rank Men-at-Arms using enemy forces, counters, terrain, fortifications and your existing army. Green, yellow and red badges show relative usefulness; the number gives the priority. Rank 1 is the model's best next level, while automatic recruitment chooses the first available, affordable option. Siege and combat roles have diminishing usefulness as your army fills them.
 
-Automatic recruitment buys and expands eligible personal and title regiments, including supported recruitment through subjects. It checks the actual purchase and upkeep resources, government rules and supported discounts. It works while paused and with the Military window closed.
+Automatic recruitment buys and expands eligible personal and title regiments, including supported recruitment through subjects. It checks the actual purchase and upkeep resources, government rules and supported discounts. Florin condottieri are included for rulers with the required DLC and innovation. Automatic recruitment works with the Military window closed.
 
-Choose **Whole army**, **25% income**, **50% income**, **100% of income** or **Unlimited**. Whole army includes raised levies; capped modes also account for other expenses and reserve a positive monthly balance. Conservative forecasts may leave income unused. Unlimited removes the upkeep cap, so future expenses can exceed income; purchase costs and native limits still apply.
+Choose **Whole army**, **25% income**, **50% income**, **100% of income** or **Unlimited**. Percentage limits include fully raised regiments and levies. A gold purchase must leave at least +0.01 monthly income after civilian expenses. A purchase that crosses the limit is refunded. Unlimited removes the upkeep cap, so future expenses can exceed income; purchase costs and native limits still apply.
 
-**Allow regiment reorganization** is optional and off by default. When slots are full and no yellow or green regiment can expand, it may dismiss an unraised ordinary personal regiment rated red if a better green replacement is affordable. Yellow, green, title and special regiments are protected, as is the last useful siege regiment unless replaced by useful siege equipment. **Dismissal is irreversible: no refund and no transfer of levels.** The replacement starts at one level.
+**Allow regiment reorganization** is optional and off by default. When slots are full and no yellow or green regiment can expand, it may dismiss an unraised ordinary personal regiment rated red if a better green replacement is affordable. Yellow, green, title and special regiments are protected, as is your last personal siege regiment. Reorganization can free a redundant siege slot and prevents immediate repurchase while priorities stay the same. **Dismissal is irreversible: no refund and no transfer of levels.** The replacement starts at one level.
 
 ## Opponents and claimants
 
@@ -46,9 +46,9 @@ Replaces `hud.gui`, `window_military.gui`, `window_menatarms.gui`, `window_menat
 
 ## Saves and known limits
 
-Back up your save. Turn automation off and let any pending operation finish before disabling the mod. Recruited troops and dismissed regiments are real campaign changes; removing the mod does not undo them.
+Existing army plans retain their regiment types when upgrading to Florin. Back up your save. Turn automation off and let any pending operation finish before disabling the mod. Recruited troops and dismissed regiments are real campaign changes; removing the mod does not undo them.
 
-Ratings are heuristics, not battle forecasts. Unknown or incomplete data can pause automation. Native title limits may be handled conservatively. Nomad expansion that must consume a raised horde waits until it is disbanded. Automatic stationing is not included.
+Ratings are heuristics, not battle forecasts. Unknown or incomplete data can pause automation. Native title limits may be handled conservatively. Nomad expansion that must consume a raised horde waits until it is disbanded. Automatic stationing is not included. At speed five, a full army with the Military window open or a burst of purchases can slow the calendar.
 
 ## Feedback and support
 

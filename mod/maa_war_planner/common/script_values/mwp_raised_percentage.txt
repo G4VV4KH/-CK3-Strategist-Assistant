@@ -1,0 +1,12 @@
+﻿mwp_raised_resource_gold_expenses = { value = var:mwp_d21r_gold_expenses multiply = -1 }
+# Include the candidate and all upkeep already reserved by this batch. If the
+# engine charged more, use the larger live delta for the post-mutation guard.
+mwp_raised_post_increment_value = {
+    value = var:mwp_batch_reserved_upkeep add = var:mwp_script_selected_upkeep
+    min = { value = monthly_character_men_at_arms_expense_gold subtract = var:mwp_raised_initial_maa }
+}
+mwp_raised_post_total_value = {
+    value = monthly_character_expenses subtract = var:mwp_raised_current_military
+    subtract = { value = monthly_character_men_at_arms_expense_gold subtract = var:mwp_raised_initial_maa }
+    min = 0 add = var:mwp_script_raised_army_upkeep add = mwp_raised_post_increment_value
+}

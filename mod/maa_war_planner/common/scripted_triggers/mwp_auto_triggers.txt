@@ -12,6 +12,7 @@
         has_government = monastic_holy_order_government
         has_government = administrative_government
         has_government = landless_adventurer_government
+        has_government = merchant_government
         has_government = nomad_government
         has_government = herder_government
         has_government = celestial_government
@@ -34,6 +35,8 @@ mwp_auto_fresh_trigger = {
 mwp_analysis_current_work_trigger = {
     has_variable = mwp_generation
     OR = {
+        AND = { has_variable = mwp_fw_stage var:mwp_fw_epoch = var:mwp_generation }
+        AND = { has_variable = mwp_fp_step var:mwp_fp_generation = var:mwp_generation }
         AND = {
             has_variable = mwp_analysis_requested
             var:mwp_analysis_requested = yes
@@ -62,33 +65,33 @@ mwp_enemy_cache_current_trigger = {
     days_since_birth < mwp_enemy_cache_expiry_day_value
 }
 mwp_script_price_supported_trigger = {
-    is_ai = no
-    is_alive = yes
-    OR = {
-        has_government = feudal_government
-        has_government = republic_government
-        has_government = clan_government
-        has_government = tribal_government
-        has_government = wanua_government
-        has_government = mercenary_government
-        has_government = holy_order_government
-        has_government = monastic_holy_order_government
-        has_government = administrative_government
-        has_government = landless_adventurer_government
-        has_government = nomad_government
-        has_government = herder_government
-        has_government = celestial_government
-        has_government = mandala_government
-        has_government = steppe_admin_government
-        has_government = meritocratic_government
-        has_government = japan_administrative_government
-        has_government = japan_feudal_government
-        has_government = theocracy_government
-        has_government = ecclesiastical_government
-    }
-    has_variable = mwp_script_price_collection_owner
-    var:mwp_script_price_collection_owner = this
-    mwp_d21_house_prices_current_trigger = yes
+is_ai = no
+is_alive = yes
+OR = {
+    has_government = feudal_government
+    has_government = republic_government
+    has_government = clan_government
+    has_government = tribal_government
+    has_government = wanua_government
+    has_government = mercenary_government
+    has_government = holy_order_government
+    has_government = monastic_holy_order_government
+    has_government = administrative_government
+    has_government = landless_adventurer_government
+    has_government = merchant_government
+    has_government = nomad_government
+    has_government = herder_government
+    has_government = celestial_government
+    has_government = mandala_government
+    has_government = steppe_admin_government
+    has_government = meritocratic_government
+    has_government = japan_administrative_government
+    has_government = japan_feudal_government
+    has_government = theocracy_government
+    has_government = ecclesiastical_government
+}
+has_variable = mwp_script_price_collection_owner
+var:mwp_script_price_collection_owner = this
 }
 mwp_native_cost_current_trigger = {
     has_variable = mwp_native_cost_ready
@@ -839,6 +842,12 @@ mwp_d19_transaction_type_trigger = {
         }
         AND = {
             root = {
+                var:mwp_d19_tx_id = 112
+            }
+            is_maa_type = condottieri
+        }
+        AND = {
+            root = {
                 var:mwp_d19_tx_id = 106
             }
             is_maa_type = burenjia
@@ -1149,6 +1158,15 @@ mwp_d19_post_purchase_safe_trigger = {
             var:mwp_d19_tx_day = var:mwp_d19_net_day
             var:mwp_d19_tx_mode = var:mwp_d19_net_mode
             var:mwp_d19_tx_counter >= var:mwp_d19_net_purchase_count
+            
+            has_variable = mwp_raised_policy_quote has_variable = mwp_raised_initial_maa
+            has_variable = mwp_raised_current_military has_variable = mwp_batch_reserved_upkeep
+            has_variable = mwp_script_selected_upkeep has_variable = mwp_script_raised_army_upkeep
+            mwp_raised_post_total_value <= var:mwp_d19_net_expense_limit
+            trigger_if = { limit = { mwp_auto_budget_mode_value != 1 }
+                mwp_raised_post_increment_value <= { value = var:mwp_script_budget_income
+                    multiply = mwp_auto_income_fraction_value subtract = var:mwp_script_raised_army_upkeep }
+            }
             monthly_character_expenses >= 0
             monthly_character_expenses <= {
                 value = var:mwp_d19_net_income
@@ -13121,6 +13139,137 @@ mwp_d19_reject_105_2_trigger = {
         }
     }
 }
+mwp_d19_reject_112_1_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_candidate_legacy_rejection_trigger = yes
+        }
+        trigger_if = {
+            limit = {
+                has_variable = mwp_d19_reject_active
+                has_variable = mwp_d19_reject_112_1_present
+                has_variable = mwp_d19_reject_112_1_price
+                has_variable = mwp_d19_reject_112_1_upkeep
+                has_variable = mwp_script_candidate_price
+                has_variable = mwp_script_candidate_upkeep
+            }
+            NOT = {
+                mwp_auto_budget_mode_value = 3
+            }
+            var:mwp_d19_reject_112_1_price = var:mwp_script_candidate_price
+            var:mwp_d19_reject_112_1_upkeep = var:mwp_script_candidate_upkeep
+        }
+        trigger_else = {
+            always = no
+        }
+    }
+    trigger_else = {
+        trigger_if = {
+            limit = {
+                has_variable = mwp_d21j_valid
+                has_variable = mwp_d21j_valid_clock
+                has_variable = mwp_d21r_clock
+            }
+            var:mwp_d21j_valid = yes
+            var:mwp_d21j_valid_clock = var:mwp_d21r_clock
+            mwp_d21_reject_context_current_trigger = yes
+            trigger_if = {
+                limit = {
+                    var:mwp_script_candidate_route = 2
+                    exists = var:mwp_script_candidate_title
+                }
+                var:mwp_script_candidate_title = {
+                    mwp_d21_reject_holder_112_1_trigger = yes
+                }
+            }
+            trigger_else = {
+                mwp_d21_reject_holder_112_1_trigger = yes
+            }
+        }
+        trigger_else = {
+            always = no
+        }
+    }
+}
+mwp_d19_reject_112_2_trigger = {
+    trigger_if = {
+        limit = {
+            mwp_d21_candidate_legacy_rejection_trigger = yes
+        }
+        trigger_if = {
+            limit = {
+                has_variable = mwp_d19_reject_active
+                has_variable = mwp_d19_reject_112_2_present
+                has_variable = mwp_d19_reject_112_2_price
+                has_variable = mwp_d19_reject_112_2_upkeep
+                has_variable = mwp_d19_reject_112_2_size
+                has_variable = mwp_d19_reject_112_2_max
+                has_variable = mwp_d19_reject_112_2_current
+                exists = var:mwp_d19_reject_112_2_regiment
+                exists = var:mwp_script_candidate_regiment
+                has_variable = mwp_script_candidate_price
+                has_variable = mwp_script_candidate_upkeep
+            }
+            NOT = {
+                mwp_auto_budget_mode_value = 3
+            }
+            var:mwp_d19_reject_112_2_price = var:mwp_script_candidate_price
+            var:mwp_d19_reject_112_2_upkeep = var:mwp_script_candidate_upkeep
+            var:mwp_d19_reject_112_2_regiment = var:mwp_script_candidate_regiment
+            var:mwp_script_candidate_regiment = {
+                maa_size = root.var:mwp_d19_reject_112_2_size
+                maa_max_troops_count = root.var:mwp_d19_reject_112_2_max
+                maa_current_troops_count = root.var:mwp_d19_reject_112_2_current
+            }
+            trigger_if = {
+                limit = {
+                    has_variable = mwp_d19_reject_112_2_station
+                }
+                var:mwp_script_candidate_regiment = {
+                    exists = regiment_station
+                    regiment_station = root.var:mwp_d19_reject_112_2_station
+                }
+            }
+            trigger_else = {
+                var:mwp_script_candidate_regiment = {
+                    NOT = {
+                        exists = regiment_station
+                    }
+                }
+            }
+        }
+        trigger_else = {
+            always = no
+        }
+    }
+    trigger_else = {
+        trigger_if = {
+            limit = {
+                has_variable = mwp_d21j_valid
+                has_variable = mwp_d21j_valid_clock
+                has_variable = mwp_d21r_clock
+            }
+            var:mwp_d21j_valid = yes
+            var:mwp_d21j_valid_clock = var:mwp_d21r_clock
+            mwp_d21_reject_context_current_trigger = yes
+            trigger_if = {
+                limit = {
+                    var:mwp_script_candidate_route = 2
+                    exists = var:mwp_script_candidate_title
+                }
+                var:mwp_script_candidate_title = {
+                    mwp_d21_reject_holder_112_2_trigger = yes
+                }
+            }
+            trigger_else = {
+                mwp_d21_reject_holder_112_2_trigger = yes
+            }
+        }
+        trigger_else = {
+            always = no
+        }
+    }
+}
 mwp_d19_reject_106_1_trigger = {
     trigger_if = {
         limit = {
@@ -13941,23 +14090,16 @@ mwp_d19_whole_army_supported_trigger = {
     }
 }
 
-mwp_d21_house_prices_current_trigger = {
- trigger_if = { limit = { NOT = { any_powerful_family = { always = yes } } } always = yes }
- trigger_else = {
-is_ai = no is_alive = yes has_variable = mwp_d21r_owner var:mwp_d21r_owner = this has_variable = mwp_d21r_clock has_variable = mwp_d21r_epoch
- trigger_if = { limit = {
-  has_variable = mwp_generation has_variable = mwp_d21h_epoch
-  has_variable = mwp_d21h_generation has_variable = mwp_d21h_day
-  has_variable = mwp_d21h_start
- }
- var:mwp_d21h_epoch = var:mwp_d21r_epoch
- var:mwp_d21h_generation = var:mwp_generation
- var:mwp_d21h_day = days_since_birth
- var:mwp_d21r_clock >= var:mwp_d21h_start
- var:mwp_d21r_clock <= { value = var:mwp_d21h_start add = 10 }
- }
- trigger_else = { always = no }
+mwp_d21_house_prices_current_trigger = { mwp_script_price_supported_trigger = yes }
 
-has_variable = mwp_d21h_ready var:mwp_d21h_ready = yes var:mwp_d21h_received = var:mwp_d21h_expected
-}
+mwp_fp_job_context_trigger = {
+ OR = {
+  AND = {
+   has_variable = mwp_scoring_active has_variable = mwp_scoring_owner var:mwp_scoring_owner = this
+   var:mwp_scoring_generation = var:mwp_generation has_variable = mwp_live_stage var:mwp_live_stage = 2
+  }
+  AND = { has_variable = mwp_fa_live var:mwp_fa_live = this
+ has_variable = mwp_fa_profile has_variable = mwp_batch_active has_variable = mwp_auto_last_paid_verified
+ var:mwp_fa_profile = var:mwp_auto_purchase_count var:mwp_batch_generation = var:mwp_generation }
+ }
 }

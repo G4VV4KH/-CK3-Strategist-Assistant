@@ -851,6 +851,12 @@ mwp_type_unlocked_105_trigger = {
 mwp_type_replacement_available_105_trigger = {
     mwp_type_unlocked_105_trigger = yes
 }
+mwp_type_unlocked_112_trigger = {
+    OR = { has_access_to_maa = condottieri mwp_d21_type_subject_access_112_trigger = yes }
+}
+mwp_type_replacement_available_112_trigger = {
+    mwp_type_unlocked_112_trigger = yes
+}
 
 mwp_type_unlocked_106_trigger = {
     OR = { has_access_to_maa = burenjia mwp_d21_type_subject_access_106_trigger = yes }

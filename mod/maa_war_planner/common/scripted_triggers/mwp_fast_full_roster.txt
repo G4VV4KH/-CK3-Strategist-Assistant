@@ -1,0 +1,24 @@
+﻿mwp_fc_can_probe = {
+ is_alive = yes is_ai = no has_variable = mwp_fast_calendar
+ has_variable = mwp_auto_recruit_enabled var:mwp_auto_recruit_enabled = yes
+ NOT = { has_variable = mwp_reorganization_enabled }
+ NOT = { has_variable = mwp_batch_active } NOT = { has_variable = mwp_fa_live }
+ NOT = { has_variable = mwp_d19_tx_active } NOT = { has_variable = mwp_d21p_pending }
+ mwp_d21_legacy_gold_budget_trigger = yes is_at_war = no
+ NOT = { government_allows = subject_men_at_arms }
+ maa_regiments_count > 0 maa_regiments_count <= 12 maa_regiments_count = maa_regiments_max_count
+ NOT = { any_maa_regiment = { OR = { is_personal_maa_regiment = no is_regular_maa_regiment = no
+  is_title_maa_regiment = yes is_raised = yes is_maa_in_combat = yes maa_size <= 0
+  NOT = { regiment_owner = root } } } }
+}
+mwp_fc_members_current = {
+ trigger_if = { limit = { has_variable = mwp_fc_count has_variable_list = mwp_fc_members }
+  var:mwp_fc_count = maa_regiments_count
+  NOT = { any_maa_regiment = { NOT = { root = { is_target_in_variable_list = { name = mwp_fc_members target = prev } } } } }
+ }
+ trigger_else = { always = no }
+}
+mwp_fc_all_verified = {
+ has_variable = mwp_fc_count
+ NOT = { any_maa_regiment = { NOT = { root = { is_target_in_variable_list = { name = mwp_fc_verified target = prev } } } } }
+}

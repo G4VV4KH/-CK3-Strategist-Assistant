@@ -1,7 +1,7 @@
 ﻿# GENERATED MWP LIVE BRIDGE; source: tests/maa_war_planner/build_live_bridge.py
 mwp_native_begin_analysis = {
     scope = character
-    saved_scopes = { mwp_candidate_owner mwp_candidate_generation }
+    saved_scopes = { mwp_candidate_owner mwp_candidate_generation mwp_fw_solo }
     is_shown = { is_ai = no }
     is_valid = {
         is_ai = no
@@ -28,13 +28,12 @@ mwp_native_begin_analysis = {
         has_variable = mwp_analysis_requested
         var:mwp_analysis_requested = yes
             }
+            remove_variable = mwp_fp_solo
+            if = { limit = { exists = scope:mwp_fw_solo scope:mwp_fw_solo = yes } set_variable = { name = mwp_fp_solo value = var:mwp_generation } }
             remove_variable = mwp_analysis_requested
-            if = {
-                limit = { NOT = { mwp_enemy_cache_current_trigger = yes } }
-                mwp_war_refresh_effect = yes
-                mwp_enemy_cache_build_effect = yes
-            }
-            mwp_scoring_begin_effect = yes
+            if = { limit = { mwp_enemy_cache_current_trigger = yes } mwp_scoring_begin_effect = yes }
+            else_if = { limit = { exists = scope:mwp_fw_solo scope:mwp_fw_solo = yes } mwp_fw_start_effect = yes }
+            else = { mwp_war_refresh_effect = yes mwp_enemy_cache_build_effect = yes mwp_scoring_begin_effect = yes }
         }
     }
 }
@@ -92,7 +91,7 @@ mwp_native_consider_candidate = {
         var:mwp_scoring_owner = this
         has_variable = mwp_scoring_generation
         var:mwp_scoring_generation = var:mwp_generation
-        var:mwp_scoring_seen_count = 111
+        var:mwp_scoring_seen_count = 112
         NOT = { has_variable = mwp_live_collecting }
     
                 has_variable = mwp_enemy_cache_forts_ready
@@ -119,7 +118,7 @@ mwp_native_finish_analysis = {
         var:mwp_scoring_owner = this
         has_variable = mwp_scoring_generation
         var:mwp_scoring_generation = var:mwp_generation
-        var:mwp_scoring_seen_count = 111
+        var:mwp_scoring_seen_count = 112
         NOT = { has_variable = mwp_live_collecting }
     }
     effect = {
@@ -139,7 +138,7 @@ mwp_native_finish_analysis = {
         var:mwp_scoring_owner = this
         has_variable = mwp_scoring_generation
         var:mwp_scoring_generation = var:mwp_generation
-        var:mwp_scoring_seen_count = 111
+        var:mwp_scoring_seen_count = 112
         NOT = { has_variable = mwp_live_collecting }
             }
             mwp_live_start_effect = yes
@@ -285,7 +284,7 @@ mwp_native_live_fort = {
         var:mwp_scoring_owner = this
         has_variable = mwp_scoring_generation
         var:mwp_scoring_generation = var:mwp_generation
-        var:mwp_scoring_seen_count = 111
+        var:mwp_scoring_seen_count = 112
         NOT = { has_variable = mwp_live_collecting }
     
                 has_variable = mwp_enemy_cache_forts_ready
@@ -391,7 +390,7 @@ mwp_native_skip_candidate = {
         var:mwp_scoring_owner = this
         has_variable = mwp_scoring_generation
         var:mwp_scoring_generation = var:mwp_generation
-        var:mwp_scoring_seen_count = 111
+        var:mwp_scoring_seen_count = 112
         NOT = { has_variable = mwp_live_collecting }
     
                 has_variable = mwp_enemy_cache_forts_ready
@@ -422,7 +421,7 @@ has_variable = mwp_scoring_owner
 var:mwp_scoring_owner = this
 has_variable = mwp_scoring_generation
 var:mwp_scoring_generation = var:mwp_generation
-var:mwp_scoring_seen_count = 111
+var:mwp_scoring_seen_count = 112
 has_variable = mwp_live_collecting
 var:mwp_live_collecting = yes
 has_variable = mwp_live_stage

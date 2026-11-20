@@ -382,6 +382,10 @@ mwp_d21_buy_currency_105 = {
 value = 1
 if = { limit = { government_allows = regiments_prestige_as_gold } value = 2 }
 }
+mwp_d21_buy_currency_112 = {
+value = 1
+if = { limit = { government_allows = regiments_prestige_as_gold } value = 2 }
+}
 mwp_d21_buy_currency_106 = {
 value = 1
 if = { limit = { government_allows = regiments_prestige_as_gold } value = 2 }

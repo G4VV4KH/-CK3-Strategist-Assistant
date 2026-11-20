@@ -68,6 +68,7 @@ mwp_war_has_pool_trigger = {
 
 
 mwp_d20_war_schema_current_trigger = {
- has_variable = mwp_war_likelihood_schema var:mwp_war_likelihood_schema = 2
+ has_variable = mwp_florin_catalog
+ has_variable = mwp_war_likelihood_schema var:mwp_war_likelihood_schema = 3
  has_variable = mwp_war_likelihood_ready var:mwp_war_likelihood_ready = yes
 }

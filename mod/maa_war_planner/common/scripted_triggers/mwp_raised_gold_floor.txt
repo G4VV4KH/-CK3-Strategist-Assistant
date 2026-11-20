@@ -1,0 +1,17 @@
+﻿mwp_gold_floor_receipt_current = {
+ trigger_if = { limit = {
+    has_variable = mwp_gold_floor_owner has_variable = mwp_n16c_owner
+    has_variable = mwp_n16c_generation has_variable = mwp_generation
+    has_variable = mwp_n16c_army_raw has_variable = mwp_n16c_day
+    has_variable = mwp_n16c_purchase_count has_variable = mwp_n16c_max_strength
+    has_variable = mwp_n16c_clock has_variable = mwp_n16c_start_tick
+ }
+    mwp_d21_legacy_gold_budget_trigger = yes
+    var:mwp_gold_floor_owner = this var:mwp_n16c_owner = this
+    var:mwp_n16c_generation = var:mwp_generation var:mwp_n16c_day = days_since_birth
+    var:mwp_n16c_purchase_count = mwp_native_cost_purchase_count_value
+    var:mwp_n16c_max_strength = max_military_strength var:mwp_n16c_army_raw <= 0
+    mwp_n16c_collection_age_value >= 0 mwp_n16c_collection_age_value <= 5
+ }
+ trigger_else = { always = no }
+}

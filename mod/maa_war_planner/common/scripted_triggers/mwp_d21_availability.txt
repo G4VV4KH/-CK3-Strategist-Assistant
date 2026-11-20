@@ -1648,6 +1648,23 @@ mwp_d21_type_subject_access_105_trigger = {
     }
     
 }
+mwp_d21_type_subject_access_112_trigger = {
+    government_allows = subject_men_at_arms
+    has_variable = mwp_d21_access_owner
+    var:mwp_d21_access_owner = this
+    has_variable = mwp_d21_subject_provider_112
+    has_variable = mwp_d21_access_generation_112
+    var:mwp_d21_access_generation_112 = var:mwp_generation
+    has_variable = mwp_d21_access_day_112
+    var:mwp_d21_access_day_112 = days_since_birth
+    any_subject = { this = prev.var:mwp_d21_subject_provider_112 }
+    var:mwp_d21_subject_provider_112 = {
+        is_alive = yes
+        has_access_to_maa = condottieri
+        save_temporary_scope_as = mwp_d21_subject_checked
+    }
+    
+}
 mwp_d21_type_subject_access_106_trigger = {
     government_allows = subject_men_at_arms
     has_variable = mwp_d21_access_owner

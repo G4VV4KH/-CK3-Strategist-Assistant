@@ -1,6 +1,8 @@
 ﻿window = { name = mwp_d21_pending_budget size = { 1 1 } alwaystransparent = yes
 visible = "[And(GetPlayer.IsValid,Not(GameIsMultiplayer))]"
 datacontext = "[AccessTopBar]"
+widget = { size = { 1 1 } alwaystransparent = yes datamodel = "[DataModelFirst(GetPlayer.MakeScope.GetList('mwp_id_finance_rows'),Select_int32(GetPlayer.MakeScope.GetVariable('mwp_d21p_pending').IsSet,'(int32)1','(int32)0'))]"
+ item = { widget = { size = { 1 1 } alwaystransparent = yes
 widget = { name = mwp_d21_pending_worker size = { 1 1 } alwaystransparent = yes
  state = { name = mwp_d21_pending_poll trigger_on_create = yes alpha = 1 duration = 0.1
   on_finish = "[PdxGuiWidget.TriggerAnimation(Select_CString(And(And(And(GetPlayer.IsValid,Not(GameIsMultiplayer)),GetPlayer.MakeScope.GetVariable('mwp_d21p_pending').IsSet),GetScriptedGui('mwp_d21_pending_receive').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('mwp_d21p_input_owner',GetPlayer.MakeScope).AddScope('mwp_d21p_input_sequence',MakeScopeValue(GetPlayer.MakeScope.GetVariable('mwp_d21p_sequence').GetValueWithDefault('(CFixedPoint)-777'))).AddScope('mwp_d21p_input_clock',MakeScopeValue(GetPlayer.MakeScope.GetVariable('mwp_d21r_clock').GetValueWithDefault('(CFixedPoint)-777'))).AddScope('mwp_d21p_input_epoch',MakeScopeValue(GetPlayer.MakeScope.GetVariable('mwp_d21r_epoch').GetValueWithDefault('(CFixedPoint)-777'))).AddScope('mwp_d21p_input_counter',MakeScopeValue(GetPlayer.MakeScope.ScriptValue('mwp_native_cost_purchase_count_value'))).AddScope('mwp_d21p_input_prestige',MakeScopeValue(GetPlayer.GetPrestigeBalance)).AddScope('mwp_d21p_input_piety',MakeScopeValue(GetPlayer.GetPietyBalance)).AddScope('mwp_d21p_input_barter',MakeScopeValue(AccessTopBar.GetBarterGoodsBalance)).End)),'mwp_d21_pending_commit','mwp_d21_pending_idle'))]" }
@@ -10,4 +12,6 @@ widget = { name = mwp_d21_pending_worker size = { 1 1 } alwaystransparent = yes
  }
  state = { name = mwp_d21_pending_idle alpha = 1 duration = 0 next = mwp_d21_pending_poll }
 }
+
+ } } }
 }

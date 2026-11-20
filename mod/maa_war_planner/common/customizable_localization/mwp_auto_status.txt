@@ -127,14 +127,6 @@
         trigger = {
             has_variable = mwp_auto_status
             var:mwp_auto_status = 14
-            NOT = { mwp_d21_house_prices_current_trigger = yes }
-        }
-        localization_key = mwp_d24_status_price_refresh
-    }
-    text = {
-        trigger = {
-            has_variable = mwp_auto_status
-            var:mwp_auto_status = 14
         }
         localization_key = mwp_auto_status_price_unavailable
     }
@@ -191,4 +183,66 @@ var:mwp_enemy_cache_coverage = no
     localization_key = mwp_d16_no_note
 }
 
+}
+
+mwp_raised_stop_hint = {
+    type = character
+    text = {
+        trigger = {
+            has_variable = mwp_auto_recruit_enabled
+            has_variable = mwp_auto_status
+            var:mwp_auto_status = 5
+            mwp_d21_legacy_gold_budget_trigger = yes
+            NOT = { mwp_auto_budget_mode_value = 3 }
+            has_variable = mwp_script_budget_ready
+            var:mwp_script_budget_ready = yes
+            has_variable = mwp_script_raised_army_upkeep
+            has_variable = mwp_script_budget_income
+            has_variable = mwp_auto_B
+            mwp_raised_policy_quote_current = yes
+        }
+        localization_key = mwp_raised_gold_stop_numbers
+    }
+
+    text = {
+        trigger = {
+            has_variable = mwp_auto_recruit_enabled
+            has_variable = mwp_auto_status
+            OR = { var:mwp_auto_status = 5 var:mwp_auto_status = 7 }
+            mwp_auto_budget_mode_value = 1
+        }
+        localization_key = mwp_budget_army_tooltip
+    }
+
+    text = {
+        trigger = {
+            has_variable = mwp_auto_recruit_enabled
+            has_variable = mwp_auto_status
+            OR = { var:mwp_auto_status = 5 var:mwp_auto_status = 7 }
+            mwp_auto_budget_mode_value = 2
+        }
+        localization_key = mwp_budget_maa_tooltip
+    }
+
+    text = {
+        trigger = {
+            has_variable = mwp_auto_recruit_enabled
+            has_variable = mwp_auto_status
+            OR = { var:mwp_auto_status = 5 var:mwp_auto_status = 7 }
+            mwp_auto_budget_mode_value = 4
+        }
+        localization_key = mwp_budget_quarter_tooltip
+    }
+
+    text = {
+        trigger = {
+            has_variable = mwp_auto_recruit_enabled
+            has_variable = mwp_auto_status
+            OR = { var:mwp_auto_status = 5 var:mwp_auto_status = 7 }
+            mwp_auto_budget_mode_value = 5
+        }
+        localization_key = mwp_budget_half_tooltip
+    }
+
+    text = { fallback = yes localization_key = mwp_auto_recruit_tooltip }
 }

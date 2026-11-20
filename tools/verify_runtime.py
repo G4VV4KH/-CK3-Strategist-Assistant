@@ -18,9 +18,9 @@ def check():
     assert m,(p,line)
     assert m[1] not in values,('duplicate',p,m[1])
     values[m[1]]=m[2]
-  assert len(values)==606,(directory,len(values))
+  assert len(values)==612,(directory,len(values))
   assert values['mwp_info_title'].startswith('Strategist Assistant'),directory
   locales[directory.name]=set(values)
  assert len(locales)==9 and all(v==locales['english'] for v in locales.values())
- return {'status':'STATIC_PASS','runtime_files':len(actual),'languages':len(locales),'keys_per_language':606}
+ return {'status':'STATIC_PASS','runtime_files':len(actual),'languages':len(locales),'keys_per_language':612}
 if __name__=='__main__':print(json.dumps(check()))

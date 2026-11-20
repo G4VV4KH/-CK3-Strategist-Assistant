@@ -2,7 +2,9 @@
 types MwpDev20WarActions {
  type mwp_dev20_active_wars = vbox {
   name = "mwp_dev20_active_wars" size = { 590 0 } layoutpolicy_vertical = expanding
-  widget = { name = "mwp20_active_wars_refresh" size = { 1 1 } alwaystransparent = yes
+  widget = { name = mwp_p15_active_page size = { 1 1 } alwaystransparent = yes datamodel = "[DataModelFirst(GetPlayer.MakeScope.GetList('mwp_id_live_rows'),Select_int32(And(GetVariableSystem.HasValue('mwp_dev10_tab','wars'),GetVariableSystem.HasValue('mwp_dev10_direction','active')),'(int32)1','(int32)0'))]"
+ item = { widget = { size = { 1 1 } alwaystransparent = yes
+widget = { name = "mwp20_active_wars_refresh" size = { 1 1 } alwaystransparent = yes
    state = { name = mwp20_active_refresh_poll trigger_on_create = yes alpha = 1 duration = 0.05 next = mwp20_active_refresh_dispatch }
    state = { name = mwp20_active_refresh_dispatch alpha = 1 duration = 0
     on_finish = "[PdxGuiWidget.TriggerAnimation(Select_CString(And(IsGameViewOpen('military'),And(GetVariableSystem.HasValue('mwp_dev10_tab','wars'),GetVariableSystem.HasValue('mwp_dev10_direction','active'))),'mwp20_active_refresh_commit','mwp20_active_refresh_idle'))]"
@@ -13,13 +15,14 @@ types MwpDev20WarActions {
    }
    state = { name = mwp20_active_refresh_idle alpha = 1 duration = 1 next = mwp20_active_refresh_poll }
   }
+ } } }
   text_multi = { text = "mwp_info_active_empty" max_width = 568 autoresize = yes
    visible = "[Not(DataModelHasItems(GetPlayer.MakeScope.GetList('mwp_info_active_wars')))]"
   }
   scrollbox = { size = { 590 0 } layoutpolicy_vertical = expanding
    blockoverride "scrollbox_content" {
     fixedgridbox = { size = { 568 -1 } addcolumn = 568 addrow = 118
-     datamodel = "[GetPlayer.MakeScope.GetList('mwp_info_active_wars')]" datamodel_reuse_widgets = yes
+     datamodel = "[DataModelFirst(GetPlayer.MakeScope.GetList('mwp_info_active_wars'),Select_int32(And(GetVariableSystem.HasValue('mwp_dev10_tab','wars'),GetVariableSystem.HasValue('mwp_dev10_direction','active')),GetDataModelSize(GetPlayer.MakeScope.GetList('mwp_info_active_wars')),'(int32)0'))]" datamodel_reuse_widgets = yes
      item = { mwp_dev20_active_war_row = {} }
     }
    }
