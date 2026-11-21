@@ -80,6 +80,7 @@ Include your game version, mod list, ruler, upkeep mode and a save or steps to r
 - [Council Assignment Automation](https://steamcommunity.com/sharedfiles/filedetails/?id=3815689627) — automate council appointments and optimize councillor assignments.
 - [Title Domination](https://steamcommunity.com/sharedfiles/filedetails/?id=3828276945) — proclaim uncreated titles through diplomacy and war.
 - [Accolade Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3836819350) — choose accolade attributes or knights first and set rank limits.
+- [Traitor Trials](https://steamcommunity.com/sharedfiles/filedetails/?id=3843236809) — judge defeated rebels after a war.
 
 ### Compatibility patches
 
